@@ -64,7 +64,7 @@ Annotation | Format
 ##### Example:
 
 ```go
-// swagger:parameter listBars addBars
+// swagger:parameters listBars addBars
 type BarSliceParam struct {
 	// a BarSlice has bars which are strings
 	//
@@ -95,7 +95,7 @@ operations:
       parameters:
         - name: bar_slice
           in: query
-          maxItems: 10 
+          maxItems: 10
           minItems: 3
           unique: true
           collectionFormat: pipe
@@ -118,7 +118,7 @@ operations:
       parameters:
         - name: bar_slice
           in: query
-          maxItems: 10 
+          maxItems: 10
           minItems: 3
           unique: true
           collectionFormat: pipe
