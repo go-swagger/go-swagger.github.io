@@ -466,7 +466,7 @@ level the value is a 0-based index, so items.minLength is the same as items.0.mi
 
 &lt;h5 id=&#34;example:9db9435dae1c8dccdc174235ed54a579&#34;&gt;Example:&lt;/h5&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;// swagger:parameter listBars addBars
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;// swagger:parameters listBars addBars
 type BarSliceParam struct {
 	// a BarSlice has bars which are strings
 	//
@@ -496,7 +496,7 @@ operations:
       parameters:
         - name: bar_slice
           in: query
-          maxItems: 10 
+          maxItems: 10
           minItems: 3
           unique: true
           collectionFormat: pipe
@@ -519,7 +519,7 @@ operations:
       parameters:
         - name: bar_slice
           in: query
-          maxItems: 10 
+          maxItems: 10
           minItems: 3
           unique: true
           collectionFormat: pipe
