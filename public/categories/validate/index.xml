@@ -21,21 +21,21 @@
 &lt;p&gt;The toolkit has a command to validate swagger specifications for you.
 It includes a full json-schema validator and adds some extra validations to ensure the spec is valid.&lt;/p&gt;
 
-&lt;h3 id=&#34;usage:c64148e1a0d4f4de12bdfecb139d0588&#34;&gt;Usage&lt;/h3&gt;
+&lt;h3 id=&#34;usage&#34;&gt;Usage&lt;/h3&gt;
 
 &lt;p&gt;To validate a specification:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;swagger validate [http-url|filepath]
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&#34;swagger-2-0-resources:c64148e1a0d4f4de12bdfecb139d0588&#34;&gt;Swagger 2.0 resources&lt;/h3&gt;
+&lt;h3 id=&#34;swagger-2-0-resources&#34;&gt;Swagger 2.0 resources&lt;/h3&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Specification Documentation: &lt;a href=&#34;https://github.com/swagger-api/swagger-spec/blob/master/versions/2.0.md&#34;&gt;https://github.com/swagger-api/swagger-spec/blob/master/versions/2.0.md&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;JSON Schema: &lt;a href=&#34;https://github.com/swagger-api/swagger-spec/blob/master/schemas/v2.0/schema.json&#34;&gt;https://github.com/swagger-api/swagger-spec/blob/master/schemas/v2.0/schema.json&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&#34;sematic-validation:c64148e1a0d4f4de12bdfecb139d0588&#34;&gt;Sematic Validation&lt;/h3&gt;
+&lt;h3 id=&#34;sematic-validation&#34;&gt;Sematic Validation&lt;/h3&gt;
 
 &lt;p&gt;All the rules the validator tool supports:&lt;/p&gt;
 

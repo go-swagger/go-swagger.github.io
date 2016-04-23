@@ -20,12 +20,12 @@
 
 &lt;p&gt;Marks an embedded type as  a member for allOf&lt;/p&gt;
 
-&lt;h5 id=&#34;syntax:9e114a42ed516fdef13f2ebb84a2eb20&#34;&gt;Syntax:&lt;/h5&gt;
+&lt;h5 id=&#34;syntax&#34;&gt;Syntax:&lt;/h5&gt;
 
 &lt;pre&gt;&lt;code&gt;swagger:allOf
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h5 id=&#34;example:9e114a42ed516fdef13f2ebb84a2eb20&#34;&gt;Example:&lt;/h5&gt;
+&lt;h5 id=&#34;example&#34;&gt;Example:&lt;/h5&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;// A SimpleOne is a model with a few simple fields
 type SimpleOne struct {
@@ -64,7 +64,7 @@ type AllOfModel struct {
 }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h5 id=&#34;result:9e114a42ed516fdef13f2ebb84a2eb20&#34;&gt;Result:&lt;/h5&gt;
+&lt;h5 id=&#34;result&#34;&gt;Result:&lt;/h5&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-yaml&#34;&gt;---
 definitions:
@@ -126,12 +126,12 @@ definitions:
 
 &lt;p&gt;Because this is for use with interfaces we can&amp;rsquo;t make use of the json struct tag to allow for spec name overriding. So instead you can annotate method names on an interface with swagger:name and a value this will then provide the json field name.&lt;/p&gt;
 
-&lt;h5 id=&#34;syntax:776d526ac6d1462856c6cb3611676552&#34;&gt;Syntax:&lt;/h5&gt;
+&lt;h5 id=&#34;syntax&#34;&gt;Syntax:&lt;/h5&gt;
 
 &lt;pre&gt;&lt;code&gt;swagger:allOf org.example.something.TypeName
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h5 id=&#34;example:776d526ac6d1462856c6cb3611676552&#34;&gt;Example:&lt;/h5&gt;
+&lt;h5 id=&#34;example&#34;&gt;Example:&lt;/h5&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;// TeslaCar is a tesla car
 //
@@ -169,7 +169,7 @@ type ModelX struct {
 }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h5 id=&#34;result:776d526ac6d1462856c6cb3611676552&#34;&gt;Result:&lt;/h5&gt;
+&lt;h5 id=&#34;result&#34;&gt;Result:&lt;/h5&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-yaml&#34;&gt;---
 definitions:

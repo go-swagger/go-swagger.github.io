@@ -74,12 +74,12 @@ The refs are tracked separately so that they can be renamed later on.</p>
 <p>At this moment the parameters require one or more structs to be defined, it&rsquo;s not possible to annotate plain var
 entries at this moment.</p>
 
-<h5 id="syntax:9db9435dae1c8dccdc174235ed54a579">Syntax:</h5>
+<h5 id="syntax">Syntax:</h5>
 
 <pre><code>swagger:parameters [operationid1 operationid2]
 </code></pre>
 
-<h5 id="properties:9db9435dae1c8dccdc174235ed54a579">Properties:</h5>
+<h5 id="properties">Properties:</h5>
 
 <p>The fields of this struct can be decorated with a number of annotations. For the field name it uses the struct field
 name, it respects the json struct field tag for customizing the name.</p>
@@ -214,7 +214,7 @@ level the value is a 0-based index, so items.minLength is the same as items.0.mi
 </tbody>
 </table>
 
-<h5 id="example:9db9435dae1c8dccdc174235ed54a579">Example:</h5>
+<h5 id="example">Example:</h5>
 
 <pre><code class="language-go">// swagger:parameters listBars addBars
 type BarSliceParam struct {
@@ -236,7 +236,7 @@ type BarSliceParam struct {
 }
 </code></pre>
 
-<h5 id="result:9db9435dae1c8dccdc174235ed54a579">Result:</h5>
+<h5 id="result">Result:</h5>
 
 <pre><code class="language-yaml">---
 operations:
