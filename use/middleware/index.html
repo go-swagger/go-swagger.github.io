@@ -81,7 +81,7 @@
 The convention is to use the <code>/swagger.json</code> location for serving up the specification document, so we serve the
 specification at that path.</p>
 
-<h3 id="add-middleware:37ab2f15ff048f67959bcac0a6032f32">Add middleware</h3>
+<h3 id="add-middleware">Add middleware</h3>
 
 <p>The generated server allows for 2 extension points to inject middleware in its middlware chain. These have to do with
 the lifecycle of a request. You can find those hooks in the configure_xxx_api.go file.</p>
@@ -108,7 +108,7 @@ to this point by editing the <code>setupMiddlewares</code> method in configure_x
 the plain middleware allows you to kind of filter this by request path without having to take care of routing. You also
 get access to the full context that the go-swagger toolkit uses throughout the lifecycle of a request.</p>
 
-<h4 id="add-logging-and-panic-handling:37ab2f15ff048f67959bcac0a6032f32">Add logging and panic handling</h4>
+<h4 id="add-logging-and-panic-handling">Add logging and panic handling</h4>
 
 <p>A very common requirement for HTTP API&rsquo;s is to include some form of logging. Another one is to handle panics from your
 API requests.  The example for a possible implementation of this uses <a href="https://github.com/dre1080/recover">this community provided
@@ -154,7 +154,7 @@ func setupGlobalMiddleware(handler http.Handler) http.Handler {
 }
 </code></pre>
 
-<h4 id="add-rate-limiting:37ab2f15ff048f67959bcac0a6032f32">Add rate limiting</h4>
+<h4 id="add-rate-limiting">Add rate limiting</h4>
 
 <p>You can also add rate limiting in a similar way. Lets say we just want to rate limit the valid requests to our swagger
 API. To do so we could use <a href="https://github.com/didip/tollbooth">tollbooth</a>.</p>

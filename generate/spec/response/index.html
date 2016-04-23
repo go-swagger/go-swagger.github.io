@@ -63,12 +63,12 @@
 <p>Reads a struct decorated with <strong>swagger:response</strong> and uses that information to fill up the headers and the schema for a response.
 A swagger:route can specify a response name for a status code and then the matching response will be used for that operation in the swagger definition.</p>
 
-<h5 id="syntax:7aaab65c33493a192d50f29765cc4ef3">Syntax:</h5>
+<h5 id="syntax">Syntax:</h5>
 
 <pre><code>swagger:response [?response name]
 </code></pre>
 
-<h5 id="properties:7aaab65c33493a192d50f29765cc4ef3">Properties:</h5>
+<h5 id="properties">Properties:</h5>
 
 <table>
 <thead>
@@ -190,7 +190,7 @@ level the value is a 0-based index, so items.minLength is the same as items.0.mi
 </tbody>
 </table>
 
-<h5 id="example:7aaab65c33493a192d50f29765cc4ef3">Example:</h5>
+<h5 id="example">Example:</h5>
 
 <pre><code class="language-go">// A ValidationError is an error that is used when the required input fails validation.
 // swagger:response validationError
@@ -208,7 +208,7 @@ type ValidationError struct {
 }
 </code></pre>
 
-<h5 id="result:7aaab65c33493a192d50f29765cc4ef3">Result:</h5>
+<h5 id="result">Result:</h5>
 
 <pre><code class="language-yaml">---
 responses:

@@ -32,7 +32,7 @@ To do this it makes use of go&amp;rsquo;s loader package. The same package that 
 
 &lt;p&gt;Once the parser has encountered a comment that matches on of its known tags, the parser will assume that the rest of the comment block is for swagger.&lt;/p&gt;
 
-&lt;h3 id=&#34;usage:958e7270f96f5407d7d980f500805b1b&#34;&gt;Usage&lt;/h3&gt;
+&lt;h3 id=&#34;usage&#34;&gt;Usage&lt;/h3&gt;
 
 &lt;p&gt;To generate a spec:&lt;/p&gt;
 
@@ -57,7 +57,7 @@ This means that for something to be discoverable it needs to be reachable by a c
 
 &lt;p&gt;The idea is that there are certain things that are more easily expressed by just using yaml, to&lt;/p&gt;
 
-&lt;h4 id=&#34;parsing-rules:958e7270f96f5407d7d980f500805b1b&#34;&gt;Parsing rules&lt;/h4&gt;
+&lt;h4 id=&#34;parsing-rules&#34;&gt;Parsing rules&lt;/h4&gt;
 
 &lt;p&gt;&lt;img class=&#34;emoji&#34; title=&#34;:warning&#34; alt=&#34;:warning&#34; src=&#34;https://assets-cdn.github.com/images/icons/emoji/unicode/26a0.png?v5&#34; width=&#34;20&#34; height=&#34;20&#34; align=&#34;absmiddle&#34; /&gt;This command relies heavily on the way godoc works. &lt;img class=&#34;emoji&#34; title=&#34;:warning&#34; alt=&#34;:warning&#34; src=&#34;https://assets-cdn.github.com/images/icons/emoji/unicode/26a0.png?v5&#34; width=&#34;20&#34; height=&#34;20&#34; align=&#34;absmiddle&#34; /&gt;&lt;/p&gt;
 
@@ -87,7 +87,7 @@ This means that for something to be discoverable it needs to be reachable by a c
 comment block will become the title, or a header when rendered as godoc. The rest of the comment block will be treated
 as description up to either the end of the comment block, or a line that starts with a known annotation.&lt;/p&gt;
 
-&lt;h4 id=&#34;annotation-syntax:958e7270f96f5407d7d980f500805b1b&#34;&gt;Annotation syntax&lt;/h4&gt;
+&lt;h4 id=&#34;annotation-syntax&#34;&gt;Annotation syntax&lt;/h4&gt;
 
 &lt;p&gt;If you want to exclude something from the spec generation process you can try with the struct tag: &lt;code&gt;json:&amp;quot;-&amp;quot;&lt;/code&gt;&lt;/p&gt;
 
@@ -104,13 +104,13 @@ as description up to either the end of the comment block, or a line that starts 
 &lt;li&gt;&lt;a href=&#34;discriminated&#34;&gt;swagger:discriminated&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h4 id=&#34;embedded-types:958e7270f96f5407d7d980f500805b1b&#34;&gt;Embedded types&lt;/h4&gt;
+&lt;h4 id=&#34;embedded-types&#34;&gt;Embedded types&lt;/h4&gt;
 
 &lt;p&gt;For the embedded schemas there are a set of rules for the spec generator to vary the definition it generates.&lt;br /&gt;
 When an embedded type isn&amp;rsquo;t decorated with the &lt;code&gt;swagger:allOf&lt;/code&gt; annotation, then the properties from the embedded value will be included in the generated definition as if they were defined on the definition. But when the embedded type is decorated with the &lt;code&gt;swagger:allOf&lt;/code&gt; annotation then the all of element will be defined as a &amp;ldquo;$ref&amp;rdquo; property instead. For an annotated type there is also the possibility to specify an argument, the value of this argument will be used as the value for the &lt;code&gt;x-class&lt;/code&gt; extension. This allows for generators that support the
 &lt;code&gt;x-class&lt;/code&gt; extension to reliably build a serializer for a type with a discriminator&lt;/p&gt;
 
-&lt;h4 id=&#34;known-vendor-extensions:958e7270f96f5407d7d980f500805b1b&#34;&gt;Known vendor extensions&lt;/h4&gt;
+&lt;h4 id=&#34;known-vendor-extensions&#34;&gt;Known vendor extensions&lt;/h4&gt;
 
 &lt;p&gt;There are a couple of commonly used vendor extensions that most frameworks support to add functionality to the swagger spec.&lt;/p&gt;
 
@@ -164,7 +164,7 @@ When an embedded type isn&amp;rsquo;t decorated with the &lt;code&gt;swagger:all
 
 &lt;p&gt;The toolkit has a command that will let you generate a client.&lt;/p&gt;
 
-&lt;h2 id=&#34;usage:4bd4f30263398a45e38fc9edfc648efa&#34;&gt;Usage&lt;/h2&gt;
+&lt;h2 id=&#34;usage&#34;&gt;Usage&lt;/h2&gt;
 
 &lt;p&gt;There is an example client in &lt;a href=&#34;https://github.com/go-swagger/go-swagger/tree/master/examples/todo-list/client&#34;&gt;https://github.com/go-swagger/go-swagger/tree/master/examples/todo-list/client&lt;/a&gt;&lt;/p&gt;
 
@@ -245,7 +245,7 @@ func main() {
 }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&#34;authentication:4bd4f30263398a45e38fc9edfc648efa&#34;&gt;Authentication&lt;/h3&gt;
+&lt;h3 id=&#34;authentication&#34;&gt;Authentication&lt;/h3&gt;
 
 &lt;p&gt;The client supports 3 authentication schemes:&lt;/p&gt;
 
@@ -316,23 +316,23 @@ first character of the next path segment will be uppercased. e.g.
 &lt;p&gt;You can override the following templates. Check go-swagger/generator/templates for the default
 definitions.&lt;/p&gt;
 
-&lt;h1 id=&#34;available-templates:9052f6ca659538a7ad23c7f4f43faadc&#34;&gt;Available Templates:&lt;/h1&gt;
+&lt;h1 id=&#34;available-templates&#34;&gt;Available Templates:&lt;/h1&gt;
 
-&lt;h1 id=&#34;client-templates:9052f6ca659538a7ad23c7f4f43faadc&#34;&gt;Client Templates&lt;/h1&gt;
+&lt;h1 id=&#34;client-templates&#34;&gt;Client Templates&lt;/h1&gt;
 
-&lt;h2 id=&#34;clientfacade:9052f6ca659538a7ad23c7f4f43faadc&#34;&gt;clientFacade&lt;/h2&gt;
+&lt;h2 id=&#34;clientfacade&#34;&gt;clientFacade&lt;/h2&gt;
 
 &lt;p&gt;Defined in &lt;code&gt;client/facade.gotmpl&lt;/code&gt;&lt;/p&gt;
 
 &lt;hr /&gt;
 
-&lt;h2 id=&#34;clientparameter:9052f6ca659538a7ad23c7f4f43faadc&#34;&gt;clientParameter&lt;/h2&gt;
+&lt;h2 id=&#34;clientparameter&#34;&gt;clientParameter&lt;/h2&gt;
 
 &lt;p&gt;Defined in &lt;code&gt;client/parameter.gotmpl&lt;/code&gt;&lt;/p&gt;
 
 &lt;hr /&gt;
 
-&lt;h2 id=&#34;clientresponse:9052f6ca659538a7ad23c7f4f43faadc&#34;&gt;clientResponse&lt;/h2&gt;
+&lt;h2 id=&#34;clientresponse&#34;&gt;clientResponse&lt;/h2&gt;
 
 &lt;p&gt;Defined in &lt;code&gt;client/response.gotmpl&lt;/code&gt;
 ####requires
@@ -342,19 +342,19 @@ definitions.&lt;/p&gt;
 
 &lt;hr /&gt;
 
-&lt;h2 id=&#34;clientresponse-1:9052f6ca659538a7ad23c7f4f43faadc&#34;&gt;clientresponse&lt;/h2&gt;
+&lt;h2 id=&#34;clientresponse-1&#34;&gt;clientresponse&lt;/h2&gt;
 
 &lt;p&gt;Defined in &lt;code&gt;client/response.gotmpl&lt;/code&gt;&lt;/p&gt;
 
 &lt;hr /&gt;
 
-&lt;h2 id=&#34;clientclient:9052f6ca659538a7ad23c7f4f43faadc&#34;&gt;clientClient&lt;/h2&gt;
+&lt;h2 id=&#34;clientclient&#34;&gt;clientClient&lt;/h2&gt;
 
 &lt;p&gt;Defined in &lt;code&gt;client/client.gotmpl&lt;/code&gt;&lt;/p&gt;
 
-&lt;h1 id=&#34;server-templates:9052f6ca659538a7ad23c7f4f43faadc&#34;&gt;Server Templates&lt;/h1&gt;
+&lt;h1 id=&#34;server-templates&#34;&gt;Server Templates&lt;/h1&gt;
 
-&lt;h2 id=&#34;serverparameter:9052f6ca659538a7ad23c7f4f43faadc&#34;&gt;serverParameter&lt;/h2&gt;
+&lt;h2 id=&#34;serverparameter&#34;&gt;serverParameter&lt;/h2&gt;
 
 &lt;p&gt;Defined in &lt;code&gt;server/parameter.gotmpl&lt;/code&gt;
 ####requires
@@ -363,13 +363,13 @@ definitions.&lt;/p&gt;
 
 &lt;hr /&gt;
 
-&lt;h2 id=&#34;sliceparamvalidator:9052f6ca659538a7ad23c7f4f43faadc&#34;&gt;sliceparamvalidator&lt;/h2&gt;
+&lt;h2 id=&#34;sliceparamvalidator&#34;&gt;sliceparamvalidator&lt;/h2&gt;
 
 &lt;p&gt;Defined in &lt;code&gt;server/parameter.gotmpl&lt;/code&gt;&lt;/p&gt;
 
 &lt;hr /&gt;
 
-&lt;h2 id=&#34;serverresponses:9052f6ca659538a7ad23c7f4f43faadc&#34;&gt;serverResponses&lt;/h2&gt;
+&lt;h2 id=&#34;serverresponses&#34;&gt;serverResponses&lt;/h2&gt;
 
 &lt;p&gt;Defined in &lt;code&gt;server/responses.gotmpl&lt;/code&gt;
 ####requires
@@ -377,7 +377,7 @@ definitions.&lt;/p&gt;
 
 &lt;hr /&gt;
 
-&lt;h2 id=&#34;sliceparambinder:9052f6ca659538a7ad23c7f4f43faadc&#34;&gt;sliceparambinder&lt;/h2&gt;
+&lt;h2 id=&#34;sliceparambinder&#34;&gt;sliceparambinder&lt;/h2&gt;
 
 &lt;p&gt;Defined in &lt;code&gt;server/parameter.gotmpl&lt;/code&gt;
 ####requires
@@ -386,13 +386,13 @@ definitions.&lt;/p&gt;
 
 &lt;hr /&gt;
 
-&lt;h2 id=&#34;serverresponse:9052f6ca659538a7ad23c7f4f43faadc&#34;&gt;serverresponse&lt;/h2&gt;
+&lt;h2 id=&#34;serverresponse&#34;&gt;serverresponse&lt;/h2&gt;
 
 &lt;p&gt;Defined in &lt;code&gt;server/responses.gotmpl&lt;/code&gt;&lt;/p&gt;
 
 &lt;hr /&gt;
 
-&lt;h2 id=&#34;serveroperation:9052f6ca659538a7ad23c7f4f43faadc&#34;&gt;serverOperation&lt;/h2&gt;
+&lt;h2 id=&#34;serveroperation&#34;&gt;serverOperation&lt;/h2&gt;
 
 &lt;p&gt;Defined in &lt;code&gt;server/operation.gotmpl&lt;/code&gt;
 ####requires
@@ -401,7 +401,7 @@ definitions.&lt;/p&gt;
 
 &lt;hr /&gt;
 
-&lt;h2 id=&#34;propertyparamvalidator:9052f6ca659538a7ad23c7f4f43faadc&#34;&gt;propertyparamvalidator&lt;/h2&gt;
+&lt;h2 id=&#34;propertyparamvalidator&#34;&gt;propertyparamvalidator&lt;/h2&gt;
 
 &lt;p&gt;Defined in &lt;code&gt;server/parameter.gotmpl&lt;/code&gt;
 ####requires
@@ -410,31 +410,31 @@ definitions.&lt;/p&gt;
 
 &lt;hr /&gt;
 
-&lt;h2 id=&#34;servermain:9052f6ca659538a7ad23c7f4f43faadc&#34;&gt;serverMain&lt;/h2&gt;
+&lt;h2 id=&#34;servermain&#34;&gt;serverMain&lt;/h2&gt;
 
 &lt;p&gt;Defined in &lt;code&gt;server/main.gotmpl&lt;/code&gt;&lt;/p&gt;
 
 &lt;hr /&gt;
 
-&lt;h2 id=&#34;bindprimitiveparam:9052f6ca659538a7ad23c7f4f43faadc&#34;&gt;bindprimitiveparam&lt;/h2&gt;
+&lt;h2 id=&#34;bindprimitiveparam&#34;&gt;bindprimitiveparam&lt;/h2&gt;
 
 &lt;p&gt;Defined in &lt;code&gt;server/parameter.gotmpl&lt;/code&gt;&lt;/p&gt;
 
 &lt;hr /&gt;
 
-&lt;h2 id=&#34;serverconfigureapi:9052f6ca659538a7ad23c7f4f43faadc&#34;&gt;serverConfigureapi&lt;/h2&gt;
+&lt;h2 id=&#34;serverconfigureapi&#34;&gt;serverConfigureapi&lt;/h2&gt;
 
 &lt;p&gt;Defined in &lt;code&gt;server/configureapi.gotmpl&lt;/code&gt;&lt;/p&gt;
 
 &lt;hr /&gt;
 
-&lt;h2 id=&#34;serverbuilder:9052f6ca659538a7ad23c7f4f43faadc&#34;&gt;serverBuilder&lt;/h2&gt;
+&lt;h2 id=&#34;serverbuilder&#34;&gt;serverBuilder&lt;/h2&gt;
 
 &lt;p&gt;Defined in &lt;code&gt;server/builder.gotmpl&lt;/code&gt;&lt;/p&gt;
 
 &lt;hr /&gt;
 
-&lt;h2 id=&#34;serverdoc:9052f6ca659538a7ad23c7f4f43faadc&#34;&gt;serverDoc&lt;/h2&gt;
+&lt;h2 id=&#34;serverdoc&#34;&gt;serverDoc&lt;/h2&gt;
 
 &lt;p&gt;Defined in &lt;code&gt;server/doc.gotmpl&lt;/code&gt;&lt;/p&gt;
 </description>
@@ -457,7 +457,7 @@ You can configure it through environment variables that are commonly used on Paa
 
 &lt;p&gt;You can provide your own router implementation should you so desire it&amp;rsquo;s abstracted through an interface with this use case in mind.&lt;/p&gt;
 
-&lt;h5 id=&#34;usage:3c3fb84840715ff4411349984ebc0a77&#34;&gt;Usage&lt;/h5&gt;
+&lt;h5 id=&#34;usage&#34;&gt;Usage&lt;/h5&gt;
 
 &lt;pre&gt;&lt;code&gt;swagger generate server [server-OPTIONS]
 

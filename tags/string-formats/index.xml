@@ -49,12 +49,12 @@ String formats should only be used for &lt;strong&gt;very&lt;/strong&gt; well kn
 &lt;li&gt;custom string formats&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h5 id=&#34;syntax:2856515fe173bf6a903d614be856ef00&#34;&gt;Syntax:&lt;/h5&gt;
+&lt;h5 id=&#34;syntax&#34;&gt;Syntax:&lt;/h5&gt;
 
 &lt;pre&gt;&lt;code&gt;swagger:strfmt [name]
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h5 id=&#34;example:2856515fe173bf6a903d614be856ef00&#34;&gt;Example:&lt;/h5&gt;
+&lt;h5 id=&#34;example&#34;&gt;Example:&lt;/h5&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;func init() {
   eml := Email(&amp;quot;&amp;quot;)
@@ -95,7 +95,7 @@ func (b Email) Value() (driver.Value, error) {
 }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h5 id=&#34;result:2856515fe173bf6a903d614be856ef00&#34;&gt;Result:&lt;/h5&gt;
+&lt;h5 id=&#34;result&#34;&gt;Result:&lt;/h5&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-yaml&#34;&gt;---
 definitions:

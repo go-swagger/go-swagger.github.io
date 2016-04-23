@@ -96,13 +96,13 @@ AddOneAuthenticatedHandler would look a bit like this:</p>
 }
 </code></pre>
 
-<h2 id="implement-handlers:3c3fb84840715ff4411349984ebc0a77">Implement handlers</h2>
+<h2 id="implement-handlers">Implement handlers</h2>
 
 <p>A handler is an interface/contract that defines a statically typed representation of the input and output parameters of
 an operation on your API.
 The tool generates handlers that are stubbed with a NotImplemented response when you first generate the server.</p>
 
-<h3 id="the-not-implemented-handler:3c3fb84840715ff4411349984ebc0a77">The not implemented handler</h3>
+<h3 id="the-not-implemented-handler">The not implemented handler</h3>
 
 <p>The not implemented handler is actually a not implemented responder, it returns a responder that will always respond
 with status code 501 and a message that lets people know it&rsquo;s not the fault of the client that things don&rsquo;t work.</p>
@@ -110,7 +110,7 @@ with status code 501 and a message that lets people know it&rsquo;s not the faul
 <pre><code class="language-go">middleware.NotImplemented(&quot;operation todos.AddOne has not yet been implemented&quot;)
 </code></pre>
 
-<h3 id="your-own-code:3c3fb84840715ff4411349984ebc0a77">Your own code</h3>
+<h3 id="your-own-code">Your own code</h3>
 
 <p>Each HTTP request expects a response of some sort, this response might have no data but it&rsquo;s a response none the less.</p>
 

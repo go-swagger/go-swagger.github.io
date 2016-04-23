@@ -74,7 +74,7 @@ To do this it makes use of go&rsquo;s loader package. The same package that is u
 
 <p>Once the parser has encountered a comment that matches on of its known tags, the parser will assume that the rest of the comment block is for swagger.</p>
 
-<h3 id="usage:958e7270f96f5407d7d980f500805b1b">Usage</h3>
+<h3 id="usage">Usage</h3>
 
 <p>To generate a spec:</p>
 
@@ -99,7 +99,7 @@ This means that for something to be discoverable it needs to be reachable by a c
 
 <p>The idea is that there are certain things that are more easily expressed by just using yaml, to</p>
 
-<h4 id="parsing-rules:958e7270f96f5407d7d980f500805b1b">Parsing rules</h4>
+<h4 id="parsing-rules">Parsing rules</h4>
 
 <p><img class="emoji" title=":warning" alt=":warning" src="https://assets-cdn.github.com/images/icons/emoji/unicode/26a0.png?v5" width="20" height="20" align="absmiddle" />This command relies heavily on the way godoc works. <img class="emoji" title=":warning" alt=":warning" src="https://assets-cdn.github.com/images/icons/emoji/unicode/26a0.png?v5" width="20" height="20" align="absmiddle" /></p>
 
@@ -129,7 +129,7 @@ This means that for something to be discoverable it needs to be reachable by a c
 comment block will become the title, or a header when rendered as godoc. The rest of the comment block will be treated
 as description up to either the end of the comment block, or a line that starts with a known annotation.</p>
 
-<h4 id="annotation-syntax:958e7270f96f5407d7d980f500805b1b">Annotation syntax</h4>
+<h4 id="annotation-syntax">Annotation syntax</h4>
 
 <p>If you want to exclude something from the spec generation process you can try with the struct tag: <code>json:&quot;-&quot;</code></p>
 
@@ -146,13 +146,13 @@ as description up to either the end of the comment block, or a line that starts 
 <li><a href="discriminated">swagger:discriminated</a></li>
 </ul>
 
-<h4 id="embedded-types:958e7270f96f5407d7d980f500805b1b">Embedded types</h4>
+<h4 id="embedded-types">Embedded types</h4>
 
 <p>For the embedded schemas there are a set of rules for the spec generator to vary the definition it generates.<br />
 When an embedded type isn&rsquo;t decorated with the <code>swagger:allOf</code> annotation, then the properties from the embedded value will be included in the generated definition as if they were defined on the definition. But when the embedded type is decorated with the <code>swagger:allOf</code> annotation then the all of element will be defined as a &ldquo;$ref&rdquo; property instead. For an annotated type there is also the possibility to specify an argument, the value of this argument will be used as the value for the <code>x-class</code> extension. This allows for generators that support the
 <code>x-class</code> extension to reliably build a serializer for a type with a discriminator</p>
 
-<h4 id="known-vendor-extensions:958e7270f96f5407d7d980f500805b1b">Known vendor extensions</h4>
+<h4 id="known-vendor-extensions">Known vendor extensions</h4>
 
 <p>There are a couple of commonly used vendor extensions that most frameworks support to add functionality to the swagger spec.</p>
 
