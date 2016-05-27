@@ -2,7 +2,7 @@
 Categories = ["generate"]
 Tags = []
 date = "2016-01-26T19:32:00-05:00"
-title = "Use custom tempaltes"
+title = "Use custom templates"
 weight = 3
 series = ["home"]
 +++

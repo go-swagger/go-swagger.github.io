@@ -296,7 +296,7 @@ func main() {
     </item>
     
     <item>
-      <title>Use custom tempaltes</title>
+      <title>Use custom templates</title>
       <link>//goswagger.io/generate/templates/</link>
       <pubDate>Tue, 26 Jan 2016 19:32:00 -0500</pubDate>
       

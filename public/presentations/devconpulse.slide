@@ -2,15 +2,11 @@ Swagger
 DevConPulse, April 23, 2016
 
 Ivan Porto Carrero
-Staff Engineer II @ VMware Cloud-Native Apps
+Staff Engineer 2 @ VMware Cloud-Native Apps
 https://github.com/casualjim
 @casualjim
 
 * About me
-
-Programming since I'm 8 years old, was raised by a single mom.
-Learnt programming by making our XT IBM clone pc accessible for her.
-Of course also to play games on the IBM machine but those programs were more complex
 
 Did a bunch of work on/with swagger:
 
@@ -28,6 +24,7 @@ Did a bunch of work on/with swagger:
 * Stale documentation
 
 .image images/stale-docs.jpg
+.image http://gif.co/wsyy.gif
 
 * Lots of communication required
 
@@ -86,6 +83,8 @@ Enables "bigotry-free" restful design with emphasis on Getting Things Done.
 Machine readable exhaustive contract of server abilities
 
 Server controlled documentation
+
+.image http://gif.co/wAiL.gif
 
 
 * You had me at tooling
