@@ -31,7 +31,7 @@ Annotation | Format
 **Produces** | a list of operation specific mime type values, one per line, for the conten the API sends
 **Schemes** | a list of operation specific schemes the API accept (possible values: http, https, ws, wss) https is preferred as default when configured
 **Security** | a dictionary of key: []string{scopes}
-**Responses** | a dictionary of status code to named response
+**Responses** | a dictionary of status code to named response (If you want to use a swagger model as a response in the body use `body:` and then the model name.)
 
 ##### Example: 
 
