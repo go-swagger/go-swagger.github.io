@@ -1,84 +1,693 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>go-swagger toolkit</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen">
-    <link rel="stylesheet" href="/css/hugo-bootswatch.css">
-    <link rel="stylesheet" href="/css/prism.css">
-  </head>
-  <body>
 
-    <div class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <a href="/" class="navbar-brand">go-swagger toolkit</a>
-          <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-        </div>
-        <div class="navbar-collapse collapse" id="navbar-main">
-          <ul class="nav navbar-nav">
-            <li><a href="/about/">About</a></li>
-            <li class="dropdown">
-              <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="tutorials">Tutorials<span class="caret"></span></a>
-              <ul class="dropdown-menu" aria-labelledby="tutorials">
-                <li><a href="/tutorial/todo-list/">Simple Server</a></li>
-                <li><a href="/use/middleware/">Middleware</a></li>
-              </ul>
-            </li>
-            <li><a href="/usage/validate/">Validate</a></li>
-            <li class="dropdown">
-              <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="generate">Generate<span class="caret"></span></a>
-              <ul class="dropdown-menu" aria-labelledby="generate">
-                <li><a href="/generate/spec/">Swagger.json</a></li>
-                <li><a href="/generate/client/">API Client</a></li>
-                <li><a href="/generate/server/">API Server</a></li>
-                <li><a href="/use/schemas/">Schemas</a></li>
-              </ul>
-            </li>
-            <li class="dropdown">
-              <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="use">Use<span class="caret"></span></a>
-              <ul class="dropdown-menu" aria-labelledby="use">
-                <li><a href="/tutorial/dynamic/">Dynamic specification</a></li>
-                <li><a href="/untyped/server/">Dynamic server</a></li>
-              </ul>
-            </li>
-          </ul>
-        </div>
-      </div>
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <title>Introduction · GitBook</title>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.0">
+        
+        
+        
+    
+    <link rel="stylesheet" href="gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-forkmegithub/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-prism/prism.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-anchors/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter active" data-level="1.1" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" >
+            
+                <span>
+            
+                    
+                    Tutorials
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="tutorial/todo-list.html">
+            
+                <a href="tutorial/todo-list.html">
+            
+                    
+                    Simple Server
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="use/middleware.html">
+            
+                <a href="use/middleware.html">
+            
+                    
+                    Middleware
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="usage/validate.html">
+            
+                <a href="usage/validate.html">
+            
+                    
+                    Validate
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" >
+            
+                <span>
+            
+                    
+                    Generate
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="generate/client.html">
+            
+                <a href="generate/client.html">
+            
+                    
+                    API Client
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="generate/server.html">
+            
+                <a href="generate/server.html">
+            
+                    
+                    API Server
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.2.1" data-path="use/server.html">
+            
+                <a href="use/server.html">
+            
+                    
+                    Usage
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3" data-path="use/schemas.html">
+            
+                <a href="use/schemas.html">
+            
+                    
+                    Model generation rules
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4" data-path="generate/templates.html">
+            
+                <a href="generate/templates.html">
+            
+                    
+                    Custom templates
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.5" data-path="generate/spec.html">
+            
+                <a href="generate/spec.html">
+            
+                    
+                    swagger.json
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.5.1" data-path="generate/spec/meta.html">
+            
+                <a href="generate/spec/meta.html">
+            
+                    
+                    swagger:meta
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.5.2" data-path="generate/spec/route.html">
+            
+                <a href="generate/spec/route.html">
+            
+                    
+                    swagger:route
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.5.3" data-path="generate/spec/params.html">
+            
+                <a href="generate/spec/params.html">
+            
+                    
+                    swagger:params
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.5.4" data-path="generate/spec/response.html">
+            
+                <a href="generate/spec/response.html">
+            
+                    
+                    swagger:response
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.5.5" data-path="generate/spec/model.html">
+            
+                <a href="generate/spec/model.html">
+            
+                    
+                    swagger:model
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.5.6" data-path="generate/spec/allOf.html">
+            
+                <a href="generate/spec/allOf.html">
+            
+                    
+                    swagger:allOf
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.5.7" data-path="generate/spec/strfmt.html">
+            
+                <a href="generate/spec/strfmt.html">
+            
+                    
+                    swagger:strfmt
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.5.8" data-path="generate/spec/discriminated.html">
+            
+                <a href="generate/spec/discriminated.html">
+            
+                    
+                    swagger:discriminated
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+        
+        <li class="divider"></li>
+        
+        
+    
+        <li class="chapter " data-level="2.1" >
+            
+                <span>
+            
+                    
+                    Runtime
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1.1" data-path="use/server.html">
+            
+                <a href="use/server.html">
+            
+                    
+                    Dynamic Server
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
     </div>
 
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
 
-    <div class="container">
-      <div class="jumbotron">
-        <h1>OpenAPIs 2.0</h1>
-        <p>FKA swagger 2.0</p>
-        <p>Swagger is a simple yet powerful representation of your RESTful API.</p>
-        <p>With a Swagger-enabled API, you get interactive documentation, client SDK generation and discoverability. We created Swagger to help fulfill the promise of APIs.</p>
-        <p>APIs form the connecting glue between modern applications. Nearly every application uses APIs to connect with corporate data sources, third party data services or other applications. Creating an open description format for API services that is vendor neutral, portable and open is critical to accelerating the vision of a truly connected world. </p>
-        <p><a class="btn btn-primary btn-lg" href="/tutorial/todo-list" role="button">Learn more</a></p>
-      </div>
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="." >Introduction</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="swagger-20----"><a name="swagger-20----" class="plugin-anchor" href="#swagger-20----"><i class="fa fa-link" aria-hidden="true"></i></a>Swagger 2.0 <a href="https://ci.vmware.run/go-swagger/go-swagger" target="_blank"><img alt="Build Status" src="https://ci.vmware.run/api/badges/go-swagger/go-swagger/status.svg"></a> <a href="https://ci.appveyor.com/project/casualjim/go-swagger/branch/master" target="_blank"><img alt="Build status" src="https://ci.appveyor.com/api/projects/status/x377t5o9ennm847o/branch/master?svg=true"></a> <a href="https://coverage.vmware.run/go-swagger/go-swagger" target="_blank"><img alt="Coverage" src="https://coverage.vmware.run/badges/go-swagger/go-swagger/coverage.svg"></a> <a href="https://slackin.goswagger.io" target="_blank"><img alt="Slack Status" src="https://slackin.goswagger.io/badge.svg"></a></h1><p><a href="https://raw.githubusercontent.com/swagger-api/swagger-spec/master/LICENSE" target="_blank"><img alt="license" src="http://img.shields.io/badge/license-Apache%20v2-orange.svg"></a> <a href="http://godoc.org/github.com/go-swagger/go-swagger" target="_blank"><img alt="GoDoc" src="https://godoc.org/github.com/go-swagger/go-swagger?status.svg"></a> <a href="https://badge.fury.io/gh/go-swagger%2Fgo-swagger" target="_blank"><img alt="GitHub version" src="https://badge.fury.io/gh/go-swagger%2Fgo-swagger.svg"></a> <a href="https://quay.io/repository/goswagger/swagger" target="_blank"><img alt="Docker Repository on Quay" src="https://quay.io/repository/goswagger/swagger/status" title="Docker Repository on Quay"></a></p><p>Development of this toolkit is sponsored by VMware:<br><a href="https://vmware.github.io" target="_blank"><img alt="VMWare" src="https://avatars2.githubusercontent.com/u/473334?v=3&amp;s=200"></a></p><p>Contains an implementation of Swagger 2.0. It knows how to serialize and deserialize swagger specifications.</p><p>Swagger is a simple yet powerful representation of your RESTful API.<br>With the largest ecosystem of API tooling on the planet, thousands of developers are supporting Swagger in almost every modern programming language and deployment environment.</p><p>With a Swagger-enabled API, you get interactive documentation, client SDK generation and discoverability. We created Swagger to help fulfill the promise of APIs.</p><p>Swagger helps companies like Apigee, Getty Images, Intuit, LivingSocial, McKesson, Microsoft, Morningstar, and PayPal build the best possible services with RESTful APIs. Now in version 2.0, Swagger is more enabling than ever. And it&apos;s 100% open source software.</p><h2 id="migrating"><a name="migrating" class="plugin-anchor" href="#migrating"><i class="fa fa-link" aria-hidden="true"></i></a>Migrating</h2><h3 id="from-050-to-060"><a name="from-050-to-060" class="plugin-anchor" href="#from-050-to-060"><i class="fa fa-link" aria-hidden="true"></i></a>From 0.5.0 to 0.6.0</h3><p>You will have to rename some imports:</p><pre><code>github.com/go-swagger/go-swagger/httpkit/validate to github.com/go-openapi/validate
+github.com/go-swagger/go-swagger/httpkit to github.com/go-openapi/runtime
+github.com/naoina/denco to github.com/go-openapi/runtime/middleware/denco
+github.com/go-swagger/go-swagger to github.com/go-openapi</code></pre>
+<h2 id="docs"><a name="docs" class="plugin-anchor" href="#docs"><i class="fa fa-link" aria-hidden="true"></i></a>Docs</h2><p><a href="https://goswagger.io" target="_blank">https://goswagger.io</a></p><h3 id="binary-distribution"><a name="binary-distribution" class="plugin-anchor" href="#binary-distribution"><i class="fa fa-link" aria-hidden="true"></i></a>Binary distribution</h3><p>go-swagger is distributed as binaries that are built of signed tags. It is published as github release, rpm, deb and docker image.</p><h4 id="docker-image"><a name="docker-image" class="plugin-anchor" href="#docker-image"><i class="fa fa-link" aria-hidden="true"></i></a>Docker image</h4><pre><code class="lang-shell">docker pull quay.io/goswagger/swagger
+
+alias swagger=&quot;docker run --rm -it -v $HOME:$HOME -w $(pwd) quay.io/goswagger/swagger&quot;
+swagger version</code></pre>
+<h4 id="homebrewlinuxbrew"><a name="homebrewlinuxbrew" class="plugin-anchor" href="#homebrewlinuxbrew"><i class="fa fa-link" aria-hidden="true"></i></a>Homebrew/Linuxbrew</h4><pre><code class="lang-shell">brew tap go-swagger/go-swagger
+brew install go-swagger</code></pre>
+<h4 id="static-binary"><a name="static-binary" class="plugin-anchor" href="#static-binary"><i class="fa fa-link" aria-hidden="true"></i></a>Static binary</h4><p>You can download a binary for your platform from github:</p><p><a href="https://github.com/go-swagger/go-swagger/releases/latest" target="_blank">https://github.com/go-swagger/go-swagger/releases/latest</a></p><pre><code class="lang-shell">latestv=$(curl -s https://api.github.com/repos/go-swagger/go-swagger/releases/latest | jq -r .tag_name)
+curl -o /usr/local/bin/swagger -L&apos;#&apos; https://github.com/go-swagger/go-swagger/releases/download/$latestv/swagger_$(echo `uname`|tr &apos;[:upper:]&apos; &apos;[:lower:]&apos;)_amd64
+chmod +x /usr/local/bin/swagger</code></pre>
+<h4 id="debian-packages---"><a name="debian-packages---" class="plugin-anchor" href="#debian-packages---"><i class="fa fa-link" aria-hidden="true"></i></a>Debian packages <a href="https://bintray.com/go-swagger/goswagger-debian/swagger/_latestVersion" target="_blank"> <img alt="Download" src="https://api.bintray.com/packages/go-swagger/goswagger-debian/swagger/images/download.svg"> </a></h4><p>This repo will work for any debian, the only file it contains gets copied to /usr/bin</p><pre><code class="lang-shell">echo &quot;deb https://dl.bintray.com/go-swagger/goswagger-debian ubuntu main&quot; | sudo tee -a /etc/apt/sources.list</code></pre>
+<h4 id="rpm-packages---"><a name="rpm-packages---" class="plugin-anchor" href="#rpm-packages---"><i class="fa fa-link" aria-hidden="true"></i></a>RPM packages <a href="https://bintray.com/go-swagger/goswagger-rpm/swagger/_latestVersion" target="_blank"> <img alt="Download" src="https://api.bintray.com/packages/go-swagger/goswagger-rpm/swagger/images/download.svg"> </a></h4><p>This repo should work on any distro that wants rpm packages, the only file it contains gets copied to /usr/bin/</p><pre><code class="lang-shell">wget https://bintray.com/go-swagger/goswagger-rpm/rpm -O bintray-go-swagger-goswagger-rpm.repo</code></pre>
+<h3 id="from-source"><a name="from-source" class="plugin-anchor" href="#from-source"><i class="fa fa-link" aria-hidden="true"></i></a>From source</h3><p>Install or update from source:</p><pre><code>go get -u github.com/go-swagger/go-swagger/cmd/swagger</code></pre>
+<p>The implementation also provides a number of command line tools to help working with swagger.</p><p>Currently there is a <a href="http://goswagger.io/usage/validate/" target="_blank">spec validator tool</a>:</p><pre><code>swagger validate https://raw.githubusercontent.com/swagger-api/swagger-spec/master/examples/v2.0/json/petstore-expanded.json</code></pre>
+<p>To generate a server for a swagger spec document:</p><pre><code>swagger generate server [-f ./swagger.json] -A [application-name [--principal [principal-name]]</code></pre>
+<p>To generate a <a href="http://goswagger.io/generate/client/" target="_blank">client for a swagger spec</a> document:</p><pre><code>swagger generate client [-f ./swagger.json] -A [application-name [--principal [principal-name]]</code></pre>
+<p>To generate a <a href="http://goswagger.io/generate/spec/" target="_blank">swagger spec document for a go application</a>:</p><pre><code>swagger generate spec -o ./swagger.json</code></pre>
+<h2 id="licensing"><a name="licensing" class="plugin-anchor" href="#licensing"><i class="fa fa-link" aria-hidden="true"></i></a>Licensing</h2><p>The toolkit itself is licensed as Apache Software License 2.0. Just like swagger, this does not cover code generated by the toolkit. That code is entirely yours to license however you see fit.</p><h2 id="whats-inside"><a name="whats-inside" class="plugin-anchor" href="#whats-inside"><i class="fa fa-link" aria-hidden="true"></i></a>What&apos;s inside?</h2><p>For a V1 I want to have this feature set completed:</p><ul><li>[x] Documentation site
+</li>
+<li>[x] Play nice with golint, go vet etc.
+</li>
+<li>[x] An object model that serializes to swagger yaml or json
+</li>
+<li><p>[x] A tool to work with swagger:</p><ul><li>[x] validate a swagger spec document:
+</li>
+<li>[x] validate against jsonschema
+</li>
+<li><p>[ ] validate extra rules outlined <a href="https://github.com/apigee-127/sway/blob/master/docs/versions/2.0.md#semantic-validation" target="_blank">here</a></p><ul><li>[x] definition can&apos;t declare a property that&apos;s already defined by one of its ancestors (Error)
+</li>
+<li>[x] definition&apos;s ancestor can&apos;t be a descendant of the same model (Error)
+</li>
+<li>[x] each api path should be non-verbatim (account for path param names) unique per method (Error)
+</li>
+<li>[ ] each security reference should contain only unique scopes (Warning)
+</li>
+<li>[x] each path parameter should correspond to a parameter placeholder and vice versa (Error)
+</li>
+<li>[x] path parameter declarations do not allow empty names <em>(<code>/path/{}</code> is not valid)</em> (Error)
+</li>
+<li>[x] each definition property listed in the required array must be defined in the properties of the model (Error)
+</li>
+<li>[x] each parameter should have a unique <code>name</code> and <code>in</code> combination (Error)
+</li>
+<li>[x] each operation should have at most 1 parameter of type body (Error)
+</li>
+<li>[x] each operation cannot have both a body parameter and a formData parameter (Error)
+</li>
+<li>[x] each operation must have an unique <code>operationId</code> (Error)
+</li>
+<li>[x] each reference must point to a valid object (Error)
+</li>
+<li>[x] each referencable definition must have references (Warning)
+</li>
+<li>[x] every default value that is specified must validate against the schema for that property (Error)
+</li>
+<li>[x] every example that is specified must validate against the schema for that property (Error)
+</li>
+<li>[x] items property is required for all schemas/definitions of type <code>array</code> (Error)
+</li></ul>
+</li>
+<li><p>[x] serve swagger UI for any swagger spec file</p></li>
+<li><p>[x] code generation</p></li>
+<li>[x] generate api based on swagger spec
+</li>
+<li>[x] generate go client from a swagger spec
+</li>
+<li>[x] spec generation
+</li>
+<li><p>[x] generate spec document based on the code</p><ul><li>[x] generate meta data (top level swagger properties) from package docs
+</li>
+<li>[x] generate definition entries for models
+</li>
+<li>[x] support composed structs out of several embeds
+</li>
+<li>[x] support allOf for composed structs
+</li>
+<li>[x] generate path entries for routes
+</li>
+<li>[x] generate responses from structs
+</li>
+<li>[x] support composed structs out of several embeds
+</li>
+<li>[x] generate parameters from structs
+</li>
+<li>[x] support composed structs out of several embeds
+</li></ul>
+</li></ul>
+</li></ul>
+<ul><li><p>[x] Middlewares:</p><ul><li>[x] serve spec
+</li>
+<li>[x] routing
+</li>
+<li>[x] validation
+</li>
+<li>[x] additional validation through an interface
+</li>
+<li><p>[x] authorization</p><ul><li>[x] basic auth
+</li>
+<li>[x] api key auth
+</li>
+<li>[x] oauth2 bearer auth
+</li></ul>
+</li>
+<li><p>[x] swagger docs UI</p></li></ul>
+</li></ul>
+<ul><li><p>[x] Typed JSON Schema implementation</p><ul><li>[x] JSON Pointer that knows about structs
+</li>
+<li>[x] JSON Reference that knows about structs
+</li>
+<li>[x] Passes current json schema test suite
+</li></ul>
+</li>
+<li><p>[x] extended string formats</p><ul><li>[x] uuid, uuid3, uuid4, uuid5
+</li>
+<li>[x] email
+</li>
+<li>[x] uri (absolute)
+</li>
+<li>[x] hostname
+</li>
+<li>[x] ipv4
+</li>
+<li>[x] ipv6
+</li>
+<li>[x] mac
+</li>
+<li>[x] credit card
+</li>
+<li>[x] isbn, isbn10, isbn13
+</li>
+<li>[x] social security number
+</li>
+<li>[x] hexcolor
+</li>
+<li>[x] rgbcolor
+</li>
+<li>[x] date
+</li>
+<li>[x] date-time
+</li>
+<li>[x] duration
+</li>
+<li>[x] password
+</li>
+<li>[x] custom string formats
+</li></ul>
+</li></ul>
+
+                                
+                                </section>
+                            
     </div>
-        <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-        <script src="/js/bootstrap.min.js"></script>
-        <script src="/js/bootswatch.js"></script>
-        <script src="/js/prism.js"></script>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                
+            
         
-        <script>
-          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-          ga('create', 'UA-240612-10', 'auto');
-          ga('send', 'pageview');
-        </script>
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Introduction","level":"1.1","depth":1,"next":{"title":"Tutorials","level":"1.2","depth":1,"ref":"","articles":[{"title":"Simple Server","level":"1.2.1","depth":2,"path":"tutorial/todo-list.md","ref":"tutorial/todo-list.md","articles":[]},{"title":"Middleware","level":"1.2.2","depth":2,"path":"use/middleware.md","ref":"use/middleware.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors","livereload"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"prism":{},"livereload":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"README.md","mtime":"2016-07-31T23:09:07.000Z","type":"markdown"},"gitbook":{"version":"3.2.0","time":"2016-07-31T23:09:31.238Z"},"basePath":".","book":{"language":""}});
+        });
+    </script>
+</div>
+
         
+    <script src="gitbook/gitbook.js"></script>
+    <script src="gitbook/theme.js"></script>
+    
+        
+        <script src="gitbook/gitbook-plugin-forkmegithub/plugin.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-livereload/plugin.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
     </body>
 </html>
-
 

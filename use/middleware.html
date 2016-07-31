@@ -1,0 +1,619 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <title>Middleware · GitBook</title>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.0">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-forkmegithub/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-prism/prism.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-anchors/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="../usage/validate.html" />
+    
+    
+    <link rel="prev" href="../tutorial/todo-list.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" >
+            
+                <span>
+            
+                    
+                    Tutorials
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="../tutorial/todo-list.html">
+            
+                <a href="../tutorial/todo-list.html">
+            
+                    
+                    Simple Server
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.2.2" data-path="middleware.html">
+            
+                <a href="middleware.html">
+            
+                    
+                    Middleware
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../usage/validate.html">
+            
+                <a href="../usage/validate.html">
+            
+                    
+                    Validate
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" >
+            
+                <span>
+            
+                    
+                    Generate
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="../generate/client.html">
+            
+                <a href="../generate/client.html">
+            
+                    
+                    API Client
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="../generate/server.html">
+            
+                <a href="../generate/server.html">
+            
+                    
+                    API Server
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.2.1" data-path="server.html">
+            
+                <a href="server.html">
+            
+                    
+                    Usage
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3" data-path="schemas.html">
+            
+                <a href="schemas.html">
+            
+                    
+                    Model generation rules
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4" data-path="../generate/templates.html">
+            
+                <a href="../generate/templates.html">
+            
+                    
+                    Custom templates
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.5" data-path="../generate/spec.html">
+            
+                <a href="../generate/spec.html">
+            
+                    
+                    swagger.json
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.5.1" data-path="../generate/spec/meta.html">
+            
+                <a href="../generate/spec/meta.html">
+            
+                    
+                    swagger:meta
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.5.2" data-path="../generate/spec/route.html">
+            
+                <a href="../generate/spec/route.html">
+            
+                    
+                    swagger:route
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.5.3" data-path="../generate/spec/params.html">
+            
+                <a href="../generate/spec/params.html">
+            
+                    
+                    swagger:params
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.5.4" data-path="../generate/spec/response.html">
+            
+                <a href="../generate/spec/response.html">
+            
+                    
+                    swagger:response
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.5.5" data-path="../generate/spec/model.html">
+            
+                <a href="../generate/spec/model.html">
+            
+                    
+                    swagger:model
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.5.6" data-path="../generate/spec/allOf.html">
+            
+                <a href="../generate/spec/allOf.html">
+            
+                    
+                    swagger:allOf
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.5.7" data-path="../generate/spec/strfmt.html">
+            
+                <a href="../generate/spec/strfmt.html">
+            
+                    
+                    swagger:strfmt
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.5.8" data-path="../generate/spec/discriminated.html">
+            
+                <a href="../generate/spec/discriminated.html">
+            
+                    
+                    swagger:discriminated
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+        
+        <li class="divider"></li>
+        
+        
+    
+        <li class="chapter " data-level="2.1" >
+            
+                <span>
+            
+                    
+                    Runtime
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1.1" data-path="server.html">
+            
+                <a href="server.html">
+            
+                    
+                    Dynamic Server
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >Middleware</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="byo-middleware"><a name="byo-middleware" class="plugin-anchor" href="#byo-middleware"><i class="fa fa-link" aria-hidden="true"></i></a>BYO middleware</h1><p>Go-swagger chose the golang <code>net/http</code> package as base abstraction. That means that for <em>any</em> supported transport by the toolkit you can reuse <em>any</em> middleware existing middlewares that following the stdlib middlware pattern.</p><!--more-->
+
+
+<p>There are several projects providing middleware libraries for weaving all kinds of functionality into your request handling. None of those things are the job of go-swagger, go-swagger just serves your specs.</p><p>The server takes care of a number of things when a request arrives:</p><ul><li>routing
+</li>
+<li>authentication
+</li>
+<li>input validation
+</li>
+<li>content negotiation
+</li>
+<li>parameter and body binding
+</li></ul>
+<p>If you&apos;re unfamiliar with the concept of golang net/http middlewares you can read up on it here:</p><p><a href="http://www.alexedwards.net/blog/making-and-using-middleware" target="_blank">Making and Using HTTP Middleware</a></p><p>Besides serving the swagger specification as an API, the toolkit also serves the actual swagger specification document.
+The convention is to use the <code>/swagger.json</code> location for serving up the specification document, so we serve the
+specification at that path.</p><h3 id="add-middleware"><a name="add-middleware" class="plugin-anchor" href="#add-middleware"><i class="fa fa-link" aria-hidden="true"></i></a>Add middleware</h3><p>The generated server allows for 2 extension points to inject middleware in its middlware chain. These have to do with
+the lifecycle of a request. You can find those hooks in the configure_xxx_api.go file.</p><p>The first one is to add middleware all the way to the top of the middleware stack. To do this you add them in the
+<code>setupGlobalMiddleware</code> method. This middleware applies to everything in the go-swagger managed API.</p><pre><code class="lang-go"><span class="token keyword">func</span> <span class="token function">setupGlobalMiddleware<span class="token punctuation">(</span></span>handler http<span class="token operator">.</span>Handler<span class="token operator">)</span> http<span class="token operator">.</span>Handler <span class="token operator">{</span>
+    <span class="token keyword">return</span> handler
+<span class="token operator">}</span></code></pre>
+<p>The second extension point allows for middleware to be injected right before actually handling a matched request.
+This excludes the swagger.json document from being affected by this middlware though.  This extension point makes the
+middlewares execute right after routing but right before authentication, binding and validation.  You add middlewares
+to this point by editing the <code>setupMiddlewares</code> method in configure_xxx_api.go</p><pre><code class="lang-go"><span class="token keyword">func</span> <span class="token function">setupMiddlewares<span class="token punctuation">(</span></span>handler http<span class="token operator">.</span>Handler<span class="token operator">)</span> http<span class="token operator">.</span>Handler <span class="token operator">{</span>
+    <span class="token keyword">return</span> handler
+<span class="token operator">}</span></code></pre>
+<p>The global middleware is an excellent place to do things like panic handling, request logging or adding metrics.  While
+the plain middleware allows you to kind of filter this by request path without having to take care of routing. You also
+get access to the full context that the go-swagger toolkit uses throughout the lifecycle of a request.</p><h4 id="add-logging-and-panic-handling"><a name="add-logging-and-panic-handling" class="plugin-anchor" href="#add-logging-and-panic-handling"><i class="fa fa-link" aria-hidden="true"></i></a>Add logging and panic handling</h4><p>A very common requirement for HTTP API&apos;s is to include some form of logging. Another one is to handle panics from your
+API requests.  The example for a possible implementation of this uses <a href="https://github.com/dre1080/recover" target="_blank">this community provided
+middleware</a> to catch panics.</p><pre><code class="lang-go"><span class="token keyword">func</span> <span class="token function">setupGlobalMiddleware<span class="token punctuation">(</span></span>handler http<span class="token operator">.</span>Handler<span class="token operator">)</span> http<span class="token operator">.</span>Handler <span class="token operator">{</span>
+  recovery <span class="token operator">:=</span> <span class="token builtin">recover</span><span class="token operator">.</span><span class="token function">New<span class="token punctuation">(</span></span><span class="token operator">&amp;</span><span class="token builtin">recover</span><span class="token operator">.</span>Options<span class="token operator">{</span>
+    Log<span class="token operator">:</span> log<span class="token operator">.</span>Print<span class="token operator">,</span>
+  <span class="token operator">}</span><span class="token operator">)</span>
+  <span class="token keyword">return</span> <span class="token function">recovery<span class="token punctuation">(</span></span>handler<span class="token operator">)</span>
+<span class="token operator">}</span></code></pre>
+<p>There are tons of middlewares out there, some are framework specific and some frameworks don&apos;t really use the plain
+vanilla golang net/http as base abstraction. For those you can use a project like <a href="https://github.com/carbocation/interpose" target="_blank">interpose</a> that serves as an adapter
+layer so you can still reuse middlewares. Of course nobody is stopping you to just implement your own middlewares.</p><p>For example using interpose to integrate with <a href="https://github.com/carbocation/interpose/blob/master/middleware/negronilogrus.go" target="_blank">logrus</a>.</p><pre><code class="lang-go"><span class="token keyword">import</span> <span class="token operator">(</span>
+  interpose <span class="token string">&quot;github.com/carbocation/interpose/middleware&quot;</span>
+<span class="token operator">)</span>
+<span class="token keyword">func</span> <span class="token function">setupGlobalMiddleware<span class="token punctuation">(</span></span>handler http<span class="token operator">.</span>Handler<span class="token operator">)</span> http<span class="token operator">.</span>Handler <span class="token operator">{</span>
+  logViaLogrus <span class="token operator">:=</span> interpose<span class="token operator">.</span><span class="token function">NegroniLogrus<span class="token punctuation">(</span></span><span class="token operator">)</span>
+  <span class="token keyword">return</span> <span class="token function">logViaLogrus<span class="token punctuation">(</span></span>handler<span class="token operator">)</span>
+<span class="token operator">}</span></code></pre>
+<p>And you can compose these middlewares into a stack using functions.</p><pre><code class="lang-go"><span class="token keyword">func</span> <span class="token function">setupGlobalMiddleware<span class="token punctuation">(</span></span>handler http<span class="token operator">.</span>Handler<span class="token operator">)</span> http<span class="token operator">.</span>Handler <span class="token operator">{</span>
+  handlePanic <span class="token operator">:=</span> <span class="token builtin">recover</span><span class="token operator">.</span><span class="token function">New<span class="token punctuation">(</span></span><span class="token operator">&amp;</span><span class="token builtin">recover</span><span class="token operator">.</span>Options<span class="token operator">{</span>
+    Log<span class="token operator">:</span> log<span class="token operator">.</span>Print<span class="token operator">,</span>
+  <span class="token operator">}</span><span class="token operator">)</span>
+
+  logViaLogrus <span class="token operator">:=</span> interpose<span class="token operator">.</span><span class="token function">NegroniLogrus<span class="token punctuation">(</span></span><span class="token operator">)</span>
+
+  <span class="token keyword">return</span> <span class="token function">handlePanic<span class="token punctuation">(</span></span>
+    <span class="token function">logViaLogrus<span class="token punctuation">(</span></span>
+      handler
+    <span class="token operator">)</span>
+  <span class="token operator">)</span>
+<span class="token operator">}</span></code></pre>
+<h4 id="add-rate-limiting"><a name="add-rate-limiting" class="plugin-anchor" href="#add-rate-limiting"><i class="fa fa-link" aria-hidden="true"></i></a>Add rate limiting</h4><p>You can also add rate limiting in a similar way. Lets say we just want to rate limit the valid requests to our swagger
+API. To do so we could use <a href="https://github.com/didip/tollbooth" target="_blank">tollbooth</a>.</p><pre><code class="lang-go"><span class="token keyword">func</span> <span class="token function">setupMiddlewares<span class="token punctuation">(</span></span>handler http<span class="token operator">.</span>Handler<span class="token operator">)</span> http<span class="token operator">.</span>Handler <span class="token operator">{</span>
+  limiter <span class="token operator">:=</span> tollbooth<span class="token operator">.</span><span class="token function">NewLimiter<span class="token punctuation">(</span></span><span class="token number">1</span><span class="token operator">,</span> time<span class="token operator">.</span>Second<span class="token operator">)</span>
+  limiter<span class="token operator">.</span>IPLookups <span class="token operator">=</span> <span class="token operator">[</span><span class="token operator">]</span><span class="token builtin">string</span><span class="token operator">{</span><span class="token string">&quot;RemoteAddr&quot;</span><span class="token operator">,</span> <span class="token string">&quot;X-Forwarded-For&quot;</span><span class="token operator">,</span> <span class="token string">&quot;X-Real-IP&quot;</span><span class="token operator">}</span>
+    <span class="token keyword">return</span> tollbooth<span class="token operator">.</span><span class="token function">LimitFuncHandler<span class="token punctuation">(</span></span>handler<span class="token operator">)</span>
+<span class="token operator">}</span></code></pre>
+<p>And with this you&apos;ve added rate limitting to your application.</p>
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="../tutorial/todo-list.html" class="navigation navigation-prev " aria-label="Previous page: Simple Server">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="../usage/validate.html" class="navigation navigation-next " aria-label="Next page: Validate">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Middleware","level":"1.2.2","depth":2,"next":{"title":"Validate","level":"1.3","depth":1,"path":"usage/validate.md","ref":"usage/validate.md","articles":[]},"previous":{"title":"Simple Server","level":"1.2.1","depth":2,"path":"tutorial/todo-list.md","ref":"tutorial/todo-list.md","articles":[]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors","livereload"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"prism":{},"livereload":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"use/middleware.md","mtime":"2016-07-31T22:12:18.000Z","type":"markdown"},"gitbook":{"version":"3.2.0","time":"2016-07-31T23:09:31.238Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-forkmegithub/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-livereload/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
