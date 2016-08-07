@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-	<meta name="generator" content="Hugo 0.17-DEV" />
     <meta charset="utf-8">
     <title>go-swagger toolkit</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -56,26 +55,59 @@
 
 
     <div class="container">
-      <div class="jumbotron">
-        <h1>OpenAPIs 2.0</h1>
-        <p>FKA swagger 2.0</p>
-        <h2>Using 0.5.0</h2>
-        <p>
-          The master branch and the 0.5.0 version have diverged signicantly. To use the released version of swagger 2.0 you need to checkout the 0.5.0 tag for the go-swagger repo.<br />
-          <pre>
-go get -u github.com/go-swagger/go-swagger &&\
-cd $GOPATH/src/github.com/go-swagger/go-swagger &&\
-git checkout 0.5.0 &&\
-cd -</pre>
-        </p>
+        
+        <div>
+            <h2><a href="//goswagger.io/generate/spec/route/">swagger:route</a></h2>
+            <span class="lead">Sat, Nov 14, 2015</span>
+            <p><p>A <strong>swagger:route</strong> annotation links a path to a method.
+This operation gets a unique id, which is used in various places as method name.
+One such usage is in method names for client generation for example.</p>
 
-        <h2>About</h2>
-        <p>Swagger is a simple yet powerful representation of your RESTful API.</p>
-        <p>With a Swagger-enabled API, you get interactive documentation, client SDK generation and discoverability. We created Swagger to help fulfill the promise of APIs.</p>
-        <p>APIs form the connecting glue between modern applications. Nearly every application uses APIs to connect with corporate data sources, third party data services or other applications. Creating an open description format for API services that is vendor neutral, portable and open is critical to accelerating the vision of a truly connected world. </p>
-        <p><a class="btn btn-primary btn-lg" href="/tutorial/todo-list" role="button">Learn more</a></p>
-      </div>
+<p>Because there are many routers available, this tool does not try to parse the paths
+you provided to your routing library of choice. So you have to specify your path pattern
+yourself in valid swagger syntax.</p>
+</p>
+        </div>
+        
+        <div>
+            <h2><a href="//goswagger.io/generate/spec/params/">swagger:parameters</a></h2>
+            <span class="lead">Sat, Nov 14, 2015</span>
+            <p><p>The <strong>swagger:parameters</strong> annotation links a struct to one or more operations. The parameters in the resulting swagger spec can be composed of several structs.
+There are no guarantees given on how property name overlaps are resolved when several structs apply to the same operation.
+This tag works very similar to the swagger:model tag except that it produces valid parameter objects instead of schema
+objects.</p>
+</p>
+        </div>
+        
+        <div>
+            <h2><a href="//goswagger.io/generate/spec/response/">swagger:response</a></h2>
+            <span class="lead">Sat, Nov 14, 2015</span>
+            <p><p>Reads a struct decorated with <strong>swagger:response</strong> and uses that information to fill up the headers and the schema for a response.
+A swagger:route can specify a response name for a status code and then the matching response will be used for that operation in the swagger definition.</p>
+</p>
+        </div>
+        
+
+              <footer>
+        <nav class="navbar navbar-default">
+          <div class="container-fluid">
+            <div class="collapse navbar-collapse">
+              <ul class="nav navbar-nav">
+                <li><a href="#">© 2016 go-swagger contributors</a></li>
+                <li><a href="https://github.com/go-swagger/go-swagger">Github</a></li>
+                <li><a href="https://openapis.org" target="_blank">Open APIs</a></li>
+              </ul>
+              <ul class="nav navbar-nav navbar-right">
+                <li class="pull-right"><a href="#top">Back to top</a></li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </footer>
+
+
     </div>
+
         <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
         <script src="/js/bootstrap.min.js"></script>
         <script src="/js/bootswatch.js"></script>

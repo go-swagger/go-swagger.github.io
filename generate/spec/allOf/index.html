@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-	<meta name="generator" content="Hugo 0.17-DEV" />
     <meta charset="utf-8">
     <title>go-swagger toolkit</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -56,26 +55,123 @@
 
 
     <div class="container">
-      <div class="jumbotron">
-        <h1>OpenAPIs 2.0</h1>
-        <p>FKA swagger 2.0</p>
-        <h2>Using 0.5.0</h2>
-        <p>
-          The master branch and the 0.5.0 version have diverged signicantly. To use the released version of swagger 2.0 you need to checkout the 0.5.0 tag for the go-swagger repo.<br />
-          <pre>
-go get -u github.com/go-swagger/go-swagger &&\
-cd $GOPATH/src/github.com/go-swagger/go-swagger &&\
-git checkout 0.5.0 &&\
-cd -</pre>
-        </p>
+        <h1><a href="//goswagger.io/generate/spec/allOf/">swagger:allOf</a></h1>
+        
+        <div class="post">
+            
 
-        <h2>About</h2>
-        <p>Swagger is a simple yet powerful representation of your RESTful API.</p>
-        <p>With a Swagger-enabled API, you get interactive documentation, client SDK generation and discoverability. We created Swagger to help fulfill the promise of APIs.</p>
-        <p>APIs form the connecting glue between modern applications. Nearly every application uses APIs to connect with corporate data sources, third party data services or other applications. Creating an open description format for API services that is vendor neutral, portable and open is critical to accelerating the vision of a truly connected world. </p>
-        <p><a class="btn btn-primary btn-lg" href="/tutorial/todo-list" role="button">Learn more</a></p>
-      </div>
-    </div>
+<p>Marks an embedded type as  a member for allOf</p>
+
+<h5 id="syntax">Syntax:</h5>
+
+<pre><code>swagger:allOf
+</code></pre>
+
+<h5 id="example">Example:</h5>
+
+<pre><code class="language-go">// A SimpleOne is a model with a few simple fields
+type SimpleOne struct {
+	ID   int64  `json:&quot;id&quot;`
+	Name string `json:&quot;name&quot;`
+	Age  int32  `json:&quot;age&quot;`
+}
+
+// A Something struct is used by other structs
+type Something struct {
+	DID int64  `json:&quot;did&quot;`
+	Cat string `json:&quot;cat&quot;`
+}
+
+// Notable is a model in a transitive package.
+// it's used for embedding in another model
+//
+// swagger:model withNotes
+type Notable struct {
+	Notes string `json:&quot;notes&quot;`
+
+	Extra string `json:&quot;extra&quot;`
+}
+
+// An AllOfModel is composed out of embedded structs but it should build
+// an allOf property
+type AllOfModel struct {
+	// swagger:allOf
+	SimpleOne
+	// swagger:allOf
+	mods.Notable
+
+	Something // not annotated with anything, so should be included
+
+	CreatedAt strfmt.DateTime `json:&quot;createdAt&quot;`
+}
+</code></pre>
+
+<h5 id="result">Result:</h5>
+
+<pre><code class="language-yaml">---
+definitions:
+  SimpleOne:
+    title: A SimpleOne is a model with a few simple fields
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int64
+      name:
+        type: string
+      age:
+        type: integer
+        format: int32
+  Notable:
+    title: &quot;Notable is a model in a transitive package.\nit's used for embedding in another model&quot;
+    type: object
+    properties:
+      notes:
+        type: string
+      extra:
+        type: string
+  AllOfModel:
+    title: &quot;An AllOfModel is composed out of embedded structs but it should build\nan allOf property&quot;
+    allOf: 
+      - $ref: &quot;#/definitions/SimpleOne&quot;
+      - $ref: &quot;#/definitions/Notable&quot;
+      - title: A Something struct is used by other structs
+        type: object
+        properties:
+          did:
+            type: integer
+            format: int64
+          cat:
+            type: string
+      - type: object
+        properties:
+          createdAt:
+            type: string
+            format: date-time
+</code></pre>
+
+        </div>
+
+              <footer>
+        <nav class="navbar navbar-default">
+          <div class="container-fluid">
+            <div class="collapse navbar-collapse">
+              <ul class="nav navbar-nav">
+                <li><a href="#">© 2016 go-swagger contributors</a></li>
+                <li><a href="https://github.com/go-swagger/go-swagger">Github</a></li>
+                <li><a href="https://openapis.org" target="_blank">Open APIs</a></li>
+              </ul>
+              <ul class="nav navbar-nav navbar-right">
+                <li class="pull-right"><a href="#top">Back to top</a></li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </footer>
+
+
+     </div>
+
         <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
         <script src="/js/bootstrap.min.js"></script>
         <script src="/js/bootswatch.js"></script>

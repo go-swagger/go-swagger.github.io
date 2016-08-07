@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-	<meta name="generator" content="Hugo 0.17-DEV" />
     <meta charset="utf-8">
     <title>go-swagger toolkit</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -56,26 +55,60 @@
 
 
     <div class="container">
-      <div class="jumbotron">
-        <h1>OpenAPIs 2.0</h1>
-        <p>FKA swagger 2.0</p>
-        <h2>Using 0.5.0</h2>
-        <p>
-          The master branch and the 0.5.0 version have diverged signicantly. To use the released version of swagger 2.0 you need to checkout the 0.5.0 tag for the go-swagger repo.<br />
-          <pre>
-go get -u github.com/go-swagger/go-swagger &&\
-cd $GOPATH/src/github.com/go-swagger/go-swagger &&\
-git checkout 0.5.0 &&\
-cd -</pre>
-        </p>
+        <h1><a href="//goswagger.io/about/">What is go-swagger</a></h1>
+        
+        <div class="post">
+            <p>There are 2 axis along which your API and its documentation tend to evolve. This toolkit aims to support you along all
+axis and remove the repetitive nature of writing what is essentially boilerplate code for faster iteration times.</p>
 
-        <h2>About</h2>
-        <p>Swagger is a simple yet powerful representation of your RESTful API.</p>
-        <p>With a Swagger-enabled API, you get interactive documentation, client SDK generation and discoverability. We created Swagger to help fulfill the promise of APIs.</p>
-        <p>APIs form the connecting glue between modern applications. Nearly every application uses APIs to connect with corporate data sources, third party data services or other applications. Creating an open description format for API services that is vendor neutral, portable and open is critical to accelerating the vision of a truly connected world. </p>
-        <p><a class="btn btn-primary btn-lg" href="/tutorial/todo-list" role="button">Learn more</a></p>
-      </div>
-    </div>
+<p>The first one is an artifact of that first meeting where you hash out what your service will do. Hopefully you&rsquo;ve come
+up with some document that services as a kind of contract for what the affected people/teams will need to do.
+At this stage you want to be able to generate a server, perhaps a client to talk to that server.
+It&rsquo;s not inconceivable you want to have your front-end team use mock data for that server and that the backend team
+wants to be left in peace while they work on their part of the application.</p>
+
+<p>This is the <strong>design first</strong> approach for swagger.</p>
+
+<p>Now we&rsquo;re moving on to the second iteration of the project and at this stage, there might be a design meeting for the
+new features, or they might just be refinements of the previous API&rsquo;s. When no changes are required to the contract,
+all is great because people can keep doing what they were doing and everybody is happy.
+However it might be that there was a change that is required for the front-end, they need a boolean added to some model
+because they want to display an-accepted-terms-and-conditions-checkbox.
+The backend can decide to add this to the code, provide the necessary annotation and regenerate the swagger
+specification document.</p>
+
+<p>This is the <strong>code first</strong> approach for swagger.</p>
+
+<p>This toolkit aims to support both these modes, remove the repetitive nature of writing what is essentially boilerplate
+code. In doing so it tries to stay as close as possible to the go stdlib interfaces, it tries to have no opinions
+besides the fact that documentation is important. And it tries to integrate well with the rest of the go ecosystem as
+well as the swagger ecosystem.</p>
+
+<p>A series of contrib projects will add higher level optional functionality so that you can use the generated code with
+confidence whether your application is your personal blog or is the next AWS.</p>
+
+        </div>
+
+              <footer>
+        <nav class="navbar navbar-default">
+          <div class="container-fluid">
+            <div class="collapse navbar-collapse">
+              <ul class="nav navbar-nav">
+                <li><a href="#">© 2016 go-swagger contributors</a></li>
+                <li><a href="https://github.com/go-swagger/go-swagger">Github</a></li>
+                <li><a href="https://openapis.org" target="_blank">Open APIs</a></li>
+              </ul>
+              <ul class="nav navbar-nav navbar-right">
+                <li class="pull-right"><a href="#top">Back to top</a></li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </footer>
+
+
+     </div>
+
         <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
         <script src="/js/bootstrap.min.js"></script>
         <script src="/js/bootswatch.js"></script>
