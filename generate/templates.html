@@ -2,7 +2,7 @@
 <!DOCTYPE HTML>
 <html lang="" >
     <head>
-        <title>swagger.json · GitBook</title>
+        <title>Custom templates · GitBook</title>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
@@ -65,10 +65,10 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="spec/meta.html" />
+    <link rel="next" href="spec.html" />
     
     
-    <link rel="prev" href="templates.html" />
+    <link rel="prev" href="../use/schemas.html" />
     
 
     </head>
@@ -240,7 +240,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.4" data-path="templates.html">
+        <li class="chapter active" data-level="1.4.4" data-path="templates.html">
             
                 <a href="templates.html">
             
@@ -253,7 +253,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.4.5" data-path="spec.html">
+        <li class="chapter " data-level="1.4.5" data-path="spec.html">
             
                 <a href="spec.html">
             
@@ -450,7 +450,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >swagger.json</a>
+        <a href=".." >Custom templates</a>
     </h1>
 </div>
 
@@ -465,68 +465,43 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="swaggerjson-generation"><a name="swaggerjson-generation" class="plugin-anchor" href="#swaggerjson-generation"><i class="fa fa-link" aria-hidden="true"></i></a>swagger.json generation</h1><p>The toolkit has a command that will let you generate a swagger spec document from your code.
-The command integrates with go doc comments, and makes use of structs when it needs to know of
-types.</p><!--more-->
+                                <h1 id="use-custom-templates"><a name="use-custom-templates" class="plugin-anchor" href="#use-custom-templates"><i class="fa fa-link" aria-hidden="true"></i></a>Use custom templates</h1><p>When generating a server or client you can specify a directory to load custom templates from 
+with <code>--template-dir</code>. It will recursively read all the <code>.gotmpl</code> files in the directory and 
+load them as templates.</p><!--more-->
 
 
-<p>Based on the work from <a href="https://github.com/yvasiyarov/swagger" target="_blank">https://github.com/yvasiyarov/swagger</a></p><p>It uses a similar approach but with expanded annotations and it produces a swagger 2.0 spec.</p><p>The goal of the syntax is to make it look as a natural part of the documentation for the application code.</p><p>The generator is passed a main package and it uses that to discover all the code in use.
-To do this it makes use of go&apos;s loader package. The same package that is used by tools like goimports to discover which files to format.</p><p>Once the parser has encountered a comment that matches on of its known tags, the parser will assume that the rest of the comment block is for swagger.</p><h3 id="usage"><a name="usage" class="plugin-anchor" href="#usage"><i class="fa fa-link" aria-hidden="true"></i></a>Usage</h3><p>To generate a spec:</p><pre><code>swagger generate spec -o ./swagger.json</code></pre>
-<p>You give it a main file and it will parse all the files that are reachable by that main
-package to produce a swagger specification.</p><p>To use you can add a go:generate comment to your main file for example:</p><pre><code>//go:generate swagger generate spec</code></pre>
-<p>The command requires a main package or file and it wants your code to compile. It uses the go tools loader to load an application and then scans all the packages that are in use by the code base.
-This means that for something to be discoverable it needs to be reachable by a code path triggered through the main package.</p><p>If an annotation is not yet supported or you want to merge with a pre-existing spec, you can use the -i parameter.</p><pre><code>swagger generate spec -i ./swagger.yml -o ./swagger.json</code></pre>
-<p>The idea is that there are certain things that are more easily expressed by just using yaml, to</p><h4 id="parsing-rules"><a name="parsing-rules" class="plugin-anchor" href="#parsing-rules"><i class="fa fa-link" aria-hidden="true"></i></a>Parsing rules</h4><p><img class="emoji" title=":warning" alt=":warning" src="https://assets-cdn.github.com/images/icons/emoji/unicode/26a0.png?v5" width="20" height="20" align="absmiddle">This command relies heavily on the way godoc works. <img class="emoji" title=":warning" alt=":warning" src="https://assets-cdn.github.com/images/icons/emoji/unicode/26a0.png?v5" width="20" height="20" align="absmiddle"></p><p>This means you should be very aware of all the things godoc supports.</p><ul><li><a href="http://blog.golang.org/godoc-documenting-go-code" target="_blank">godoc documenting go code</a>
+<p>Each file will be loaded and define a template named the same as the file without the suffix. If 
+the file is in a subdirectory the directory name will be included in the template name and the
+first character of the next path segment will be uppercased. e.g.</p><ul><li>template.gotmpl -&gt; template
 </li>
-<li><a href="https://golang.org/pkg/go/doc/#ToHTML" target="_blank">godoc ToHTML</a>
-</li>
-<li><a href="https://golang.org/doc/effective_go.html#commentary" target="_blank">commenting go effectively</a>
-</li>
-<li><a href="https://godoc.org/golang.org/x/tools/cmd/godoc" target="_blank">godoc documentation</a>
+<li>server/test.gotmpl -&gt; serverTest
 </li></ul>
-<p>Single page which documents all the currently supported godoc rules:</p><ul><li><a href="https://godoc.org/github.com/fluhus/godoc-tricks" target="_blank">godoc tricks</a>
+<p>You can override the following templates. Check go-swagger/generator/templates for the default
+definitions.</p><h1 id="available-templates"><a name="available-templates" class="plugin-anchor" href="#available-templates"><i class="fa fa-link" aria-hidden="true"></i></a>Available Templates:</h1><h1 id="client-templates"><a name="client-templates" class="plugin-anchor" href="#client-templates"><i class="fa fa-link" aria-hidden="true"></i></a>Client Templates</h1><h2 id="clientfacade"><a name="clientfacade" class="plugin-anchor" href="#clientfacade"><i class="fa fa-link" aria-hidden="true"></i></a>clientFacade</h2><p>Defined in <code>client/facade.gotmpl</code></p><hr><h2 id="clientparameter"><a name="clientparameter" class="plugin-anchor" href="#clientparameter"><i class="fa fa-link" aria-hidden="true"></i></a>clientParameter</h2><p>Defined in <code>client/parameter.gotmpl</code></p><hr><h2 id="clientresponse"><a name="clientresponse" class="plugin-anchor" href="#clientresponse"><i class="fa fa-link" aria-hidden="true"></i></a>clientResponse</h2><p>Defined in <code>client/response.gotmpl</code></p><h4 id="requires"><a name="requires" class="plugin-anchor" href="#requires"><i class="fa fa-link" aria-hidden="true"></i></a>requires</h4><ul><li>clientresponse
+</li>
+<li>schema
+</li>
+<li>docstring
 </li></ul>
-<p>The generated code tries to avoid golint errors.</p><ul><li><a href="https://github.com/golang/lint" target="_blank">go lint</a>
+<hr><h2 id="clientresponse"><a name="clientresponse" class="plugin-anchor" href="#clientresponse"><i class="fa fa-link" aria-hidden="true"></i></a>clientresponse</h2><p>Defined in <code>client/response.gotmpl</code></p><hr><h2 id="clientclient"><a name="clientclient" class="plugin-anchor" href="#clientclient"><i class="fa fa-link" aria-hidden="true"></i></a>clientClient</h2><p>Defined in <code>client/client.gotmpl</code></p><h1 id="server-templates"><a name="server-templates" class="plugin-anchor" href="#server-templates"><i class="fa fa-link" aria-hidden="true"></i></a>Server Templates</h1><h2 id="serverparameter"><a name="serverparameter" class="plugin-anchor" href="#serverparameter"><i class="fa fa-link" aria-hidden="true"></i></a>serverParameter</h2><p>Defined in <code>server/parameter.gotmpl</code></p><h4 id="requires"><a name="requires" class="plugin-anchor" href="#requires"><i class="fa fa-link" aria-hidden="true"></i></a>requires</h4><ul><li>propertyparamvalidator
 </li>
-<li><a href="https://github.com/golang/go/wiki/CodeReviewComments" target="_blank">go lint style guide</a>
+<li>sliceparambinder
 </li></ul>
-<p>When an object has a title and a description field, it will use the go rules to parse those. So the first line of the
-comment block will become the title, or a header when rendered as godoc. The rest of the comment block will be treated
-as description up to either the end of the comment block, or a line that starts with a known annotation.</p><h4 id="annotation-syntax"><a name="annotation-syntax" class="plugin-anchor" href="#annotation-syntax"><i class="fa fa-link" aria-hidden="true"></i></a>Annotation syntax</h4><p>If you want to exclude something from the spec generation process you can try with the struct tag: <code>json:&quot;-&quot;</code></p><p>There are several annotations that mark a comment block as a participant for the swagger spec.</p><ul><li><a href="spec/meta.html">swagger:meta</a>
-</li>
-<li><a href="spec/route.html">swagger:route</a>
-</li>
-<li><a href="spec/params.html">swagger:parameters</a>
-</li>
-<li><a href="spec/response.html">swagger:response</a>
-</li>
-<li><a href="spec/model.html">swagger:model</a>
-</li>
-<li><a href="spec/allOf.html">swagger:allOf</a>
-</li>
-<li><a href="spec/strfmt.html">swagger:strfmt</a>
-</li>
-<li><a href="spec/discriminated.html">swagger:discriminated</a>
+<hr><h2 id="sliceparamvalidator"><a name="sliceparamvalidator" class="plugin-anchor" href="#sliceparamvalidator"><i class="fa fa-link" aria-hidden="true"></i></a>sliceparamvalidator</h2><p>Defined in <code>server/parameter.gotmpl</code></p><hr><h2 id="serverresponses"><a name="serverresponses" class="plugin-anchor" href="#serverresponses"><i class="fa fa-link" aria-hidden="true"></i></a>serverResponses</h2><p>Defined in <code>server/responses.gotmpl</code></p><h4 id="requires"><a name="requires" class="plugin-anchor" href="#requires"><i class="fa fa-link" aria-hidden="true"></i></a>requires</h4><ul><li>serverresponse
 </li></ul>
-<h4 id="embedded-types"><a name="embedded-types" class="plugin-anchor" href="#embedded-types"><i class="fa fa-link" aria-hidden="true"></i></a>Embedded types</h4><p>For the embedded schemas there are a set of rules for the spec generator to vary the definition it generates.</p><p>When an embedded type isn&apos;t decorated with the <code>swagger:allOf</code> annotation, then the properties from the embedded value will be included in the generated definition as if they were defined on the definition. But when the embedded type is decorated with the <code>swagger:allOf</code> annotation then the all of element will be defined as a &quot;$ref&quot; property instead. For an annotated type there is also the possibility to specify an argument, the value of this argument will be used as the value for the <code>x-class</code> extension. This allows for generators that support the
-<code>x-class</code> extension to reliably build a serializer for a type with a discriminator</p><h4 id="known-vendor-extensions"><a name="known-vendor-extensions" class="plugin-anchor" href="#known-vendor-extensions"><i class="fa fa-link" aria-hidden="true"></i></a>Known vendor extensions</h4><p>There are a couple of commonly used vendor extensions that most frameworks support to add functionality to the swagger spec.</p><p>For generating a swagger specification document this toolkit supports:</p><table>
-<thead>
-<tr><th>Vendor extension</th>
-<th>Description</th>
-</tr></thead><tbody>
-<tr><td>x-isnullable</td>
-<td>makes a property value nullable, for go code that means a pointer</td>
-</tr><tr><td>x-nullable</td>
-<td>makes a property value nullable, for go code that means a pointer</td>
-</tr><tr><td>x-go-name</td>
-<td>the go name of a type</td>
-</tr><tr><td>x-go-package</td>
-<td>the go package of a type</td>
-</tr><tr><td>x-class</td>
-<td>this is used in conjunction with discriminators to give a full type name</td>
-</tr></tbody></table>
-
-
+<hr><h2 id="sliceparambinder"><a name="sliceparambinder" class="plugin-anchor" href="#sliceparambinder"><i class="fa fa-link" aria-hidden="true"></i></a>sliceparambinder</h2><p>Defined in <code>server/parameter.gotmpl</code></p><h4 id="requires"><a name="requires" class="plugin-anchor" href="#requires"><i class="fa fa-link" aria-hidden="true"></i></a>requires</h4><ul><li>propertyparamvalidator
+</li>
+<li>sliceparambinder
+</li></ul>
+<hr><h2 id="serverresponse"><a name="serverresponse" class="plugin-anchor" href="#serverresponse"><i class="fa fa-link" aria-hidden="true"></i></a>serverresponse</h2><p>Defined in <code>server/responses.gotmpl</code></p><hr><h2 id="serveroperation"><a name="serveroperation" class="plugin-anchor" href="#serveroperation"><i class="fa fa-link" aria-hidden="true"></i></a>serverOperation</h2><p>Defined in <code>server/operation.gotmpl</code></p><h4 id="requires"><a name="requires" class="plugin-anchor" href="#requires"><i class="fa fa-link" aria-hidden="true"></i></a>requires</h4><ul><li>schema
+</li>
+<li>docstring
+</li></ul>
+<hr><h2 id="propertyparamvalidator"><a name="propertyparamvalidator" class="plugin-anchor" href="#propertyparamvalidator"><i class="fa fa-link" aria-hidden="true"></i></a>propertyparamvalidator</h2><p>Defined in <code>server/parameter.gotmpl</code></p><h4 id="requires"><a name="requires" class="plugin-anchor" href="#requires"><i class="fa fa-link" aria-hidden="true"></i></a>requires</h4><ul><li>validationPrimitive
+</li>
+<li>sliceparamvalidator
+</li></ul>
+<hr><h2 id="servermain"><a name="servermain" class="plugin-anchor" href="#servermain"><i class="fa fa-link" aria-hidden="true"></i></a>serverMain</h2><p>Defined in <code>server/main.gotmpl</code></p><hr><h2 id="bindprimitiveparam"><a name="bindprimitiveparam" class="plugin-anchor" href="#bindprimitiveparam"><i class="fa fa-link" aria-hidden="true"></i></a>bindprimitiveparam</h2><p>Defined in <code>server/parameter.gotmpl</code></p><hr><h2 id="serverconfigureapi"><a name="serverconfigureapi" class="plugin-anchor" href="#serverconfigureapi"><i class="fa fa-link" aria-hidden="true"></i></a>serverConfigureapi</h2><p>Defined in <code>server/configureapi.gotmpl</code></p><hr><h2 id="serverbuilder"><a name="serverbuilder" class="plugin-anchor" href="#serverbuilder"><i class="fa fa-link" aria-hidden="true"></i></a>serverBuilder</h2><p>Defined in <code>server/builder.gotmpl</code></p><hr><h2 id="serverdoc"><a name="serverdoc" class="plugin-anchor" href="#serverdoc"><i class="fa fa-link" aria-hidden="true"></i></a>serverDoc</h2><p>Defined in <code>server/doc.gotmpl</code></p>
                                 
                                 </section>
                             
@@ -553,12 +528,12 @@ as description up to either the end of the comment block, or a line that starts 
 
             
                 
-                <a href="templates.html" class="navigation navigation-prev " aria-label="Previous page: Custom templates">
+                <a href="../use/schemas.html" class="navigation navigation-prev " aria-label="Previous page: Model generation rules">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="spec/meta.html" class="navigation navigation-next " aria-label="Next page: swagger:meta">
+                <a href="spec.html" class="navigation navigation-next " aria-label="Next page: swagger.json">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -569,7 +544,7 @@ as description up to either the end of the comment block, or a line that starts 
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"swagger.json","level":"1.4.5","depth":2,"next":{"title":"swagger:meta","level":"1.4.5.1","depth":3,"path":"generate/spec/meta.md","ref":"generate/spec/meta.md","articles":[]},"previous":{"title":"Custom templates","level":"1.4.4","depth":2,"path":"generate/templates.md","ref":"generate/templates.md","articles":[]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors","livereload"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"prism":{},"livereload":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"generate/spec.md","mtime":"2016-07-31T22:42:21.000Z","type":"markdown"},"gitbook":{"version":"3.2.0","time":"2016-07-31T23:09:31.238Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Custom templates","level":"1.4.4","depth":2,"next":{"title":"swagger.json","level":"1.4.5","depth":2,"path":"generate/spec.md","ref":"generate/spec.md","articles":[{"title":"swagger:meta","level":"1.4.5.1","depth":3,"path":"generate/spec/meta.md","ref":"generate/spec/meta.md","articles":[]},{"title":"swagger:route","level":"1.4.5.2","depth":3,"path":"generate/spec/route.md","ref":"generate/spec/route.md","articles":[]},{"title":"swagger:params","level":"1.4.5.3","depth":3,"path":"generate/spec/params.md","ref":"generate/spec/params.md","articles":[]},{"title":"swagger:response","level":"1.4.5.4","depth":3,"path":"generate/spec/response.md","ref":"generate/spec/response.md","articles":[]},{"title":"swagger:model","level":"1.4.5.5","depth":3,"path":"generate/spec/model.md","ref":"generate/spec/model.md","articles":[]},{"title":"swagger:allOf","level":"1.4.5.6","depth":3,"path":"generate/spec/allOf.md","ref":"generate/spec/allOf.md","articles":[]},{"title":"swagger:strfmt","level":"1.4.5.7","depth":3,"path":"generate/spec/strfmt.md","ref":"generate/spec/strfmt.md","articles":[]},{"title":"swagger:discriminated","level":"1.4.5.8","depth":3,"path":"generate/spec/discriminated.md","ref":"generate/spec/discriminated.md","articles":[]}]},"previous":{"title":"Model generation rules","level":"1.4.3","depth":2,"path":"use/schemas.md","ref":"use/schemas.md","articles":[]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"prism":{},"anchors":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"generate/templates.md","mtime":"2016-08-25T04:20:38.407Z","type":"markdown"},"gitbook":{"version":"3.2.0","time":"2016-09-01T14:30:08.228Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
@@ -580,10 +555,6 @@ as description up to either the end of the comment block, or a line that starts 
     
         
         <script src="../gitbook/gitbook-plugin-forkmegithub/plugin.js"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-livereload/plugin.js"></script>
         
     
         

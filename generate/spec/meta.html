@@ -2,7 +2,7 @@
 <!DOCTYPE HTML>
 <html lang="" >
     <head>
-        <title>swagger:route · GitBook</title>
+        <title>swagger:meta · GitBook</title>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
@@ -65,10 +65,10 @@
     <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="params.html" />
+    <link rel="next" href="route.html" />
     
     
-    <link rel="prev" href="meta.html" />
+    <link rel="prev" href="../spec.html" />
     
 
     </head>
@@ -267,7 +267,7 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.4.5.1" data-path="meta.html">
+        <li class="chapter active" data-level="1.4.5.1" data-path="meta.html">
             
                 <a href="meta.html">
             
@@ -280,7 +280,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.4.5.2" data-path="route.html">
+        <li class="chapter " data-level="1.4.5.2" data-path="route.html">
             
                 <a href="route.html">
             
@@ -450,7 +450,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../.." >swagger:route</a>
+        <a href="../.." >swagger:meta</a>
     </h1>
 </div>
 
@@ -465,92 +465,86 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="swaggerroute"><a name="swaggerroute" class="plugin-anchor" href="#swaggerroute"><i class="fa fa-link" aria-hidden="true"></i></a>swagger:route</h1><p>A <strong>swagger:route</strong> annotation links a path to a method.
-This operation gets a unique id, which is used in various places as method name.
-One such usage is in method names for client generation for example.</p><p>Because there are many routers available, this tool does not try to parse the paths
-you provided to your routing library of choice. So you have to specify your path pattern
-yourself in valid swagger syntax.</p><!--more-->
-
-
-<h5 id="syntax"><a name="syntax" class="plugin-anchor" href="#syntax"><i class="fa fa-link" aria-hidden="true"></i></a>Syntax:</h5><pre><code>swagger:route [method] [path pattern] [?tag1 tag2 tag3] [operation id]</code></pre>
+                                <h1 id="swaggermeta"><a name="swaggermeta" class="plugin-anchor" href="#swaggermeta"><i class="fa fa-link" aria-hidden="true"></i></a>swagger:meta</h1><p>The <strong>swagger:meta</strong> annotation flags a file as source for metadata about the API.
+This is typically a doc.go file with your package documentation.</p><p>You can specify a Consumes and Produces key which has a new content type on each line
+Schemes is a tag that is required and allows for a comma separated string composed of:
+http, https, ws or wss</p><p>Host and BasePath can be specified but those values will be defaults,
+they should get substituted when serving the swagger spec.</p><p>The description property uses the rest of the comment block as description for the api when not explictily provided</p><h5 id="syntax"><a name="syntax" class="plugin-anchor" href="#syntax"><i class="fa fa-link" aria-hidden="true"></i></a>Syntax:</h5><pre><code>swagger:meta</code></pre>
 <h5 id="properties"><a name="properties" class="plugin-anchor" href="#properties"><i class="fa fa-link" aria-hidden="true"></i></a>Properties:</h5><table>
 <thead>
 <tr><th>Annotation</th>
 <th>Format</th>
 </tr></thead><tbody>
-<tr><td><strong>Consumes</strong></td>
-<td>a list of operation specific mime type values, one per line, for the content the API receives</td>
+<tr><td><strong>Terms Of Service</strong></td>
+<td>allows for either a url or a free text definition describing the terms of services for the API</td>
+</tr><tr><td><strong>Consumes</strong></td>
+<td>a list of default (global) mime type values, one per line, for the content the API receives</td>
 </tr><tr><td><strong>Produces</strong></td>
-<td>a list of operation specific mime type values, one per line, for the conten the API sends</td>
+<td>a list of default (global) mime type values, one per line, for the conten the API sends</td>
 </tr><tr><td><strong>Schemes</strong></td>
-<td>a list of operation specific schemes the API accept (possible values: http, https, ws, wss) https is preferred as default when configured</td>
-</tr><tr><td><strong>Security</strong></td>
-<td>a dictionary of key: []string{scopes}</td>
-</tr><tr><td><strong>Responses</strong></td>
-<td>a dictionary of status code to named response</td>
+<td>a list of default schemes the API accept (possible values: http, https, ws, wss) https is preferred as default when configured</td>
+</tr><tr><td><strong>Version</strong></td>
+<td>the current version of the API</td>
+</tr><tr><td><strong>Host</strong></td>
+<td>the host from where the spec is served</td>
+</tr><tr><td><strong>Base path</strong></td>
+<td>the default base path for this API</td>
+</tr><tr><td><strong>Contact</strong></td>
+<td>the name of for the person to contact concerning the API eg. John Doe &lt;john@blogs.com&gt; <a href="http://john.blogs.com" target="_blank">http://john.blogs.com</a></td>
+</tr><tr><td><strong>License</strong></td>
+<td>the name of the license followed by the URL of the license eg. MIT <a href="http://opensource.org/license/MIT" target="_blank">http://opensource.org/license/MIT</a></td>
 </tr></tbody></table>
 
-<h5 id="example"><a name="example" class="plugin-anchor" href="#example"><i class="fa fa-link" aria-hidden="true"></i></a>Example:</h5><pre><code class="lang-go"><span class="token comment" spellcheck="true">// ServeAPI serves the API for this record store</span>
-<span class="token keyword">func</span> <span class="token function">ServeAPI<span class="token punctuation">(</span></span>host<span class="token operator">,</span> basePath <span class="token builtin">string</span><span class="token operator">,</span> schemes <span class="token operator">[</span><span class="token operator">]</span><span class="token builtin">string</span><span class="token operator">)</span> <span class="token builtin">error</span> <span class="token operator">{</span>
-
-    <span class="token comment" spellcheck="true">// swagger:route GET /pets listPets pets users</span>
-    <span class="token comment" spellcheck="true">//</span>
-    <span class="token comment" spellcheck="true">// Lists pets filtered by some parameters.</span>
-    <span class="token comment" spellcheck="true">//</span>
-    <span class="token comment" spellcheck="true">// This will show all available pets by default.</span>
-    <span class="token comment" spellcheck="true">// You can get the pets that are out of stock</span>
-    <span class="token comment" spellcheck="true">//</span>
-    <span class="token comment" spellcheck="true">//     Consumes:</span>
-    <span class="token comment" spellcheck="true">//     - application/json</span>
-    <span class="token comment" spellcheck="true">//     - application/x-protobuf</span>
-    <span class="token comment" spellcheck="true">//</span>
-    <span class="token comment" spellcheck="true">//     Produces:</span>
-    <span class="token comment" spellcheck="true">//     - application/json</span>
-    <span class="token comment" spellcheck="true">//     - application/x-protobuf</span>
-    <span class="token comment" spellcheck="true">//</span>
-    <span class="token comment" spellcheck="true">//     Schemes: http, https, ws, wss</span>
-    <span class="token comment" spellcheck="true">//</span>
-    <span class="token comment" spellcheck="true">//     Security:</span>
-    <span class="token comment" spellcheck="true">//       api_key:</span>
-    <span class="token comment" spellcheck="true">//       oauth: read, write</span>
-    <span class="token comment" spellcheck="true">//</span>
-    <span class="token comment" spellcheck="true">//     Responses:</span>
-    <span class="token comment" spellcheck="true">//       default: genericError</span>
-    <span class="token comment" spellcheck="true">//       200: someResponse</span>
-    <span class="token comment" spellcheck="true">//       422: validationError</span>
-    <span class="token function">mountItem<span class="token punctuation">(</span></span><span class="token string">&quot;GET&quot;</span><span class="token operator">,</span> basePath<span class="token operator">+</span><span class="token string">&quot;/pets&quot;</span><span class="token operator">,</span> <span class="token boolean">nil</span><span class="token operator">)</span>
-<span class="token operator">}</span></code></pre>
-<h5 id="result"><a name="result" class="plugin-anchor" href="#result"><i class="fa fa-link" aria-hidden="true"></i></a>Result:</h5><pre><code class="lang-yaml"><span class="token punctuation">-</span><span class="token punctuation">-</span><span class="token punctuation">-</span>
-<span class="token key atrule">operations</span><span class="token punctuation">:</span>
-  <span class="token key atrule">&quot;/&quot;</span><span class="token punctuation">:</span>
-    <span class="token key atrule">get</span><span class="token punctuation">:</span>
-      <span class="token key atrule">operationId</span><span class="token punctuation">:</span> listPets
-      <span class="token key atrule">tags</span><span class="token punctuation">:</span>
-      <span class="token punctuation">-</span> pets
-      <span class="token punctuation">-</span> users
-      <span class="token key atrule">consumes</span><span class="token punctuation">:</span>
-      <span class="token punctuation">-</span> application/json
-      <span class="token punctuation">-</span> application/x<span class="token punctuation">-</span>protobuf
-      <span class="token key atrule">produces</span><span class="token punctuation">:</span>
-      <span class="token punctuation">-</span> application/json
-      <span class="token punctuation">-</span> application/x<span class="token punctuation">-</span>protobuf
-      <span class="token key atrule">schemes</span><span class="token punctuation">:</span>
-      <span class="token punctuation">-</span> http
-      <span class="token punctuation">-</span> https
-      <span class="token punctuation">-</span> ws
-      <span class="token punctuation">-</span> wss
-      <span class="token key atrule">security</span><span class="token punctuation">:</span>
-        <span class="token key atrule">api_key</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
-        <span class="token key atrule">oauth</span><span class="token punctuation">:</span>
-        <span class="token punctuation">-</span> read
-        <span class="token punctuation">-</span> write
-      <span class="token key atrule">responses</span><span class="token punctuation">:</span>
-        <span class="token key atrule">default</span><span class="token punctuation">:</span>
-          <span class="token key atrule">$ref</span><span class="token punctuation">:</span> &quot;<span class="token comment" spellcheck="true">#/responses/genericError&quot;</span>
-        <span class="token key atrule">200</span><span class="token punctuation">:</span>
-          <span class="token key atrule">$ref</span><span class="token punctuation">:</span> &quot;<span class="token comment" spellcheck="true">#/responses/someResponse&quot;</span>
-        <span class="token key atrule">422</span><span class="token punctuation">:</span>
-          <span class="token key atrule">$ref</span><span class="token punctuation">:</span> &quot;<span class="token comment" spellcheck="true">#/responses/validationError&quot;</span></code></pre>
+<h5 id="example"><a name="example" class="plugin-anchor" href="#example"><i class="fa fa-link" aria-hidden="true"></i></a>Example:</h5><pre><code class="lang-go"><span class="token comment" spellcheck="true">// Package classification Petstore API.</span>
+<span class="token comment" spellcheck="true">//</span>
+<span class="token comment" spellcheck="true">// the purpose of this application is to provide an application</span>
+<span class="token comment" spellcheck="true">// that is using plain go code to define an API</span>
+<span class="token comment" spellcheck="true">//</span>
+<span class="token comment" spellcheck="true">// This should demonstrate all the possible comment annotations</span>
+<span class="token comment" spellcheck="true">// that are available to turn go code into a fully compliant swagger 2.0 spec</span>
+<span class="token comment" spellcheck="true">//</span>
+<span class="token comment" spellcheck="true">// Terms Of Service:</span>
+<span class="token comment" spellcheck="true">//</span>
+<span class="token comment" spellcheck="true">// there are no TOS at this moment, use at your own risk we take no responsibility</span>
+<span class="token comment" spellcheck="true">//</span>
+<span class="token comment" spellcheck="true">//     Schemes: http, https</span>
+<span class="token comment" spellcheck="true">//     Host: localhost</span>
+<span class="token comment" spellcheck="true">//     BasePath: /v2</span>
+<span class="token comment" spellcheck="true">//     Version: 0.0.1</span>
+<span class="token comment" spellcheck="true">//     License: MIT http://opensource.org/licenses/MIT</span>
+<span class="token comment" spellcheck="true">//     Contact: John Doe&lt;john.doe@example.com&gt; http://john.doe.com</span>
+<span class="token comment" spellcheck="true">//</span>
+<span class="token comment" spellcheck="true">//     Consumes:</span>
+<span class="token comment" spellcheck="true">//     - application/json</span>
+<span class="token comment" spellcheck="true">//     - application/xml</span>
+<span class="token comment" spellcheck="true">//</span>
+<span class="token comment" spellcheck="true">//     Produces:</span>
+<span class="token comment" spellcheck="true">//     - application/json</span>
+<span class="token comment" spellcheck="true">//     - application/xml</span>
+<span class="token comment" spellcheck="true">//</span>
+<span class="token comment" spellcheck="true">//</span>
+<span class="token comment" spellcheck="true">// swagger:meta</span>
+<span class="token keyword">package</span> classification</code></pre>
+<h5 id="result"><a name="result" class="plugin-anchor" href="#result"><i class="fa fa-link" aria-hidden="true"></i></a>Result</h5><pre><code class="lang-yaml"><span class="token punctuation">-</span><span class="token punctuation">-</span><span class="token punctuation">-</span>
+<span class="token key atrule">swagger</span><span class="token punctuation">:</span> <span class="token string">&apos;2.0&apos;</span>
+<span class="token key atrule">consumes</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> application/json
+  <span class="token punctuation">-</span> application/xml
+<span class="token key atrule">produces</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> application/json
+  <span class="token punctuation">-</span> application/xml
+<span class="token key atrule">schemes</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> http
+  <span class="token punctuation">-</span> https
+<span class="token key atrule">info</span><span class="token punctuation">:</span>
+  <span class="token key atrule">description</span><span class="token punctuation">:</span> <span class="token string">&quot;the purpose of this application is to provide an application\nthat is using plain go code to define an API\n\nThis should demonstrate all the possible comment annotations\nthat are available to turn go code into a fully compliant swagger 2.0 spec&quot;</span>
+  <span class="token key atrule">title</span><span class="token punctuation">:</span> <span class="token string">&apos;Petstore API.&apos;</span>
+  <span class="token key atrule">termsOfService</span><span class="token punctuation">:</span> <span class="token string">&apos;there are no TOS at this moment, use at your own risk we take no responsibility&apos;</span>
+  <span class="token key atrule">contact</span><span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token key atrule">name</span><span class="token punctuation">:</span> <span class="token string">&apos;John Doe&apos;</span><span class="token punctuation">,</span> <span class="token key atrule">url</span><span class="token punctuation">:</span> <span class="token string">&apos;http://john.doe.com&apos;</span><span class="token punctuation">,</span> <span class="token key atrule">email</span><span class="token punctuation">:</span> john.doe@example.com<span class="token punctuation">}</span>
+  <span class="token key atrule">license</span><span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token key atrule">name</span><span class="token punctuation">:</span> MIT<span class="token punctuation">,</span> <span class="token key atrule">url</span><span class="token punctuation">:</span> <span class="token string">&apos;http://opensource.org/licenses/MIT&apos;</span><span class="token punctuation">}</span>
+  <span class="token key atrule">version</span><span class="token punctuation">:</span> 0.0.1
+<span class="token key atrule">host</span><span class="token punctuation">:</span> localhost
+<span class="token key atrule">basePath</span><span class="token punctuation">:</span> /v2</code></pre>
 
                                 
                                 </section>
@@ -578,12 +572,12 @@ yourself in valid swagger syntax.</p><!--more-->
 
             
                 
-                <a href="meta.html" class="navigation navigation-prev " aria-label="Previous page: swagger:meta">
+                <a href="../spec.html" class="navigation navigation-prev " aria-label="Previous page: swagger.json">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="params.html" class="navigation navigation-next " aria-label="Next page: swagger:params">
+                <a href="route.html" class="navigation navigation-next " aria-label="Next page: swagger:route">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -594,7 +588,7 @@ yourself in valid swagger syntax.</p><!--more-->
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"swagger:route","level":"1.4.5.2","depth":3,"next":{"title":"swagger:params","level":"1.4.5.3","depth":3,"path":"generate/spec/params.md","ref":"generate/spec/params.md","articles":[]},"previous":{"title":"swagger:meta","level":"1.4.5.1","depth":3,"path":"generate/spec/meta.md","ref":"generate/spec/meta.md","articles":[]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors","livereload"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"prism":{},"livereload":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"generate/spec/route.md","mtime":"2016-07-30T18:34:02.000Z","type":"markdown"},"gitbook":{"version":"3.2.0","time":"2016-07-31T23:09:31.238Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"swagger:meta","level":"1.4.5.1","depth":3,"next":{"title":"swagger:route","level":"1.4.5.2","depth":3,"path":"generate/spec/route.md","ref":"generate/spec/route.md","articles":[]},"previous":{"title":"swagger.json","level":"1.4.5","depth":2,"path":"generate/spec.md","ref":"generate/spec.md","articles":[{"title":"swagger:meta","level":"1.4.5.1","depth":3,"path":"generate/spec/meta.md","ref":"generate/spec/meta.md","articles":[]},{"title":"swagger:route","level":"1.4.5.2","depth":3,"path":"generate/spec/route.md","ref":"generate/spec/route.md","articles":[]},{"title":"swagger:params","level":"1.4.5.3","depth":3,"path":"generate/spec/params.md","ref":"generate/spec/params.md","articles":[]},{"title":"swagger:response","level":"1.4.5.4","depth":3,"path":"generate/spec/response.md","ref":"generate/spec/response.md","articles":[]},{"title":"swagger:model","level":"1.4.5.5","depth":3,"path":"generate/spec/model.md","ref":"generate/spec/model.md","articles":[]},{"title":"swagger:allOf","level":"1.4.5.6","depth":3,"path":"generate/spec/allOf.md","ref":"generate/spec/allOf.md","articles":[]},{"title":"swagger:strfmt","level":"1.4.5.7","depth":3,"path":"generate/spec/strfmt.md","ref":"generate/spec/strfmt.md","articles":[]},{"title":"swagger:discriminated","level":"1.4.5.8","depth":3,"path":"generate/spec/discriminated.md","ref":"generate/spec/discriminated.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"prism":{},"anchors":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"generate/spec/meta.md","mtime":"2016-08-25T04:20:38.407Z","type":"markdown"},"gitbook":{"version":"3.2.0","time":"2016-09-01T14:30:08.228Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
@@ -605,10 +599,6 @@ yourself in valid swagger syntax.</p><!--more-->
     
         
         <script src="../../gitbook/gitbook-plugin-forkmegithub/plugin.js"></script>
-        
-    
-        
-        <script src="../../gitbook/gitbook-plugin-livereload/plugin.js"></script>
         
     
         

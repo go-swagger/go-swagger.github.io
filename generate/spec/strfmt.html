@@ -2,7 +2,7 @@
 <!DOCTYPE HTML>
 <html lang="" >
     <head>
-        <title>swagger:response · GitBook</title>
+        <title>swagger:strfmt · GitBook</title>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
@@ -65,10 +65,10 @@
     <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="model.html" />
+    <link rel="next" href="discriminated.html" />
     
     
-    <link rel="prev" href="params.html" />
+    <link rel="prev" href="allOf.html" />
     
 
     </head>
@@ -306,7 +306,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.4.5.4" data-path="response.html">
+        <li class="chapter " data-level="1.4.5.4" data-path="response.html">
             
                 <a href="response.html">
             
@@ -345,7 +345,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.5.7" data-path="strfmt.html">
+        <li class="chapter active" data-level="1.4.5.7" data-path="strfmt.html">
             
                 <a href="strfmt.html">
             
@@ -450,7 +450,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../.." >swagger:response</a>
+        <a href="../.." >swagger:strfmt</a>
     </h1>
 </div>
 
@@ -465,93 +465,88 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="swaggerresponse"><a name="swaggerresponse" class="plugin-anchor" href="#swaggerresponse"><i class="fa fa-link" aria-hidden="true"></i></a>swagger:response</h1><p>Reads a struct decorated with <strong>swagger:response</strong> and uses that information to fill up the headers and the schema for a response.
-A swagger:route can specify a response name for a status code and then the matching response will be used for that operation in the swagger definition.</p><!--more-->
+                                <h1 id="swaggerstrfmt"><a name="swaggerstrfmt" class="plugin-anchor" href="#swaggerstrfmt"><i class="fa fa-link" aria-hidden="true"></i></a>swagger:strfmt</h1><p>A <strong>swagger:strfmt</strong> annotation names a type as a string formatter. The name is mandatory and that is
+what will be used as format name for this particular string format.
+String formats should only be used for <strong>very</strong> well known formats.</p><!-- more -->
 
 
-<h5 id="syntax"><a name="syntax" class="plugin-anchor" href="#syntax"><i class="fa fa-link" aria-hidden="true"></i></a>Syntax:</h5><pre><code>swagger:response [?response name]</code></pre>
-<h5 id="properties"><a name="properties" class="plugin-anchor" href="#properties"><i class="fa fa-link" aria-hidden="true"></i></a>Properties:</h5><table>
-<thead>
-<tr><th>Annotation</th>
-<th>Description</th>
-</tr></thead><tbody>
-<tr><td><strong>Collection Format</strong></td>
-<td>when a slice the formatter for the collection when serialized on the request</td>
-</tr><tr><td><strong>Maximum</strong></td>
-<td>specifies the maximum a number or integer value can have</td>
-</tr><tr><td><strong>Minimum</strong></td>
-<td>specifies the minimum a number or integer value can have</td>
-</tr><tr><td><strong>Multiple of</strong></td>
-<td>specifies a value a number or integer value must be a multiple of</td>
-</tr><tr><td><strong>Minimum length</strong></td>
-<td>the minimum length for a string value</td>
-</tr><tr><td><strong>Maximum length</strong></td>
-<td>the maximum length for a string value</td>
-</tr><tr><td><strong>Pattern</strong></td>
-<td>a regular expression a string value needs to match</td>
-</tr><tr><td><strong>Minimum items</strong></td>
-<td>the minimum number of items a slice needs to have</td>
-</tr><tr><td><strong>Maximum items</strong></td>
-<td>the maximum number of items a slice can have</td>
-</tr><tr><td><strong>Unique</strong></td>
-<td>when set to true the slice can only contain unique items</td>
-</tr></tbody></table>
+<p>String formats are well-known items. These imply a common well-documented set of formats that can be validated. The toolkit allows for creating your own string formats too.</p><p>To create a custom string format you need to create a type that implements the (Unm/M)arshalText interfaces and the sql Scan and sql Value interfaces.  The SQL interfaces are not strictly necessary but allow other people to use the string format in structs that are used with databases</p><p>The default string formats for this toolkit are:</p><ul><li>uuid, uuid3, uuid4, uuid5
+</li>
+<li>email
+</li>
+<li>uri (absolute)
+</li>
+<li>hostname
+</li>
+<li>ipv4
+</li>
+<li>ipv6
+</li>
+<li>credit card
+</li>
+<li>isbn, isbn10, isbn13
+</li>
+<li>social security number
+</li>
+<li>hexcolor
+</li>
+<li>rgbcolor
+</li>
+<li>date
+</li>
+<li>date-time
+</li>
+<li>duration
+</li>
+<li>password
+</li>
+<li>custom string formats
+</li></ul>
+<h5 id="syntax"><a name="syntax" class="plugin-anchor" href="#syntax"><i class="fa fa-link" aria-hidden="true"></i></a>Syntax:</h5><pre><code>swagger:strfmt [name]</code></pre>
+<h5 id="example"><a name="example" class="plugin-anchor" href="#example"><i class="fa fa-link" aria-hidden="true"></i></a>Example:</h5><pre><code class="lang-go"><span class="token keyword">func</span> <span class="token function">init<span class="token punctuation">(</span></span><span class="token operator">)</span> <span class="token operator">{</span>
+  eml <span class="token operator">:=</span> <span class="token function">Email<span class="token punctuation">(</span></span><span class="token string">&quot;&quot;</span><span class="token operator">)</span>
+  Default<span class="token operator">.</span><span class="token function">Add<span class="token punctuation">(</span></span><span class="token string">&quot;email&quot;</span><span class="token operator">,</span> <span class="token operator">&amp;</span>eml<span class="token operator">,</span> govalidator<span class="token operator">.</span>IsEmail<span class="token operator">)</span>
+<span class="token operator">}</span>
 
-<p>For slice properties there are also items to be defined. This might be a nested collection, for indicating nesting
-level the value is a 0-based index, so items.minLength is the same as items.0.minLength</p><table>
-<thead>
-<tr><th>Annotation</th>
-<th>Format</th>
-</tr></thead><tbody>
-<tr><td><strong>Items.<em>n</em>.Maximum</strong></td>
-<td>specifies the maximum a number or integer value can have at the level <em>n</em></td>
-</tr><tr><td><strong>Items.<em>n</em>.Minimum</strong></td>
-<td>specifies the minimum a number or integer value can have at the level <em>n</em></td>
-</tr><tr><td><strong>Items.<em>n</em>.Multiple of</strong></td>
-<td>specifies a value a number or integer value must be a multiple of</td>
-</tr><tr><td><strong>Items.<em>n</em>.Minimum length</strong></td>
-<td>the minimum length for a string value at the level <em>n</em></td>
-</tr><tr><td><strong>Items.<em>n</em>.Maximum length</strong></td>
-<td>the maximum length for a string value at the level <em>n</em></td>
-</tr><tr><td><strong>Items.<em>n</em>.Pattern</strong></td>
-<td>a regular expression a string value needs to match at the level <em>n</em></td>
-</tr><tr><td><strong>Items.<em>n</em>.Minimum items</strong></td>
-<td>the minimum number of items a slice needs to have at the level <em>n</em></td>
-</tr><tr><td><strong>Items.<em>n</em>.Maximum items</strong></td>
-<td>the maximum number of items a slice can have at the level <em>n</em></td>
-</tr><tr><td><strong>Items.<em>n</em>.Unique</strong></td>
-<td>when set to true the slice can only contain unique items at the level <em>n</em></td>
-</tr></tbody></table>
+<span class="token comment" spellcheck="true">// Email represents the email string format as specified by the json schema spec</span>
+<span class="token comment" spellcheck="true">//</span>
+<span class="token comment" spellcheck="true">// swagger:strfmt email</span>
+<span class="token keyword">type</span> Email <span class="token builtin">string</span>
 
-<h5 id="example"><a name="example" class="plugin-anchor" href="#example"><i class="fa fa-link" aria-hidden="true"></i></a>Example:</h5><pre><code class="lang-go"><span class="token comment" spellcheck="true">// A ValidationError is an error that is used when the required input fails validation.</span>
-<span class="token comment" spellcheck="true">// swagger:response validationError</span>
-<span class="token keyword">type</span> ValidationError <span class="token keyword">struct</span> <span class="token operator">{</span>
-    <span class="token comment" spellcheck="true">// The error message</span>
-    <span class="token comment" spellcheck="true">// in: body</span>
-    Body <span class="token keyword">struct</span> <span class="token operator">{</span>
-        <span class="token comment" spellcheck="true">// The validation message</span>
-        <span class="token comment" spellcheck="true">// </span>
-        <span class="token comment" spellcheck="true">// Required: true</span>
-        Message <span class="token builtin">string</span>
-        <span class="token comment" spellcheck="true">// An optional field name to which this validation applies</span>
-        FieldName <span class="token builtin">string</span>
+<span class="token comment" spellcheck="true">// MarshalText turns this instance into text</span>
+<span class="token keyword">func</span> <span class="token operator">(</span>e Email<span class="token operator">)</span> <span class="token function">MarshalText<span class="token punctuation">(</span></span><span class="token operator">)</span> <span class="token operator">(</span><span class="token operator">[</span><span class="token operator">]</span><span class="token builtin">byte</span><span class="token operator">,</span> <span class="token builtin">error</span><span class="token operator">)</span> <span class="token operator">{</span>
+    <span class="token keyword">return</span> <span class="token operator">[</span><span class="token operator">]</span><span class="token function">byte<span class="token punctuation">(</span></span><span class="token function">string<span class="token punctuation">(</span></span>e<span class="token operator">)</span><span class="token operator">)</span><span class="token operator">,</span> <span class="token boolean">nil</span>
+<span class="token operator">}</span>
+
+<span class="token comment" spellcheck="true">// UnmarshalText hydrates this instance from text</span>
+<span class="token keyword">func</span> <span class="token operator">(</span>e <span class="token operator">*</span>Email<span class="token operator">)</span> <span class="token function">UnmarshalText<span class="token punctuation">(</span></span>data <span class="token operator">[</span><span class="token operator">]</span><span class="token builtin">byte</span><span class="token operator">)</span> <span class="token builtin">error</span> <span class="token operator">{</span> <span class="token comment" spellcheck="true">// validation is performed later on</span>
+    <span class="token operator">*</span>e <span class="token operator">=</span> <span class="token function">Email<span class="token punctuation">(</span></span><span class="token function">string<span class="token punctuation">(</span></span>data<span class="token operator">)</span><span class="token operator">)</span>
+    <span class="token keyword">return</span> <span class="token boolean">nil</span>
+<span class="token operator">}</span>
+
+<span class="token keyword">func</span> <span class="token operator">(</span>b <span class="token operator">*</span>Email<span class="token operator">)</span> <span class="token function">Scan<span class="token punctuation">(</span></span>raw <span class="token keyword">interface</span><span class="token operator">{</span><span class="token operator">}</span><span class="token operator">)</span> <span class="token builtin">error</span> <span class="token operator">{</span>
+    <span class="token keyword">switch</span> v <span class="token operator">:=</span> raw<span class="token operator">.</span><span class="token operator">(</span><span class="token keyword">type</span><span class="token operator">)</span> <span class="token operator">{</span>
+    <span class="token keyword">case</span> <span class="token operator">[</span><span class="token operator">]</span><span class="token builtin">byte</span><span class="token operator">:</span>
+        <span class="token operator">*</span>b <span class="token operator">=</span> <span class="token function">Email<span class="token punctuation">(</span></span><span class="token function">string<span class="token punctuation">(</span></span>v<span class="token operator">)</span><span class="token operator">)</span>
+    <span class="token keyword">case</span> <span class="token builtin">string</span><span class="token operator">:</span>
+        <span class="token operator">*</span>b <span class="token operator">=</span> <span class="token function">Email<span class="token punctuation">(</span></span>v<span class="token operator">)</span>
+    <span class="token keyword">default</span><span class="token operator">:</span>
+        <span class="token keyword">return</span> fmt<span class="token operator">.</span><span class="token function">Errorf<span class="token punctuation">(</span></span><span class="token string">&quot;cannot sql.Scan() strfmt.Email from: %#v&quot;</span><span class="token operator">,</span> v<span class="token operator">)</span>
     <span class="token operator">}</span>
+
+    <span class="token keyword">return</span> <span class="token boolean">nil</span>
+<span class="token operator">}</span>
+
+<span class="token keyword">func</span> <span class="token operator">(</span>b Email<span class="token operator">)</span> <span class="token function">Value<span class="token punctuation">(</span></span><span class="token operator">)</span> <span class="token operator">(</span>driver<span class="token operator">.</span>Value<span class="token operator">,</span> <span class="token builtin">error</span><span class="token operator">)</span> <span class="token operator">{</span>
+    <span class="token keyword">return</span> driver<span class="token operator">.</span><span class="token function">Value<span class="token punctuation">(</span></span><span class="token function">string<span class="token punctuation">(</span></span>b<span class="token operator">)</span><span class="token operator">)</span><span class="token operator">,</span> <span class="token boolean">nil</span>
 <span class="token operator">}</span></code></pre>
 <h5 id="result"><a name="result" class="plugin-anchor" href="#result"><i class="fa fa-link" aria-hidden="true"></i></a>Result:</h5><pre><code class="lang-yaml"><span class="token punctuation">-</span><span class="token punctuation">-</span><span class="token punctuation">-</span>
-<span class="token key atrule">responses</span><span class="token punctuation">:</span>
-  <span class="token key atrule">validationError</span><span class="token punctuation">:</span>
-    <span class="token key atrule">description</span><span class="token punctuation">:</span> A validation error is an errot that is used whn the required input fails validation.
-    <span class="token key atrule">schema</span><span class="token punctuation">:</span>
-      <span class="token key atrule">type</span><span class="token punctuation">:</span> object
-      <span class="token key atrule">required</span><span class="token punctuation">:</span> 
-      <span class="token punctuation">-</span> Message
-      <span class="token key atrule">properties</span><span class="token punctuation">:</span>
-        <span class="token key atrule">Message</span><span class="token punctuation">:</span>
-          <span class="token key atrule">type</span><span class="token punctuation">:</span> string
-          <span class="token key atrule">description</span><span class="token punctuation">:</span> The validation message
-        <span class="token key atrule">FieldName</span><span class="token punctuation">:</span>
-          <span class="token key atrule">type</span><span class="token punctuation">:</span> string
-          <span class="token key atrule">description</span><span class="token punctuation">:</span> an optional field name to which this validation applies</code></pre>
+<span class="token key atrule">definitions</span><span class="token punctuation">:</span>
+  <span class="token key atrule">user</span><span class="token punctuation">:</span>
+    <span class="token key atrule">properties</span><span class="token punctuation">:</span>
+      <span class="token key atrule">email</span><span class="token punctuation">:</span>
+        <span class="token key atrule">type</span><span class="token punctuation">:</span> string
+        <span class="token key atrule">format</span><span class="token punctuation">:</span> email</code></pre>
 
                                 
                                 </section>
@@ -579,12 +574,12 @@ level the value is a 0-based index, so items.minLength is the same as items.0.mi
 
             
                 
-                <a href="params.html" class="navigation navigation-prev " aria-label="Previous page: swagger:params">
+                <a href="allOf.html" class="navigation navigation-prev " aria-label="Previous page: swagger:allOf">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="model.html" class="navigation navigation-next " aria-label="Next page: swagger:model">
+                <a href="discriminated.html" class="navigation navigation-next " aria-label="Next page: swagger:discriminated">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -595,7 +590,7 @@ level the value is a 0-based index, so items.minLength is the same as items.0.mi
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"swagger:response","level":"1.4.5.4","depth":3,"next":{"title":"swagger:model","level":"1.4.5.5","depth":3,"path":"generate/spec/model.md","ref":"generate/spec/model.md","articles":[]},"previous":{"title":"swagger:params","level":"1.4.5.3","depth":3,"path":"generate/spec/params.md","ref":"generate/spec/params.md","articles":[]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors","livereload"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"prism":{},"livereload":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"generate/spec/response.md","mtime":"2016-07-30T18:33:53.000Z","type":"markdown"},"gitbook":{"version":"3.2.0","time":"2016-07-31T23:09:31.238Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"swagger:strfmt","level":"1.4.5.7","depth":3,"next":{"title":"swagger:discriminated","level":"1.4.5.8","depth":3,"path":"generate/spec/discriminated.md","ref":"generate/spec/discriminated.md","articles":[]},"previous":{"title":"swagger:allOf","level":"1.4.5.6","depth":3,"path":"generate/spec/allOf.md","ref":"generate/spec/allOf.md","articles":[]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"prism":{},"anchors":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"generate/spec/strfmt.md","mtime":"2016-08-25T04:20:38.407Z","type":"markdown"},"gitbook":{"version":"3.2.0","time":"2016-09-01T14:30:08.228Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
@@ -606,10 +601,6 @@ level the value is a 0-based index, so items.minLength is the same as items.0.mi
     
         
         <script src="../../gitbook/gitbook-plugin-forkmegithub/plugin.js"></script>
-        
-    
-        
-        <script src="../../gitbook/gitbook-plugin-livereload/plugin.js"></script>
         
     
         
