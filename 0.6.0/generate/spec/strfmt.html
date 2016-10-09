@@ -1,0 +1,633 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <title>swagger:strfmt · GitBook</title>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.0">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-forkmegithub/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-prism/prism.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-anchors/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="discriminated.html" />
+    
+    
+    <link rel="prev" href="allOf.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../../">
+            
+                <a href="../../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" >
+            
+                <span>
+            
+                    
+                    Tutorials
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="../../tutorial/todo-list.html">
+            
+                <a href="../../tutorial/todo-list.html">
+            
+                    
+                    Simple Server
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="../../use/middleware.html">
+            
+                <a href="../../use/middleware.html">
+            
+                    
+                    Middleware
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../../usage/validate.html">
+            
+                <a href="../../usage/validate.html">
+            
+                    
+                    Validate
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" >
+            
+                <span>
+            
+                    
+                    Generate
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="../client.html">
+            
+                <a href="../client.html">
+            
+                    
+                    API Client
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="../server.html">
+            
+                <a href="../server.html">
+            
+                    
+                    API Server
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.2.1" data-path="../../use/server.html">
+            
+                <a href="../../use/server.html">
+            
+                    
+                    Usage
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3" data-path="../../use/schemas.html">
+            
+                <a href="../../use/schemas.html">
+            
+                    
+                    Model generation rules
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4" data-path="../templates.html">
+            
+                <a href="../templates.html">
+            
+                    
+                    Custom templates
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.5" data-path="../spec.html">
+            
+                <a href="../spec.html">
+            
+                    
+                    swagger.json
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.5.1" data-path="meta.html">
+            
+                <a href="meta.html">
+            
+                    
+                    swagger:meta
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.5.2" data-path="route.html">
+            
+                <a href="route.html">
+            
+                    
+                    swagger:route
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.5.3" data-path="params.html">
+            
+                <a href="params.html">
+            
+                    
+                    swagger:params
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.5.4" data-path="response.html">
+            
+                <a href="response.html">
+            
+                    
+                    swagger:response
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.5.5" data-path="model.html">
+            
+                <a href="model.html">
+            
+                    
+                    swagger:model
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.5.6" data-path="allOf.html">
+            
+                <a href="allOf.html">
+            
+                    
+                    swagger:allOf
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.4.5.7" data-path="strfmt.html">
+            
+                <a href="strfmt.html">
+            
+                    
+                    swagger:strfmt
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.5.8" data-path="discriminated.html">
+            
+                <a href="discriminated.html">
+            
+                    
+                    swagger:discriminated
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+        
+        <li class="divider"></li>
+        
+        
+    
+        <li class="chapter " data-level="2.1" >
+            
+                <span>
+            
+                    
+                    Runtime
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1.1" data-path="../../use/server.html">
+            
+                <a href="../../use/server.html">
+            
+                    
+                    Dynamic Server
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../.." >swagger:strfmt</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="swaggerstrfmt"><a name="swaggerstrfmt" class="plugin-anchor" href="#swaggerstrfmt"><i class="fa fa-link" aria-hidden="true"></i></a>swagger:strfmt</h1><p>A <strong>swagger:strfmt</strong> annotation names a type as a string formatter. The name is mandatory and that is
+what will be used as format name for this particular string format.
+String formats should only be used for <strong>very</strong> well known formats.</p><!-- more -->
+
+
+<p>String formats are well-known items. These imply a common well-documented set of formats that can be validated. The toolkit allows for creating your own string formats too.</p><p>To create a custom string format you need to create a type that implements the (Unm/M)arshalText interfaces and the sql Scan and sql Value interfaces.  The SQL interfaces are not strictly necessary but allow other people to use the string format in structs that are used with databases</p><p>The default string formats for this toolkit are:</p><ul><li>uuid, uuid3, uuid4, uuid5
+</li>
+<li>email
+</li>
+<li>uri (absolute)
+</li>
+<li>hostname
+</li>
+<li>ipv4
+</li>
+<li>ipv6
+</li>
+<li>credit card
+</li>
+<li>isbn, isbn10, isbn13
+</li>
+<li>social security number
+</li>
+<li>hexcolor
+</li>
+<li>rgbcolor
+</li>
+<li>date
+</li>
+<li>date-time
+</li>
+<li>duration
+</li>
+<li>password
+</li>
+<li>custom string formats
+</li></ul>
+<h5 id="syntax"><a name="syntax" class="plugin-anchor" href="#syntax"><i class="fa fa-link" aria-hidden="true"></i></a>Syntax:</h5><pre><code>swagger:strfmt [name]</code></pre>
+<h5 id="example"><a name="example" class="plugin-anchor" href="#example"><i class="fa fa-link" aria-hidden="true"></i></a>Example:</h5><pre><code class="lang-go"><span class="token keyword">func</span> <span class="token function">init<span class="token punctuation">(</span></span><span class="token operator">)</span> <span class="token operator">{</span>
+  eml <span class="token operator">:=</span> <span class="token function">Email<span class="token punctuation">(</span></span><span class="token string">&quot;&quot;</span><span class="token operator">)</span>
+  Default<span class="token operator">.</span><span class="token function">Add<span class="token punctuation">(</span></span><span class="token string">&quot;email&quot;</span><span class="token operator">,</span> <span class="token operator">&amp;</span>eml<span class="token operator">,</span> govalidator<span class="token operator">.</span>IsEmail<span class="token operator">)</span>
+<span class="token operator">}</span>
+
+<span class="token comment" spellcheck="true">// Email represents the email string format as specified by the json schema spec</span>
+<span class="token comment" spellcheck="true">//</span>
+<span class="token comment" spellcheck="true">// swagger:strfmt email</span>
+<span class="token keyword">type</span> Email <span class="token builtin">string</span>
+
+<span class="token comment" spellcheck="true">// MarshalText turns this instance into text</span>
+<span class="token keyword">func</span> <span class="token operator">(</span>e Email<span class="token operator">)</span> <span class="token function">MarshalText<span class="token punctuation">(</span></span><span class="token operator">)</span> <span class="token operator">(</span><span class="token operator">[</span><span class="token operator">]</span><span class="token builtin">byte</span><span class="token operator">,</span> <span class="token builtin">error</span><span class="token operator">)</span> <span class="token operator">{</span>
+    <span class="token keyword">return</span> <span class="token operator">[</span><span class="token operator">]</span><span class="token function">byte<span class="token punctuation">(</span></span><span class="token function">string<span class="token punctuation">(</span></span>e<span class="token operator">)</span><span class="token operator">)</span><span class="token operator">,</span> <span class="token boolean">nil</span>
+<span class="token operator">}</span>
+
+<span class="token comment" spellcheck="true">// UnmarshalText hydrates this instance from text</span>
+<span class="token keyword">func</span> <span class="token operator">(</span>e <span class="token operator">*</span>Email<span class="token operator">)</span> <span class="token function">UnmarshalText<span class="token punctuation">(</span></span>data <span class="token operator">[</span><span class="token operator">]</span><span class="token builtin">byte</span><span class="token operator">)</span> <span class="token builtin">error</span> <span class="token operator">{</span> <span class="token comment" spellcheck="true">// validation is performed later on</span>
+    <span class="token operator">*</span>e <span class="token operator">=</span> <span class="token function">Email<span class="token punctuation">(</span></span><span class="token function">string<span class="token punctuation">(</span></span>data<span class="token operator">)</span><span class="token operator">)</span>
+    <span class="token keyword">return</span> <span class="token boolean">nil</span>
+<span class="token operator">}</span>
+
+<span class="token keyword">func</span> <span class="token operator">(</span>b <span class="token operator">*</span>Email<span class="token operator">)</span> <span class="token function">Scan<span class="token punctuation">(</span></span>raw <span class="token keyword">interface</span><span class="token operator">{</span><span class="token operator">}</span><span class="token operator">)</span> <span class="token builtin">error</span> <span class="token operator">{</span>
+    <span class="token keyword">switch</span> v <span class="token operator">:=</span> raw<span class="token operator">.</span><span class="token operator">(</span><span class="token keyword">type</span><span class="token operator">)</span> <span class="token operator">{</span>
+    <span class="token keyword">case</span> <span class="token operator">[</span><span class="token operator">]</span><span class="token builtin">byte</span><span class="token operator">:</span>
+        <span class="token operator">*</span>b <span class="token operator">=</span> <span class="token function">Email<span class="token punctuation">(</span></span><span class="token function">string<span class="token punctuation">(</span></span>v<span class="token operator">)</span><span class="token operator">)</span>
+    <span class="token keyword">case</span> <span class="token builtin">string</span><span class="token operator">:</span>
+        <span class="token operator">*</span>b <span class="token operator">=</span> <span class="token function">Email<span class="token punctuation">(</span></span>v<span class="token operator">)</span>
+    <span class="token keyword">default</span><span class="token operator">:</span>
+        <span class="token keyword">return</span> fmt<span class="token operator">.</span><span class="token function">Errorf<span class="token punctuation">(</span></span><span class="token string">&quot;cannot sql.Scan() strfmt.Email from: %#v&quot;</span><span class="token operator">,</span> v<span class="token operator">)</span>
+    <span class="token operator">}</span>
+
+    <span class="token keyword">return</span> <span class="token boolean">nil</span>
+<span class="token operator">}</span>
+
+<span class="token keyword">func</span> <span class="token operator">(</span>b Email<span class="token operator">)</span> <span class="token function">Value<span class="token punctuation">(</span></span><span class="token operator">)</span> <span class="token operator">(</span>driver<span class="token operator">.</span>Value<span class="token operator">,</span> <span class="token builtin">error</span><span class="token operator">)</span> <span class="token operator">{</span>
+    <span class="token keyword">return</span> driver<span class="token operator">.</span><span class="token function">Value<span class="token punctuation">(</span></span><span class="token function">string<span class="token punctuation">(</span></span>b<span class="token operator">)</span><span class="token operator">)</span><span class="token operator">,</span> <span class="token boolean">nil</span>
+<span class="token operator">}</span></code></pre>
+<h5 id="result"><a name="result" class="plugin-anchor" href="#result"><i class="fa fa-link" aria-hidden="true"></i></a>Result:</h5><pre><code class="lang-yaml"><span class="token punctuation">-</span><span class="token punctuation">-</span><span class="token punctuation">-</span>
+<span class="token key atrule">definitions</span><span class="token punctuation">:</span>
+  <span class="token key atrule">user</span><span class="token punctuation">:</span>
+    <span class="token key atrule">properties</span><span class="token punctuation">:</span>
+      <span class="token key atrule">email</span><span class="token punctuation">:</span>
+        <span class="token key atrule">type</span><span class="token punctuation">:</span> string
+        <span class="token key atrule">format</span><span class="token punctuation">:</span> email</code></pre>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="allOf.html" class="navigation navigation-prev " aria-label="Previous page: swagger:allOf">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="discriminated.html" class="navigation navigation-next " aria-label="Next page: swagger:discriminated">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"swagger:strfmt","level":"1.4.5.7","depth":3,"next":{"title":"swagger:discriminated","level":"1.4.5.8","depth":3,"path":"generate/spec/discriminated.md","ref":"generate/spec/discriminated.md","articles":[]},"previous":{"title":"swagger:allOf","level":"1.4.5.6","depth":3,"path":"generate/spec/allOf.md","ref":"generate/spec/allOf.md","articles":[]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"prism":{},"anchors":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"generate/spec/strfmt.md","mtime":"2016-08-25T04:20:38.407Z","type":"markdown"},"gitbook":{"version":"3.2.0","time":"2016-09-01T14:30:08.228Z"},"basePath":"../..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../../gitbook/gitbook.js"></script>
+    <script src="../../gitbook/theme.js"></script>
+    
+        
+        <script src="../../gitbook/gitbook-plugin-forkmegithub/plugin.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
