@@ -1,0 +1,891 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <title>Dynamic Server · GitBook</title>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.0">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-forkmegithub/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-prism/prism.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-anchors/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    
+    <link rel="prev" href="../usage/serve_ui.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" >
+            
+                <span>
+            
+                    
+                    Tutorials
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="todo-list.html">
+            
+                <a href="todo-list.html">
+            
+                    
+                    Simple Server
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="../use/middleware.html">
+            
+                <a href="../use/middleware.html">
+            
+                    
+                    Middleware
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../usage/validate.html">
+            
+                <a href="../usage/validate.html">
+            
+                    
+                    Validate
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="../usage/serve_ui.html">
+            
+                <a href="../usage/serve_ui.html">
+            
+                    
+                    UI
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.5" data-path="dynamic.html">
+            
+                <a href="dynamic.html">
+            
+                    
+                    Dynamic Server
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" >
+            
+                <span>
+            
+                    
+                    Generate
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.1" data-path="../generate/client.html">
+            
+                <a href="../generate/client.html">
+            
+                    
+                    API Client
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2" data-path="../generate/server.html">
+            
+                <a href="../generate/server.html">
+            
+                    
+                    API Server
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.2.1" data-path="../use/server.html">
+            
+                <a href="../use/server.html">
+            
+                    
+                    Usage
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.3" data-path="../use/schemas.html">
+            
+                <a href="../use/schemas.html">
+            
+                    
+                    Model generation rules
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.4" data-path="../generate/spec.html">
+            
+                <a href="../generate/spec.html">
+            
+                    
+                    swagger.json
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.4.1" data-path="../generate/spec/meta.html">
+            
+                <a href="../generate/spec/meta.html">
+            
+                    
+                    swagger:meta
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.4.2" data-path="../generate/spec/route.html">
+            
+                <a href="../generate/spec/route.html">
+            
+                    
+                    swagger:route
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.4.3" data-path="../generate/spec/params.html">
+            
+                <a href="../generate/spec/params.html">
+            
+                    
+                    swagger:params
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.4.4" data-path="../generate/spec/response.html">
+            
+                <a href="../generate/spec/response.html">
+            
+                    
+                    swagger:response
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.4.5" data-path="../generate/spec/model.html">
+            
+                <a href="../generate/spec/model.html">
+            
+                    
+                    swagger:model
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.4.6" data-path="../generate/spec/allOf.html">
+            
+                <a href="../generate/spec/allOf.html">
+            
+                    
+                    swagger:allOf
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.4.7" data-path="../generate/spec/strfmt.html">
+            
+                <a href="../generate/spec/strfmt.html">
+            
+                    
+                    swagger:strfmt
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.4.8" data-path="../generate/spec/discriminated.html">
+            
+                <a href="../generate/spec/discriminated.html">
+            
+                    
+                    swagger:discriminated
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.5" data-path="../use/template_layout.html">
+            
+                <a href="../use/template_layout.html">
+            
+                    
+                    Custom generation
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.5.1" data-path="../generate/templates.html">
+            
+                <a href="../generate/templates.html">
+            
+                    
+                    Custom templates
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" >
+            
+                <a target="_blank" href="https://github.com/go-swagger/go-swagger/issues?q=is%3Aissue+label%3Aquestion">
+            
+                    
+                    FAQ
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >Dynamic Server</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="dynamic-api-definition"><a name="dynamic-api-definition" class="plugin-anchor" href="#dynamic-api-definition"><i class="fa fa-link" aria-hidden="true"></i></a>Dynamic API definition</h1><p>The toolkit supports building a swagger specification entirely with go code. It does allow you to serve a spec up quickly. This is one of the building blocks required to serve up stub API&apos;s and to generate a test server with predictable responses, however this is not as bad as it sounds...</p><!--more-->
+
+
+<p>This tutorial uses the todo list application to serve a swagger based API defined entirely in go code.
+Because we know what we want the spec to look like, first we&apos;ll just build the entire spec with the interal dsl.</p><h2 id="loading-the-specification"><a name="loading-the-specification" class="plugin-anchor" href="#loading-the-specification"><i class="fa fa-link" aria-hidden="true"></i></a>Loading the specification</h2><pre><code class="lang-go"><span class="token keyword">package</span> main
+
+<span class="token keyword">import</span> <span class="token operator">(</span>
+    <span class="token string">&quot;log&quot;</span>
+    <span class="token string">&quot;os&quot;</span>
+
+    <span class="token string">&quot;github.com/go-openapi/loads&quot;</span>
+    <span class="token string">&quot;github.com/go-openapi/loads/fmts&quot;</span>
+<span class="token operator">)</span>
+
+<span class="token keyword">func</span> <span class="token function">init<span class="token punctuation">(</span></span><span class="token operator">)</span> <span class="token operator">{</span>
+    loads<span class="token operator">.</span><span class="token function">AddLoader<span class="token punctuation">(</span></span>fmts<span class="token operator">.</span>YAMLMatcher<span class="token operator">,</span> fmts<span class="token operator">.</span>YAMLDoc<span class="token operator">)</span>
+<span class="token operator">}</span>
+
+<span class="token keyword">func</span> <span class="token function">main<span class="token punctuation">(</span></span><span class="token operator">)</span> <span class="token operator">{</span>
+    <span class="token keyword">if</span> <span class="token function">len<span class="token punctuation">(</span></span>os<span class="token operator">.</span>Args<span class="token operator">)</span> <span class="token operator">==</span> <span class="token number">1</span> <span class="token operator">{</span>
+        log<span class="token operator">.</span><span class="token function">Fatalln<span class="token punctuation">(</span></span><span class="token string">&quot;this command requires the swagger spec as argument&quot;</span><span class="token operator">)</span>
+    <span class="token operator">}</span>
+    log<span class="token operator">.</span><span class="token function">Printf<span class="token punctuation">(</span></span><span class="token string">&quot;loading %q as contract for the server&quot;</span><span class="token operator">,</span> os<span class="token operator">.</span>Args<span class="token operator">[</span><span class="token number">1</span><span class="token operator">]</span><span class="token operator">)</span>
+
+    specDoc<span class="token operator">,</span> err <span class="token operator">:=</span> loads<span class="token operator">.</span><span class="token function">Spec<span class="token punctuation">(</span></span>os<span class="token operator">.</span>Args<span class="token operator">[</span><span class="token number">1</span><span class="token operator">]</span><span class="token operator">)</span>
+    <span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token operator">{</span>
+        log<span class="token operator">.</span><span class="token function">Fatalln<span class="token punctuation">(</span></span>err<span class="token operator">)</span>
+    <span class="token operator">}</span>
+
+    log<span class="token operator">.</span><span class="token function">Println<span class="token punctuation">(</span></span><span class="token string">&quot;Would be serving:&quot;</span><span class="token operator">,</span> specDoc<span class="token operator">.</span><span class="token function">Spec<span class="token punctuation">(</span></span><span class="token operator">)</span><span class="token operator">.</span>Info<span class="token operator">.</span>Title<span class="token operator">)</span>
+<span class="token operator">}</span></code></pre>
+<p><a href="https://github.com/go-swagger/go-swagger/blob/master/examples/tutorials/todo-list/dynamic-1/main.go" target="_blank">see source of this code</a></p><p>Running this would confirm that we can in fact read a swagger spec from disk. 
+The init method enables loading of yaml based specifications. The yaml package for golang used to be licensed as GPL so we made depending on it optional.</p><pre><code class="lang-shellsession">git:(master) &#x2717; !? &#xBB; go run main.go ./swagger.yml  
+2016/10/08 20:50:42 loading &quot;./swagger.yml&quot; as contract for the server
+2016/10/08 20:50:42 Would be serving: A To Do list application</code></pre>
+<h2 id="setup"><a name="setup" class="plugin-anchor" href="#setup"><i class="fa fa-link" aria-hidden="true"></i></a>Setup</h2><p>Before we can implement our API we&apos;ll look at setting up the server for our openapi spec.
+Go-swagger wants you to configure your API with an api descriptor so that it knows how to handle requests.</p><h3 id="validation-of-requirements"><a name="validation-of-requirements" class="plugin-anchor" href="#validation-of-requirements"><i class="fa fa-link" aria-hidden="true"></i></a>Validation of requirements</h3><p>It&apos;s probably a good idea to fail starting the server when it can&apos;t fulfill all the requests defined in the swagger spec.
+So let&apos;s start by enabling that validation:</p><pre><code class="lang-go"><span class="token keyword">func</span> <span class="token function">main<span class="token punctuation">(</span></span><span class="token operator">)</span> <span class="token operator">{</span>
+    <span class="token keyword">if</span> <span class="token function">len<span class="token punctuation">(</span></span>os<span class="token operator">.</span>Args<span class="token operator">)</span> <span class="token operator">==</span> <span class="token number">1</span> <span class="token operator">{</span>
+        log<span class="token operator">.</span><span class="token function">Fatalln<span class="token punctuation">(</span></span><span class="token string">&quot;this command requires the swagger spec as argument&quot;</span><span class="token operator">)</span>
+    <span class="token operator">}</span>
+    log<span class="token operator">.</span><span class="token function">Printf<span class="token punctuation">(</span></span><span class="token string">&quot;loading %q as contract for the server&quot;</span><span class="token operator">,</span> os<span class="token operator">.</span>Args<span class="token operator">[</span><span class="token number">1</span><span class="token operator">]</span><span class="token operator">)</span>
+
+    specDoc<span class="token operator">,</span> err <span class="token operator">:=</span> loads<span class="token operator">.</span><span class="token function">Spec<span class="token punctuation">(</span></span>os<span class="token operator">.</span>Args<span class="token operator">[</span><span class="token number">1</span><span class="token operator">]</span><span class="token operator">)</span>
+    <span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token operator">{</span>
+        log<span class="token operator">.</span><span class="token function">Fatalln<span class="token punctuation">(</span></span>err<span class="token operator">)</span>
+    <span class="token operator">}</span>
+
+    api <span class="token operator">:=</span> untyped<span class="token operator">.</span><span class="token function">NewAPI<span class="token punctuation">(</span></span>specDoc<span class="token operator">)</span>
+
+    <span class="token comment" spellcheck="true">// validate the API descriptor, to ensure we don&apos;t have any unhandled operations</span>
+    <span class="token keyword">if</span> err <span class="token operator">:=</span> api<span class="token operator">.</span><span class="token function">Validate<span class="token punctuation">(</span></span><span class="token operator">)</span><span class="token operator">;</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token operator">{</span>
+        log<span class="token operator">.</span><span class="token function">Fatalln<span class="token punctuation">(</span></span>err<span class="token operator">)</span>
+    <span class="token operator">}</span>
+    log<span class="token operator">.</span><span class="token function">Println<span class="token punctuation">(</span></span><span class="token string">&quot;serving:&quot;</span><span class="token operator">,</span> specDoc<span class="token operator">.</span><span class="token function">Spec<span class="token punctuation">(</span></span><span class="token operator">)</span><span class="token operator">.</span>Info<span class="token operator">.</span>Title<span class="token operator">)</span>
+
+<span class="token operator">}</span></code></pre>
+<p><a href="https://github.com/go-swagger/go-swagger/blob/master/examples/tutorials/todo-list/dynamic-setup-invalid/main.go" target="_blank">see source of this code</a></p><p>This code shows how to create an api descriptor and then invoking its verification.
+Because our specification contains operations and consumes/produces definitions this program should not run.
+When we try to run it, it should exit with a non-zero status.</p><pre><code class="lang-shellsession">git:(master) &#x2717; -? &#xBB; go run main.go ./swagger.yml
+2016/10/08 21:32:14 loading &quot;./swagger.yml&quot; as contract for the server
+2016/10/08 21:32:14 missing [application/io.goswagger.examples.todo-list.v1+json] consumes registrations
+missing from spec file [application/json] consumes
+exit status 1</code></pre>
+<h3 id="satisfying-validation-with-stubs"><a name="satisfying-validation-with-stubs" class="plugin-anchor" href="#satisfying-validation-with-stubs"><i class="fa fa-link" aria-hidden="true"></i></a>Satisfying validation with stubs</h3><p>For us to be able to start our server we will register the right serializers and we&apos;ll stub out the operation handlers with a not implemented handler.</p><pre><code class="lang-go"><span class="token keyword">func</span> <span class="token function">main<span class="token punctuation">(</span></span><span class="token operator">)</span> <span class="token operator">{</span>
+    <span class="token keyword">if</span> <span class="token function">len<span class="token punctuation">(</span></span>os<span class="token operator">.</span>Args<span class="token operator">)</span> <span class="token operator">==</span> <span class="token number">1</span> <span class="token operator">{</span>
+        log<span class="token operator">.</span><span class="token function">Fatalln<span class="token punctuation">(</span></span><span class="token string">&quot;this command requires the swagger spec as argument&quot;</span><span class="token operator">)</span>
+    <span class="token operator">}</span>
+    log<span class="token operator">.</span><span class="token function">Printf<span class="token punctuation">(</span></span><span class="token string">&quot;loading %q as contract for the server&quot;</span><span class="token operator">,</span> os<span class="token operator">.</span>Args<span class="token operator">[</span><span class="token number">1</span><span class="token operator">]</span><span class="token operator">)</span>
+
+    specDoc<span class="token operator">,</span> err <span class="token operator">:=</span> loads<span class="token operator">.</span><span class="token function">Spec<span class="token punctuation">(</span></span>os<span class="token operator">.</span>Args<span class="token operator">[</span><span class="token number">1</span><span class="token operator">]</span><span class="token operator">)</span>
+    <span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token operator">{</span>
+        log<span class="token operator">.</span><span class="token function">Fatalln<span class="token punctuation">(</span></span>err<span class="token operator">)</span>
+    <span class="token operator">}</span>
+
+    <span class="token comment" spellcheck="true">// our spec doesn&apos;t have application/json in the consumes or produces</span>
+    <span class="token comment" spellcheck="true">// so we need to clear those settings out</span>
+    api <span class="token operator">:=</span> untyped<span class="token operator">.</span><span class="token function">NewAPI<span class="token punctuation">(</span></span>specDoc<span class="token operator">)</span><span class="token operator">.</span><span class="token function">WithoutJSONDefaults<span class="token punctuation">(</span></span><span class="token operator">)</span>
+
+    <span class="token comment" spellcheck="true">// register serializers</span>
+    mediaType <span class="token operator">:=</span> <span class="token string">&quot;application/io.goswagger.examples.todo-list.v1+json&quot;</span>
+    api<span class="token operator">.</span>DefaultConsumes <span class="token operator">=</span> mediaType
+    api<span class="token operator">.</span>DefaultProduces <span class="token operator">=</span> mediaType
+    api<span class="token operator">.</span><span class="token function">RegisterConsumer<span class="token punctuation">(</span></span>mediaType<span class="token operator">,</span> runtime<span class="token operator">.</span><span class="token function">JSONConsumer<span class="token punctuation">(</span></span><span class="token operator">)</span><span class="token operator">)</span>
+    api<span class="token operator">.</span><span class="token function">RegisterProducer<span class="token punctuation">(</span></span>mediaType<span class="token operator">,</span> runtime<span class="token operator">.</span><span class="token function">JSONProducer<span class="token punctuation">(</span></span><span class="token operator">)</span><span class="token operator">)</span>
+
+  api<span class="token operator">.</span><span class="token function">RegisterOperation<span class="token punctuation">(</span></span><span class="token string">&quot;GET&quot;</span><span class="token operator">,</span> <span class="token string">&quot;/&quot;</span><span class="token operator">,</span> notImplemented<span class="token operator">)</span>
+    api<span class="token operator">.</span><span class="token function">RegisterOperation<span class="token punctuation">(</span></span><span class="token string">&quot;POST&quot;</span><span class="token operator">,</span> <span class="token string">&quot;/&quot;</span><span class="token operator">,</span> notImplemented<span class="token operator">)</span>
+    api<span class="token operator">.</span><span class="token function">RegisterOperation<span class="token punctuation">(</span></span><span class="token string">&quot;PUT&quot;</span><span class="token operator">,</span> <span class="token string">&quot;/{id}&quot;</span><span class="token operator">,</span> notImplemented<span class="token operator">)</span>
+    api<span class="token operator">.</span><span class="token function">RegisterOperation<span class="token punctuation">(</span></span><span class="token string">&quot;DELETE&quot;</span><span class="token operator">,</span> <span class="token string">&quot;/{id}&quot;</span><span class="token operator">,</span> notImplemented<span class="token operator">)</span>
+
+    <span class="token comment" spellcheck="true">// validate the API descriptor, to ensure we don&apos;t have any unhandled operations</span>
+    <span class="token keyword">if</span> err <span class="token operator">:=</span> api<span class="token operator">.</span><span class="token function">Validate<span class="token punctuation">(</span></span><span class="token operator">)</span><span class="token operator">;</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token operator">{</span>
+        log<span class="token operator">.</span><span class="token function">Fatalln<span class="token punctuation">(</span></span>err<span class="token operator">)</span>
+    <span class="token operator">}</span>
+
+    <span class="token comment" spellcheck="true">// construct the application context for this server</span>
+    <span class="token comment" spellcheck="true">// use the loaded spec document and the api descriptor with the default router</span>
+    app <span class="token operator">:=</span> middleware<span class="token operator">.</span><span class="token function">NewContext<span class="token punctuation">(</span></span>specDoc<span class="token operator">,</span> api<span class="token operator">,</span> <span class="token boolean">nil</span><span class="token operator">)</span>
+
+    log<span class="token operator">.</span><span class="token function">Println<span class="token punctuation">(</span></span><span class="token string">&quot;serving&quot;</span><span class="token operator">,</span> specDoc<span class="token operator">.</span><span class="token function">Spec<span class="token punctuation">(</span></span><span class="token operator">)</span><span class="token operator">.</span>Info<span class="token operator">.</span>Title<span class="token operator">,</span> <span class="token string">&quot;at http://localhost:8000&quot;</span><span class="token operator">)</span>
+    <span class="token comment" spellcheck="true">// serve the api</span>
+    <span class="token keyword">if</span> err <span class="token operator">:=</span> http<span class="token operator">.</span><span class="token function">ListenAndServe<span class="token punctuation">(</span></span><span class="token string">&quot;:8000&quot;</span><span class="token operator">,</span> app<span class="token operator">.</span><span class="token function">APIHandler<span class="token punctuation">(</span></span><span class="token boolean">nil</span><span class="token operator">)</span><span class="token operator">)</span><span class="token operator">;</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token operator">{</span>
+        log<span class="token operator">.</span><span class="token function">Fatalln<span class="token punctuation">(</span></span>err<span class="token operator">)</span>
+    <span class="token operator">}</span>
+<span class="token operator">}</span>
+
+<span class="token keyword">var</span> notImplemented <span class="token operator">=</span> runtime<span class="token operator">.</span><span class="token function">OperationHandlerFunc<span class="token punctuation">(</span></span><span class="token keyword">func</span><span class="token operator">(</span>params <span class="token keyword">interface</span><span class="token operator">{</span><span class="token operator">}</span><span class="token operator">)</span> <span class="token operator">(</span><span class="token keyword">interface</span><span class="token operator">{</span><span class="token operator">}</span><span class="token operator">,</span> <span class="token builtin">error</span><span class="token operator">)</span> <span class="token operator">{</span>
+    <span class="token keyword">return</span> middleware<span class="token operator">.</span><span class="token function">NotImplemented<span class="token punctuation">(</span></span><span class="token string">&quot;not implemented&quot;</span><span class="token operator">)</span><span class="token operator">,</span> <span class="token boolean">nil</span>
+<span class="token operator">}</span><span class="token operator">)</span></code></pre>
+<p>The untyped API for go-swagger assumes by default you want to serve <code>application/json</code> and initializes the descriptor with default values to that effect.
+In our spec however we don&apos;t serve &apos;application/json&apos; which means we have to use <code>WithoutJSONDefaults</code> when we initialize our api.</p><p>The media type we do know is: <code>application/io.goswagger.examples.todo-list.v1+json</code>, this is also a json format.
+We set it as defaults and register the appropriate consumer and producer functions.</p><p>Our specification has 4 methods: findTodos, addOne, updateOne and destroyOne. Because we have no implementation yet, we register a notImplemented handler for all of them.</p><p>Our api descriptor validation is now satisfied, so we use the simplest way to start a http server in go on port 8000.</p><p>Server terminal:</p><pre><code class="lang-shellsession">git:(master) &#x2717; -!? &#xBB; go run main.go ./swagger.yml
+2016/10/08 23:35:18 loading &quot;./swagger.yml&quot; as contract for the server
+2016/10/08 23:35:18 serving A To Do list application at http://localhost:8000</code></pre>
+<p>Client terminal:</p><pre><code class="lang-shellsession">git:(master) &#x2717; -!? &#xBB; curl -i localhost:8000</code></pre>
+<pre><code class="lang-http"><span class="token response-status">HTTP/1.1 <span class="token property">501 Not Implemented</span></span>
+<span class="token keyword">Content-Type:</span> application/io.goswagger.examples.todo-list.v1+json
+<span class="token keyword">Date:</span> Sun, 09 Oct 2016 06:36:11 GMT
+<span class="token keyword">Content-Length:</span> 18
+
+&quot;not implemented&quot;</code></pre>
+<blockquote><p>There is a lot more to be done to make this server a production ready server, but for the
+purpose of this tutorial, this is enough.</p></blockquote><h2 id="completely-untyped"><a name="completely-untyped" class="plugin-anchor" href="#completely-untyped"><i class="fa fa-link" aria-hidden="true"></i></a>Completely untyped</h2><p>At this point we&apos;re ready to actually implement some functionality for our Todo list. We&apos;ll create methods to add, update and delete an item.
+We&apos;ll also render a list of known items. Because http API&apos;s can get concurrent access we need to take care of this as well.</p><p>The first thing we&apos;ll do is build our &quot;backend&quot;, a very simple implementation based on a slice and maps.</p><pre><code class="lang-go"><span class="token keyword">var</span> items <span class="token operator">=</span> <span class="token operator">[</span><span class="token operator">]</span><span class="token keyword">map</span><span class="token operator">[</span><span class="token builtin">string</span><span class="token operator">]</span><span class="token keyword">interface</span><span class="token operator">{</span><span class="token operator">}</span><span class="token operator">{</span>
+    <span class="token keyword">map</span><span class="token operator">[</span><span class="token builtin">string</span><span class="token operator">]</span><span class="token keyword">interface</span><span class="token operator">{</span><span class="token operator">}</span><span class="token operator">{</span><span class="token string">&quot;id&quot;</span><span class="token operator">:</span> <span class="token function">int64<span class="token punctuation">(</span></span><span class="token number">1</span><span class="token operator">)</span><span class="token operator">,</span> <span class="token string">&quot;description&quot;</span><span class="token operator">:</span> <span class="token string">&quot;feed dog&quot;</span><span class="token operator">,</span> <span class="token string">&quot;completed&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token operator">}</span><span class="token operator">,</span>
+    <span class="token keyword">map</span><span class="token operator">[</span><span class="token builtin">string</span><span class="token operator">]</span><span class="token keyword">interface</span><span class="token operator">{</span><span class="token operator">}</span><span class="token operator">{</span><span class="token string">&quot;id&quot;</span><span class="token operator">:</span> <span class="token function">int64<span class="token punctuation">(</span></span><span class="token number">2</span><span class="token operator">)</span><span class="token operator">,</span> <span class="token string">&quot;description&quot;</span><span class="token operator">:</span> <span class="token string">&quot;feed cat&quot;</span><span class="token operator">}</span><span class="token operator">,</span>
+<span class="token operator">}</span>
+
+<span class="token keyword">var</span> itemsLock <span class="token operator">=</span> <span class="token operator">&amp;</span>sync<span class="token operator">.</span>Mutex<span class="token operator">{</span><span class="token operator">}</span>
+<span class="token keyword">var</span> lastItemID <span class="token builtin">int64</span> <span class="token operator">=</span> <span class="token number">2</span>
+
+<span class="token keyword">func</span> <span class="token function">newItemID<span class="token punctuation">(</span></span><span class="token operator">)</span> <span class="token builtin">int64</span> <span class="token operator">{</span>
+    <span class="token keyword">return</span> atomic<span class="token operator">.</span><span class="token function">AddInt64<span class="token punctuation">(</span></span><span class="token operator">&amp;</span>lastItemID<span class="token operator">,</span> <span class="token number">1</span><span class="token operator">)</span>
+<span class="token operator">}</span>
+
+<span class="token keyword">func</span> <span class="token function">addItem<span class="token punctuation">(</span></span>item <span class="token keyword">map</span><span class="token operator">[</span><span class="token builtin">string</span><span class="token operator">]</span><span class="token keyword">interface</span><span class="token operator">{</span><span class="token operator">}</span><span class="token operator">)</span> <span class="token operator">{</span>
+    itemsLock<span class="token operator">.</span><span class="token function">Lock<span class="token punctuation">(</span></span><span class="token operator">)</span>
+    <span class="token keyword">defer</span> itemsLock<span class="token operator">.</span><span class="token function">Unlock<span class="token punctuation">(</span></span><span class="token operator">)</span>
+    item<span class="token operator">[</span><span class="token string">&quot;id&quot;</span><span class="token operator">]</span> <span class="token operator">=</span> <span class="token function">newItemID<span class="token punctuation">(</span></span><span class="token operator">)</span>
+    items <span class="token operator">=</span> <span class="token function">append<span class="token punctuation">(</span></span>items<span class="token operator">,</span> item<span class="token operator">)</span>
+<span class="token operator">}</span>
+
+<span class="token keyword">func</span> <span class="token function">updateItem<span class="token punctuation">(</span></span>id <span class="token builtin">int64</span><span class="token operator">,</span> body <span class="token keyword">map</span><span class="token operator">[</span><span class="token builtin">string</span><span class="token operator">]</span><span class="token keyword">interface</span><span class="token operator">{</span><span class="token operator">}</span><span class="token operator">)</span> <span class="token operator">(</span><span class="token keyword">map</span><span class="token operator">[</span><span class="token builtin">string</span><span class="token operator">]</span><span class="token keyword">interface</span><span class="token operator">{</span><span class="token operator">}</span><span class="token operator">,</span> <span class="token builtin">error</span><span class="token operator">)</span> <span class="token operator">{</span>
+    itemsLock<span class="token operator">.</span><span class="token function">Lock<span class="token punctuation">(</span></span><span class="token operator">)</span>
+    <span class="token keyword">defer</span> itemsLock<span class="token operator">.</span><span class="token function">Unlock<span class="token punctuation">(</span></span><span class="token operator">)</span>
+
+    item<span class="token operator">,</span> err <span class="token operator">:=</span> <span class="token function">itemByID<span class="token punctuation">(</span></span>id<span class="token operator">)</span>
+    <span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token operator">{</span>
+        <span class="token keyword">return</span> <span class="token boolean">nil</span><span class="token operator">,</span> err
+    <span class="token operator">}</span>
+    <span class="token function">delete<span class="token punctuation">(</span></span>body<span class="token operator">,</span> <span class="token string">&quot;id&quot;</span><span class="token operator">)</span>
+    <span class="token keyword">for</span> k<span class="token operator">,</span> v <span class="token operator">:=</span> <span class="token keyword">range</span> body <span class="token operator">{</span>
+        item<span class="token operator">[</span>k<span class="token operator">]</span> <span class="token operator">=</span> v
+    <span class="token operator">}</span>
+    <span class="token keyword">return</span> item<span class="token operator">,</span> <span class="token boolean">nil</span>
+<span class="token operator">}</span>
+
+<span class="token keyword">func</span> <span class="token function">removeItem<span class="token punctuation">(</span></span>id <span class="token builtin">int64</span><span class="token operator">)</span> <span class="token operator">{</span>
+    itemsLock<span class="token operator">.</span><span class="token function">Lock<span class="token punctuation">(</span></span><span class="token operator">)</span>
+    <span class="token keyword">defer</span> itemsLock<span class="token operator">.</span><span class="token function">Unlock<span class="token punctuation">(</span></span><span class="token operator">)</span>
+
+    <span class="token keyword">var</span> newItems <span class="token operator">[</span><span class="token operator">]</span><span class="token keyword">map</span><span class="token operator">[</span><span class="token builtin">string</span><span class="token operator">]</span><span class="token keyword">interface</span><span class="token operator">{</span><span class="token operator">}</span>
+    <span class="token keyword">for</span> <span class="token boolean">_</span><span class="token operator">,</span> item <span class="token operator">:=</span> <span class="token keyword">range</span> items <span class="token operator">{</span>
+        <span class="token keyword">if</span> item<span class="token operator">[</span><span class="token string">&quot;id&quot;</span><span class="token operator">]</span><span class="token operator">.</span><span class="token operator">(</span><span class="token builtin">int64</span><span class="token operator">)</span> <span class="token operator">!=</span> id <span class="token operator">{</span>
+            newItems <span class="token operator">=</span> <span class="token function">append<span class="token punctuation">(</span></span>newItems<span class="token operator">,</span> item<span class="token operator">)</span>
+        <span class="token operator">}</span>
+    <span class="token operator">}</span>
+    items <span class="token operator">=</span> newItems
+<span class="token operator">}</span>
+
+<span class="token keyword">func</span> <span class="token function">itemByID<span class="token punctuation">(</span></span>id <span class="token builtin">int64</span><span class="token operator">)</span> <span class="token operator">(</span><span class="token keyword">map</span><span class="token operator">[</span><span class="token builtin">string</span><span class="token operator">]</span><span class="token keyword">interface</span><span class="token operator">{</span><span class="token operator">}</span><span class="token operator">,</span> <span class="token builtin">error</span><span class="token operator">)</span> <span class="token operator">{</span>
+    <span class="token keyword">for</span> <span class="token boolean">_</span><span class="token operator">,</span> item <span class="token operator">:=</span> <span class="token keyword">range</span> items <span class="token operator">{</span>
+        <span class="token keyword">if</span> item<span class="token operator">[</span><span class="token string">&quot;id&quot;</span><span class="token operator">]</span><span class="token operator">.</span><span class="token operator">(</span><span class="token builtin">int64</span><span class="token operator">)</span> <span class="token operator">==</span> id <span class="token operator">{</span>
+            <span class="token keyword">return</span> item<span class="token operator">,</span> <span class="token boolean">nil</span>
+        <span class="token operator">}</span>
+    <span class="token operator">}</span>
+    <span class="token keyword">return</span> <span class="token boolean">nil</span><span class="token operator">,</span> errors<span class="token operator">.</span><span class="token function">NotFound<span class="token punctuation">(</span></span><span class="token string">&quot;not found: item %d&quot;</span><span class="token operator">,</span> id<span class="token operator">)</span>
+<span class="token operator">}</span></code></pre>
+<p><a href="https://github.com/go-swagger/go-swagger/blob/master/examples/tutorials/todo-list/dynamic-untyped/main.go" target="_blank">see source of this code</a></p><p>The backend code builds a todo-list-item store that&apos;s save for concurrent access buy guarding every operation with a lock. This is all in memory so as soon as you quit the process all your changes will be reset.</p><p>Because we now have an actual implemenation that we can use for testings, lets hook that up in our API:</p><pre><code class="lang-go"><span class="token keyword">func</span> <span class="token function">main<span class="token punctuation">(</span></span><span class="token operator">)</span> <span class="token operator">{</span>
+    <span class="token keyword">if</span> <span class="token function">len<span class="token punctuation">(</span></span>os<span class="token operator">.</span>Args<span class="token operator">)</span> <span class="token operator">==</span> <span class="token number">1</span> <span class="token operator">{</span>
+        log<span class="token operator">.</span><span class="token function">Fatalln<span class="token punctuation">(</span></span><span class="token string">&quot;this command requires the swagger spec as argument&quot;</span><span class="token operator">)</span>
+    <span class="token operator">}</span>
+    log<span class="token operator">.</span><span class="token function">Printf<span class="token punctuation">(</span></span><span class="token string">&quot;loading %q as contract for the server&quot;</span><span class="token operator">,</span> os<span class="token operator">.</span>Args<span class="token operator">[</span><span class="token number">1</span><span class="token operator">]</span><span class="token operator">)</span>
+
+    specDoc<span class="token operator">,</span> err <span class="token operator">:=</span> loads<span class="token operator">.</span><span class="token function">Spec<span class="token punctuation">(</span></span>os<span class="token operator">.</span>Args<span class="token operator">[</span><span class="token number">1</span><span class="token operator">]</span><span class="token operator">)</span>
+    <span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token operator">{</span>
+        log<span class="token operator">.</span><span class="token function">Fatalln<span class="token punctuation">(</span></span>err<span class="token operator">)</span>
+    <span class="token operator">}</span>
+
+    <span class="token comment" spellcheck="true">// our spec doesn&apos;t have application/json in the consumes or produces</span>
+    <span class="token comment" spellcheck="true">// so we need to clear those settings out</span>
+    api <span class="token operator">:=</span> untyped<span class="token operator">.</span><span class="token function">NewAPI<span class="token punctuation">(</span></span>specDoc<span class="token operator">)</span><span class="token operator">.</span><span class="token function">WithoutJSONDefaults<span class="token punctuation">(</span></span><span class="token operator">)</span>
+
+    <span class="token comment" spellcheck="true">// register serializers</span>
+    mediaType <span class="token operator">:=</span> <span class="token string">&quot;application/io.goswagger.examples.todo-list.v1+json&quot;</span>
+    api<span class="token operator">.</span>DefaultConsumes <span class="token operator">=</span> mediaType
+    api<span class="token operator">.</span>DefaultProduces <span class="token operator">=</span> mediaType
+    api<span class="token operator">.</span><span class="token function">RegisterConsumer<span class="token punctuation">(</span></span>mediaType<span class="token operator">,</span> runtime<span class="token operator">.</span><span class="token function">JSONConsumer<span class="token punctuation">(</span></span><span class="token operator">)</span><span class="token operator">)</span>
+    api<span class="token operator">.</span><span class="token function">RegisterProducer<span class="token punctuation">(</span></span>mediaType<span class="token operator">,</span> runtime<span class="token operator">.</span><span class="token function">JSONProducer<span class="token punctuation">(</span></span><span class="token operator">)</span><span class="token operator">)</span>
+
+    <span class="token comment" spellcheck="true">// register the operation handlers</span>
+    api<span class="token operator">.</span><span class="token function">RegisterOperation<span class="token punctuation">(</span></span><span class="token string">&quot;GET&quot;</span><span class="token operator">,</span> <span class="token string">&quot;/&quot;</span><span class="token operator">,</span> findTodos<span class="token operator">)</span>
+    api<span class="token operator">.</span><span class="token function">RegisterOperation<span class="token punctuation">(</span></span><span class="token string">&quot;POST&quot;</span><span class="token operator">,</span> <span class="token string">&quot;/&quot;</span><span class="token operator">,</span> addOne<span class="token operator">)</span>
+    api<span class="token operator">.</span><span class="token function">RegisterOperation<span class="token punctuation">(</span></span><span class="token string">&quot;PUT&quot;</span><span class="token operator">,</span> <span class="token string">&quot;/{id}&quot;</span><span class="token operator">,</span> updateOne<span class="token operator">)</span>
+    api<span class="token operator">.</span><span class="token function">RegisterOperation<span class="token punctuation">(</span></span><span class="token string">&quot;DELETE&quot;</span><span class="token operator">,</span> <span class="token string">&quot;/{id}&quot;</span><span class="token operator">,</span> destroyOne<span class="token operator">)</span>
+
+    <span class="token comment" spellcheck="true">// validate the API descriptor, to ensure we don&apos;t have any unhandled operations</span>
+    <span class="token keyword">if</span> err <span class="token operator">:=</span> api<span class="token operator">.</span><span class="token function">Validate<span class="token punctuation">(</span></span><span class="token operator">)</span><span class="token operator">;</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token operator">{</span>
+        log<span class="token operator">.</span><span class="token function">Fatalln<span class="token punctuation">(</span></span>err<span class="token operator">)</span>
+    <span class="token operator">}</span>
+
+    <span class="token comment" spellcheck="true">// construct the application context for this server</span>
+    <span class="token comment" spellcheck="true">// use the loaded spec document and the api descriptor with the default router</span>
+    app <span class="token operator">:=</span> middleware<span class="token operator">.</span><span class="token function">NewContext<span class="token punctuation">(</span></span>specDoc<span class="token operator">,</span> api<span class="token operator">,</span> <span class="token boolean">nil</span><span class="token operator">)</span>
+
+    log<span class="token operator">.</span><span class="token function">Println<span class="token punctuation">(</span></span><span class="token string">&quot;serving&quot;</span><span class="token operator">,</span> specDoc<span class="token operator">.</span><span class="token function">Spec<span class="token punctuation">(</span></span><span class="token operator">)</span><span class="token operator">.</span>Info<span class="token operator">.</span>Title<span class="token operator">,</span> <span class="token string">&quot;at http://localhost:8000&quot;</span><span class="token operator">)</span>
+
+    <span class="token comment" spellcheck="true">// serve the api with spec and UI</span>
+    <span class="token keyword">if</span> err <span class="token operator">:=</span> http<span class="token operator">.</span><span class="token function">ListenAndServe<span class="token punctuation">(</span></span><span class="token string">&quot;:8000&quot;</span><span class="token operator">,</span> app<span class="token operator">.</span><span class="token function">APIHandler<span class="token punctuation">(</span></span><span class="token boolean">nil</span><span class="token operator">)</span><span class="token operator">)</span><span class="token operator">;</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token operator">{</span>
+        log<span class="token operator">.</span><span class="token function">Fatalln<span class="token punctuation">(</span></span>err<span class="token operator">)</span>
+    <span class="token operator">}</span>
+<span class="token operator">}</span>
+
+<span class="token keyword">var</span> findTodos <span class="token operator">=</span> runtime<span class="token operator">.</span><span class="token function">OperationHandlerFunc<span class="token punctuation">(</span></span><span class="token keyword">func</span><span class="token operator">(</span>params <span class="token keyword">interface</span><span class="token operator">{</span><span class="token operator">}</span><span class="token operator">)</span> <span class="token operator">(</span><span class="token keyword">interface</span><span class="token operator">{</span><span class="token operator">}</span><span class="token operator">,</span> <span class="token builtin">error</span><span class="token operator">)</span> <span class="token operator">{</span>
+    log<span class="token operator">.</span><span class="token function">Println<span class="token punctuation">(</span></span><span class="token string">&quot;received &apos;findTodos&apos;&quot;</span><span class="token operator">)</span>
+    log<span class="token operator">.</span><span class="token function">Printf<span class="token punctuation">(</span></span><span class="token string">&quot;%#v\n&quot;</span><span class="token operator">,</span> params<span class="token operator">)</span>
+
+    <span class="token keyword">return</span> items<span class="token operator">,</span> <span class="token boolean">nil</span>
+<span class="token operator">}</span><span class="token operator">)</span>
+
+<span class="token keyword">var</span> addOne <span class="token operator">=</span> runtime<span class="token operator">.</span><span class="token function">OperationHandlerFunc<span class="token punctuation">(</span></span><span class="token keyword">func</span><span class="token operator">(</span>params <span class="token keyword">interface</span><span class="token operator">{</span><span class="token operator">}</span><span class="token operator">)</span> <span class="token operator">(</span><span class="token keyword">interface</span><span class="token operator">{</span><span class="token operator">}</span><span class="token operator">,</span> <span class="token builtin">error</span><span class="token operator">)</span> <span class="token operator">{</span>
+    log<span class="token operator">.</span><span class="token function">Println<span class="token punctuation">(</span></span><span class="token string">&quot;received &apos;addOne&apos;&quot;</span><span class="token operator">)</span>
+    log<span class="token operator">.</span><span class="token function">Printf<span class="token punctuation">(</span></span><span class="token string">&quot;%#v\n&quot;</span><span class="token operator">,</span> params<span class="token operator">)</span>
+
+    body <span class="token operator">:=</span> params<span class="token operator">.</span><span class="token operator">(</span><span class="token keyword">map</span><span class="token operator">[</span><span class="token builtin">string</span><span class="token operator">]</span><span class="token keyword">interface</span><span class="token operator">{</span><span class="token operator">}</span><span class="token operator">)</span><span class="token operator">[</span><span class="token string">&quot;body&quot;</span><span class="token operator">]</span><span class="token operator">.</span><span class="token operator">(</span><span class="token keyword">map</span><span class="token operator">[</span><span class="token builtin">string</span><span class="token operator">]</span><span class="token keyword">interface</span><span class="token operator">{</span><span class="token operator">}</span><span class="token operator">)</span>
+    <span class="token function">addItem<span class="token punctuation">(</span></span>body<span class="token operator">)</span>
+    <span class="token keyword">return</span> body<span class="token operator">,</span> <span class="token boolean">nil</span>
+<span class="token operator">}</span><span class="token operator">)</span>
+
+<span class="token keyword">var</span> updateOne <span class="token operator">=</span> runtime<span class="token operator">.</span><span class="token function">OperationHandlerFunc<span class="token punctuation">(</span></span><span class="token keyword">func</span><span class="token operator">(</span>params <span class="token keyword">interface</span><span class="token operator">{</span><span class="token operator">}</span><span class="token operator">)</span> <span class="token operator">(</span><span class="token keyword">interface</span><span class="token operator">{</span><span class="token operator">}</span><span class="token operator">,</span> <span class="token builtin">error</span><span class="token operator">)</span> <span class="token operator">{</span>
+    log<span class="token operator">.</span><span class="token function">Println<span class="token punctuation">(</span></span><span class="token string">&quot;received &apos;updateOne&apos;&quot;</span><span class="token operator">)</span>
+    log<span class="token operator">.</span><span class="token function">Printf<span class="token punctuation">(</span></span><span class="token string">&quot;%#v\n&quot;</span><span class="token operator">,</span> params<span class="token operator">)</span>
+
+    data <span class="token operator">:=</span> params<span class="token operator">.</span><span class="token operator">(</span><span class="token keyword">map</span><span class="token operator">[</span><span class="token builtin">string</span><span class="token operator">]</span><span class="token keyword">interface</span><span class="token operator">{</span><span class="token operator">}</span><span class="token operator">)</span>
+    id <span class="token operator">:=</span> data<span class="token operator">[</span><span class="token string">&quot;id&quot;</span><span class="token operator">]</span><span class="token operator">.</span><span class="token operator">(</span><span class="token builtin">int64</span><span class="token operator">)</span>
+    body <span class="token operator">:=</span> data<span class="token operator">[</span><span class="token string">&quot;body&quot;</span><span class="token operator">]</span><span class="token operator">.</span><span class="token operator">(</span><span class="token keyword">map</span><span class="token operator">[</span><span class="token builtin">string</span><span class="token operator">]</span><span class="token keyword">interface</span><span class="token operator">{</span><span class="token operator">}</span><span class="token operator">)</span>
+    <span class="token keyword">return</span> <span class="token function">updateItem<span class="token punctuation">(</span></span>id<span class="token operator">,</span> body<span class="token operator">)</span>
+<span class="token operator">}</span><span class="token operator">)</span>
+
+<span class="token keyword">var</span> destroyOne <span class="token operator">=</span> runtime<span class="token operator">.</span><span class="token function">OperationHandlerFunc<span class="token punctuation">(</span></span><span class="token keyword">func</span><span class="token operator">(</span>params <span class="token keyword">interface</span><span class="token operator">{</span><span class="token operator">}</span><span class="token operator">)</span> <span class="token operator">(</span><span class="token keyword">interface</span><span class="token operator">{</span><span class="token operator">}</span><span class="token operator">,</span> <span class="token builtin">error</span><span class="token operator">)</span> <span class="token operator">{</span>
+    log<span class="token operator">.</span><span class="token function">Println<span class="token punctuation">(</span></span><span class="token string">&quot;received &apos;destroyOne&apos;&quot;</span><span class="token operator">)</span>
+    log<span class="token operator">.</span><span class="token function">Printf<span class="token punctuation">(</span></span><span class="token string">&quot;%#v\n&quot;</span><span class="token operator">,</span> params<span class="token operator">)</span>
+
+    <span class="token function">removeItem<span class="token punctuation">(</span></span>params<span class="token operator">.</span><span class="token operator">(</span><span class="token keyword">map</span><span class="token operator">[</span><span class="token builtin">string</span><span class="token operator">]</span><span class="token keyword">interface</span><span class="token operator">{</span><span class="token operator">}</span><span class="token operator">)</span><span class="token operator">[</span><span class="token string">&quot;id&quot;</span><span class="token operator">]</span><span class="token operator">.</span><span class="token operator">(</span><span class="token builtin">int64</span><span class="token operator">)</span><span class="token operator">)</span>
+    <span class="token keyword">return</span> <span class="token boolean">nil</span><span class="token operator">,</span> <span class="token boolean">nil</span>
+<span class="token operator">}</span><span class="token operator">)</span></code></pre>
+<p><a href="https://github.com/go-swagger/go-swagger/blob/master/examples/tutorials/todo-list/dynamic-untyped/main.go" target="_blank">see source of this code</a></p><p>With this set up we should be able to start a server, send it some requests and get some meaningful answers.</p><h4 id="list-all"><a name="list-all" class="plugin-anchor" href="#list-all"><i class="fa fa-link" aria-hidden="true"></i></a>List all</h4><pre><code class="lang-shellsession">git:(master) &#x2717; !? &#xBB; curl -i localhost:8000</code></pre>
+<pre><code class="lang-http"><span class="token response-status">HTTP/1.1 <span class="token property">200 OK</span></span>
+<span class="token keyword">Content-Type:</span> application/io.goswagger.examples.todo-list.v1+json
+<span class="token keyword">Date:</span> Sun, 09 Oct 2016 15:50:39 GMT
+<span class="token keyword">Content-Length:</span> 87
+
+[{&quot;completed&quot;:true,&quot;description&quot;:&quot;feed dog&quot;,&quot;id&quot;:1},{&quot;description&quot;:&quot;feed cat&quot;,&quot;id&quot;:2}]</code></pre>
+<h4 id="create-new"><a name="create-new" class="plugin-anchor" href="#create-new"><i class="fa fa-link" aria-hidden="true"></i></a>Create new</h4><p>The default curl POST request should fail because we only allow:  application/io.goswagger.examples.todo-list.v1+json</p><pre><code class="lang-shellsession">curl -i localhost:8000 -d &apos;{&quot;description&quot;:&quot;item for the list&quot;}&apos;</code></pre>
+<pre><code class="lang-http"><span class="token response-status">HTTP/1.1 <span class="token property">415 Unsupported Media Type</span></span>
+<span class="token keyword">Content-Type:</span> application/io.goswagger.examples.todo-list.v1+json
+<span class="token keyword">Date:</span> Sun, 09 Oct 2016 15:55:43 GMT
+<span class="token keyword">Content-Length:</span> 157
+
+{&quot;code&quot;:415,&quot;message&quot;:&quot;unsupported media type \&quot;application/x-www-form-urlencoded\&quot;, only [application/io.goswagger.examples.todo-list.v1+json] are allowed&quot;}</code></pre>
+<p>When the content type header is sent, we have a better result:</p><pre><code class="lang-shellsession">curl -i -H &apos;Content-Type: application/io.goswagger.examples.todo-list.v1+json&apos; localhost:8000 -d &apos;{&quot;description&quot;:&quot;a new item&quot;}&apos;</code></pre>
+<pre><code class="lang-http"><span class="token response-status">HTTP/1.1 <span class="token property">201 Created</span></span>
+<span class="token keyword">Content-Type:</span> application/io.goswagger.examples.todo-list.v1+json
+<span class="token keyword">Date:</span> Sun, 09 Oct 2016 15:56:28 GMT
+<span class="token keyword">Content-Length:</span> 36
+
+{&quot;description&quot;:&quot;a new item&quot;,&quot;id&quot;:3}</code></pre>
+<h4 id="list-again"><a name="list-again" class="plugin-anchor" href="#list-again"><i class="fa fa-link" aria-hidden="true"></i></a>List again</h4><pre><code class="lang-shellsession">git:(master) &#x2717; !? &#xBB; curl -i localhost:8000</code></pre>
+<pre><code class="lang-http"><span class="token response-status">HTTP/1.1 <span class="token property">200 OK</span></span>
+<span class="token keyword">Content-Type:</span> application/io.goswagger.examples.todo-list.v1+json
+<span class="token keyword">Date:</span> Sun, 09 Oct 2016 15:58:06 GMT
+<span class="token keyword">Content-Length:</span> 123
+
+[{&quot;completed&quot;:true,&quot;description&quot;:&quot;feed dog&quot;,&quot;id&quot;:1},{&quot;description&quot;:&quot;feed cat&quot;,&quot;id&quot;:2},{&quot;description&quot;:&quot;a new item&quot;,&quot;id&quot;:3}]</code></pre>
+<h4 id="update-an-item"><a name="update-an-item" class="plugin-anchor" href="#update-an-item"><i class="fa fa-link" aria-hidden="true"></i></a>Update an item</h4><pre><code class="lang-shellsession">curl -i -XPUT -H &apos;Content-Type: application/io.goswagger.examples.todo-list.v1+json&apos; localhost:8000/3 -d &apos;{&quot;description&quot;:&quot;an updated item&quot;}&apos;</code></pre>
+<pre><code class="lang-http"><span class="token response-status">HTTP/1.1 <span class="token property">200 OK</span></span>
+<span class="token keyword">Content-Type:</span> application/io.goswagger.examples.todo-list.v1+json
+<span class="token keyword">Date:</span> Sun, 09 Oct 2016 15:58:42 GMT
+<span class="token keyword">Content-Length:</span> 41
+
+{&quot;description&quot;:&quot;an updated item&quot;,&quot;id&quot;:3}</code></pre>
+<h4 id="list-to-verify"><a name="list-to-verify" class="plugin-anchor" href="#list-to-verify"><i class="fa fa-link" aria-hidden="true"></i></a>List to verify</h4><pre><code class="lang-shellsession">git:(master) &#x2717; !? &#xBB; curl -i localhost:8000</code></pre>
+<pre><code class="lang-http"><span class="token response-status">HTTP/1.1 <span class="token property">200 OK</span></span>
+<span class="token keyword">Content-Type:</span> application/io.goswagger.examples.todo-list.v1+json
+<span class="token keyword">Date:</span> Sun, 09 Oct 2016 15:58:42 GMT
+<span class="token keyword">Content-Length:</span> 41
+
+{&quot;description&quot;:&quot;an updated item&quot;,&quot;id&quot;:3}</code></pre>
+<h4 id="delete-an-item"><a name="delete-an-item" class="plugin-anchor" href="#delete-an-item"><i class="fa fa-link" aria-hidden="true"></i></a>Delete an item</h4><pre><code class="lang-shellsession">curl -i -XDELETE localhost:8000/3</code></pre>
+<pre><code class="lang-http"><span class="token response-status">HTTP/1.1 <span class="token property">204 No Content</span></span>
+<span class="token keyword">Content-Type:</span> application/io.goswagger.examples.todo-list.v1+json
+<span class="token keyword">Date:</span> Sun, 09 Oct 2016 16:00:59 GMT</code></pre>
+<h4 id="list-to-show-start-state-again"><a name="list-to-show-start-state-again" class="plugin-anchor" href="#list-to-show-start-state-again"><i class="fa fa-link" aria-hidden="true"></i></a>List to show start state again</h4><pre><code class="lang-shellsession">curl -i localhost:8000</code></pre>
+<pre><code class="lang-http"><span class="token response-status">HTTP/1.1 <span class="token property">200 OK</span></span>
+<span class="token keyword">Content-Type:</span> application/io.goswagger.examples.todo-list.v1+json
+<span class="token keyword">Date:</span> Sun, 09 Oct 2016 16:02:19 GMT
+<span class="token keyword">Content-Length:</span> 87
+
+[{&quot;completed&quot;:true,&quot;description&quot;:&quot;feed dog&quot;,&quot;id&quot;:1},{&quot;description&quot;:&quot;feed cat&quot;,&quot;id&quot;:2}]</code></pre>
+<p>At the end of the curl requests the server shows these outputs:</p><pre><code class="lang-shellsession">git:(master) &#x2717; !? &#xBB; go run main.go ./swagger.yml
+2016/10/09 08:50:34 loading &quot;./swagger.yml&quot; as contract for the server
+2016/10/09 08:50:34 serving A To Do list application at http://localhost:8000
+2016/10/09 08:50:39 received &apos;findTodos&apos;
+2016/10/09 08:50:39 map[string]interface {}{&quot;since&quot;:0, &quot;limit&quot;:20}
+2016/10/09 08:56:28 received &apos;addOne&apos;
+2016/10/09 08:56:28 map[string]interface {}{&quot;body&quot;:map[string]interface {}{&quot;description&quot;:&quot;a new item&quot;}}
+2016/10/09 08:58:06 received &apos;findTodos&apos;
+2016/10/09 08:58:06 map[string]interface {}{&quot;limit&quot;:20, &quot;since&quot;:0}
+2016/10/09 08:58:42 received &apos;updateOne&apos;
+2016/10/09 08:58:42 map[string]interface {}{&quot;id&quot;:3, &quot;body&quot;:map[string]interface {}{&quot;description&quot;:&quot;an updated item&quot;}}
+2016/10/09 09:00:07 received &apos;findTodos&apos;
+2016/10/09 09:00:07 map[string]interface {}{&quot;since&quot;:0, &quot;limit&quot;:20}
+2016/10/09 09:00:59 received &apos;destroyOne&apos;
+2016/10/09 09:00:59 map[string]interface {}{&quot;id&quot;:3}
+2016/10/09 09:02:19 received &apos;findTodos&apos;
+2016/10/09 09:02:19 map[string]interface {}{&quot;since&quot;:0, &quot;limit&quot;:20}</code></pre>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="../usage/serve_ui.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: UI">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Dynamic Server","level":"1.5","depth":1,"next":{"title":"Generate","level":"1.6","depth":1,"ref":"","articles":[{"title":"API Client","level":"1.6.1","depth":2,"path":"generate/client.md","ref":"generate/client.md","articles":[]},{"title":"API Server","level":"1.6.2","depth":2,"path":"generate/server.md","ref":"generate/server.md","articles":[{"title":"Usage","level":"1.6.2.1","depth":3,"path":"use/server.md","ref":"use/server.md","articles":[]}]},{"title":"Model generation rules","level":"1.6.3","depth":2,"path":"use/schemas.md","ref":"use/schemas.md","articles":[]},{"title":"swagger.json","level":"1.6.4","depth":2,"path":"generate/spec.md","ref":"generate/spec.md","articles":[{"title":"swagger:meta","level":"1.6.4.1","depth":3,"path":"generate/spec/meta.md","ref":"generate/spec/meta.md","articles":[]},{"title":"swagger:route","level":"1.6.4.2","depth":3,"path":"generate/spec/route.md","ref":"generate/spec/route.md","articles":[]},{"title":"swagger:params","level":"1.6.4.3","depth":3,"path":"generate/spec/params.md","ref":"generate/spec/params.md","articles":[]},{"title":"swagger:response","level":"1.6.4.4","depth":3,"path":"generate/spec/response.md","ref":"generate/spec/response.md","articles":[]},{"title":"swagger:model","level":"1.6.4.5","depth":3,"path":"generate/spec/model.md","ref":"generate/spec/model.md","articles":[]},{"title":"swagger:allOf","level":"1.6.4.6","depth":3,"path":"generate/spec/allOf.md","ref":"generate/spec/allOf.md","articles":[]},{"title":"swagger:strfmt","level":"1.6.4.7","depth":3,"path":"generate/spec/strfmt.md","ref":"generate/spec/strfmt.md","articles":[]},{"title":"swagger:discriminated","level":"1.6.4.8","depth":3,"path":"generate/spec/discriminated.md","ref":"generate/spec/discriminated.md","articles":[]}]},{"title":"Custom generation","level":"1.6.5","depth":2,"path":"use/template_layout.md","ref":"use/template_layout.md","articles":[{"title":"Custom templates","level":"1.6.5.1","depth":3,"path":"generate/templates.md","ref":"generate/templates.md","articles":[]}]}]},"previous":{"title":"UI","level":"1.4","depth":1,"path":"usage/serve_ui.md","ref":"usage/serve_ui.md","articles":[]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"prism":{},"anchors":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"tutorial/dynamic.md","mtime":"2016-10-09T16:23:40.229Z","type":"markdown"},"gitbook":{"version":"3.2.0","time":"2016-10-09T16:24:46.747Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-forkmegithub/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
