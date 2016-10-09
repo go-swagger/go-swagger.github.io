@@ -2,7 +2,7 @@
 <!DOCTYPE HTML>
 <html lang="" >
     <head>
-        <title>Validate · GitBook</title>
+        <title>UI · GitBook</title>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
@@ -65,10 +65,8 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="serve_ui.html" />
     
-    
-    <link rel="prev" href="../use/middleware.html" />
+    <link rel="prev" href="validate.html" />
     
 
     </head>
@@ -155,7 +153,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.3" data-path="validate.html">
+        <li class="chapter " data-level="1.3" data-path="validate.html">
             
                 <a href="validate.html">
             
@@ -168,7 +166,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4" data-path="serve_ui.html">
+        <li class="chapter active" data-level="1.4" data-path="serve_ui.html">
             
                 <a href="serve_ui.html">
             
@@ -482,7 +480,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >Validate</a>
+        <a href=".." >UI</a>
     </h1>
 </div>
 
@@ -497,60 +495,18 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="validate-a-swagger-spec"><a name="validate-a-swagger-spec" class="plugin-anchor" href="#validate-a-swagger-spec"><i class="fa fa-link" aria-hidden="true"></i></a>Validate a swagger spec</h1><p>The toolkit has a command to validate swagger specifications for you.
-It includes a full json-schema validator and adds some extra validations to ensure the spec is valid.</p><!--more-->
+                                <h1 id="serve-a-documentation-site"><a name="serve-a-documentation-site" class="plugin-anchor" href="#serve-a-documentation-site"><i class="fa fa-link" aria-hidden="true"></i></a>Serve a documentation site</h1><p>The toolkit has a command to serve a spec json document and optionally a UI for a given spec. 
+It embeds redoc, so you can use that documentation site without an internet connection.
+Or it can load your local spec into the swagger docs viewer at <a href="http://petstore.swagger.io" target="_blank">http://petstore.swagger.io</a></p><!--more-->
 
 
-<h3 id="usage"><a name="usage" class="plugin-anchor" href="#usage"><i class="fa fa-link" aria-hidden="true"></i></a>Usage</h3><p>To validate a specification:</p><pre><code>swagger validate [http-url|filepath]</code></pre>
-<h3 id="swagger-20-resources"><a name="swagger-20-resources" class="plugin-anchor" href="#swagger-20-resources"><i class="fa fa-link" aria-hidden="true"></i></a>Swagger 2.0 resources</h3><ul><li>Specification Documentation: <a href="https://github.com/swagger-api/swagger-spec/blob/master/versions/2.0.md" target="_blank">https://github.com/swagger-api/swagger-spec/blob/master/versions/2.0.md</a>
-</li>
-<li>JSON Schema: <a href="https://github.com/swagger-api/swagger-spec/blob/master/schemas/v2.0/schema.json" target="_blank">https://github.com/swagger-api/swagger-spec/blob/master/schemas/v2.0/schema.json</a>
-</li></ul>
-<h3 id="semantic-validation"><a name="semantic-validation" class="plugin-anchor" href="#semantic-validation"><i class="fa fa-link" aria-hidden="true"></i></a>Semantic Validation</h3><p>All the rules the validator tool supports:</p><ul><li>validate against jsonschema
-</li>
-<li>validate extra rules outlined <a href="https://github.com/apigee-127/sway/blob/master/docs/versions/2.0.md#semantic-validation" target="_blank">here</a>
-</li></ul>
-<table>
-<thead>
-<tr><th>Rule</th>
-<th>Severity</th>
-</tr></thead><tbody>
-<tr><td>definition can&apos;t declare a property that&apos;s already defined by one of its ancestors</td>
-<td>Error</td>
-</tr><tr><td>definition&apos;s ancestor can&apos;t be a descendant of the same model</td>
-<td>Error</td>
-</tr><tr><td>each security reference should contain only unique scopes</td>
-<td>Warning</td>
-</tr><tr><td>each security scope in a security definition should be unique</td>
-<td>Warning</td>
-</tr><tr><td>path parameter declarations do not allow empty names <em>(<code>/path/{}</code> is not valid)</em></td>
-<td>Error</td>
-</tr><tr><td>each api path should be non-verbatim (account for path param names) unique per method</td>
-<td>Error</td>
-</tr><tr><td>each path parameter should correspond to a parameter placeholder and vice versa</td>
-<td>Error</td>
-</tr><tr><td>each referencable definition must have references</td>
-<td>Warning</td>
-</tr><tr><td>each definition property listed in the required array must be defined in the properties of the model</td>
-<td>Error</td>
-</tr><tr><td>each parameter should have a unique <code>name</code> and <code>in</code> combination</td>
-<td>Error</td>
-</tr><tr><td>each operation must have an unique <code>operationId</code></td>
-<td>Error</td>
-</tr><tr><td>each operation should have only 1 parameter of type body</td>
-<td>Error</td>
-</tr><tr><td>each operation cannot have both a body parameter and a formData parameter</td>
-<td>Error</td>
-</tr><tr><td>each reference must point to a valid object</td>
-<td>Error</td>
-</tr><tr><td>every default value that is specified must validate against the schema for that property</td>
-<td>Error</td>
-</tr><tr><td>every example that is specified must validate against the schema for that property</td>
-<td>Error</td>
-</tr><tr><td>items property is required for all schemas/definitions of type <code>array</code></td>
-<td>Error</td>
-</tr></tbody></table>
-
+<h3 id="usage"><a name="usage" class="plugin-anchor" href="#usage"><i class="fa fa-link" aria-hidden="true"></i></a>Usage</h3><p>To serve a documentation site:</p><pre><code>swagger serve [http-url|filepath]</code></pre>
+<p>This will start a server with cors enabled so that sites on other domains can load your specification document.</p><h3 id="flavors"><a name="flavors" class="plugin-anchor" href="#flavors"><i class="fa fa-link" aria-hidden="true"></i></a>Flavors</h3><p>At this moment the UI can be served into 2 flavors.</p><h4 id="redoc"><a name="redoc" class="plugin-anchor" href="#redoc"><i class="fa fa-link" aria-hidden="true"></i></a>Redoc</h4><p>The swagger source code has a middleware for embedding Redoc.
+So for the redoc flavor we make use of that and use it with the spec you have on disk.</p><h4 id="swagger-ui"><a name="swagger-ui" class="plugin-anchor" href="#swagger-ui"><i class="fa fa-link" aria-hidden="true"></i></a>Swagger UI</h4><p>For the swagger flavor we use the UI hosted at <a href="http://petstore.swagger.io" target="_blank">http://petstore.swagger.io</a>.
+The server has CORS enabled and appends the url for the spec JSON to the petstore url as a query string.</p><h4 id="your-own-ui"><a name="your-own-ui" class="plugin-anchor" href="#your-own-ui"><i class="fa fa-link" aria-hidden="true"></i></a>Your own UI</h4><p>You can use your own UI by pointing it to the spec served by this command.
+When no ui is being served, the terminal will print the url to the spec document.
+You can also use the <code>--doc-url</code> to provide another url as base. 
+The url to your documentation site for example, which would need to recognize the query param url to load the swagger spec from, through the browser.</p><h3 id="more"><a name="more" class="plugin-anchor" href="#more"><i class="fa fa-link" aria-hidden="true"></i></a>More</h3><p>There are some more options for this command which you can view with:</p><pre><code>swagger serve --help</code></pre>
 
                                 
                                 </section>
@@ -578,14 +534,10 @@ It includes a full json-schema validator and adds some extra validations to ensu
 
             
                 
-                <a href="../use/middleware.html" class="navigation navigation-prev " aria-label="Previous page: Middleware">
+                <a href="validate.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: Validate">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
-                
-                <a href="serve_ui.html" class="navigation navigation-next " aria-label="Next page: UI">
-                    <i class="fa fa-angle-right"></i>
-                </a>
                 
             
         
@@ -594,7 +546,7 @@ It includes a full json-schema validator and adds some extra validations to ensu
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Validate","level":"1.3","depth":1,"next":{"title":"UI","level":"1.4","depth":1,"path":"usage/serve_ui.md","ref":"usage/serve_ui.md","articles":[]},"previous":{"title":"Middleware","level":"1.2.2","depth":2,"path":"use/middleware.md","ref":"use/middleware.md","articles":[]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"prism":{},"anchors":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"usage/validate.md","mtime":"2016-10-09T01:37:44.942Z","type":"markdown"},"gitbook":{"version":"3.2.0","time":"2016-10-09T01:49:16.963Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"UI","level":"1.4","depth":1,"next":{"title":"Generate","level":"1.5","depth":1,"ref":"","articles":[{"title":"API Client","level":"1.5.1","depth":2,"path":"generate/client.md","ref":"generate/client.md","articles":[]},{"title":"API Server","level":"1.5.2","depth":2,"path":"generate/server.md","ref":"generate/server.md","articles":[{"title":"Usage","level":"1.5.2.1","depth":3,"path":"use/server.md","ref":"use/server.md","articles":[]}]},{"title":"Model generation rules","level":"1.5.3","depth":2,"path":"use/schemas.md","ref":"use/schemas.md","articles":[]},{"title":"swagger.json","level":"1.5.4","depth":2,"path":"generate/spec.md","ref":"generate/spec.md","articles":[{"title":"swagger:meta","level":"1.5.4.1","depth":3,"path":"generate/spec/meta.md","ref":"generate/spec/meta.md","articles":[]},{"title":"swagger:route","level":"1.5.4.2","depth":3,"path":"generate/spec/route.md","ref":"generate/spec/route.md","articles":[]},{"title":"swagger:params","level":"1.5.4.3","depth":3,"path":"generate/spec/params.md","ref":"generate/spec/params.md","articles":[]},{"title":"swagger:response","level":"1.5.4.4","depth":3,"path":"generate/spec/response.md","ref":"generate/spec/response.md","articles":[]},{"title":"swagger:model","level":"1.5.4.5","depth":3,"path":"generate/spec/model.md","ref":"generate/spec/model.md","articles":[]},{"title":"swagger:allOf","level":"1.5.4.6","depth":3,"path":"generate/spec/allOf.md","ref":"generate/spec/allOf.md","articles":[]},{"title":"swagger:strfmt","level":"1.5.4.7","depth":3,"path":"generate/spec/strfmt.md","ref":"generate/spec/strfmt.md","articles":[]},{"title":"swagger:discriminated","level":"1.5.4.8","depth":3,"path":"generate/spec/discriminated.md","ref":"generate/spec/discriminated.md","articles":[]}]},{"title":"Custom generation","level":"1.5.5","depth":2,"path":"use/templates_layout.md","ref":"use/templates_layout.md","articles":[{"title":"Custom templates","level":"1.5.5.1","depth":3,"path":"generate/templates.md","ref":"generate/templates.md","articles":[]}]}]},"previous":{"title":"Validate","level":"1.3","depth":1,"path":"usage/validate.md","ref":"usage/validate.md","articles":[]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"prism":{},"anchors":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"usage/serve_ui.md","mtime":"2016-10-09T01:48:16.003Z","type":"markdown"},"gitbook":{"version":"3.2.0","time":"2016-10-09T01:49:16.963Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
