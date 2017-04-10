@@ -2,12 +2,12 @@
 <!DOCTYPE HTML>
 <html lang="" >
     <head>
-        <title>API Server · GitBook</title>
         <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>API Server · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 3.2.0">
+        <meta name="generator" content="GitBook 3.2.2">
         
         
         
@@ -143,6 +143,19 @@
             
                     
                     Middleware
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3" data-path="../tutorial/custom-server.html">
+            
+                <a href="../tutorial/custom-server.html">
+            
+                    
+                    Custom Server
             
                 </a>
             
@@ -319,7 +332,20 @@
             
         </li>
     
-        <li class="chapter " data-level="1.6.4.4" data-path="spec/response.html">
+        <li class="chapter " data-level="1.6.4.4" data-path="spec/operation.html">
+            
+                <a href="spec/operation.html">
+            
+                    
+                    swagger:operation
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.4.5" data-path="spec/response.html">
             
                 <a href="spec/response.html">
             
@@ -332,7 +358,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.6.4.5" data-path="spec/model.html">
+        <li class="chapter " data-level="1.6.4.6" data-path="spec/model.html">
             
                 <a href="spec/model.html">
             
@@ -345,7 +371,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.6.4.6" data-path="spec/allOf.html">
+        <li class="chapter " data-level="1.6.4.7" data-path="spec/allOf.html">
             
                 <a href="spec/allOf.html">
             
@@ -358,7 +384,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.6.4.7" data-path="spec/strfmt.html">
+        <li class="chapter " data-level="1.6.4.8" data-path="spec/strfmt.html">
             
                 <a href="spec/strfmt.html">
             
@@ -371,7 +397,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.6.4.8" data-path="spec/discriminated.html">
+        <li class="chapter " data-level="1.6.4.9" data-path="spec/discriminated.html">
             
                 <a href="spec/discriminated.html">
             
@@ -484,45 +510,64 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="generate-a-server-for-a-swagger-spec"><a name="generate-a-server-for-a-swagger-spec" class="plugin-anchor" href="#generate-a-server-for-a-swagger-spec"><i class="fa fa-link" aria-hidden="true"></i></a>Generate a server for a swagger spec</h1><p>The toolkit has a command that will let you generate a docker friendly server with support for TLS.
-You can configure it through environment variables that are commonly used on PaaS services.</p><!--more-->
+                                <h1 id="generate-a-server-for-a-swagger-spec"><a name="generate-a-server-for-a-swagger-spec" class="plugin-anchor" href="#generate-a-server-for-a-swagger-spec"><i class="fa fa-link" aria-hidden="true"></i></a>Generate a server for a swagger spec</h1>
+<p>The toolkit has a command that will let you generate a docker friendly server with support for TLS.
+You can configure it through environment variables that are commonly used on PaaS services.</p>
+<!--more-->
+<p>A generated server uses <em>no reflection</em> except for an enum validation and the required validation. The server builds all the necessary plans and execution paths at startup time so that at runtime there is only the absolute minimum processing required to respond to requests.</p>
+<p>The default router for go-swagger is <a href="https://github.com/naoina/denco" target="_blank">naoina&apos;s denco</a> which is a <a href="https://github.com/julienschmidt/go-http-routing-benchmark#github" target="_blank"><strong>very</strong> fast</a> ternary search tree based router that allows for much greater flexibility than the trie based router implementation of julienschmidt at almost the same and sometimes lower cost.</p>
+<p>You can provide your own router implementation should you so desire it&apos;s abstracted through an interface with this use case in mind.</p>
+<h5 id="usage"><a name="usage" class="plugin-anchor" href="#usage"><i class="fa fa-link" aria-hidden="true"></i></a>Usage</h5>
+<pre><code>swagger [OPTIONS] generate server [server-OPTIONS]
 
+generate all the files for a server application
 
-<p>A generated server uses <em>no reflection</em> except for an enum validation and the required validation. The server builds all the necessary plans and execution paths at startup time so that at runtime there is only the absolute minimum processing required to respond to requests.</p><p>The default router for go-swagger is <a href="https://github.com/naoina/denco" target="_blank">naoina&apos;s denco</a> which is a <a href="https://github.com/julienschmidt/go-http-routing-benchmark#github" target="_blank"><strong>very</strong> fast</a> ternary search tree based router that allows for much greater flexibility than the trie based router implementation of julienschmidt at almost the same and sometimes lower cost.</p><p>You can provide your own router implementation should you so desire it&apos;s abstracted through an interface with this use case in mind.</p><h5 id="usage"><a name="usage" class="plugin-anchor" href="#usage"><i class="fa fa-link" aria-hidden="true"></i></a>Usage</h5><pre><code>swagger generate server [server-OPTIONS]
+Help Options:
+  -h, --help                                         Show this help message
 
 [server command options]
-      -f, --spec=            the spec file to use (default: ./swagger.json)
-      -a, --api-package=     the package to save the operations (default: operations)
-      -m, --model-package=   the package to save the models (default: models)
-      -s, --server-package=  the package to save the server specific code (default: restapi)
-      -c, --client-package=  the package to save the client specific code (default: client)
-      -t, --target=          the base directory for generating the files (default: ./)
-      -A, --name=            the name of the application, defaults to a mangled value of info.title
-      -O, --operation=       specify an operation to include, repeat for multiple
-          --tags=            the tags to include, if not specified defaults to all
-      -P, --principal=       the model to use for the security principal
-          --default-scheme=  the default scheme for this API (default: http)
-      -M, --model=           specify a model to include, repeat for multiple
-          --skip-models      no models will be generated when this flag is specified
-          --skip-operations  no operations will be generated when this flag is specified
-          --skip-support     no supporting files will be generated when this flag is specified</code></pre>
-<p>The server application gets generated with all the handlers stubbed out with a not implemented handler. That means that you can start the API server immediately after generating it. It will respond to all valid requests with 501 Not Implemented. When a request is invalid it will most likely respond with an appropriate 4xx response.</p><p>The generated server allows for a number of command line parameters to customize it.</p><pre><code>--host=            the IP to listen on (default: localhost) [$HOST]
+      -f, --spec=                                    the spec file to use (default swagger.{json,yml,yaml})
+      -a, --api-package=                             the package to save the operations (default: operations)
+      -m, --model-package=                           the package to save the models (default: models)
+      -s, --server-package=                          the package to save the server specific code (default: restapi)
+      -c, --client-package=                          the package to save the client specific code (default: client)
+      -t, --target=                                  the base directory for generating the files (default: ./)
+      -T, --template-dir=                            alternative template override directory
+      -C, --config-file=                             configuration file to use for overriding template options
+      -A, --name=                                    the name of the application, defaults to a mangled value of info.title
+      -O, --operation=                               specify an operation to include, repeat for multiple
+          --tags=                                    the tags to include, if not specified defaults to all
+      -P, --principal=                               the model to use for the security principal
+          --default-scheme=                          the default scheme for this API (default: http)
+      -M, --model=                                   specify a model to include, repeat for multiple
+          --skip-models                              no models will be generated when this flag is specified
+          --skip-operations                          no operations will be generated when this flag is specified
+          --skip-support                             no supporting files will be generated when this flag is specified
+          --exclude-main                             exclude main function, so just generate the library
+          --exclude-spec                             don&apos;t embed the swagger specification
+          --with-context                             handlers get a context as first arg
+          --dump-data                                when present dumps the json for the template generator instead of generating files
+          --flag-strategy=[go-flags|pflag]           the strategy to provide flags for the server (default: go-flags)
+          --compatibility-mode=[modern|intermediate] the compatibility mode for the tls server (default: modern)
+          --skip-validation                          skips validation of spec prior to generation
+</code></pre><p>The server application gets generated with all the handlers stubbed out with a not implemented handler. That means that you can start the API server immediately after generating it. It will respond to all valid requests with 501 Not Implemented. When a request is invalid it will most likely respond with an appropriate 4xx response.</p>
+<p>The generated server allows for a number of command line parameters to customize it.</p>
+<pre><code>--host=            the IP to listen on (default: localhost) [$HOST]
 --port=            the port to listen on for insecure connections, defaults to a random value [$PORT]
 --tls-host=        the IP to listen on for tls, when not specified it&apos;s the same as --host [$TLS_HOST]
 --tls-port=        the port to listen on for secure connections, defaults to a random value [$TLS_PORT]
 --tls-certificate= the certificate to use for secure connections [$TLS_CERTIFICATE]
---tls-key=         the private key to use for secure conections [$TLS_PRIVATE_KEY]</code></pre>
-<p>The server takes care of a number of things when a request arrives:</p><ul><li>routing
-</li>
-<li>authentication
-</li>
-<li>input validation
-</li>
-<li>content negotiation
-</li>
-<li>parameter and body binding
-</li></ul>
-<p>To illustrate this with a pseudo handler, this is what happens in a request.</p><pre><code class="lang-go"><span class="token keyword">import</span> <span class="token operator">(</span>
+--tls-key=         the private key to use for secure conections [$TLS_PRIVATE_KEY]
+</code></pre><p>The server takes care of a number of things when a request arrives:</p>
+<ul>
+<li>routing</li>
+<li>authentication</li>
+<li>input validation</li>
+<li>content negotiation</li>
+<li>parameter and body binding</li>
+</ul>
+<p>To illustrate this with a pseudo handler, this is what happens in a request.</p>
+<pre><code class="lang-go"><span class="token keyword">import</span> <span class="token operator">(</span>
   <span class="token string">&quot;net/http&quot;</span>
 
   <span class="token string">&quot;github.com/go-openapi/errors&quot;</span>
@@ -567,8 +612,11 @@ You can configure it through environment variables that are commonly used on Paa
     <span class="token operator">}</span>
     ctx<span class="token operator">.</span><span class="token function">Respond<span class="token punctuation">(</span></span>rw<span class="token operator">,</span> r<span class="token operator">,</span> ctx<span class="token operator">.</span>spec<span class="token operator">.</span><span class="token function">RequiredProduces<span class="token punctuation">(</span></span><span class="token operator">)</span><span class="token operator">,</span> <span class="token boolean">nil</span><span class="token operator">,</span> errors<span class="token operator">.</span><span class="token function">NotFound<span class="token punctuation">(</span></span><span class="token string">&quot;path %s was not found&quot;</span><span class="token operator">,</span> r<span class="token operator">.</span>URL<span class="token operator">.</span>Path<span class="token operator">)</span><span class="token operator">)</span>
   <span class="token operator">}</span><span class="token operator">)</span>
-<span class="token operator">}</span></code></pre>
-<p>Prior to handling requests however you probably want to configure the API with some actual implementations.  To do that you have to edit the configure_xxx_api.go file.  That file will only be generated the first time you generate a server application from a swagger spec. So the generated server uses this file to let you fill in the blanks.</p><p>For the todolist application that file looks like:</p><pre><code class="lang-go"><span class="token keyword">package</span> main
+<span class="token operator">}</span>
+</code></pre>
+<p>Prior to handling requests however you probably want to configure the API with some actual implementations.  To do that you have to edit the configure_xxx_api.go file.  That file will only be generated the first time you generate a server application from a swagger spec. So the generated server uses this file to let you fill in the blanks.</p>
+<p>For the todolist application that file looks like:</p>
+<pre><code class="lang-go"><span class="token keyword">package</span> main
 
 <span class="token keyword">import</span> <span class="token operator">(</span>
     <span class="token string">&quot;github.com/go-openapi/errors&quot;</span>
@@ -605,9 +653,12 @@ You can configure it through environment variables that are commonly used on Paa
     <span class="token operator">}</span><span class="token operator">)</span>
 
     <span class="token keyword">return</span> <span class="token function">setupGlobalMiddleware<span class="token punctuation">(</span></span>api<span class="token operator">.</span><span class="token function">Serve<span class="token punctuation">(</span></span>setupMiddlewares<span class="token operator">)</span><span class="token operator">)</span>
-<span class="token operator">}</span></code></pre>
+<span class="token operator">}</span>
+</code></pre>
 <p>When you look at the code for the configureAPI method then you&apos;ll notice that the api object has properties for consumers.
-A consumer is an object that can marshal things from a wireformat to an object.  Consumers and their counterpart producers who write objects get their names generated from the consumes and produces properties on a swagger specification.</p><p>The interface definitions for consumers and producers look like this:</p><pre><code class="lang-go"><span class="token comment" spellcheck="true">// ConsumerFunc represents a function that can be used as a consumer</span>
+A consumer is an object that can marshal things from a wireformat to an object.  Consumers and their counterpart producers who write objects get their names generated from the consumes and produces properties on a swagger specification.</p>
+<p>The interface definitions for consumers and producers look like this:</p>
+<pre><code class="lang-go"><span class="token comment" spellcheck="true">// ConsumerFunc represents a function that can be used as a consumer</span>
 <span class="token keyword">type</span> ConsumerFunc <span class="token keyword">func</span><span class="token operator">(</span>io<span class="token operator">.</span>Reader<span class="token operator">,</span> <span class="token keyword">interface</span><span class="token operator">{</span><span class="token operator">}</span><span class="token operator">)</span> <span class="token builtin">error</span>
 
 <span class="token comment" spellcheck="true">// Consume consumes the reader into the data parameter</span>
@@ -635,8 +686,11 @@ A consumer is an object that can marshal things from a wireformat to an object. 
 <span class="token keyword">type</span> Producer <span class="token keyword">interface</span> <span class="token operator">{</span>
     <span class="token comment" spellcheck="true">// Produce writes to the http response</span>
     <span class="token function">Produce<span class="token punctuation">(</span></span>io<span class="token operator">.</span>Writer<span class="token operator">,</span> <span class="token keyword">interface</span><span class="token operator">{</span><span class="token operator">}</span><span class="token operator">)</span> <span class="token builtin">error</span>
-<span class="token operator">}</span></code></pre>
-<p>So it&apos;s something that can turn a reader into a hydrated interface. A producer is the counterpart of a consumer and writes objects to an io.Writer.  When you configure an api with those you make sure it can marshal the types for the supported content types.</p><p>The next thing that happens in the configureAPI method is setting up the authentication with a stub handler in this case. This particular swagger specification supports token based authentication and as such it wants you to configure a token auth handler.  Any error for an authentication handler is assumed to be an invalid authentication and will return the 401 status code.</p><pre><code class="lang-go"><span class="token comment" spellcheck="true">// UserPassAuthentication authentication function</span>
+<span class="token operator">}</span>
+</code></pre>
+<p>So it&apos;s something that can turn a reader into a hydrated interface. A producer is the counterpart of a consumer and writes objects to an io.Writer.  When you configure an api with those you make sure it can marshal the types for the supported content types.</p>
+<p>The next thing that happens in the configureAPI method is setting up the authentication with a stub handler in this case. This particular swagger specification supports token based authentication and as such it wants you to configure a token auth handler.  Any error for an authentication handler is assumed to be an invalid authentication and will return the 401 status code.</p>
+<pre><code class="lang-go"><span class="token comment" spellcheck="true">// UserPassAuthentication authentication function</span>
 <span class="token keyword">type</span> UserPassAuthentication <span class="token keyword">func</span><span class="token operator">(</span><span class="token builtin">string</span><span class="token operator">,</span> <span class="token builtin">string</span><span class="token operator">)</span> <span class="token operator">(</span><span class="token keyword">interface</span><span class="token operator">{</span><span class="token operator">}</span><span class="token operator">,</span> <span class="token builtin">error</span><span class="token operator">)</span>
 
 <span class="token comment" spellcheck="true">// TokenAuthentication authentication function</span>
@@ -655,8 +709,10 @@ A consumer is an object that can marshal things from a wireformat to an object. 
 <span class="token comment" spellcheck="true">// request data and translate that into a valid principal object or an error</span>
 <span class="token keyword">type</span> Authenticator <span class="token keyword">interface</span> <span class="token operator">{</span>
     <span class="token function">Authenticate<span class="token punctuation">(</span></span><span class="token keyword">interface</span><span class="token operator">{</span><span class="token operator">}</span><span class="token operator">)</span> <span class="token operator">(</span><span class="token builtin">bool</span><span class="token operator">,</span> <span class="token keyword">interface</span><span class="token operator">{</span><span class="token operator">}</span><span class="token operator">,</span> <span class="token builtin">error</span><span class="token operator">)</span>
-<span class="token operator">}</span></code></pre>
-<p>So we finally get to configuring our route handlers. For each operation there exists an interface so that implementations have some freedom to provide alternative implentations. For example mocks in certain tests, automatic stubbing handlers, not implemented handlers. Let&apos;s look at the addOne handler in a bit more detail.</p><pre><code class="lang-go"><span class="token comment" spellcheck="true">// AddOneHandlerFunc turns a function with the right signature into a add one handler</span>
+<span class="token operator">}</span>
+</code></pre>
+<p>So we finally get to configuring our route handlers. For each operation there exists an interface so that implementations have some freedom to provide alternative implentations. For example mocks in certain tests, automatic stubbing handlers, not implemented handlers. Let&apos;s look at the addOne handler in a bit more detail.</p>
+<pre><code class="lang-go"><span class="token comment" spellcheck="true">// AddOneHandlerFunc turns a function with the right signature into a add one handler</span>
 <span class="token keyword">type</span> AddOneHandlerFunc <span class="token keyword">func</span><span class="token operator">(</span>AddOneParams<span class="token operator">,</span> <span class="token keyword">interface</span><span class="token operator">{</span><span class="token operator">}</span><span class="token operator">)</span> middleware<span class="token operator">.</span>Responder
 
 <span class="token comment" spellcheck="true">// Handle executing the request and returning a response</span>
@@ -667,8 +723,12 @@ A consumer is an object that can marshal things from a wireformat to an object. 
 <span class="token comment" spellcheck="true">// AddOneHandler interface for that can handle valid add one params</span>
 <span class="token keyword">type</span> AddOneHandler <span class="token keyword">interface</span> <span class="token operator">{</span>
     <span class="token function">Handle<span class="token punctuation">(</span></span>AddOneParams<span class="token operator">,</span> <span class="token keyword">interface</span><span class="token operator">{</span><span class="token operator">}</span><span class="token operator">)</span> middleware<span class="token operator">.</span>Responder
-<span class="token operator">}</span></code></pre>
-<p>Because the <code>addOne</code> operation requires authentication, this interface definition requires 2 arguments. The first argument is about the request parameters and the second parameter is the security principal for the request.  In this case it is of type <code>interface{}</code>, typically that is a type like Account, User, Session, ...</p><p>It is your job to provide such a handler. Go swagger guarantees that by the time the request processing ends up at the handler, the parameters and security principal have been bound and validated.  So you can safely proceed with saving the request body to some persistence medium perhaps.</p><p>There is a context that gets created where the handlers get wired up into a <code>http.Handler</code>. For the add one this looks like this:</p><pre><code class="lang-go"><span class="token comment" spellcheck="true">// NewAddOne creates a new http.Handler for the add one operation</span>
+<span class="token operator">}</span>
+</code></pre>
+<p>Because the <code>addOne</code> operation requires authentication, this interface definition requires 2 arguments. The first argument is about the request parameters and the second parameter is the security principal for the request.  In this case it is of type <code>interface{}</code>, typically that is a type like Account, User, Session, ...</p>
+<p>It is your job to provide such a handler. Go swagger guarantees that by the time the request processing ends up at the handler, the parameters and security principal have been bound and validated.  So you can safely proceed with saving the request body to some persistence medium perhaps.</p>
+<p>There is a context that gets created where the handlers get wired up into a <code>http.Handler</code>. For the add one this looks like this:</p>
+<pre><code class="lang-go"><span class="token comment" spellcheck="true">// NewAddOne creates a new http.Handler for the add one operation</span>
 <span class="token keyword">func</span> <span class="token function">NewAddOne<span class="token punctuation">(</span></span>ctx <span class="token operator">*</span>middleware<span class="token operator">.</span>Context<span class="token operator">,</span> handler AddOneHandler<span class="token operator">)</span> <span class="token operator">*</span>AddOne <span class="token operator">{</span>
     <span class="token keyword">return</span> <span class="token operator">&amp;</span>AddOne<span class="token operator">{</span>Context<span class="token operator">:</span> ctx<span class="token operator">,</span> Handler<span class="token operator">:</span> handler<span class="token operator">}</span>
 <span class="token operator">}</span>
@@ -706,8 +766,10 @@ AddOne add one API
 
     o<span class="token operator">.</span>Context<span class="token operator">.</span><span class="token function">Respond<span class="token punctuation">(</span></span>rw<span class="token operator">,</span> r<span class="token operator">,</span> route<span class="token operator">.</span>Produces<span class="token operator">,</span> route<span class="token operator">,</span> res<span class="token operator">)</span>
 
-<span class="token operator">}</span></code></pre>
-<p>The <code>http.Handler</code> implementation takes care of authentication, binding, user code execution and generating a response. For authentication this request would end up in the <code>TokenAuthentication</code> handler that was put on the api context object earlier.  When a request is authenticated it gets bound. This operation eventually requires an object that is an implementation of <code>RequestBinder</code>.  The <code>AddOneParams</code> are such an implementation:</p><pre><code class="lang-go"><span class="token comment" spellcheck="true">// RequestBinder is an interface for types to implement</span>
+<span class="token operator">}</span>
+</code></pre>
+<p>The <code>http.Handler</code> implementation takes care of authentication, binding, user code execution and generating a response. For authentication this request would end up in the <code>TokenAuthentication</code> handler that was put on the api context object earlier.  When a request is authenticated it gets bound. This operation eventually requires an object that is an implementation of <code>RequestBinder</code>.  The <code>AddOneParams</code> are such an implementation:</p>
+<pre><code class="lang-go"><span class="token comment" spellcheck="true">// RequestBinder is an interface for types to implement</span>
 <span class="token comment" spellcheck="true">// when they want to be able to bind from a request</span>
 <span class="token keyword">type</span> RequestBinder <span class="token keyword">interface</span> <span class="token operator">{</span>
     <span class="token function">BindRequest<span class="token punctuation">(</span></span><span class="token operator">*</span>http<span class="token operator">.</span>Request<span class="token operator">,</span> <span class="token operator">*</span>MatchedRoute<span class="token operator">)</span> <span class="token builtin">error</span>
@@ -746,8 +808,11 @@ AddOne add one API
         <span class="token keyword">return</span> errors<span class="token operator">.</span><span class="token function">CompositeValidationError<span class="token punctuation">(</span></span>res<span class="token operator">...</span><span class="token operator">)</span>
     <span class="token operator">}</span>
     <span class="token keyword">return</span> <span class="token boolean">nil</span>
-<span class="token operator">}</span></code></pre>
-<p>In this example there is only a body parameter, so we make use of the selected consumer to read the request body and turn it into an instance of models.Item. When the body parameter is bound, it gets validated and when validation passes no error is returned and the body property is set.  After a request is bound and validated the parameters and security principal are passed to the request handler. For this configuration that would return a 501 responder.</p><p>Go swagger uses responders which are an interface implementation for things that can write to a response. For the generated server there are status code response and a default response object generated for every entry in the spec. For the <code>addOne</code> operation that are 2 objects one for the success case (201) and one for an error (default).</p><pre><code class="lang-go"><span class="token comment" spellcheck="true">// Responder is an interface for types to implement</span>
+<span class="token operator">}</span>
+</code></pre>
+<p>In this example there is only a body parameter, so we make use of the selected consumer to read the request body and turn it into an instance of models.Item. When the body parameter is bound, it gets validated and when validation passes no error is returned and the body property is set.  After a request is bound and validated the parameters and security principal are passed to the request handler. For this configuration that would return a 501 responder.</p>
+<p>Go swagger uses responders which are an interface implementation for things that can write to a response. For the generated server there are status code response and a default response object generated for every entry in the spec. For the <code>addOne</code> operation that are 2 objects one for the success case (201) and one for an error (default).</p>
+<pre><code class="lang-go"><span class="token comment" spellcheck="true">// Responder is an interface for types to implement</span>
 <span class="token comment" spellcheck="true">// when they want to be considered for writing HTTP responses</span>
 <span class="token keyword">type</span> Responder <span class="token keyword">interface</span> <span class="token operator">{</span>
     <span class="token function">WriteResponse<span class="token punctuation">(</span></span>http<span class="token operator">.</span>ResponseWriter<span class="token operator">,</span> httpkit<span class="token operator">.</span>Producer<span class="token operator">)</span>
@@ -793,14 +858,18 @@ swagger:response addOneDefault
             <span class="token function">panic<span class="token punctuation">(</span></span>err<span class="token operator">)</span> <span class="token comment" spellcheck="true">// let the recovery middleware deal with this</span>
         <span class="token operator">}</span>
     <span class="token operator">}</span>
-<span class="token operator">}</span></code></pre>
-<p>So an implementer of the <code>AddOneHandler</code> could return one of these 2 objects and go-swagger is able to respect the contract set forward by the spec document.</p><p>So to implement the AddOneHandler you could do something like this.</p><pre><code class="lang-go">todos<span class="token operator">.</span><span class="token function">AddOneHandlerFunc<span class="token punctuation">(</span></span><span class="token keyword">func</span><span class="token operator">(</span>params todos<span class="token operator">.</span>AddOneParams<span class="token operator">,</span> principal <span class="token keyword">interface</span><span class="token operator">{</span><span class="token operator">}</span><span class="token operator">)</span> middleware<span class="token operator">.</span>Responder <span class="token operator">{</span>
+<span class="token operator">}</span>
+</code></pre>
+<p>So an implementer of the <code>AddOneHandler</code> could return one of these 2 objects and go-swagger is able to respect the contract set forward by the spec document.</p>
+<p>So to implement the AddOneHandler you could do something like this.</p>
+<pre><code class="lang-go">todos<span class="token operator">.</span><span class="token function">AddOneHandlerFunc<span class="token punctuation">(</span></span><span class="token keyword">func</span><span class="token operator">(</span>params todos<span class="token operator">.</span>AddOneParams<span class="token operator">,</span> principal <span class="token keyword">interface</span><span class="token operator">{</span><span class="token operator">}</span><span class="token operator">)</span> middleware<span class="token operator">.</span>Responder <span class="token operator">{</span>
   created<span class="token operator">,</span> err <span class="token operator">:=</span> database<span class="token operator">.</span><span class="token function">Save<span class="token punctuation">(</span></span>params<span class="token operator">.</span>Body<span class="token operator">)</span>
   <span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token operator">{</span>
     <span class="token keyword">return</span> AddOneDefault<span class="token operator">{</span>models<span class="token operator">.</span>Error<span class="token operator">{</span><span class="token number">500</span><span class="token operator">,</span> err<span class="token operator">.</span><span class="token function">Error<span class="token punctuation">(</span></span><span class="token operator">)</span><span class="token operator">}</span><span class="token operator">}</span>
   <span class="token operator">}</span>
   <span class="token keyword">return</span> AddOneCreated<span class="token operator">{</span>created<span class="token operator">}</span>
-<span class="token operator">}</span><span class="token operator">)</span></code></pre>
+<span class="token operator">}</span><span class="token operator">)</span>
+</code></pre>
 
                                 
                                 </section>
@@ -844,7 +913,7 @@ swagger:response addOneDefault
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"API Server","level":"1.6.2","depth":2,"next":{"title":"Usage","level":"1.6.2.1","depth":3,"path":"use/server.md","ref":"use/server.md","articles":[]},"previous":{"title":"API Client","level":"1.6.1","depth":2,"path":"generate/client.md","ref":"generate/client.md","articles":[]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"prism":{},"anchors":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"generate/server.md","mtime":"2016-08-25T04:20:38.407Z","type":"markdown"},"gitbook":{"version":"3.2.0","time":"2016-10-09T16:24:46.747Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"API Server","level":"1.6.2","depth":2,"next":{"title":"Usage","level":"1.6.2.1","depth":3,"path":"use/server.md","ref":"use/server.md","articles":[]},"previous":{"title":"API Client","level":"1.6.1","depth":2,"path":"generate/client.md","ref":"generate/client.md","articles":[]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"prism":{},"anchors":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"generate/server.md","mtime":"2017-04-05T00:30:59.646Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-04-10T04:01:06.498Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

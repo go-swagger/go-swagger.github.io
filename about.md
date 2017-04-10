@@ -5,8 +5,8 @@ series = "home"
 weight = 9
 +++
 
-There are 2 axis along which your API and its documentation tend to evolve. This toolkit aims to support you along all
-axis and remove the repetitive nature of writing what is essentially boilerplate code for faster iteration times.
+There are 2 axes along which your API and its documentation tend to evolve. This toolkit aims to support you along all
+axes and remove the repetitive nature of writing what is essentially boilerplate code for faster iteration times.
 
 <!--more-->
 
@@ -19,7 +19,7 @@ wants to be left in peace while they work on their part of the application.
 This is the **design first** approach for swagger.
 
 Now we're moving on to the second iteration of the project and at this stage, there might be a design meeting for the
-new features, or they might just be refinements of the previous API's. When no changes are required to the contract,
+new features, or they might just be refinements of the previous APIs. When no changes are required to the contract,
 all is great because people can keep doing what they were doing and everybody is happy.
 However it might be that there was a change that is required for the front-end, they need a boolean added to some model
 because they want to display an-accepted-terms-and-conditions-checkbox.

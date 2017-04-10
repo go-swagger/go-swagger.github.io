@@ -2,12 +2,12 @@
 <!DOCTYPE HTML>
 <html lang="" >
     <head>
-        <title>swagger:allOf · GitBook</title>
         <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>swagger:allOf · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 3.2.0">
+        <meta name="generator" content="GitBook 3.2.2">
         
         
         
@@ -143,6 +143,19 @@
             
                     
                     Middleware
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3" data-path="../../tutorial/custom-server.html">
+            
+                <a href="../../tutorial/custom-server.html">
+            
+                    
+                    Custom Server
             
                 </a>
             
@@ -319,7 +332,20 @@
             
         </li>
     
-        <li class="chapter " data-level="1.6.4.4" data-path="response.html">
+        <li class="chapter " data-level="1.6.4.4" data-path="operation.html">
+            
+                <a href="operation.html">
+            
+                    
+                    swagger:operation
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.4.5" data-path="response.html">
             
                 <a href="response.html">
             
@@ -332,7 +358,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.6.4.5" data-path="model.html">
+        <li class="chapter " data-level="1.6.4.6" data-path="model.html">
             
                 <a href="model.html">
             
@@ -345,7 +371,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.6.4.6" data-path="allOf.html">
+        <li class="chapter active" data-level="1.6.4.7" data-path="allOf.html">
             
                 <a href="allOf.html">
             
@@ -358,7 +384,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.6.4.7" data-path="strfmt.html">
+        <li class="chapter " data-level="1.6.4.8" data-path="strfmt.html">
             
                 <a href="strfmt.html">
             
@@ -371,7 +397,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.6.4.8" data-path="discriminated.html">
+        <li class="chapter " data-level="1.6.4.9" data-path="discriminated.html">
             
                 <a href="discriminated.html">
             
@@ -484,11 +510,13 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="swaggerallof"><a name="swaggerallof" class="plugin-anchor" href="#swaggerallof"><i class="fa fa-link" aria-hidden="true"></i></a>swagger:allOf</h1><p>Marks an embedded type as  a member for allOf</p><!--more-->
-
-
-<h5 id="syntax"><a name="syntax" class="plugin-anchor" href="#syntax"><i class="fa fa-link" aria-hidden="true"></i></a>Syntax:</h5><pre><code>swagger:allOf</code></pre>
-<h5 id="example"><a name="example" class="plugin-anchor" href="#example"><i class="fa fa-link" aria-hidden="true"></i></a>Example:</h5><pre><code class="lang-go"><span class="token comment" spellcheck="true">// A SimpleOne is a model with a few simple fields</span>
+                                <h1 id="swaggerallof"><a name="swaggerallof" class="plugin-anchor" href="#swaggerallof"><i class="fa fa-link" aria-hidden="true"></i></a>swagger:allOf</h1>
+<p>Marks an embedded type as  a member for allOf</p>
+<!--more-->
+<h5 id="syntax"><a name="syntax" class="plugin-anchor" href="#syntax"><i class="fa fa-link" aria-hidden="true"></i></a>Syntax:</h5>
+<pre><code>swagger:allOf
+</code></pre><h5 id="example"><a name="example" class="plugin-anchor" href="#example"><i class="fa fa-link" aria-hidden="true"></i></a>Example:</h5>
+<pre><code class="lang-go"><span class="token comment" spellcheck="true">// A SimpleOne is a model with a few simple fields</span>
 <span class="token keyword">type</span> SimpleOne <span class="token keyword">struct</span> <span class="token operator">{</span>
     ID   <span class="token builtin">int64</span>  <span class="token string">`json:&quot;id&quot;`</span>
     Name <span class="token builtin">string</span> <span class="token string">`json:&quot;name&quot;`</span>
@@ -522,8 +550,10 @@
     Something <span class="token comment" spellcheck="true">// not annotated with anything, so should be included</span>
 
     CreatedAt strfmt<span class="token operator">.</span>DateTime <span class="token string">`json:&quot;createdAt&quot;`</span>
-<span class="token operator">}</span></code></pre>
-<h5 id="result"><a name="result" class="plugin-anchor" href="#result"><i class="fa fa-link" aria-hidden="true"></i></a>Result:</h5><pre><code class="lang-yaml"><span class="token punctuation">-</span><span class="token punctuation">-</span><span class="token punctuation">-</span>
+<span class="token operator">}</span>
+</code></pre>
+<h5 id="result"><a name="result" class="plugin-anchor" href="#result"><i class="fa fa-link" aria-hidden="true"></i></a>Result:</h5>
+<pre><code class="lang-yaml"><span class="token punctuation">-</span><span class="token punctuation">-</span><span class="token punctuation">-</span>
 <span class="token key atrule">definitions</span><span class="token punctuation">:</span>
   <span class="token key atrule">SimpleOne</span><span class="token punctuation">:</span>
     <span class="token key atrule">title</span><span class="token punctuation">:</span> A SimpleOne is a model with a few simple fields
@@ -562,7 +592,8 @@
         <span class="token key atrule">properties</span><span class="token punctuation">:</span>
           <span class="token key atrule">createdAt</span><span class="token punctuation">:</span>
             <span class="token key atrule">type</span><span class="token punctuation">:</span> string
-            <span class="token key atrule">format</span><span class="token punctuation">:</span> date<span class="token punctuation">-</span>time</code></pre>
+            <span class="token key atrule">format</span><span class="token punctuation">:</span> date<span class="token punctuation">-</span>time
+</code></pre>
 
                                 
                                 </section>
@@ -606,7 +637,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"swagger:allOf","level":"1.6.4.6","depth":3,"next":{"title":"swagger:strfmt","level":"1.6.4.7","depth":3,"path":"generate/spec/strfmt.md","ref":"generate/spec/strfmt.md","articles":[]},"previous":{"title":"swagger:model","level":"1.6.4.5","depth":3,"path":"generate/spec/model.md","ref":"generate/spec/model.md","articles":[]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"prism":{},"anchors":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"generate/spec/allOf.md","mtime":"2016-08-25T04:20:38.407Z","type":"markdown"},"gitbook":{"version":"3.2.0","time":"2016-10-09T16:24:46.747Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"swagger:allOf","level":"1.6.4.7","depth":3,"next":{"title":"swagger:strfmt","level":"1.6.4.8","depth":3,"path":"generate/spec/strfmt.md","ref":"generate/spec/strfmt.md","articles":[]},"previous":{"title":"swagger:model","level":"1.6.4.6","depth":3,"path":"generate/spec/model.md","ref":"generate/spec/model.md","articles":[]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"prism":{},"anchors":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"generate/spec/allOf.md","mtime":"2016-08-25T04:20:38.407Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-04-10T04:01:06.498Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

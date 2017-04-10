@@ -2,12 +2,12 @@
 <!DOCTYPE HTML>
 <html lang="" >
     <head>
-        <title>Validate · GitBook</title>
         <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Validate · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 3.2.0">
+        <meta name="generator" content="GitBook 3.2.2">
         
         
         
@@ -68,7 +68,7 @@
     <link rel="next" href="serve_ui.html" />
     
     
-    <link rel="prev" href="../use/middleware.html" />
+    <link rel="prev" href="../tutorial/custom-server.html" />
     
 
     </head>
@@ -143,6 +143,19 @@
             
                     
                     Middleware
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3" data-path="../tutorial/custom-server.html">
+            
+                <a href="../tutorial/custom-server.html">
+            
+                    
+                    Custom Server
             
                 </a>
             
@@ -319,7 +332,20 @@
             
         </li>
     
-        <li class="chapter " data-level="1.6.4.4" data-path="../generate/spec/response.html">
+        <li class="chapter " data-level="1.6.4.4" data-path="../generate/spec/operation.html">
+            
+                <a href="../generate/spec/operation.html">
+            
+                    
+                    swagger:operation
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.4.5" data-path="../generate/spec/response.html">
             
                 <a href="../generate/spec/response.html">
             
@@ -332,7 +358,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.6.4.5" data-path="../generate/spec/model.html">
+        <li class="chapter " data-level="1.6.4.6" data-path="../generate/spec/model.html">
             
                 <a href="../generate/spec/model.html">
             
@@ -345,7 +371,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.6.4.6" data-path="../generate/spec/allOf.html">
+        <li class="chapter " data-level="1.6.4.7" data-path="../generate/spec/allOf.html">
             
                 <a href="../generate/spec/allOf.html">
             
@@ -358,7 +384,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.6.4.7" data-path="../generate/spec/strfmt.html">
+        <li class="chapter " data-level="1.6.4.8" data-path="../generate/spec/strfmt.html">
             
                 <a href="../generate/spec/strfmt.html">
             
@@ -371,7 +397,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.6.4.8" data-path="../generate/spec/discriminated.html">
+        <li class="chapter " data-level="1.6.4.9" data-path="../generate/spec/discriminated.html">
             
                 <a href="../generate/spec/discriminated.html">
             
@@ -484,60 +510,102 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="validate-a-swagger-spec"><a name="validate-a-swagger-spec" class="plugin-anchor" href="#validate-a-swagger-spec"><i class="fa fa-link" aria-hidden="true"></i></a>Validate a swagger spec</h1><p>The toolkit has a command to validate swagger specifications for you.
-It includes a full json-schema validator and adds some extra validations to ensure the spec is valid.</p><!--more-->
-
-
-<h3 id="usage"><a name="usage" class="plugin-anchor" href="#usage"><i class="fa fa-link" aria-hidden="true"></i></a>Usage</h3><p>To validate a specification:</p><pre><code>swagger validate [http-url|filepath]</code></pre>
-<h3 id="swagger-20-resources"><a name="swagger-20-resources" class="plugin-anchor" href="#swagger-20-resources"><i class="fa fa-link" aria-hidden="true"></i></a>Swagger 2.0 resources</h3><ul><li>Specification Documentation: <a href="https://github.com/swagger-api/swagger-spec/blob/master/versions/2.0.md" target="_blank">https://github.com/swagger-api/swagger-spec/blob/master/versions/2.0.md</a>
-</li>
-<li>JSON Schema: <a href="https://github.com/swagger-api/swagger-spec/blob/master/schemas/v2.0/schema.json" target="_blank">https://github.com/swagger-api/swagger-spec/blob/master/schemas/v2.0/schema.json</a>
-</li></ul>
-<h3 id="semantic-validation"><a name="semantic-validation" class="plugin-anchor" href="#semantic-validation"><i class="fa fa-link" aria-hidden="true"></i></a>Semantic Validation</h3><p>All the rules the validator tool supports:</p><ul><li>validate against jsonschema
-</li>
-<li>validate extra rules outlined <a href="https://github.com/apigee-127/sway/blob/master/docs/versions/2.0.md#semantic-validation" target="_blank">here</a>
-</li></ul>
+                                <h1 id="validate-a-swagger-spec"><a name="validate-a-swagger-spec" class="plugin-anchor" href="#validate-a-swagger-spec"><i class="fa fa-link" aria-hidden="true"></i></a>Validate a swagger spec</h1>
+<p>The toolkit has a command to validate swagger specifications for you.
+It includes a full json-schema validator and adds some extra validations to ensure the spec is valid.</p>
+<!--more-->
+<h3 id="usage"><a name="usage" class="plugin-anchor" href="#usage"><i class="fa fa-link" aria-hidden="true"></i></a>Usage</h3>
+<p>To validate a specification:</p>
+<pre><code>swagger validate [http-url|filepath]
+</code></pre><h3 id="swagger-20-resources"><a name="swagger-20-resources" class="plugin-anchor" href="#swagger-20-resources"><i class="fa fa-link" aria-hidden="true"></i></a>Swagger 2.0 resources</h3>
+<ul>
+<li>Specification Documentation: <a href="https://github.com/swagger-api/swagger-spec/blob/master/versions/2.0.md" target="_blank">https://github.com/swagger-api/swagger-spec/blob/master/versions/2.0.md</a></li>
+<li>JSON Schema: <a href="https://github.com/swagger-api/swagger-spec/blob/master/schemas/v2.0/schema.json" target="_blank">https://github.com/swagger-api/swagger-spec/blob/master/schemas/v2.0/schema.json</a></li>
+</ul>
+<h3 id="semantic-validation"><a name="semantic-validation" class="plugin-anchor" href="#semantic-validation"><i class="fa fa-link" aria-hidden="true"></i></a>Semantic Validation</h3>
+<p>All the rules the validator tool supports:</p>
+<ul>
+<li>validate against jsonschema</li>
+<li>validate extra rules outlined <a href="https://github.com/apigee-127/sway/blob/master/docs/versions/2.0.md#semantic-validation" target="_blank">here</a></li>
+</ul>
 <table>
 <thead>
-<tr><th>Rule</th>
+<tr>
+<th>Rule</th>
 <th>Severity</th>
-</tr></thead><tbody>
-<tr><td>definition can&apos;t declare a property that&apos;s already defined by one of its ancestors</td>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>definition can&apos;t declare a property that&apos;s already defined by one of its ancestors</td>
 <td>Error</td>
-</tr><tr><td>definition&apos;s ancestor can&apos;t be a descendant of the same model</td>
+</tr>
+<tr>
+<td>definition&apos;s ancestor can&apos;t be a descendant of the same model</td>
 <td>Error</td>
-</tr><tr><td>each security reference should contain only unique scopes</td>
+</tr>
+<tr>
+<td>each security reference should contain only unique scopes</td>
 <td>Warning</td>
-</tr><tr><td>each security scope in a security definition should be unique</td>
+</tr>
+<tr>
+<td>each security scope in a security definition should be unique</td>
 <td>Warning</td>
-</tr><tr><td>path parameter declarations do not allow empty names <em>(<code>/path/{}</code> is not valid)</em></td>
+</tr>
+<tr>
+<td>path parameter declarations do not allow empty names <em>(<code>/path/{}</code> is not valid)</em></td>
 <td>Error</td>
-</tr><tr><td>each api path should be non-verbatim (account for path param names) unique per method</td>
+</tr>
+<tr>
+<td>each api path should be non-verbatim (account for path param names) unique per method</td>
 <td>Error</td>
-</tr><tr><td>each path parameter should correspond to a parameter placeholder and vice versa</td>
+</tr>
+<tr>
+<td>each path parameter should correspond to a parameter placeholder and vice versa</td>
 <td>Error</td>
-</tr><tr><td>each referencable definition must have references</td>
+</tr>
+<tr>
+<td>each referencable definition must have references</td>
 <td>Warning</td>
-</tr><tr><td>each definition property listed in the required array must be defined in the properties of the model</td>
+</tr>
+<tr>
+<td>each definition property listed in the required array must be defined in the properties of the model</td>
 <td>Error</td>
-</tr><tr><td>each parameter should have a unique <code>name</code> and <code>in</code> combination</td>
+</tr>
+<tr>
+<td>each parameter should have a unique <code>name</code> and <code>in</code> combination</td>
 <td>Error</td>
-</tr><tr><td>each operation must have an unique <code>operationId</code></td>
+</tr>
+<tr>
+<td>each operation must have an unique <code>operationId</code></td>
 <td>Error</td>
-</tr><tr><td>each operation should have only 1 parameter of type body</td>
+</tr>
+<tr>
+<td>each operation should have only 1 parameter of type body</td>
 <td>Error</td>
-</tr><tr><td>each operation cannot have both a body parameter and a formData parameter</td>
+</tr>
+<tr>
+<td>each operation cannot have both a body parameter and a formData parameter</td>
 <td>Error</td>
-</tr><tr><td>each reference must point to a valid object</td>
+</tr>
+<tr>
+<td>each reference must point to a valid object</td>
 <td>Error</td>
-</tr><tr><td>every default value that is specified must validate against the schema for that property</td>
+</tr>
+<tr>
+<td>every default value that is specified must validate against the schema for that property</td>
 <td>Error</td>
-</tr><tr><td>every example that is specified must validate against the schema for that property</td>
+</tr>
+<tr>
+<td>every example that is specified must validate against the schema for that property</td>
 <td>Error</td>
-</tr><tr><td>items property is required for all schemas/definitions of type <code>array</code></td>
+</tr>
+<tr>
+<td>items property is required for all schemas/definitions of type <code>array</code></td>
 <td>Error</td>
-</tr></tbody></table>
-
+</tr>
+</tbody>
+</table>
 
                                 
                                 </section>
@@ -565,7 +633,7 @@ It includes a full json-schema validator and adds some extra validations to ensu
 
             
                 
-                <a href="../use/middleware.html" class="navigation navigation-prev " aria-label="Previous page: Middleware">
+                <a href="../tutorial/custom-server.html" class="navigation navigation-prev " aria-label="Previous page: Custom Server">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
@@ -581,7 +649,7 @@ It includes a full json-schema validator and adds some extra validations to ensu
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Validate","level":"1.3","depth":1,"next":{"title":"UI","level":"1.4","depth":1,"path":"usage/serve_ui.md","ref":"usage/serve_ui.md","articles":[]},"previous":{"title":"Middleware","level":"1.2.2","depth":2,"path":"use/middleware.md","ref":"use/middleware.md","articles":[]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"prism":{},"anchors":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"usage/validate.md","mtime":"2016-10-09T01:37:44.942Z","type":"markdown"},"gitbook":{"version":"3.2.0","time":"2016-10-09T16:24:46.747Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Validate","level":"1.3","depth":1,"next":{"title":"UI","level":"1.4","depth":1,"path":"usage/serve_ui.md","ref":"usage/serve_ui.md","articles":[]},"previous":{"title":"Custom Server","level":"1.2.3","depth":2,"path":"tutorial/custom-server.md","ref":"tutorial/custom-server.md","articles":[]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"prism":{},"anchors":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"usage/validate.md","mtime":"2016-10-09T01:37:44.942Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-04-10T04:01:06.498Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

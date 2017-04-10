@@ -2,12 +2,12 @@
 <!DOCTYPE HTML>
 <html lang="" >
     <head>
-        <title>swagger:route · GitBook</title>
         <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>swagger:route · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 3.2.0">
+        <meta name="generator" content="GitBook 3.2.2">
         
         
         
@@ -143,6 +143,19 @@
             
                     
                     Middleware
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3" data-path="../../tutorial/custom-server.html">
+            
+                <a href="../../tutorial/custom-server.html">
+            
+                    
+                    Custom Server
             
                 </a>
             
@@ -319,7 +332,20 @@
             
         </li>
     
-        <li class="chapter " data-level="1.6.4.4" data-path="response.html">
+        <li class="chapter " data-level="1.6.4.4" data-path="operation.html">
+            
+                <a href="operation.html">
+            
+                    
+                    swagger:operation
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.4.5" data-path="response.html">
             
                 <a href="response.html">
             
@@ -332,7 +358,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.6.4.5" data-path="model.html">
+        <li class="chapter " data-level="1.6.4.6" data-path="model.html">
             
                 <a href="model.html">
             
@@ -345,7 +371,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.6.4.6" data-path="allOf.html">
+        <li class="chapter " data-level="1.6.4.7" data-path="allOf.html">
             
                 <a href="allOf.html">
             
@@ -358,7 +384,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.6.4.7" data-path="strfmt.html">
+        <li class="chapter " data-level="1.6.4.8" data-path="strfmt.html">
             
                 <a href="strfmt.html">
             
@@ -371,7 +397,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.6.4.8" data-path="discriminated.html">
+        <li class="chapter " data-level="1.6.4.9" data-path="discriminated.html">
             
                 <a href="discriminated.html">
             
@@ -484,35 +510,52 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="swaggerroute"><a name="swaggerroute" class="plugin-anchor" href="#swaggerroute"><i class="fa fa-link" aria-hidden="true"></i></a>swagger:route</h1><p>A <strong>swagger:route</strong> annotation links a path to a method.
+                                <h1 id="swaggerroute"><a name="swaggerroute" class="plugin-anchor" href="#swaggerroute"><i class="fa fa-link" aria-hidden="true"></i></a>swagger:route</h1>
+<p>A <strong>swagger:route</strong> annotation links a path to a method.
 This operation gets a unique id, which is used in various places as method name.
-One such usage is in method names for client generation for example.</p><p>Because there are many routers available, this tool does not try to parse the paths
+One such usage is in method names for client generation for example.</p>
+<p>Because there are many routers available, this tool does not try to parse the paths
 you provided to your routing library of choice. So you have to specify your path pattern
-yourself in valid swagger syntax.</p><!--more-->
-
-
-<h5 id="syntax"><a name="syntax" class="plugin-anchor" href="#syntax"><i class="fa fa-link" aria-hidden="true"></i></a>Syntax:</h5><pre><code>swagger:route [method] [path pattern] [?tag1 tag2 tag3] [operation id]</code></pre>
-<h5 id="properties"><a name="properties" class="plugin-anchor" href="#properties"><i class="fa fa-link" aria-hidden="true"></i></a>Properties:</h5><table>
+yourself in valid swagger syntax.</p>
+<!--more-->
+<h5 id="syntax"><a name="syntax" class="plugin-anchor" href="#syntax"><i class="fa fa-link" aria-hidden="true"></i></a>Syntax:</h5>
+<pre><code>swagger:route [method] [path pattern] [?tag1 tag2 tag3] [operation id]
+</code></pre><h5 id="properties"><a name="properties" class="plugin-anchor" href="#properties"><i class="fa fa-link" aria-hidden="true"></i></a>Properties:</h5>
+<table>
 <thead>
-<tr><th>Annotation</th>
+<tr>
+<th>Annotation</th>
 <th>Format</th>
-</tr></thead><tbody>
-<tr><td><strong>Consumes</strong></td>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Consumes</strong></td>
 <td>a list of operation specific mime type values, one per line, for the content the API receives</td>
-</tr><tr><td><strong>Produces</strong></td>
-<td>a list of operation specific mime type values, one per line, for the conten the API sends</td>
-</tr><tr><td><strong>Schemes</strong></td>
+</tr>
+<tr>
+<td><strong>Produces</strong></td>
+<td>a list of operation specific mime type values, one per line, for the content the API sends</td>
+</tr>
+<tr>
+<td><strong>Schemes</strong></td>
 <td>a list of operation specific schemes the API accept (possible values: http, https, ws, wss) https is preferred as default when configured</td>
-</tr><tr><td><strong>Security</strong></td>
+</tr>
+<tr>
+<td><strong>Security</strong></td>
 <td>a dictionary of key: []string{scopes}</td>
-</tr><tr><td><strong>Responses</strong></td>
+</tr>
+<tr>
+<td><strong>Responses</strong></td>
 <td>a dictionary of status code to named response</td>
-</tr></tbody></table>
-
-<h5 id="example"><a name="example" class="plugin-anchor" href="#example"><i class="fa fa-link" aria-hidden="true"></i></a>Example:</h5><pre><code class="lang-go"><span class="token comment" spellcheck="true">// ServeAPI serves the API for this record store</span>
+</tr>
+</tbody>
+</table>
+<h5 id="example"><a name="example" class="plugin-anchor" href="#example"><i class="fa fa-link" aria-hidden="true"></i></a>Example:</h5>
+<pre><code class="lang-go"><span class="token comment" spellcheck="true">// ServeAPI serves the API for this record store</span>
 <span class="token keyword">func</span> <span class="token function">ServeAPI<span class="token punctuation">(</span></span>host<span class="token operator">,</span> basePath <span class="token builtin">string</span><span class="token operator">,</span> schemes <span class="token operator">[</span><span class="token operator">]</span><span class="token builtin">string</span><span class="token operator">)</span> <span class="token builtin">error</span> <span class="token operator">{</span>
 
-    <span class="token comment" spellcheck="true">// swagger:route GET /pets listPets pets users</span>
+    <span class="token comment" spellcheck="true">// swagger:route GET /pets pets users listPets</span>
     <span class="token comment" spellcheck="true">//</span>
     <span class="token comment" spellcheck="true">// Lists pets filtered by some parameters.</span>
     <span class="token comment" spellcheck="true">//</span>
@@ -538,12 +581,16 @@ yourself in valid swagger syntax.</p><!--more-->
     <span class="token comment" spellcheck="true">//       200: someResponse</span>
     <span class="token comment" spellcheck="true">//       422: validationError</span>
     <span class="token function">mountItem<span class="token punctuation">(</span></span><span class="token string">&quot;GET&quot;</span><span class="token operator">,</span> basePath<span class="token operator">+</span><span class="token string">&quot;/pets&quot;</span><span class="token operator">,</span> <span class="token boolean">nil</span><span class="token operator">)</span>
-<span class="token operator">}</span></code></pre>
-<h5 id="result"><a name="result" class="plugin-anchor" href="#result"><i class="fa fa-link" aria-hidden="true"></i></a>Result:</h5><pre><code class="lang-yaml"><span class="token punctuation">-</span><span class="token punctuation">-</span><span class="token punctuation">-</span>
-<span class="token key atrule">operations</span><span class="token punctuation">:</span>
-  <span class="token key atrule">&quot;/&quot;</span><span class="token punctuation">:</span>
+<span class="token operator">}</span>
+</code></pre>
+<h5 id="result"><a name="result" class="plugin-anchor" href="#result"><i class="fa fa-link" aria-hidden="true"></i></a>Result:</h5>
+<pre><code class="lang-yaml"><span class="token punctuation">-</span><span class="token punctuation">-</span><span class="token punctuation">-</span>
+<span class="token key atrule">paths</span><span class="token punctuation">:</span>
+  <span class="token key atrule">&quot;/pets&quot;</span><span class="token punctuation">:</span>
     <span class="token key atrule">get</span><span class="token punctuation">:</span>
       <span class="token key atrule">operationId</span><span class="token punctuation">:</span> listPets
+      <span class="token key atrule">summary</span><span class="token punctuation">:</span> Lists pets filtered by some parameters.
+      <span class="token key atrule">description</span><span class="token punctuation">:</span> <span class="token string">&quot;This will show all available pets by default.\nYou can get the pets that are out of stock&quot;</span>
       <span class="token key atrule">tags</span><span class="token punctuation">:</span>
       <span class="token punctuation">-</span> pets
       <span class="token punctuation">-</span> users
@@ -569,7 +616,8 @@ yourself in valid swagger syntax.</p><!--more-->
         <span class="token key atrule">200</span><span class="token punctuation">:</span>
           <span class="token key atrule">$ref</span><span class="token punctuation">:</span> &quot;<span class="token comment" spellcheck="true">#/responses/someResponse&quot;</span>
         <span class="token key atrule">422</span><span class="token punctuation">:</span>
-          <span class="token key atrule">$ref</span><span class="token punctuation">:</span> &quot;<span class="token comment" spellcheck="true">#/responses/validationError&quot;</span></code></pre>
+          <span class="token key atrule">$ref</span><span class="token punctuation">:</span> &quot;<span class="token comment" spellcheck="true">#/responses/validationError&quot;</span>
+</code></pre>
 
                                 
                                 </section>
@@ -613,7 +661,7 @@ yourself in valid swagger syntax.</p><!--more-->
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"swagger:route","level":"1.6.4.2","depth":3,"next":{"title":"swagger:params","level":"1.6.4.3","depth":3,"path":"generate/spec/params.md","ref":"generate/spec/params.md","articles":[]},"previous":{"title":"swagger:meta","level":"1.6.4.1","depth":3,"path":"generate/spec/meta.md","ref":"generate/spec/meta.md","articles":[]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"prism":{},"anchors":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"generate/spec/route.md","mtime":"2016-08-25T04:20:38.407Z","type":"markdown"},"gitbook":{"version":"3.2.0","time":"2016-10-09T16:24:46.747Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"swagger:route","level":"1.6.4.2","depth":3,"next":{"title":"swagger:params","level":"1.6.4.3","depth":3,"path":"generate/spec/params.md","ref":"generate/spec/params.md","articles":[]},"previous":{"title":"swagger:meta","level":"1.6.4.1","depth":3,"path":"generate/spec/meta.md","ref":"generate/spec/meta.md","articles":[]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"prism":{},"anchors":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"generate/spec/route.md","mtime":"2017-02-18T21:39:41.246Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-04-10T04:01:06.498Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

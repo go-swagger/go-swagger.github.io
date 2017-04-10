@@ -2,12 +2,12 @@
 <!DOCTYPE HTML>
 <html lang="" >
     <head>
-        <title>swagger:strfmt · GitBook</title>
         <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>swagger:strfmt · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 3.2.0">
+        <meta name="generator" content="GitBook 3.2.2">
         
         
         
@@ -143,6 +143,19 @@
             
                     
                     Middleware
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3" data-path="../../tutorial/custom-server.html">
+            
+                <a href="../../tutorial/custom-server.html">
+            
+                    
+                    Custom Server
             
                 </a>
             
@@ -319,7 +332,20 @@
             
         </li>
     
-        <li class="chapter " data-level="1.6.4.4" data-path="response.html">
+        <li class="chapter " data-level="1.6.4.4" data-path="operation.html">
+            
+                <a href="operation.html">
+            
+                    
+                    swagger:operation
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.4.5" data-path="response.html">
             
                 <a href="response.html">
             
@@ -332,7 +358,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.6.4.5" data-path="model.html">
+        <li class="chapter " data-level="1.6.4.6" data-path="model.html">
             
                 <a href="model.html">
             
@@ -345,7 +371,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.6.4.6" data-path="allOf.html">
+        <li class="chapter " data-level="1.6.4.7" data-path="allOf.html">
             
                 <a href="allOf.html">
             
@@ -358,7 +384,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.6.4.7" data-path="strfmt.html">
+        <li class="chapter active" data-level="1.6.4.8" data-path="strfmt.html">
             
                 <a href="strfmt.html">
             
@@ -371,7 +397,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.6.4.8" data-path="discriminated.html">
+        <li class="chapter " data-level="1.6.4.9" data-path="discriminated.html">
             
                 <a href="discriminated.html">
             
@@ -484,45 +510,36 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="swaggerstrfmt"><a name="swaggerstrfmt" class="plugin-anchor" href="#swaggerstrfmt"><i class="fa fa-link" aria-hidden="true"></i></a>swagger:strfmt</h1><p>A <strong>swagger:strfmt</strong> annotation names a type as a string formatter. The name is mandatory and that is
+                                <h1 id="swaggerstrfmt"><a name="swaggerstrfmt" class="plugin-anchor" href="#swaggerstrfmt"><i class="fa fa-link" aria-hidden="true"></i></a>swagger:strfmt</h1>
+<p>A <strong>swagger:strfmt</strong> annotation names a type as a string formatter. The name is mandatory and that is
 what will be used as format name for this particular string format.
-String formats should only be used for <strong>very</strong> well known formats.</p><!-- more -->
-
-
-<p>String formats are well-known items. These imply a common well-documented set of formats that can be validated. The toolkit allows for creating your own string formats too.</p><p>To create a custom string format you need to create a type that implements the (Unm/M)arshalText interfaces and the sql Scan and sql Value interfaces.  The SQL interfaces are not strictly necessary but allow other people to use the string format in structs that are used with databases</p><p>The default string formats for this toolkit are:</p><ul><li>uuid, uuid3, uuid4, uuid5
-</li>
-<li>email
-</li>
-<li>uri (absolute)
-</li>
-<li>hostname
-</li>
-<li>ipv4
-</li>
-<li>ipv6
-</li>
-<li>credit card
-</li>
-<li>isbn, isbn10, isbn13
-</li>
-<li>social security number
-</li>
-<li>hexcolor
-</li>
-<li>rgbcolor
-</li>
-<li>date
-</li>
-<li>date-time
-</li>
-<li>duration
-</li>
-<li>password
-</li>
-<li>custom string formats
-</li></ul>
-<h5 id="syntax"><a name="syntax" class="plugin-anchor" href="#syntax"><i class="fa fa-link" aria-hidden="true"></i></a>Syntax:</h5><pre><code>swagger:strfmt [name]</code></pre>
-<h5 id="example"><a name="example" class="plugin-anchor" href="#example"><i class="fa fa-link" aria-hidden="true"></i></a>Example:</h5><pre><code class="lang-go"><span class="token keyword">func</span> <span class="token function">init<span class="token punctuation">(</span></span><span class="token operator">)</span> <span class="token operator">{</span>
+String formats should only be used for <strong>very</strong> well known formats.</p>
+<!-- more -->
+<p>String formats are well-known items. These imply a common well-documented set of formats that can be validated. The toolkit allows for creating your own string formats too.</p>
+<p>To create a custom string format you need to create a type that implements the (Unm/M)arshalText interfaces and the sql Scan and sql Value interfaces.  The SQL interfaces are not strictly necessary but allow other people to use the string format in structs that are used with databases</p>
+<p>The default string formats for this toolkit are:</p>
+<ul>
+<li>uuid, uuid3, uuid4, uuid5</li>
+<li>email</li>
+<li>uri (absolute)</li>
+<li>hostname</li>
+<li>ipv4</li>
+<li>ipv6</li>
+<li>credit card</li>
+<li>isbn, isbn10, isbn13</li>
+<li>social security number</li>
+<li>hexcolor</li>
+<li>rgbcolor</li>
+<li>date</li>
+<li>date-time</li>
+<li>duration</li>
+<li>password</li>
+<li>custom string formats</li>
+</ul>
+<h5 id="syntax"><a name="syntax" class="plugin-anchor" href="#syntax"><i class="fa fa-link" aria-hidden="true"></i></a>Syntax:</h5>
+<pre><code>swagger:strfmt [name]
+</code></pre><h5 id="example"><a name="example" class="plugin-anchor" href="#example"><i class="fa fa-link" aria-hidden="true"></i></a>Example:</h5>
+<pre><code class="lang-go"><span class="token keyword">func</span> <span class="token function">init<span class="token punctuation">(</span></span><span class="token operator">)</span> <span class="token operator">{</span>
   eml <span class="token operator">:=</span> <span class="token function">Email<span class="token punctuation">(</span></span><span class="token string">&quot;&quot;</span><span class="token operator">)</span>
   Default<span class="token operator">.</span><span class="token function">Add<span class="token punctuation">(</span></span><span class="token string">&quot;email&quot;</span><span class="token operator">,</span> <span class="token operator">&amp;</span>eml<span class="token operator">,</span> govalidator<span class="token operator">.</span>IsEmail<span class="token operator">)</span>
 <span class="token operator">}</span>
@@ -558,14 +575,17 @@ String formats should only be used for <strong>very</strong> well known formats.
 
 <span class="token keyword">func</span> <span class="token operator">(</span>b Email<span class="token operator">)</span> <span class="token function">Value<span class="token punctuation">(</span></span><span class="token operator">)</span> <span class="token operator">(</span>driver<span class="token operator">.</span>Value<span class="token operator">,</span> <span class="token builtin">error</span><span class="token operator">)</span> <span class="token operator">{</span>
     <span class="token keyword">return</span> driver<span class="token operator">.</span><span class="token function">Value<span class="token punctuation">(</span></span><span class="token function">string<span class="token punctuation">(</span></span>b<span class="token operator">)</span><span class="token operator">)</span><span class="token operator">,</span> <span class="token boolean">nil</span>
-<span class="token operator">}</span></code></pre>
-<h5 id="result"><a name="result" class="plugin-anchor" href="#result"><i class="fa fa-link" aria-hidden="true"></i></a>Result:</h5><pre><code class="lang-yaml"><span class="token punctuation">-</span><span class="token punctuation">-</span><span class="token punctuation">-</span>
+<span class="token operator">}</span>
+</code></pre>
+<h5 id="result"><a name="result" class="plugin-anchor" href="#result"><i class="fa fa-link" aria-hidden="true"></i></a>Result:</h5>
+<pre><code class="lang-yaml"><span class="token punctuation">-</span><span class="token punctuation">-</span><span class="token punctuation">-</span>
 <span class="token key atrule">definitions</span><span class="token punctuation">:</span>
   <span class="token key atrule">user</span><span class="token punctuation">:</span>
     <span class="token key atrule">properties</span><span class="token punctuation">:</span>
       <span class="token key atrule">email</span><span class="token punctuation">:</span>
         <span class="token key atrule">type</span><span class="token punctuation">:</span> string
-        <span class="token key atrule">format</span><span class="token punctuation">:</span> email</code></pre>
+        <span class="token key atrule">format</span><span class="token punctuation">:</span> email
+</code></pre>
 
                                 
                                 </section>
@@ -609,7 +629,7 @@ String formats should only be used for <strong>very</strong> well known formats.
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"swagger:strfmt","level":"1.6.4.7","depth":3,"next":{"title":"swagger:discriminated","level":"1.6.4.8","depth":3,"path":"generate/spec/discriminated.md","ref":"generate/spec/discriminated.md","articles":[]},"previous":{"title":"swagger:allOf","level":"1.6.4.6","depth":3,"path":"generate/spec/allOf.md","ref":"generate/spec/allOf.md","articles":[]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"prism":{},"anchors":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"generate/spec/strfmt.md","mtime":"2016-08-25T04:20:38.407Z","type":"markdown"},"gitbook":{"version":"3.2.0","time":"2016-10-09T16:24:46.747Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"swagger:strfmt","level":"1.6.4.8","depth":3,"next":{"title":"swagger:discriminated","level":"1.6.4.9","depth":3,"path":"generate/spec/discriminated.md","ref":"generate/spec/discriminated.md","articles":[]},"previous":{"title":"swagger:allOf","level":"1.6.4.7","depth":3,"path":"generate/spec/allOf.md","ref":"generate/spec/allOf.md","articles":[]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"prism":{},"anchors":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"generate/spec/strfmt.md","mtime":"2016-08-25T04:20:38.407Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-04-10T04:01:06.498Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

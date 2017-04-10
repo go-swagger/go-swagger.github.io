@@ -2,12 +2,12 @@
 <!DOCTYPE HTML>
 <html lang="" >
     <head>
-        <title>API Client · GitBook</title>
         <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>API Client · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 3.2.0">
+        <meta name="generator" content="GitBook 3.2.2">
         
         
         
@@ -141,6 +141,19 @@
             
                     
                     Middleware
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3" data-path="../tutorial/custom-server.html">
+            
+                <a href="../tutorial/custom-server.html">
+            
+                    
+                    Custom Server
             
                 </a>
             
@@ -317,7 +330,20 @@
             
         </li>
     
-        <li class="chapter " data-level="1.6.4.4" data-path="spec/response.html">
+        <li class="chapter " data-level="1.6.4.4" data-path="spec/operation.html">
+            
+                <a href="spec/operation.html">
+            
+                    
+                    swagger:operation
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.4.5" data-path="spec/response.html">
             
                 <a href="spec/response.html">
             
@@ -330,7 +356,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.6.4.5" data-path="spec/model.html">
+        <li class="chapter " data-level="1.6.4.6" data-path="spec/model.html">
             
                 <a href="spec/model.html">
             
@@ -343,7 +369,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.6.4.6" data-path="spec/allOf.html">
+        <li class="chapter " data-level="1.6.4.7" data-path="spec/allOf.html">
             
                 <a href="spec/allOf.html">
             
@@ -356,7 +382,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.6.4.7" data-path="spec/strfmt.html">
+        <li class="chapter " data-level="1.6.4.8" data-path="spec/strfmt.html">
             
                 <a href="spec/strfmt.html">
             
@@ -369,7 +395,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.6.4.8" data-path="spec/discriminated.html">
+        <li class="chapter " data-level="1.6.4.9" data-path="spec/discriminated.html">
             
                 <a href="spec/discriminated.html">
             
@@ -482,12 +508,44 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="generate-an-api-client"><a name="generate-an-api-client" class="plugin-anchor" href="#generate-an-api-client"><i class="fa fa-link" aria-hidden="true"></i></a>Generate an API client</h1><p>The toolkit has a command that will let you generate a client.</p><!--more-->
+                                <h1 id="generate-an-api-client"><a name="generate-an-api-client" class="plugin-anchor" href="#generate-an-api-client"><i class="fa fa-link" aria-hidden="true"></i></a>Generate an API client</h1>
+<p>The toolkit has a command that will let you generate a client.</p>
+<!--more-->
+<h5 id="usage"><a name="usage" class="plugin-anchor" href="#usage"><i class="fa fa-link" aria-hidden="true"></i></a>Usage</h5>
+<pre><code>swagger [OPTIONS] generate client [client-OPTIONS]
 
+generate all the files for a client library
 
-<h2 id="usage"><a name="usage" class="plugin-anchor" href="#usage"><i class="fa fa-link" aria-hidden="true"></i></a>Usage</h2><p>There is an example client in <a href="https://github.com/go-swagger/go-swagger/tree/master/examples/todo-list/client" target="_blank">https://github.com/go-swagger/go-swagger/tree/master/examples/todo-list/client</a></p><p>To generate a client:</p><pre><code>swagger generate client -f [http-url|filepath] -A [application-name] [--principal [principal-name]]</code></pre>
-<p>If you want to debug what the client is sending and receiving you can set the environment value DEBUG to a non-empty
-value.</p><p>Use a default client, which has an HTTP transport:</p><pre><code class="lang-go"><span class="token keyword">import</span> <span class="token operator">(</span>
+Help Options:
+  -h, --help                  Show this help message
+
+[client command options]
+      -f, --spec=             the spec file to use (default swagger.{json,yml,yaml})
+      -a, --api-package=      the package to save the operations (default: operations)
+      -m, --model-package=    the package to save the models (default: models)
+      -s, --server-package=   the package to save the server specific code (default: restapi)
+      -c, --client-package=   the package to save the client specific code (default: client)
+      -t, --target=           the base directory for generating the files (default: ./)
+      -T, --template-dir=     alternative template override directory
+      -C, --config-file=      configuration file to use for overriding template options
+      -A, --name=             the name of the application, defaults to a mangled value of info.title
+      -O, --operation=        specify an operation to include, repeat for multiple
+          --tags=             the tags to include, if not specified defaults to all
+      -P, --principal=        the model to use for the security principal
+      -M, --model=            specify a model to include, repeat for multiple
+          --default-scheme=   the default scheme for this client (default: http)
+          --default-produces= the default mime type that API operations produce (default: application/json)
+          --skip-models       no models will be generated when this flag is specified
+          --skip-operations   no operations will be generated when this flag is specified
+          --dump-data         when present dumps the json for the template generator instead of generating files
+          --skip-validation   skips validation of spec prior to generation
+</code></pre><p>There is an example client in <a href="https://github.com/go-swagger/go-swagger/tree/master/examples/todo-list/client" target="_blank">https://github.com/go-swagger/go-swagger/tree/master/examples/todo-list/client</a></p>
+<p>To generate a client:</p>
+<pre><code>swagger generate client -f [http-url|filepath] -A [application-name] [--principal [principal-name]]
+</code></pre><p>If you want to debug what the client is sending and receiving you can set the environment value DEBUG to a non-empty
+value.</p>
+<p>Use a default client, which has an HTTP transport:</p>
+<pre><code class="lang-go"><span class="token keyword">import</span> <span class="token operator">(</span>
   <span class="token string">&quot;log&quot;</span>
 
   <span class="token string">&quot;github.com/myproject/client/operations&quot;</span>
@@ -506,9 +564,12 @@ value.</p><p>Use a default client, which has an HTTP transport:</p><pre><code cl
     log<span class="token operator">.</span><span class="token function">Fatal<span class="token punctuation">(</span></span>err<span class="token operator">)</span>
   <span class="token operator">}</span>
   fmt<span class="token operator">.</span><span class="token function">Printf<span class="token punctuation">(</span></span><span class="token string">&quot;%#v\n&quot;</span><span class="token operator">,</span> resp<span class="token operator">.</span>Payload<span class="token operator">)</span>
-<span class="token operator">}</span></code></pre>
+<span class="token operator">}</span>
+</code></pre>
 <p>The client runtime allows for a number of <a href="https://godoc.org/github.com/go-openapi/runtime/client#Runtime" target="_blank">configuration
-options</a> to be set.</p><p>To then use the client, and override the host, with a HTTP transport:</p><pre><code class="lang-go"><span class="token keyword">import</span> <span class="token operator">(</span>
+options</a> to be set.
+To then use the client, and override the host, with a HTTP transport:</p>
+<pre><code class="lang-go"><span class="token keyword">import</span> <span class="token operator">(</span>
   <span class="token string">&quot;os&quot;</span>
   <span class="token string">&quot;log&quot;</span>
 
@@ -537,13 +598,15 @@ options</a> to be set.</p><p>To then use the client, and override the host, with
     log<span class="token operator">.</span><span class="token function">Fatal<span class="token punctuation">(</span></span>err<span class="token operator">)</span>
   <span class="token operator">}</span>
   fmt<span class="token operator">.</span><span class="token function">Printf<span class="token punctuation">(</span></span><span class="token string">&quot;%#v\n&quot;</span><span class="token operator">,</span> resp<span class="token operator">.</span>Payload<span class="token operator">)</span>
-<span class="token operator">}</span></code></pre>
-<h3 id="authentication"><a name="authentication" class="plugin-anchor" href="#authentication"><i class="fa fa-link" aria-hidden="true"></i></a>Authentication</h3><p>The client supports 3 authentication schemes:</p><ul><li><a href="https://godoc.org/github.com/go-openapi/runtime/client#BasicAuth" target="_blank">Basic Auth</a>
-</li>
-<li><a href="https://godoc.org/github.com/go-openapi/runtime/client#APIKeyAuth" target="_blank">API key auth in header or query</a>
-</li>
-<li><a href="https://godoc.org/github.com/go-openapi/runtime/client#BearerToken" target="_blank">Bearer token header for oauth2</a>
-</li></ul>
+<span class="token operator">}</span>
+</code></pre>
+<h3 id="authentication"><a name="authentication" class="plugin-anchor" href="#authentication"><i class="fa fa-link" aria-hidden="true"></i></a>Authentication</h3>
+<p>The client supports 3 authentication schemes:</p>
+<ul>
+<li><a href="https://godoc.org/github.com/go-openapi/runtime/client#BasicAuth" target="_blank">Basic Auth</a></li>
+<li><a href="https://godoc.org/github.com/go-openapi/runtime/client#APIKeyAuth" target="_blank">API key auth in header or query</a></li>
+<li><a href="https://godoc.org/github.com/go-openapi/runtime/client#BearerToken" target="_blank">Bearer token header for oauth2</a></li>
+</ul>
 <pre><code class="lang-go"><span class="token keyword">import</span> <span class="token operator">(</span>
   <span class="token string">&quot;os&quot;</span>
   <span class="token string">&quot;log&quot;</span>
@@ -574,7 +637,8 @@ options</a> to be set.</p><p>To then use the client, and override the host, with
     log<span class="token operator">.</span><span class="token function">Fatal<span class="token punctuation">(</span></span>err<span class="token operator">)</span>
   <span class="token operator">}</span>
   fmt<span class="token operator">.</span><span class="token function">Printf<span class="token punctuation">(</span></span><span class="token string">&quot;%#v\n&quot;</span><span class="token operator">,</span> resp<span class="token operator">.</span>Payload<span class="token operator">)</span>
-<span class="token operator">}</span></code></pre>
+<span class="token operator">}</span>
+</code></pre>
 
                                 
                                 </section>
@@ -614,7 +678,7 @@ options</a> to be set.</p><p>To then use the client, and override the host, with
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"API Client","level":"1.6.1","depth":2,"next":{"title":"API Server","level":"1.6.2","depth":2,"path":"generate/server.md","ref":"generate/server.md","articles":[{"title":"Usage","level":"1.6.2.1","depth":3,"path":"use/server.md","ref":"use/server.md","articles":[]}]},"previous":{"title":"Generate","level":"1.6","depth":1,"ref":"","articles":[{"title":"API Client","level":"1.6.1","depth":2,"path":"generate/client.md","ref":"generate/client.md","articles":[]},{"title":"API Server","level":"1.6.2","depth":2,"path":"generate/server.md","ref":"generate/server.md","articles":[{"title":"Usage","level":"1.6.2.1","depth":3,"path":"use/server.md","ref":"use/server.md","articles":[]}]},{"title":"Model generation rules","level":"1.6.3","depth":2,"path":"use/schemas.md","ref":"use/schemas.md","articles":[]},{"title":"swagger.json","level":"1.6.4","depth":2,"path":"generate/spec.md","ref":"generate/spec.md","articles":[{"title":"swagger:meta","level":"1.6.4.1","depth":3,"path":"generate/spec/meta.md","ref":"generate/spec/meta.md","articles":[]},{"title":"swagger:route","level":"1.6.4.2","depth":3,"path":"generate/spec/route.md","ref":"generate/spec/route.md","articles":[]},{"title":"swagger:params","level":"1.6.4.3","depth":3,"path":"generate/spec/params.md","ref":"generate/spec/params.md","articles":[]},{"title":"swagger:response","level":"1.6.4.4","depth":3,"path":"generate/spec/response.md","ref":"generate/spec/response.md","articles":[]},{"title":"swagger:model","level":"1.6.4.5","depth":3,"path":"generate/spec/model.md","ref":"generate/spec/model.md","articles":[]},{"title":"swagger:allOf","level":"1.6.4.6","depth":3,"path":"generate/spec/allOf.md","ref":"generate/spec/allOf.md","articles":[]},{"title":"swagger:strfmt","level":"1.6.4.7","depth":3,"path":"generate/spec/strfmt.md","ref":"generate/spec/strfmt.md","articles":[]},{"title":"swagger:discriminated","level":"1.6.4.8","depth":3,"path":"generate/spec/discriminated.md","ref":"generate/spec/discriminated.md","articles":[]}]},{"title":"Custom generation","level":"1.6.5","depth":2,"path":"use/template_layout.md","ref":"use/template_layout.md","articles":[{"title":"Custom templates","level":"1.6.5.1","depth":3,"path":"generate/templates.md","ref":"generate/templates.md","articles":[]}]}]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"prism":{},"anchors":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"generate/client.md","mtime":"2016-09-01T06:58:08.558Z","type":"markdown"},"gitbook":{"version":"3.2.0","time":"2016-10-09T16:24:46.747Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"API Client","level":"1.6.1","depth":2,"next":{"title":"API Server","level":"1.6.2","depth":2,"path":"generate/server.md","ref":"generate/server.md","articles":[{"title":"Usage","level":"1.6.2.1","depth":3,"path":"use/server.md","ref":"use/server.md","articles":[]}]},"previous":{"title":"Generate","level":"1.6","depth":1,"ref":"","articles":[{"title":"API Client","level":"1.6.1","depth":2,"path":"generate/client.md","ref":"generate/client.md","articles":[]},{"title":"API Server","level":"1.6.2","depth":2,"path":"generate/server.md","ref":"generate/server.md","articles":[{"title":"Usage","level":"1.6.2.1","depth":3,"path":"use/server.md","ref":"use/server.md","articles":[]}]},{"title":"Model generation rules","level":"1.6.3","depth":2,"path":"use/schemas.md","ref":"use/schemas.md","articles":[]},{"title":"swagger.json","level":"1.6.4","depth":2,"path":"generate/spec.md","ref":"generate/spec.md","articles":[{"title":"swagger:meta","level":"1.6.4.1","depth":3,"path":"generate/spec/meta.md","ref":"generate/spec/meta.md","articles":[]},{"title":"swagger:route","level":"1.6.4.2","depth":3,"path":"generate/spec/route.md","ref":"generate/spec/route.md","articles":[]},{"title":"swagger:params","level":"1.6.4.3","depth":3,"path":"generate/spec/params.md","ref":"generate/spec/params.md","articles":[]},{"title":"swagger:operation","level":"1.6.4.4","depth":3,"path":"generate/spec/operation.md","ref":"generate/spec/operation.md","articles":[]},{"title":"swagger:response","level":"1.6.4.5","depth":3,"path":"generate/spec/response.md","ref":"generate/spec/response.md","articles":[]},{"title":"swagger:model","level":"1.6.4.6","depth":3,"path":"generate/spec/model.md","ref":"generate/spec/model.md","articles":[]},{"title":"swagger:allOf","level":"1.6.4.7","depth":3,"path":"generate/spec/allOf.md","ref":"generate/spec/allOf.md","articles":[]},{"title":"swagger:strfmt","level":"1.6.4.8","depth":3,"path":"generate/spec/strfmt.md","ref":"generate/spec/strfmt.md","articles":[]},{"title":"swagger:discriminated","level":"1.6.4.9","depth":3,"path":"generate/spec/discriminated.md","ref":"generate/spec/discriminated.md","articles":[]}]},{"title":"Custom generation","level":"1.6.5","depth":2,"path":"use/template_layout.md","ref":"use/template_layout.md","articles":[{"title":"Custom templates","level":"1.6.5.1","depth":3,"path":"generate/templates.md","ref":"generate/templates.md","articles":[]}]}]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"prism":{},"anchors":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"generate/client.md","mtime":"2017-04-05T00:30:59.643Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-04-10T04:01:06.498Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

@@ -2,12 +2,12 @@
 <!DOCTYPE HTML>
 <html lang="" >
     <head>
-        <title>UI · GitBook</title>
         <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>UI · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 3.2.0">
+        <meta name="generator" content="GitBook 3.2.2">
         
         
         
@@ -143,6 +143,19 @@
             
                     
                     Middleware
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3" data-path="../tutorial/custom-server.html">
+            
+                <a href="../tutorial/custom-server.html">
+            
+                    
+                    Custom Server
             
                 </a>
             
@@ -319,7 +332,20 @@
             
         </li>
     
-        <li class="chapter " data-level="1.6.4.4" data-path="../generate/spec/response.html">
+        <li class="chapter " data-level="1.6.4.4" data-path="../generate/spec/operation.html">
+            
+                <a href="../generate/spec/operation.html">
+            
+                    
+                    swagger:operation
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.4.5" data-path="../generate/spec/response.html">
             
                 <a href="../generate/spec/response.html">
             
@@ -332,7 +358,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.6.4.5" data-path="../generate/spec/model.html">
+        <li class="chapter " data-level="1.6.4.6" data-path="../generate/spec/model.html">
             
                 <a href="../generate/spec/model.html">
             
@@ -345,7 +371,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.6.4.6" data-path="../generate/spec/allOf.html">
+        <li class="chapter " data-level="1.6.4.7" data-path="../generate/spec/allOf.html">
             
                 <a href="../generate/spec/allOf.html">
             
@@ -358,7 +384,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.6.4.7" data-path="../generate/spec/strfmt.html">
+        <li class="chapter " data-level="1.6.4.8" data-path="../generate/spec/strfmt.html">
             
                 <a href="../generate/spec/strfmt.html">
             
@@ -371,7 +397,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.6.4.8" data-path="../generate/spec/discriminated.html">
+        <li class="chapter " data-level="1.6.4.9" data-path="../generate/spec/discriminated.html">
             
                 <a href="../generate/spec/discriminated.html">
             
@@ -484,19 +510,32 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="serve-a-documentation-site"><a name="serve-a-documentation-site" class="plugin-anchor" href="#serve-a-documentation-site"><i class="fa fa-link" aria-hidden="true"></i></a>Serve a documentation site</h1><p>The toolkit has a command to serve a spec json document and optionally a UI for a given spec. 
+                                <h1 id="serve-a-documentation-site"><a name="serve-a-documentation-site" class="plugin-anchor" href="#serve-a-documentation-site"><i class="fa fa-link" aria-hidden="true"></i></a>Serve a documentation site</h1>
+<p>The toolkit has a command to serve a spec json document and optionally a UI for a given spec. 
 It embeds redoc, so you can use that documentation site without an internet connection.
-Or it can load your local spec into the swagger docs viewer at <a href="http://petstore.swagger.io" target="_blank">http://petstore.swagger.io</a></p><!--more-->
-
-
-<h3 id="usage"><a name="usage" class="plugin-anchor" href="#usage"><i class="fa fa-link" aria-hidden="true"></i></a>Usage</h3><p>To serve a documentation site:</p><pre><code>swagger serve [http-url|filepath]</code></pre>
-<p>This will start a server with cors enabled so that sites on other domains can load your specification document.</p><h3 id="flavors"><a name="flavors" class="plugin-anchor" href="#flavors"><i class="fa fa-link" aria-hidden="true"></i></a>Flavors</h3><p>At this moment the UI can be served into 2 flavors.</p><h4 id="redoc"><a name="redoc" class="plugin-anchor" href="#redoc"><i class="fa fa-link" aria-hidden="true"></i></a>Redoc</h4><p>The swagger source code has a middleware for embedding Redoc.
-So for the redoc flavor we make use of that and use it with the spec you have on disk.</p><h4 id="swagger-ui"><a name="swagger-ui" class="plugin-anchor" href="#swagger-ui"><i class="fa fa-link" aria-hidden="true"></i></a>Swagger UI</h4><p>For the swagger flavor we use the UI hosted at <a href="http://petstore.swagger.io" target="_blank">http://petstore.swagger.io</a>.
-The server has CORS enabled and appends the url for the spec JSON to the petstore url as a query string.</p><h4 id="your-own-ui"><a name="your-own-ui" class="plugin-anchor" href="#your-own-ui"><i class="fa fa-link" aria-hidden="true"></i></a>Your own UI</h4><p>You can use your own UI by pointing it to the spec served by this command.
+Or it can load your local spec into the swagger docs viewer at <a href="http://petstore.swagger.io" target="_blank">http://petstore.swagger.io</a></p>
+<!--more-->
+<h3 id="usage"><a name="usage" class="plugin-anchor" href="#usage"><i class="fa fa-link" aria-hidden="true"></i></a>Usage</h3>
+<p>To serve a documentation site:</p>
+<pre><code>swagger serve [http-url|filepath]
+</code></pre><p>This will start a server with cors enabled so that sites on other domains can load your specification document. </p>
+<h3 id="flavors"><a name="flavors" class="plugin-anchor" href="#flavors"><i class="fa fa-link" aria-hidden="true"></i></a>Flavors</h3>
+<p>At this moment the UI can be served into 2 flavors.</p>
+<h4 id="redoc"><a name="redoc" class="plugin-anchor" href="#redoc"><i class="fa fa-link" aria-hidden="true"></i></a>Redoc</h4>
+<p>The swagger source code has a middleware for embedding Redoc.
+So for the redoc flavor we make use of that and use it with the spec you have on disk.</p>
+<h4 id="swagger-ui"><a name="swagger-ui" class="plugin-anchor" href="#swagger-ui"><i class="fa fa-link" aria-hidden="true"></i></a>Swagger UI</h4>
+<p>For the swagger flavor we use the UI hosted at <a href="http://petstore.swagger.io" target="_blank">http://petstore.swagger.io</a>.
+The server has CORS enabled and appends the url for the spec JSON to the petstore url as a query string. </p>
+<h4 id="your-own-ui"><a name="your-own-ui" class="plugin-anchor" href="#your-own-ui"><i class="fa fa-link" aria-hidden="true"></i></a>Your own UI</h4>
+<p>You can use your own UI by pointing it to the spec served by this command.
 When no ui is being served, the terminal will print the url to the spec document.
 You can also use the <code>--doc-url</code> to provide another url as base. 
-The url to your documentation site for example, which would need to recognize the query param url to load the swagger spec from, through the browser.</p><h3 id="more"><a name="more" class="plugin-anchor" href="#more"><i class="fa fa-link" aria-hidden="true"></i></a>More</h3><p>There are some more options for this command which you can view with:</p><pre><code>swagger serve --help</code></pre>
-
+The url to your documentation site for example, which would need to recognize the query param url to load the swagger spec from, through the browser.</p>
+<h3 id="more"><a name="more" class="plugin-anchor" href="#more"><i class="fa fa-link" aria-hidden="true"></i></a>More</h3>
+<p>There are some more options for this command which you can view with:</p>
+<pre><code>swagger serve --help
+</code></pre>
                                 
                                 </section>
                             
@@ -539,7 +578,7 @@ The url to your documentation site for example, which would need to recognize th
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"UI","level":"1.4","depth":1,"next":{"title":"Dynamic Server","level":"1.5","depth":1,"path":"tutorial/dynamic.md","ref":"tutorial/dynamic.md","articles":[]},"previous":{"title":"Validate","level":"1.3","depth":1,"path":"usage/validate.md","ref":"usage/validate.md","articles":[]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"prism":{},"anchors":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"usage/serve_ui.md","mtime":"2016-10-09T01:48:16.003Z","type":"markdown"},"gitbook":{"version":"3.2.0","time":"2016-10-09T16:24:46.747Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"UI","level":"1.4","depth":1,"next":{"title":"Dynamic Server","level":"1.5","depth":1,"path":"tutorial/dynamic.md","ref":"tutorial/dynamic.md","articles":[]},"previous":{"title":"Validate","level":"1.3","depth":1,"path":"usage/validate.md","ref":"usage/validate.md","articles":[]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"prism":{},"anchors":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"usage/serve_ui.md","mtime":"2016-10-09T01:48:16.003Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-04-10T04:01:06.498Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

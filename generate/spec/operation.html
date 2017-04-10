@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>swagger:discriminated · GitBook</title>
+        <title>swagger:operation · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.2">
@@ -65,10 +65,10 @@
     <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="../../use/template_layout.html" />
+    <link rel="next" href="response.html" />
     
     
-    <link rel="prev" href="strfmt.html" />
+    <link rel="prev" href="params.html" />
     
 
     </head>
@@ -332,7 +332,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.6.4.4" data-path="operation.html">
+        <li class="chapter active" data-level="1.6.4.4" data-path="operation.html">
             
                 <a href="operation.html">
             
@@ -397,7 +397,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.6.4.9" data-path="discriminated.html">
+        <li class="chapter " data-level="1.6.4.9" data-path="discriminated.html">
             
                 <a href="discriminated.html">
             
@@ -495,7 +495,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../.." >swagger:discriminated</a>
+        <a href="../.." >swagger:operation</a>
     </h1>
 </div>
 
@@ -510,90 +510,109 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="swaggerdiscriminated"><a name="swaggerdiscriminated" class="plugin-anchor" href="#swaggerdiscriminated"><i class="fa fa-link" aria-hidden="true"></i></a>swagger:discriminated</h1>
-<p>Marks an embedded type as  a member for allOf and sets the x-class value. On interface definitions there is another annotation on methods allowed <em>swagger:name</em></p>
+                                <h1 id="swaggeroperation"><a name="swaggeroperation" class="plugin-anchor" href="#swaggeroperation"><i class="fa fa-link" aria-hidden="true"></i></a>swagger:operation</h1>
+<p>A <strong>swagger:operation</strong> annotation links a path to a method.
+This operation gets a unique id, which is used in various places as method name.
+One such usage is in method names for client generation for example.</p>
+<p>Because there are many routers available, this tool does not try to parse the paths
+you provided to your routing library of choice. So you have to specify your path pattern
+yourself in valid swagger (YAML) syntax.</p>
 <!--more-->
-<p>The swagger:allOf annotation can be followed by a string. This string will be the value for the <code>x-class</code> vendor extension. This value is used as constant for the discriminator field.</p>
-<p>An interface that is embedded expects to have 1 method that is commented with <code>Discriminator: true</code>. That field will be used as discriminator field when marshalling/unmarshalling objects.</p>
-<p>Because this is for use with interfaces we can&apos;t make use of the json struct tag to allow for spec name overriding. So instead you can annotate method names on an interface with swagger:name and a value this will then provide the json field name.</p>
 <h5 id="syntax"><a name="syntax" class="plugin-anchor" href="#syntax"><i class="fa fa-link" aria-hidden="true"></i></a>Syntax:</h5>
-<pre><code>swagger:allOf org.example.something.TypeName
-</code></pre><h5 id="example"><a name="example" class="plugin-anchor" href="#example"><i class="fa fa-link" aria-hidden="true"></i></a>Example:</h5>
-<pre><code class="lang-go"><span class="token comment" spellcheck="true">// TeslaCar is a tesla car</span>
-<span class="token comment" spellcheck="true">//</span>
-<span class="token comment" spellcheck="true">// swagger:model</span>
-<span class="token keyword">type</span> TeslaCar <span class="token keyword">interface</span> <span class="token operator">{</span>
-    <span class="token comment" spellcheck="true">// The model of tesla car</span>
+<pre><code>swagger:operation [method] [path pattern] [?tag1 tag2 tag3] [operation id]
+</code></pre><h5 id="properties"><a name="properties" class="plugin-anchor" href="#properties"><i class="fa fa-link" aria-hidden="true"></i></a>Properties:</h5>
+<p>Any valid Swagger 2.0 YAML <em>Operation</em> property is valid.
+Make sure your indentation is consistent and correct,
+as it won&apos;t parse correctly otherwise.</p>
+<p>You can find all the properties at <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#operationObject" target="_blank">https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#operationObject</a></p>
+<p>Note that if you specify the <em>tags</em>, <em>summary</em>, <em>description</em> or <em>operationId</em> as part of the
+YAML spec, you will override the <em>summary</em>, <em>descriptions</em>, <em>tags</em> or <em>operationId</em>, specified as part of the regular swagger syntax above.</p>
+<p>Also note that you need to start your YAML spec with a triple dash <code>---</code>.</p>
+<h5 id="example"><a name="example" class="plugin-anchor" href="#example"><i class="fa fa-link" aria-hidden="true"></i></a>Example:</h5>
+<pre><code class="lang-go"><span class="token comment" spellcheck="true">// ServeAPI serves the API for this record store</span>
+<span class="token keyword">func</span> <span class="token function">ServeAPI<span class="token punctuation">(</span></span>host<span class="token operator">,</span> basePath <span class="token builtin">string</span><span class="token operator">,</span> schemes <span class="token operator">[</span><span class="token operator">]</span><span class="token builtin">string</span><span class="token operator">)</span> <span class="token operator">(</span>err <span class="token builtin">error</span><span class="token operator">)</span> <span class="token operator">{</span>
+    <span class="token comment" spellcheck="true">// swagger:operation GET /pets getPet</span>
     <span class="token comment" spellcheck="true">//</span>
-    <span class="token comment" spellcheck="true">// discriminator: true</span>
-    <span class="token comment" spellcheck="true">// swagger:name model</span>
-    <span class="token function">Model<span class="token punctuation">(</span></span><span class="token operator">)</span> <span class="token builtin">string</span>
+    <span class="token comment" spellcheck="true">// Returns all pets from the system that the user has access to</span>
+    <span class="token comment" spellcheck="true">//</span>
+    <span class="token comment" spellcheck="true">// Could be any pet</span>
+    <span class="token comment" spellcheck="true">//</span>
+    <span class="token comment" spellcheck="true">// ---</span>
+    <span class="token comment" spellcheck="true">// produces:</span>
+    <span class="token comment" spellcheck="true">// - application/json</span>
+    <span class="token comment" spellcheck="true">// - application/xml</span>
+    <span class="token comment" spellcheck="true">// - text/xml</span>
+    <span class="token comment" spellcheck="true">// - text/html</span>
+    <span class="token comment" spellcheck="true">// parameters:</span>
+    <span class="token comment" spellcheck="true">// - name: tags</span>
+    <span class="token comment" spellcheck="true">//   in: query</span>
+    <span class="token comment" spellcheck="true">//   description: tags to filter by</span>
+    <span class="token comment" spellcheck="true">//   required: false</span>
+    <span class="token comment" spellcheck="true">//   type: array</span>
+    <span class="token comment" spellcheck="true">//   items:</span>
+    <span class="token comment" spellcheck="true">//     type: string</span>
+    <span class="token comment" spellcheck="true">//   collectionFormat: csv</span>
+    <span class="token comment" spellcheck="true">// - name: limit</span>
+    <span class="token comment" spellcheck="true">//   in: query</span>
+    <span class="token comment" spellcheck="true">//   description: maximum number of results to return</span>
+    <span class="token comment" spellcheck="true">//   required: false</span>
+    <span class="token comment" spellcheck="true">//   type: integer</span>
+    <span class="token comment" spellcheck="true">//   format: int32</span>
+    <span class="token comment" spellcheck="true">// responses:</span>
+    <span class="token comment" spellcheck="true">//   &apos;200&apos;:</span>
+    <span class="token comment" spellcheck="true">//     description: pet response</span>
+    <span class="token comment" spellcheck="true">//     schema:</span>
+    <span class="token comment" spellcheck="true">//       type: array</span>
+    <span class="token comment" spellcheck="true">//       items:</span>
+    <span class="token comment" spellcheck="true">//         &quot;$ref&quot;: &quot;#/definitions/pet&quot;</span>
+    <span class="token comment" spellcheck="true">//   default:</span>
+    <span class="token comment" spellcheck="true">//     description: unexpected error</span>
+    <span class="token comment" spellcheck="true">//     schema:</span>
+    <span class="token comment" spellcheck="true">//       &quot;$ref&quot;: &quot;#/definitions/errorModel&quot;</span>
+    <span class="token function">mountItem<span class="token punctuation">(</span></span><span class="token string">&quot;GET&quot;</span><span class="token operator">,</span> basePath<span class="token operator">+</span><span class="token string">&quot;/pets&quot;</span><span class="token operator">,</span> <span class="token boolean">nil</span><span class="token operator">)</span>
 
-    <span class="token comment" spellcheck="true">// AutoPilot returns true when it supports autopilot</span>
-    <span class="token comment" spellcheck="true">// swagger:name autoPilot</span>
-    <span class="token function">AutoPilot<span class="token punctuation">(</span></span><span class="token operator">)</span> <span class="token builtin">bool</span>
+    <span class="token keyword">return</span>
 <span class="token operator">}</span>
 
-<span class="token comment" spellcheck="true">// The ModelS version of the tesla car</span>
-<span class="token comment" spellcheck="true">//</span>
-<span class="token comment" spellcheck="true">// swagger:model modelS</span>
-<span class="token keyword">type</span> ModelS <span class="token keyword">struct</span> <span class="token operator">{</span>
-    <span class="token comment" spellcheck="true">// swagger:allOf com.tesla.models.ModelS</span>
-    TeslaCar
-    <span class="token comment" spellcheck="true">// The edition of this Model S</span>
-    Edition <span class="token builtin">string</span> <span class="token string">`json:&quot;edition&quot;`</span>
-<span class="token operator">}</span>
+##### Result<span class="token operator">:</span>
 
-<span class="token comment" spellcheck="true">// The ModelX version of the tesla car</span>
-<span class="token comment" spellcheck="true">//</span>
-<span class="token comment" spellcheck="true">// swagger:model modelX</span>
-<span class="token keyword">type</span> ModelX <span class="token keyword">struct</span> <span class="token operator">{</span>
-    <span class="token comment" spellcheck="true">// swagger:allOf com.tesla.models.ModelX</span>
-    TeslaCar
-    <span class="token comment" spellcheck="true">// The number of doors on this Model X</span>
-    Doors <span class="token builtin">int32</span> <span class="token string">`json:&quot;doors&quot;`</span>
-<span class="token operator">}</span>
-</code></pre>
-<h5 id="result"><a name="result" class="plugin-anchor" href="#result"><i class="fa fa-link" aria-hidden="true"></i></a>Result:</h5>
-<pre><code class="lang-yaml"><span class="token punctuation">-</span><span class="token punctuation">-</span><span class="token punctuation">-</span>
-<span class="token key atrule">definitions</span><span class="token punctuation">:</span>
-  <span class="token key atrule">TeslaCar</span><span class="token punctuation">:</span>
-    <span class="token key atrule">title</span><span class="token punctuation">:</span> TeslaCar is a tesla car
-    <span class="token key atrule">type</span><span class="token punctuation">:</span> object
-    <span class="token key atrule">discriminator</span><span class="token punctuation">:</span> <span class="token string">&quot;model&quot;</span>
-    <span class="token key atrule">properties</span><span class="token punctuation">:</span>
-      <span class="token key atrule">model</span><span class="token punctuation">:</span>
-        <span class="token key atrule">description</span><span class="token punctuation">:</span> The model of tesla car
-        <span class="token key atrule">type</span><span class="token punctuation">:</span> string
-        <span class="token key atrule">x-go-name</span><span class="token punctuation">:</span> Model
-      <span class="token key atrule">autoPilot</span><span class="token punctuation">:</span>
-        <span class="token key atrule">description</span><span class="token punctuation">:</span> AutoPilot returns true when it supports autopilot
-        <span class="token key atrule">type</span><span class="token punctuation">:</span> integer
-        <span class="token key atrule">format</span><span class="token punctuation">:</span> int32
-        <span class="token key atrule">x-go-name</span><span class="token punctuation">:</span> AutoPilot
-  <span class="token key atrule">modelS</span><span class="token punctuation">:</span>
-    <span class="token key atrule">allOf</span><span class="token punctuation">:</span>
-      <span class="token punctuation">-</span> <span class="token key atrule">$ref</span><span class="token punctuation">:</span> &quot;<span class="token comment" spellcheck="true">#/definitions/TeslaCar&quot;</span>
-      <span class="token punctuation">-</span> <span class="token key atrule">title</span><span class="token punctuation">:</span> The ModelS version of the tesla car
-        <span class="token key atrule">properties</span><span class="token punctuation">:</span>
-          <span class="token key atrule">edition</span><span class="token punctuation">:</span>
-            <span class="token key atrule">description</span><span class="token punctuation">:</span> <span class="token string">&quot;The edition of this model S&quot;</span>
-            <span class="token key atrule">type</span><span class="token punctuation">:</span> string
-            <span class="token key atrule">x-go-name</span><span class="token punctuation">:</span> Edition
-        <span class="token key atrule">x-class</span><span class="token punctuation">:</span> <span class="token string">&quot;com.tesla.models.ModelS&quot;</span>
-        <span class="token key atrule">x-go-name</span><span class="token punctuation">:</span> <span class="token string">&quot;ModelX&quot;</span>
-  <span class="token key atrule">modelX</span><span class="token punctuation">:</span>
-    <span class="token key atrule">allOf</span><span class="token punctuation">:</span>
-      <span class="token punctuation">-</span> <span class="token key atrule">$ref</span><span class="token punctuation">:</span> &quot;<span class="token comment" spellcheck="true">#/definitions/TeslaCar&quot;</span>
-      <span class="token punctuation">-</span> <span class="token key atrule">title</span><span class="token punctuation">:</span> The ModelX version of the tesla car
-        <span class="token key atrule">properties</span><span class="token punctuation">:</span>
-          <span class="token key atrule">doors</span><span class="token punctuation">:</span>
-            <span class="token key atrule">description</span><span class="token punctuation">:</span> <span class="token string">&quot;The number of doors on this Model X&quot;</span>
-            <span class="token key atrule">type</span><span class="token punctuation">:</span> integer
-            <span class="token key atrule">format</span><span class="token punctuation">:</span> int32
-            <span class="token key atrule">x-go-name</span><span class="token punctuation">:</span> Doors
-        <span class="token key atrule">x-class</span><span class="token punctuation">:</span> <span class="token string">&quot;com.tesla.models.ModelX&quot;</span>
-        <span class="token key atrule">x-go-name</span><span class="token punctuation">:</span> ModelX
+<span class="token string">``</span>`yaml
+<span class="token operator">--</span><span class="token operator">-</span>
+paths<span class="token operator">:</span>
+  <span class="token string">&quot;/pets&quot;</span><span class="token operator">:</span>
+    get<span class="token operator">:</span>
+      summary<span class="token operator">:</span> Returns all pets from the system that the user has access to
+      description<span class="token operator">:</span> Could be any pet
+      produces<span class="token operator">:</span>
+        <span class="token operator">-</span> application<span class="token operator">/</span>json
+        <span class="token operator">-</span> application<span class="token operator">/</span>xml
+        <span class="token operator">-</span> text<span class="token operator">/</span>xml
+        <span class="token operator">-</span> text<span class="token operator">/</span>html
+      operationId<span class="token operator">:</span> getPet
+      parameters<span class="token operator">:</span>
+        <span class="token operator">-</span> <span class="token keyword">type</span><span class="token operator">:</span> array
+          items<span class="token operator">:</span>
+            <span class="token keyword">type</span><span class="token operator">:</span> <span class="token builtin">string</span>
+          collectionFormat<span class="token operator">:</span> csv
+          description<span class="token operator">:</span> tags to filter by
+          name<span class="token operator">:</span> tags
+          in<span class="token operator">:</span> query
+        <span class="token operator">-</span> <span class="token keyword">type</span><span class="token operator">:</span> integer
+          format<span class="token operator">:</span> <span class="token builtin">int32</span>
+          description<span class="token operator">:</span> maximum number of results to <span class="token keyword">return</span>
+          name<span class="token operator">:</span> limit
+          in<span class="token operator">:</span> query
+      responses<span class="token operator">:</span>
+        <span class="token string">&apos;200&apos;</span><span class="token operator">:</span>
+          description<span class="token operator">:</span> pet response
+          schema<span class="token operator">:</span>
+            <span class="token keyword">type</span><span class="token operator">:</span> array
+            items<span class="token operator">:</span>
+              $ref<span class="token operator">:</span> <span class="token string">&quot;#/definitions/pet&quot;</span>
+        <span class="token keyword">default</span><span class="token operator">:</span>
+          description<span class="token operator">:</span> unexpected <span class="token builtin">error</span>
+          schema<span class="token operator">:</span>
+            $ref<span class="token operator">:</span> <span class="token string">&quot;#/definitions/errorModel&quot;</span>
 </code></pre>
 
                                 
@@ -622,12 +641,12 @@
 
             
                 
-                <a href="strfmt.html" class="navigation navigation-prev " aria-label="Previous page: swagger:strfmt">
+                <a href="params.html" class="navigation navigation-prev " aria-label="Previous page: swagger:params">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="../../use/template_layout.html" class="navigation navigation-next " aria-label="Next page: Custom generation">
+                <a href="response.html" class="navigation navigation-next " aria-label="Next page: swagger:response">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -638,7 +657,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"swagger:discriminated","level":"1.6.4.9","depth":3,"next":{"title":"Custom generation","level":"1.6.5","depth":2,"path":"use/template_layout.md","ref":"use/template_layout.md","articles":[{"title":"Custom templates","level":"1.6.5.1","depth":3,"path":"generate/templates.md","ref":"generate/templates.md","articles":[]}]},"previous":{"title":"swagger:strfmt","level":"1.6.4.8","depth":3,"path":"generate/spec/strfmt.md","ref":"generate/spec/strfmt.md","articles":[]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"prism":{},"anchors":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"generate/spec/discriminated.md","mtime":"2016-08-25T04:20:38.407Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-04-10T04:01:06.498Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"swagger:operation","level":"1.6.4.4","depth":3,"next":{"title":"swagger:response","level":"1.6.4.5","depth":3,"path":"generate/spec/response.md","ref":"generate/spec/response.md","articles":[]},"previous":{"title":"swagger:params","level":"1.6.4.3","depth":3,"path":"generate/spec/params.md","ref":"generate/spec/params.md","articles":[]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"prism":{},"anchors":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"generate/spec/operation.md","mtime":"2016-12-29T21:17:00.204Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-04-10T04:01:06.498Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

@@ -2,12 +2,12 @@
 <!DOCTYPE HTML>
 <html lang="" >
     <head>
-        <title>Model generation rules · GitBook</title>
         <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Model generation rules · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 3.2.0">
+        <meta name="generator" content="GitBook 3.2.2">
         
         
         
@@ -143,6 +143,19 @@
             
                     
                     Middleware
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3" data-path="../tutorial/custom-server.html">
+            
+                <a href="../tutorial/custom-server.html">
+            
+                    
+                    Custom Server
             
                 </a>
             
@@ -319,7 +332,20 @@
             
         </li>
     
-        <li class="chapter " data-level="1.6.4.4" data-path="../generate/spec/response.html">
+        <li class="chapter " data-level="1.6.4.4" data-path="../generate/spec/operation.html">
+            
+                <a href="../generate/spec/operation.html">
+            
+                    
+                    swagger:operation
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.4.5" data-path="../generate/spec/response.html">
             
                 <a href="../generate/spec/response.html">
             
@@ -332,7 +358,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.6.4.5" data-path="../generate/spec/model.html">
+        <li class="chapter " data-level="1.6.4.6" data-path="../generate/spec/model.html">
             
                 <a href="../generate/spec/model.html">
             
@@ -345,7 +371,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.6.4.6" data-path="../generate/spec/allOf.html">
+        <li class="chapter " data-level="1.6.4.7" data-path="../generate/spec/allOf.html">
             
                 <a href="../generate/spec/allOf.html">
             
@@ -358,7 +384,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.6.4.7" data-path="../generate/spec/strfmt.html">
+        <li class="chapter " data-level="1.6.4.8" data-path="../generate/spec/strfmt.html">
             
                 <a href="../generate/spec/strfmt.html">
             
@@ -371,7 +397,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.6.4.8" data-path="../generate/spec/discriminated.html">
+        <li class="chapter " data-level="1.6.4.9" data-path="../generate/spec/discriminated.html">
             
                 <a href="../generate/spec/discriminated.html">
             
@@ -484,51 +510,46 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="schema-generation-rules"><a name="schema-generation-rules" class="plugin-anchor" href="#schema-generation-rules"><i class="fa fa-link" aria-hidden="true"></i></a>Schema generation rules</h1><p>Lots of the work of go-swagger is to generate models, which can have all kinds of rules like polymorphism and
-validations.  Of course none of this is possible without set of rules and tradeoffs.</p><!--more-->
-
-
-<h3 id="about-schemas"><a name="about-schemas" class="plugin-anchor" href="#about-schemas"><i class="fa fa-link" aria-hidden="true"></i></a>About schemas</h3><p>The general idea is that you should rarely see interface{} in the generated code.
-You get a complete representation of a swagger document in somewhat idiomatic go.</p><p>To do so there is set of mapping patterns that are applied to a spec to go types:</p><ul><li>defintion of primitive =&gt; type alias/name
-</li>
-<li>defintion of array =&gt; type alias/name
-</li>
-<li>definition of map =&gt; type alias/name
-</li>
-<li>definition of object with properties =&gt; struct
-</li>
-<li>definition of ref =&gt; type alias/name
-</li>
-<li>object with only additional properties =&gt; map[string]T
-</li>
-<li>object with additional properties and properties =&gt; custom serializer
-</li>
-<li>schema with schema array in items =&gt; tuple (struct with properties, custom serializer)
-</li>
-<li>schema with all of =&gt; struct
-</li>
-<li>all of schema with ref =&gt; embedded value
-</li>
-<li>all of schema with properties =&gt; properties are included in struct
-</li>
+                                <h1 id="schema-generation-rules"><a name="schema-generation-rules" class="plugin-anchor" href="#schema-generation-rules"><i class="fa fa-link" aria-hidden="true"></i></a>Schema generation rules</h1>
+<p>Lots of the work of go-swagger is to generate models, which can have all kinds of rules like polymorphism and
+validations.  Of course none of this is possible without set of rules and tradeoffs.</p>
+<!--more-->
+<h3 id="about-schemas"><a name="about-schemas" class="plugin-anchor" href="#about-schemas"><i class="fa fa-link" aria-hidden="true"></i></a>About schemas</h3>
+<p>The general idea is that you should rarely see interface{} in the generated code.
+You get a complete representation of a swagger document in somewhat idiomatic go.</p>
+<p>To do so there is set of mapping patterns that are applied to a spec to go types:</p>
+<ul>
+<li>defintion of primitive =&gt; type alias/name</li>
+<li>defintion of array =&gt; type alias/name</li>
+<li>definition of map =&gt; type alias/name</li>
+<li>definition of object with properties =&gt; struct</li>
+<li>definition of ref =&gt; type alias/name</li>
+<li>object with only additional properties =&gt; map[string]T</li>
+<li>object with additional properties and properties =&gt; custom serializer</li>
+<li>schema with schema array in items =&gt; tuple (struct with properties, custom serializer)</li>
+<li>schema with all of =&gt; struct</li>
+<li>all of schema with ref =&gt; embedded value</li>
+<li>all of schema with properties =&gt; properties are included in struct</li>
 <li>adding an all of schema with just &quot;x-isnullable&quot;: true or &quot;x-nullable&quot;: true turns
-the schema into a pointer when there are only other extension properties provided
-</li></ul>
+the schema into a pointer when there are only other extension properties provided</li>
+</ul>
 <p>JSONSchema and by extension swagger allow for items that have a fixed size array
 with schema&apos;s describing the items at each index. This can be combined with additional items
 to form some kind of tuple with varargs.
-To map this to go it creates a struct that has fixed names and a custom json serializer.</p><p>The code that is generated also gets the doc comments that are used by the scanner
+To map this to go it creates a struct that has fixed names and a custom json serializer.</p>
+<p>The code that is generated also gets the doc comments that are used by the scanner
 to generate a spec from go code. So that after generation you should be able to reverse
-generate a spec from the code that was generated by your spec.</p><p>It should be equivalent to the original spec but might miss some default values and examples.</p><h4 id="nullability"><a name="nullability" class="plugin-anchor" href="#nullability"><i class="fa fa-link" aria-hidden="true"></i></a>nullability</h4><p>There are rules around what turns something into a pointer.</p><ul><li>structs
-</li>
-<li>x-nullable, x-isnullable
-</li>
-<li>primitives where the zero value is valid but fail validation otherwise
-</li>
-<li>strings minLength &gt; 0 or required results in non-pointer
-</li>
-<li>numbers min &gt; 0, max &lt; 0 and min &lt; max
-</li></ul>
+generate a spec from the code that was generated by your spec.</p>
+<p>It should be equivalent to the original spec but might miss some default values and examples.</p>
+<h4 id="nullability"><a name="nullability" class="plugin-anchor" href="#nullability"><i class="fa fa-link" aria-hidden="true"></i></a>nullability</h4>
+<p>There are rules around what turns something into a pointer.</p>
+<ul>
+<li>structs</li>
+<li>x-nullable, x-isnullable</li>
+<li>primitives where the zero value is valid but fail validation otherwise</li>
+<li>strings minLength &gt; 0 or required results in non-pointer</li>
+<li>numbers min &gt; 0, max &lt; 0 and min &lt; max</li>
+</ul>
 
                                 
                                 </section>
@@ -572,7 +593,7 @@ generate a spec from the code that was generated by your spec.</p><p>It should b
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Model generation rules","level":"1.6.3","depth":2,"next":{"title":"swagger.json","level":"1.6.4","depth":2,"path":"generate/spec.md","ref":"generate/spec.md","articles":[{"title":"swagger:meta","level":"1.6.4.1","depth":3,"path":"generate/spec/meta.md","ref":"generate/spec/meta.md","articles":[]},{"title":"swagger:route","level":"1.6.4.2","depth":3,"path":"generate/spec/route.md","ref":"generate/spec/route.md","articles":[]},{"title":"swagger:params","level":"1.6.4.3","depth":3,"path":"generate/spec/params.md","ref":"generate/spec/params.md","articles":[]},{"title":"swagger:response","level":"1.6.4.4","depth":3,"path":"generate/spec/response.md","ref":"generate/spec/response.md","articles":[]},{"title":"swagger:model","level":"1.6.4.5","depth":3,"path":"generate/spec/model.md","ref":"generate/spec/model.md","articles":[]},{"title":"swagger:allOf","level":"1.6.4.6","depth":3,"path":"generate/spec/allOf.md","ref":"generate/spec/allOf.md","articles":[]},{"title":"swagger:strfmt","level":"1.6.4.7","depth":3,"path":"generate/spec/strfmt.md","ref":"generate/spec/strfmt.md","articles":[]},{"title":"swagger:discriminated","level":"1.6.4.8","depth":3,"path":"generate/spec/discriminated.md","ref":"generate/spec/discriminated.md","articles":[]}]},"previous":{"title":"Usage","level":"1.6.2.1","depth":3,"path":"use/server.md","ref":"use/server.md","articles":[]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"prism":{},"anchors":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"use/schemas.md","mtime":"2016-08-25T04:20:38.413Z","type":"markdown"},"gitbook":{"version":"3.2.0","time":"2016-10-09T16:24:46.747Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Model generation rules","level":"1.6.3","depth":2,"next":{"title":"swagger.json","level":"1.6.4","depth":2,"path":"generate/spec.md","ref":"generate/spec.md","articles":[{"title":"swagger:meta","level":"1.6.4.1","depth":3,"path":"generate/spec/meta.md","ref":"generate/spec/meta.md","articles":[]},{"title":"swagger:route","level":"1.6.4.2","depth":3,"path":"generate/spec/route.md","ref":"generate/spec/route.md","articles":[]},{"title":"swagger:params","level":"1.6.4.3","depth":3,"path":"generate/spec/params.md","ref":"generate/spec/params.md","articles":[]},{"title":"swagger:operation","level":"1.6.4.4","depth":3,"path":"generate/spec/operation.md","ref":"generate/spec/operation.md","articles":[]},{"title":"swagger:response","level":"1.6.4.5","depth":3,"path":"generate/spec/response.md","ref":"generate/spec/response.md","articles":[]},{"title":"swagger:model","level":"1.6.4.6","depth":3,"path":"generate/spec/model.md","ref":"generate/spec/model.md","articles":[]},{"title":"swagger:allOf","level":"1.6.4.7","depth":3,"path":"generate/spec/allOf.md","ref":"generate/spec/allOf.md","articles":[]},{"title":"swagger:strfmt","level":"1.6.4.8","depth":3,"path":"generate/spec/strfmt.md","ref":"generate/spec/strfmt.md","articles":[]},{"title":"swagger:discriminated","level":"1.6.4.9","depth":3,"path":"generate/spec/discriminated.md","ref":"generate/spec/discriminated.md","articles":[]}]},"previous":{"title":"Usage","level":"1.6.2.1","depth":3,"path":"use/server.md","ref":"use/server.md","articles":[]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"prism":{},"anchors":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"use/schemas.md","mtime":"2016-08-25T04:20:38.413Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-04-10T04:01:06.498Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
