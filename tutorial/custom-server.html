@@ -523,30 +523,31 @@ Please consult <a href="https://github.com/OAI/OpenAPI-Specification/blob/master
 for more information in case you&apos;re new to OpenAPI (Also known as Swagger).</p>
 <p>The end product of this tutorial can be found as <code>./examples/tutorials/custom-server</code>.</p>
 <p>The server we&apos;ll be building, will be generated using the following spec:</p>
-<pre><code>---
-swagger: &apos;2.0&apos;
-info:
-  version: 1.0.0
-  title: Greeting Server
-paths:
-  /hello:
-    get:
-      produces:
-        - text/plain
-      parameters:
-        - name: name
-          required: false
-          type: string
-          in: query
-          description: defaults to World if not given
-      operationId: getGreeting
-      responses:
-        200:
-          description: returns a greeting
-          schema:
-              type: string
-              description: contains the actual greeting as plain text
-</code></pre><p>As you can see, there is only 1 operation,
+<pre><code class="lang-yaml"><span class="token punctuation">-</span><span class="token punctuation">-</span><span class="token punctuation">-</span>
+<span class="token key atrule">swagger</span><span class="token punctuation">:</span> <span class="token string">&apos;2.0&apos;</span>
+<span class="token key atrule">info</span><span class="token punctuation">:</span>
+  <span class="token key atrule">version</span><span class="token punctuation">:</span> 1.0.0
+  <span class="token key atrule">title</span><span class="token punctuation">:</span> Greeting Server
+<span class="token key atrule">paths</span><span class="token punctuation">:</span>
+  <span class="token key atrule">/hello</span><span class="token punctuation">:</span>
+    <span class="token key atrule">get</span><span class="token punctuation">:</span>
+      <span class="token key atrule">produces</span><span class="token punctuation">:</span>
+        <span class="token punctuation">-</span> text/plain
+      <span class="token key atrule">parameters</span><span class="token punctuation">:</span>
+        <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> name
+          <span class="token key atrule">required</span><span class="token punctuation">:</span> <span class="token boolean important">false</span>
+          <span class="token key atrule">type</span><span class="token punctuation">:</span> string
+          <span class="token key atrule">in</span><span class="token punctuation">:</span> query
+          <span class="token key atrule">description</span><span class="token punctuation">:</span> defaults to World if not given
+      <span class="token key atrule">operationId</span><span class="token punctuation">:</span> getGreeting
+      <span class="token key atrule">responses</span><span class="token punctuation">:</span>
+        <span class="token key atrule">200</span><span class="token punctuation">:</span>
+          <span class="token key atrule">description</span><span class="token punctuation">:</span> returns a greeting
+          <span class="token key atrule">schema</span><span class="token punctuation">:</span>
+              <span class="token key atrule">type</span><span class="token punctuation">:</span> string
+              <span class="token key atrule">description</span><span class="token punctuation">:</span> contains the actual greeting as plain text
+</code></pre>
+<p>As you can see, there is only 1 operation,
 allowing us to focus on how to create a custom server,
 without loosing track in the details of any specific implementation.</p>
 <p>Where you store the specification is not important.
@@ -554,8 +555,9 @@ By default the <a href="https://github.com/go-swagger/go-swagger" target="_blank
 but we&apos;ll store it as <code>./swagger/swagger.yml</code>, to keep our project&apos;s root folder clean and tidy.</p>
 <p>Once we have our OpenAPI specification ready, it is time to generate our server.
 This can be done using the following command, from within our root folder:</p>
-<pre><code>$ swagger generate server -t gen -f ./swagger/swagger.yml --exclude-main -A greeter
-</code></pre><p>In the command above we&apos;re specifying the <code>-t</code> (target) flag,
+<pre><code class="lang-shellsession">$ swagger generate server -t gen -f ./swagger/swagger.yml --exclude-main -A greeter
+</code></pre>
+<p>In the command above we&apos;re specifying the <code>-t</code> (target) flag,
 specifying that swagger should store all generated code in the given <em>target</em> directory. We&apos;re also specifying the <code>-f</code> flag, to explicitly define that our spec file can be found at <code>./swagger/swagger.yml</code>, rather then the default <code>./swagger.yml</code>. As we are writing a custom server, we also don&apos;t want the automatically generated <code>cmd</code> server, and is excluded using the <code>--exclude-main</code> flag. Finally we&apos;re also explicitly naming our server using the <code>-A</code> flag.
 Please consult <code>swagger generate server --help</code> for more flags and information.</p>
 <p>Once we&apos;ve executed this command, you should have following file tree:</p>
@@ -645,14 +647,15 @@ You can run it from our root directory using the following command:</p>
 using the <a href="https://httpie.org" target="_blank">httpie</a> cli:</p>
 <pre><code>$ http get :3000/hello
 </code></pre><p>Sadly this gives us the following output:</p>
-<pre><code>HTTP/1.1 501 Not Implemented
-Connection: close
-Content-Length: 50
-Content-Type: text/plain
-Date: Thu, 26 Jan 2017 13:09:52 GMT
+<pre><code class="lang-http"><span class="token response-status">HTTP/1.1 <span class="token property">501 Not Implemented</span></span>
+<span class="token keyword">Connection:</span> close
+<span class="token keyword">Content-Length:</span> 50
+<span class="token keyword">Content-Type:</span> text/plain
+<span class="token keyword">Date:</span> Thu, 26 Jan 2017 13:09:52 GMT
 
 operation GetGreeting has not yet been implemented
-</code></pre><p>The good news is that our OpenAPI-based Golang service is working.
+</code></pre>
+<p>The good news is that our OpenAPI-based Golang service is working.
 The bad news is that we haven&apos;t implemented our handlers yet.
 We&apos;ll need one handler per operation, that does the actual logic.</p>
 <p>You might wonder why it does give us a sane response, rather then panicking.
@@ -702,23 +705,25 @@ In this case we use the <code>StringValue</code> function which transforms a <co
 <pre><code>$ go run ./cmd/greeter/main.go --port 3000
 </code></pre><p>And now we&apos;re ready to test our greeter API once again:</p>
 <pre><code>$ http get :3000/hello
-</code></pre><pre><code>HTTP/1.1 200 OK
-Connection: close
-Content-Length: 13
-Content-Type: text/plain
-Date: Thu, 26 Jan 2017 13:47:49 GMT
+</code></pre><pre><code class="lang-http"><span class="token response-status">HTTP/1.1 <span class="token property">200 OK</span></span>
+<span class="token keyword">Connection:</span> close
+<span class="token keyword">Content-Length:</span> 13
+<span class="token keyword">Content-Type:</span> text/plain
+<span class="token keyword">Date:</span> Thu, 26 Jan 2017 13:47:49 GMT
 
 Hello, World!
-</code></pre><p>Hurray, let&apos;s now greet <em>Swagger</em>:</p>
+</code></pre>
+<p>Hurray, let&apos;s now greet <em>Swagger</em>:</p>
 <pre><code>$ http get :3000/hello name==Swagger
-</code></pre><pre><code>HTTP/1.1 200 OK
-Connection: close
-Content-Length: 15
-Content-Type: text/plain
-Date: Thu, 26 Jan 2017 13:48:40 GMT
+</code></pre><pre><code class="lang-http"><span class="token response-status">HTTP/1.1 <span class="token property">200 OK</span></span>
+<span class="token keyword">Connection:</span> close
+<span class="token keyword">Content-Length:</span> 15
+<span class="token keyword">Content-Type:</span> text/plain
+<span class="token keyword">Date:</span> Thu, 26 Jan 2017 13:48:40 GMT
 
 Hello, Swagger!
-</code></pre><p>Great, Swagger will be happy to hear that.</p>
+</code></pre>
+<p>Great, Swagger will be happy to hear that.</p>
 <p>As we just learned, using <a href="https://github.com/go-swagger/go-swagger" target="_blank">go-swagger</a> and a manually defined <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md" target="_blank">OpenAPI2.0</a> specification file, we can build a Golang service with minimal effort. Please read the other <a href="https://github.com/go-swagger/go-swagger" target="_blank">go-swagger</a> docs for more information about how to use it and its different elements.</p>
 <p>Also please checkout the <a href="https://github.com/go-openapi/kvstore" target="_blank">kvstore example</a> for a more complex example.
 It is the main inspiration for this tutorial and has been built using the exact
@@ -766,7 +771,7 @@ same techniques as described in this tutorial.</p>
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Custom Server","level":"1.2.3","depth":2,"next":{"title":"Validate","level":"1.3","depth":1,"path":"usage/validate.md","ref":"usage/validate.md","articles":[]},"previous":{"title":"Middleware","level":"1.2.2","depth":2,"path":"use/middleware.md","ref":"use/middleware.md","articles":[]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"prism":{},"anchors":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"tutorial/custom-server.md","mtime":"2017-01-29T22:07:37.773Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-04-10T04:01:06.498Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Custom Server","level":"1.2.3","depth":2,"next":{"title":"Validate","level":"1.3","depth":1,"path":"usage/validate.md","ref":"usage/validate.md","articles":[]},"previous":{"title":"Middleware","level":"1.2.2","depth":2,"path":"use/middleware.md","ref":"use/middleware.md","articles":[]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"prism":{},"anchors":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"tutorial/custom-server.md","mtime":"2017-04-10T05:49:57.493Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-04-10T06:11:19.514Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

@@ -573,46 +573,44 @@ YAML spec, you will override the <em>summary</em>, <em>descriptions</em>, <em>ta
 
     <span class="token keyword">return</span>
 <span class="token operator">}</span>
-
-##### Result<span class="token operator">:</span>
-
-<span class="token string">``</span>`yaml
-<span class="token operator">--</span><span class="token operator">-</span>
-paths<span class="token operator">:</span>
-  <span class="token string">&quot;/pets&quot;</span><span class="token operator">:</span>
-    get<span class="token operator">:</span>
-      summary<span class="token operator">:</span> Returns all pets from the system that the user has access to
-      description<span class="token operator">:</span> Could be any pet
-      produces<span class="token operator">:</span>
-        <span class="token operator">-</span> application<span class="token operator">/</span>json
-        <span class="token operator">-</span> application<span class="token operator">/</span>xml
-        <span class="token operator">-</span> text<span class="token operator">/</span>xml
-        <span class="token operator">-</span> text<span class="token operator">/</span>html
-      operationId<span class="token operator">:</span> getPet
-      parameters<span class="token operator">:</span>
-        <span class="token operator">-</span> <span class="token keyword">type</span><span class="token operator">:</span> array
-          items<span class="token operator">:</span>
-            <span class="token keyword">type</span><span class="token operator">:</span> <span class="token builtin">string</span>
-          collectionFormat<span class="token operator">:</span> csv
-          description<span class="token operator">:</span> tags to filter by
-          name<span class="token operator">:</span> tags
-          in<span class="token operator">:</span> query
-        <span class="token operator">-</span> <span class="token keyword">type</span><span class="token operator">:</span> integer
-          format<span class="token operator">:</span> <span class="token builtin">int32</span>
-          description<span class="token operator">:</span> maximum number of results to <span class="token keyword">return</span>
-          name<span class="token operator">:</span> limit
-          in<span class="token operator">:</span> query
-      responses<span class="token operator">:</span>
-        <span class="token string">&apos;200&apos;</span><span class="token operator">:</span>
-          description<span class="token operator">:</span> pet response
-          schema<span class="token operator">:</span>
-            <span class="token keyword">type</span><span class="token operator">:</span> array
-            items<span class="token operator">:</span>
-              $ref<span class="token operator">:</span> <span class="token string">&quot;#/definitions/pet&quot;</span>
-        <span class="token keyword">default</span><span class="token operator">:</span>
-          description<span class="token operator">:</span> unexpected <span class="token builtin">error</span>
-          schema<span class="token operator">:</span>
-            $ref<span class="token operator">:</span> <span class="token string">&quot;#/definitions/errorModel&quot;</span>
+</code></pre>
+<h5 id="result"><a name="result" class="plugin-anchor" href="#result"><i class="fa fa-link" aria-hidden="true"></i></a>Result:</h5>
+<pre><code class="lang-yaml"><span class="token punctuation">-</span><span class="token punctuation">-</span><span class="token punctuation">-</span>
+<span class="token key atrule">paths</span><span class="token punctuation">:</span>
+  <span class="token key atrule">&quot;/pets&quot;</span><span class="token punctuation">:</span>
+    <span class="token key atrule">get</span><span class="token punctuation">:</span>
+      <span class="token key atrule">summary</span><span class="token punctuation">:</span> Returns all pets from the system that the user has access to
+      <span class="token key atrule">description</span><span class="token punctuation">:</span> Could be any pet
+      <span class="token key atrule">produces</span><span class="token punctuation">:</span>
+        <span class="token punctuation">-</span> application/json
+        <span class="token punctuation">-</span> application/xml
+        <span class="token punctuation">-</span> text/xml
+        <span class="token punctuation">-</span> text/html
+      <span class="token key atrule">operationId</span><span class="token punctuation">:</span> getPet
+      <span class="token key atrule">parameters</span><span class="token punctuation">:</span>
+        <span class="token punctuation">-</span> <span class="token key atrule">type</span><span class="token punctuation">:</span> array
+          <span class="token key atrule">items</span><span class="token punctuation">:</span>
+            <span class="token key atrule">type</span><span class="token punctuation">:</span> string
+          <span class="token key atrule">collectionFormat</span><span class="token punctuation">:</span> csv
+          <span class="token key atrule">description</span><span class="token punctuation">:</span> tags to filter by
+          <span class="token key atrule">name</span><span class="token punctuation">:</span> tags
+          <span class="token key atrule">in</span><span class="token punctuation">:</span> query
+        <span class="token punctuation">-</span> <span class="token key atrule">type</span><span class="token punctuation">:</span> integer
+          <span class="token key atrule">format</span><span class="token punctuation">:</span> int32
+          <span class="token key atrule">description</span><span class="token punctuation">:</span> maximum number of results to return
+          <span class="token key atrule">name</span><span class="token punctuation">:</span> limit
+          <span class="token key atrule">in</span><span class="token punctuation">:</span> query
+      <span class="token key atrule">responses</span><span class="token punctuation">:</span>
+        <span class="token key atrule">&apos;200&apos;</span><span class="token punctuation">:</span>
+          <span class="token key atrule">description</span><span class="token punctuation">:</span> pet response
+          <span class="token key atrule">schema</span><span class="token punctuation">:</span>
+            <span class="token key atrule">type</span><span class="token punctuation">:</span> array
+            <span class="token key atrule">items</span><span class="token punctuation">:</span>
+              <span class="token key atrule">$ref</span><span class="token punctuation">:</span> &quot;<span class="token comment" spellcheck="true">#/definitions/pet&quot;</span>
+        <span class="token key atrule">default</span><span class="token punctuation">:</span>
+          <span class="token key atrule">description</span><span class="token punctuation">:</span> unexpected error
+          <span class="token key atrule">schema</span><span class="token punctuation">:</span>
+            <span class="token key atrule">$ref</span><span class="token punctuation">:</span> &quot;<span class="token comment" spellcheck="true">#/definitions/errorModel&quot;</span>
 </code></pre>
 
                                 
@@ -657,7 +655,7 @@ paths<span class="token operator">:</span>
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"swagger:operation","level":"1.6.4.4","depth":3,"next":{"title":"swagger:response","level":"1.6.4.5","depth":3,"path":"generate/spec/response.md","ref":"generate/spec/response.md","articles":[]},"previous":{"title":"swagger:params","level":"1.6.4.3","depth":3,"path":"generate/spec/params.md","ref":"generate/spec/params.md","articles":[]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"prism":{},"anchors":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"generate/spec/operation.md","mtime":"2016-12-29T21:17:00.204Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-04-10T04:01:06.498Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"swagger:operation","level":"1.6.4.4","depth":3,"next":{"title":"swagger:response","level":"1.6.4.5","depth":3,"path":"generate/spec/response.md","ref":"generate/spec/response.md","articles":[]},"previous":{"title":"swagger:params","level":"1.6.4.3","depth":3,"path":"generate/spec/params.md","ref":"generate/spec/params.md","articles":[]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"prism":{},"anchors":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"generate/spec/operation.md","mtime":"2017-04-10T05:54:12.667Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-04-10T06:11:19.514Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
