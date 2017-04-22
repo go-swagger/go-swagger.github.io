@@ -538,7 +538,7 @@ It specifically uses a todo list because it&apos;s a super well-understood appli
 <span class="token key atrule">swagger</span><span class="token punctuation">:</span> <span class="token string">&quot;2.0&quot;</span>
 </code></pre>
 <p>This doesn&apos;t do much but it would validate in the swagger validator step.</p>
-<pre><code class="lang-shellsession">&#xB1; ivan@aether:~/go/src/github.com/go-swagger/go-swagger/examples/tutorials/todo-list
+<pre><code class="lang-shellsession">&#xB1; ~/go/src/github.com/go-swagger/go-swagger/examples/tutorials/todo-list
 git:(master) &#x2717; ? &#xBB; swagger validate ./swagger.yml
 The swagger spec at &quot;./swagger.yml&quot; is valid against swagger specification 2.0
 </code></pre>
@@ -717,7 +717,7 @@ This document also says that the description must be at least 1 char long, this 
         <span class="token key atrule">type</span><span class="token punctuation">:</span> string
 </code></pre>
 <p>Once you generate a server for this you&apos;ll see the following directory listing:</p>
-<pre><code class="lang-shellsession">&#xB1; ivan@aether:~/go/src/github.com/go-swagger/go-swagger/examples/tutorials/todo-list/server-1
+<pre><code class="lang-shellsession">&#xB1; ~/go/src/github.com/go-swagger/go-swagger/examples/tutorials/todo-list/server-1
 git:(master) &#x2717; !? &#xBB; swagger generate server -A TodoList -f ./swagger.yml
 2016/02/15 12:32:40 building a plan for generation
 2016/02/15 12:32:40 planning definitions
@@ -739,7 +739,7 @@ git:(master) &#x2717; !? &#xBB; swagger generate server -A TodoList -f ./swagger
 2016/02/15 12:32:40 rendered doc template: operations.TodoList
 2016/02/15 12:32:40 rendered main template: server.TodoList
 
-&#xB1; ivan@aether:~/go/src/github.com/go-swagger/go-swagger/examples/tutorials/todo-list/server-1
+&#xB1; ~/go/src/github.com/go-swagger/go-swagger/examples/tutorials/todo-list/server-1
 git:(master) &#x2717; !? &#xBB; tree
 .
 &#x251C;&#x2500;&#x2500; cmd
@@ -786,10 +786,10 @@ git:(master) &#x2717; !? &#xBB; tree
 &#x2514;&#x2500;&#x2500; swagger.yml
 </code></pre>
 <p>At this point you&apos;re able to start the server, but lets first see what --help gives you. To make this happen you can first install the binary and then run it.</p>
-<pre><code class="lang-shellsession">&#xB1; ivan@aether:~/go/src/.../examples/tutorials/todo-list/server-1
-git:(master) &#x2717; -!? &#xBB; go install ./cmd/todo-list-server/
-&#xB1; ivan@aether:~/go/src/.../examples/tutorials/todo-list/server-1
-git:(master) &#x2717; -!? &#xBB; todo-list-server --help
+<pre><code class="lang-shellsession">&#xB1; ~/go/src/.../examples/tutorials/todo-list/server-1
+&#xBB; go install ./cmd/todo-list-server/
+&#xB1; ~/go/src/.../examples/tutorials/todo-list/server-1
+&#xBB; todo-list-server --help
 Usage:
   todo-list-server [OPTIONS]
 
@@ -1015,7 +1015,7 @@ serving todo list at http://127.0.0.1:64637
         <span class="token key atrule">type</span><span class="token punctuation">:</span> string
 </code></pre>
 <p>Again this is a good time to sanity check, and run the validator.</p>
-<pre><code class="lang-shellsession">&#xB1; ivan@aether:~/go/src/github.com/go-swagger/go-swagger/examples/tutorials/todo-list/server-2
+<pre><code class="lang-shellsession">&#xB1; ~/go/src/github.com/go-swagger/go-swagger/examples/tutorials/todo-list/server-2
 git:(master) &#x2717; !? &#xBB; swagger validate ./swagger.yml
 The swagger spec at &quot;./swagger.yml&quot; is valid against swagger specification 2.0
 </code></pre>
@@ -1023,7 +1023,7 @@ The swagger spec at &quot;./swagger.yml&quot; is valid against swagger specifica
 <pre><code class="lang-shellsession">git:(master) &#x2717; !? &#xBB; swagger generate server -A TodoList -f ./swagger.yml
 ... elided output ...
 2015/12/31 18:16:28 rendered main template: server.TodoList
-&#xB1; ivan@aether:~/go/src/github.com/go-swagger/go-swagger/examples/tutorials/todo-list/server-2
+&#xB1; ~/go/src/github.com/go-swagger/go-swagger/examples/tutorials/todo-list/server-2
 git:(master) &#x2717; !? &#xBB; tree
 .
 &#x251C;&#x2500;&#x2500; cmd
@@ -1070,7 +1070,7 @@ For this you&apos;ll need to track the state for an incrementing id and a struct
 </code></pre>
 <p>After deleting the item from the store, there is a responder that needs to be created. The code generator has generated responders for each response you defined in the the swagger specification. The other 3 handler implementations are pretty similar to this one, they are provided in the <a href="https://github.com/go-swagger/go-swagger/blob/master/examples/tutorials/todo-list/server-complete/restapi/configure_todo_list.go" target="_blank">source for this tutorial</a>.</p>
 <p>You&apos;re all set now, with a spiffy new todo list api implemented, lets see if it actually works.</p>
-<pre><code class="lang-shellsession">git:(master) &#x2717; -!? &#xBB; curl -i localhost:8765
+<pre><code class="lang-shellsession">&#xBB; curl -i localhost:8765
 </code></pre>
 <pre><code class="lang-http"><span class="token response-status">HTTP/1.1 <span class="token property">200 OK</span></span>
 <span class="token keyword">Content-Type:</span> application/io.goswagger.examples.todo-list.v1+json
@@ -1079,17 +1079,17 @@ For this you&apos;ll need to track the state for an incrementing id and a struct
 
 []
 </code></pre>
-<pre><code class="lang-shellsession">&#xB1; ivan@aether:~/go/src/github.com/go-swagger/go-swagger/examples/tutorials/todo-list/server-complete
+<pre><code class="lang-shellsession">&#xB1; ~/go/src/github.com/go-swagger/go-swagger/examples/tutorials/todo-list/server-complete
 </code></pre>
-<pre><code class="lang-http"><span class="token keyword">git:</span>(master) &#x2717; -!? &#xBB; curl -i localhost:8765 -d &quot;{\&quot;description\&quot;:\&quot;message $RANDOM\&quot;}&quot;
+<pre><code class="lang-http">&#xBB; curl -i localhost:8765 -d &quot;{\&quot;description\&quot;:\&quot;message $RANDOM\&quot;}&quot;
 HTTP/1.1 415 Unsupported Media Type
 <span class="token keyword">Content-Type:</span> application/io.goswagger.examples.todo-list.v1+json
 <span class="token keyword">Date:</span> Fri, 01 Jan 2016 19:56:11 GMT
 <span class="token keyword">Content-Length:</span> 157
 
-{&quot;code&quot;:415,&quot;message&quot;:&quot;unsupported media type \&quot;application/x-www-form-urlencoded\&quot;, only [application/io.goswagger.examples.todo-list.v1+json] are allowed&quot;}                                                                                                     &#xB1; ivan@aether:~/go/src/github.com/go-swagger/go-swagger/examples/tutorials/todo-list/server-complete
+{&quot;code&quot;:415,&quot;message&quot;:&quot;unsupported media type \&quot;application/x-www-form-urlencoded\&quot;, only [application/io.goswagger.examples.todo-list.v1+json] are allowed&quot;}                                                                                                     &#xB1; ~/go/src/github.com/go-swagger/go-swagger/examples/tutorials/todo-list/server-complete
 </code></pre>
-<pre><code class="lang-shellsession">git:(master) &#x2717; -!? &#xBB; curl -i localhost:8765 -d &quot;{\&quot;description\&quot;:\&quot;message $RANDOM\&quot;}&quot; -H &apos;Content-Type: application/io.goswagger.examples.todo-list.v1+json&apos;
+<pre><code class="lang-shellsession">&#xBB; curl -i localhost:8765 -d &quot;{\&quot;description\&quot;:\&quot;message $RANDOM\&quot;}&quot; -H &apos;Content-Type: application/io.goswagger.examples.todo-list.v1+json&apos;
 </code></pre>
 <pre><code class="lang-http"><span class="token response-status">HTTP/1.1 <span class="token property">201 Created</span></span>
 <span class="token keyword">Content-Type:</span> application/io.goswagger.examples.todo-list.v1+json
@@ -1098,8 +1098,8 @@ HTTP/1.1 415 Unsupported Media Type
 
 {&quot;description&quot;:&quot;message 30925&quot;,&quot;id&quot;:1}
 </code></pre>
-<pre><code class="lang-shellsession">&#xB1; ivan@aether:~/go/src/github.com/go-swagger/go-swagger/examples/tutorials/todo-list/server-complete
-git:(master) &#x2717; -!? &#xBB; curl -i localhost:8765 -d &quot;{\&quot;description\&quot;:\&quot;message $RANDOM\&quot;}&quot; -H &apos;Content-Type: application/io.goswagger.examples.todo-list.v1+json&apos;
+<pre><code class="lang-shellsession">&#xB1; ~/go/src/github.com/go-swagger/go-swagger/examples/tutorials/todo-list/server-complete
+&#xBB; curl -i localhost:8765 -d &quot;{\&quot;description\&quot;:\&quot;message $RANDOM\&quot;}&quot; -H &apos;Content-Type: application/io.goswagger.examples.todo-list.v1+json&apos;
 </code></pre>
 <pre><code class="lang-http"><span class="token response-status">HTTP/1.1 <span class="token property">201 Created</span></span>
 <span class="token keyword">Content-Type:</span> application/io.goswagger.examples.todo-list.v1+json
@@ -1108,8 +1108,8 @@ git:(master) &#x2717; -!? &#xBB; curl -i localhost:8765 -d &quot;{\&quot;descrip
 
 {&quot;description&quot;:&quot;message 104&quot;,&quot;id&quot;:2}
 </code></pre>
-<pre><code class="lang-shellsession">&#xB1; ivan@aether:~/go/src/github.com/go-swagger/go-swagger/examples/tutorials/todo-list/server-complete
-git:(master) &#x2717; -!? &#xBB; curl -i localhost:8765 -d &quot;{\&quot;description\&quot;:\&quot;message $RANDOM\&quot;}&quot; -H &apos;Content-Type: application/io.goswagger.examples.todo-list.v1+json&apos;
+<pre><code class="lang-shellsession">&#xB1; ~/go/src/github.com/go-swagger/go-swagger/examples/tutorials/todo-list/server-complete
+&#xBB; curl -i localhost:8765 -d &quot;{\&quot;description\&quot;:\&quot;message $RANDOM\&quot;}&quot; -H &apos;Content-Type: application/io.goswagger.examples.todo-list.v1+json&apos;
 </code></pre>
 <pre><code class="lang-http"><span class="token response-status">HTTP/1.1 <span class="token property">201 Created</span></span>
 <span class="token keyword">Content-Type:</span> application/io.goswagger.examples.todo-list.v1+json
@@ -1118,8 +1118,8 @@ git:(master) &#x2717; -!? &#xBB; curl -i localhost:8765 -d &quot;{\&quot;descrip
 
 {&quot;description&quot;:&quot;message 15225&quot;,&quot;id&quot;:3}
 </code></pre>
-<pre><code class="lang-shellsession">&#xB1; ivan@aether:~/go/src/github.com/go-swagger/go-swagger/examples/tutorials/todo-list/server-complete
-git:(master) &#x2717; -!? &#xBB; curl -i localhost:8765
+<pre><code class="lang-shellsession">&#xB1; ~/go/src/github.com/go-swagger/go-swagger/examples/tutorials/todo-list/server-complete
+&#xBB; curl -i localhost:8765
 </code></pre>
 <pre><code class="lang-http"><span class="token response-status">HTTP/1.1 <span class="token property">200 OK</span></span>
 <span class="token keyword">Content-Type:</span> application/io.goswagger.examples.todo-list.v1+json
@@ -1128,8 +1128,8 @@ git:(master) &#x2717; -!? &#xBB; curl -i localhost:8765
 
 [{&quot;description&quot;:&quot;message 30925&quot;,&quot;id&quot;:1},{&quot;description&quot;:&quot;message 104&quot;,&quot;id&quot;:2},{&quot;description&quot;:&quot;message 15225&quot;,&quot;id&quot;:3}]
 </code></pre>
-<pre><code class="lang-shellsession">&#xB1; ivan@aether:~/go/src/github.com/go-swagger/go-swagger/examples/tutorials/todo-list/server-complete
-git:(master) &#x2717; -!? &#xBB; curl -i localhost:8765/3 -X PUT -H &apos;Content-Type: application/io.goswagger.examples.todo-list.v1+json&apos; -d &apos;{&quot;description&quot;:&quot;go shopping&quot;}&apos;
+<pre><code class="lang-shellsession">&#xB1; ~/go/src/github.com/go-swagger/go-swagger/examples/tutorials/todo-list/server-complete
+&#xBB; curl -i localhost:8765/3 -X PUT -H &apos;Content-Type: application/io.goswagger.examples.todo-list.v1+json&apos; -d &apos;{&quot;description&quot;:&quot;go shopping&quot;}&apos;
 </code></pre>
 <pre><code class="lang-http"><span class="token response-status">HTTP/1.1 <span class="token property">200 OK</span></span>
 <span class="token keyword">Content-Type:</span> application/io.goswagger.examples.todo-list.v1+json
@@ -1138,8 +1138,8 @@ git:(master) &#x2717; -!? &#xBB; curl -i localhost:8765/3 -X PUT -H &apos;Conten
 
 {&quot;description&quot;:&quot;go shopping&quot;,&quot;id&quot;:3}
 </code></pre>
-<pre><code class="lang-shellsession">&#xB1; ivan@aether:~/go/src/github.com/go-swagger/go-swagger/examples/tutorials/todo-list/server-complete
-git:(master) &#x2717; -!? &#xBB; curl -i localhost:8765
+<pre><code class="lang-shellsession">&#xB1; ~/go/src/github.com/go-swagger/go-swagger/examples/tutorials/todo-list/server-complete
+&#xBB; curl -i localhost:8765
 </code></pre>
 <pre><code class="lang-http"><span class="token response-status">HTTP/1.1 <span class="token property">200 OK</span></span>
 <span class="token keyword">Content-Type:</span> application/io.goswagger.examples.todo-list.v1+json
@@ -1148,15 +1148,15 @@ git:(master) &#x2717; -!? &#xBB; curl -i localhost:8765
 
 [{&quot;description&quot;:&quot;message 30925&quot;,&quot;id&quot;:1},{&quot;description&quot;:&quot;message 104&quot;,&quot;id&quot;:2},{&quot;description&quot;:&quot;go shopping&quot;,&quot;id&quot;:3}]
 </code></pre>
-<pre><code class="lang-shellsession">&#xB1; ivan@aether:~/go/src/github.com/go-swagger/go-swagger/examples/tutorials/todo-list/server-complete
-git:(master) &#x2717; -!? &#xBB; curl -i localhost:8765/1 -X DELETE -H &apos;Content-Type: application/io.goswagger.examples.todo-list.v1+json&apos;
+<pre><code class="lang-shellsession">&#xB1; ~/go/src/github.com/go-swagger/go-swagger/examples/tutorials/todo-list/server-complete
+&#xBB; curl -i localhost:8765/1 -X DELETE -H &apos;Content-Type: application/io.goswagger.examples.todo-list.v1+json&apos;
 </code></pre>
 <pre><code class="lang-http"><span class="token response-status">HTTP/1.1 <span class="token property">204 No Content</span></span>
 <span class="token keyword">Content-Type:</span> application/io.goswagger.examples.todo-list.v1+json
 <span class="token keyword">Date:</span> Fri, 01 Jan 2016 19:57:04 GMT
 </code></pre>
-<pre><code class="lang-shellsession">&#xB1; ivan@aether:~/go/src/github.com/go-swagger/go-swagger/examples/tutorials/todo-list/server-complete
-git:(master) &#x2717; -!? &#xBB; curl -i localhost:8765
+<pre><code class="lang-shellsession">&#xB1; ~/go/src/github.com/go-swagger/go-swagger/examples/tutorials/todo-list/server-complete
+&#xBB; curl -i localhost:8765
 </code></pre>
 <pre><code class="lang-http"><span class="token response-status">HTTP/1.1 <span class="token property">200 OK</span></span>
 <span class="token keyword">Content-Type:</span> application/io.goswagger.examples.todo-list.v1+json
@@ -1204,7 +1204,7 @@ git:(master) &#x2717; -!? &#xBB; curl -i localhost:8765
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Simple Server","level":"1.2.1","depth":2,"next":{"title":"Middleware","level":"1.2.2","depth":2,"path":"use/middleware.md","ref":"use/middleware.md","articles":[]},"previous":{"title":"Tutorials","level":"1.2","depth":1,"ref":"","articles":[{"title":"Simple Server","level":"1.2.1","depth":2,"path":"tutorial/todo-list.md","ref":"tutorial/todo-list.md","articles":[]},{"title":"Middleware","level":"1.2.2","depth":2,"path":"use/middleware.md","ref":"use/middleware.md","articles":[]},{"title":"Custom Server","level":"1.2.3","depth":2,"path":"tutorial/custom-server.md","ref":"tutorial/custom-server.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"prism":{},"anchors":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"tutorial/todo-list.md","mtime":"2017-01-15T17:25:28.903Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-04-10T06:11:19.514Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Simple Server","level":"1.2.1","depth":2,"next":{"title":"Middleware","level":"1.2.2","depth":2,"path":"use/middleware.md","ref":"use/middleware.md","articles":[]},"previous":{"title":"Tutorials","level":"1.2","depth":1,"ref":"","articles":[{"title":"Simple Server","level":"1.2.1","depth":2,"path":"tutorial/todo-list.md","ref":"tutorial/todo-list.md","articles":[]},{"title":"Middleware","level":"1.2.2","depth":2,"path":"use/middleware.md","ref":"use/middleware.md","articles":[]},{"title":"Custom Server","level":"1.2.3","depth":2,"path":"tutorial/custom-server.md","ref":"tutorial/custom-server.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"prism":{},"anchors":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"tutorial/todo-list.md","mtime":"2017-04-22T17:45:39.763Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-04-22T18:13:42.378Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

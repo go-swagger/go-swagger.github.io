@@ -574,6 +574,10 @@ they should get substituted when serving the swagger spec.</p>
 <td><strong>SecurityDefinitions</strong></td>
 <td>list of supported authorization types <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#securityDefinitionsObject" target="_blank">https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#securityDefinitionsObject</a></td>
 </tr>
+<tr>
+<td><strong>Extensions</strong></td>
+<td>list of extensions to Swagger Schema. The field name MUST begin with x-, for example, x-internal-id. The value can be null, a primitive, an array or an object.</td>
+</tr>
 </tbody>
 </table>
 <h5 id="example"><a name="example" class="plugin-anchor" href="#example"><i class="fa fa-link" aria-hidden="true"></i></a>Example:</h5>
@@ -613,6 +617,17 @@ they should get substituted when serving the swagger spec.</p>
 <span class="token comment" spellcheck="true">//          name: KEY</span>
 <span class="token comment" spellcheck="true">//          in: header</span>
 <span class="token comment" spellcheck="true">//</span>
+<span class="token comment" spellcheck="true">//     Extensions:</span>
+<span class="token comment" spellcheck="true">//     ---</span>
+<span class="token comment" spellcheck="true">//     x-meta-value: value</span>
+<span class="token comment" spellcheck="true">//     x-meta-array:</span>
+<span class="token comment" spellcheck="true">//       - value1</span>
+<span class="token comment" spellcheck="true">//       - value2</span>
+<span class="token comment" spellcheck="true">//     x-meta-array-obj:</span>
+<span class="token comment" spellcheck="true">//       - name: obj</span>
+<span class="token comment" spellcheck="true">//         value: field</span>
+<span class="token comment" spellcheck="true">//     ---</span>
+<span class="token comment" spellcheck="true">//</span>
 <span class="token comment" spellcheck="true">// swagger:meta</span>
 <span class="token keyword">package</span> classification
 </code></pre>
@@ -637,6 +652,13 @@ they should get substituted when serving the swagger spec.</p>
   <span class="token key atrule">version</span><span class="token punctuation">:</span> 0.0.1
 <span class="token key atrule">host</span><span class="token punctuation">:</span> localhost
 <span class="token key atrule">basePath</span><span class="token punctuation">:</span> /v2
+<span class="token key atrule">x-meta-value</span><span class="token punctuation">:</span> value
+<span class="token key atrule">x-meta-array</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> value1
+  <span class="token punctuation">-</span> value2
+<span class="token key atrule">x-meta-array-obj</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> obj
+    <span class="token key atrule">value</span><span class="token punctuation">:</span> field
 </code></pre>
 
                                 
@@ -681,7 +703,7 @@ they should get substituted when serving the swagger spec.</p>
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"swagger:meta","level":"1.6.4.1","depth":3,"next":{"title":"swagger:route","level":"1.6.4.2","depth":3,"path":"generate/spec/route.md","ref":"generate/spec/route.md","articles":[]},"previous":{"title":"swagger.json","level":"1.6.4","depth":2,"path":"generate/spec.md","ref":"generate/spec.md","articles":[{"title":"swagger:meta","level":"1.6.4.1","depth":3,"path":"generate/spec/meta.md","ref":"generate/spec/meta.md","articles":[]},{"title":"swagger:route","level":"1.6.4.2","depth":3,"path":"generate/spec/route.md","ref":"generate/spec/route.md","articles":[]},{"title":"swagger:params","level":"1.6.4.3","depth":3,"path":"generate/spec/params.md","ref":"generate/spec/params.md","articles":[]},{"title":"swagger:operation","level":"1.6.4.4","depth":3,"path":"generate/spec/operation.md","ref":"generate/spec/operation.md","articles":[]},{"title":"swagger:response","level":"1.6.4.5","depth":3,"path":"generate/spec/response.md","ref":"generate/spec/response.md","articles":[]},{"title":"swagger:model","level":"1.6.4.6","depth":3,"path":"generate/spec/model.md","ref":"generate/spec/model.md","articles":[]},{"title":"swagger:allOf","level":"1.6.4.7","depth":3,"path":"generate/spec/allOf.md","ref":"generate/spec/allOf.md","articles":[]},{"title":"swagger:strfmt","level":"1.6.4.8","depth":3,"path":"generate/spec/strfmt.md","ref":"generate/spec/strfmt.md","articles":[]},{"title":"swagger:discriminated","level":"1.6.4.9","depth":3,"path":"generate/spec/discriminated.md","ref":"generate/spec/discriminated.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"prism":{},"anchors":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"generate/spec/meta.md","mtime":"2017-03-01T23:52:54.174Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-04-10T06:11:19.514Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"swagger:meta","level":"1.6.4.1","depth":3,"next":{"title":"swagger:route","level":"1.6.4.2","depth":3,"path":"generate/spec/route.md","ref":"generate/spec/route.md","articles":[]},"previous":{"title":"swagger.json","level":"1.6.4","depth":2,"path":"generate/spec.md","ref":"generate/spec.md","articles":[{"title":"swagger:meta","level":"1.6.4.1","depth":3,"path":"generate/spec/meta.md","ref":"generate/spec/meta.md","articles":[]},{"title":"swagger:route","level":"1.6.4.2","depth":3,"path":"generate/spec/route.md","ref":"generate/spec/route.md","articles":[]},{"title":"swagger:params","level":"1.6.4.3","depth":3,"path":"generate/spec/params.md","ref":"generate/spec/params.md","articles":[]},{"title":"swagger:operation","level":"1.6.4.4","depth":3,"path":"generate/spec/operation.md","ref":"generate/spec/operation.md","articles":[]},{"title":"swagger:response","level":"1.6.4.5","depth":3,"path":"generate/spec/response.md","ref":"generate/spec/response.md","articles":[]},{"title":"swagger:model","level":"1.6.4.6","depth":3,"path":"generate/spec/model.md","ref":"generate/spec/model.md","articles":[]},{"title":"swagger:allOf","level":"1.6.4.7","depth":3,"path":"generate/spec/allOf.md","ref":"generate/spec/allOf.md","articles":[]},{"title":"swagger:strfmt","level":"1.6.4.8","depth":3,"path":"generate/spec/strfmt.md","ref":"generate/spec/strfmt.md","articles":[]},{"title":"swagger:discriminated","level":"1.6.4.9","depth":3,"path":"generate/spec/discriminated.md","ref":"generate/spec/discriminated.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"prism":{},"anchors":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"generate/spec/meta.md","mtime":"2017-04-22T16:43:54.813Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-04-22T18:13:42.378Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
