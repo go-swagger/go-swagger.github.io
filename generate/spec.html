@@ -7,7 +7,7 @@
         <title>swagger.json · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 3.2.2">
+        <meta name="generator" content="GitBook 3.2.3">
         
         
         
@@ -523,15 +523,15 @@ To do this it makes use of go&apos;s loader package. The same package that is us
 <p>Once the parser has encountered a comment that matches on of its known tags, the parser will assume that the rest of the comment block is for swagger.</p>
 <h3 id="usage"><a name="usage" class="plugin-anchor" href="#usage"><i class="fa fa-link" aria-hidden="true"></i></a>Usage</h3>
 <p>To generate a spec:</p>
-<pre><code>swagger generate spec -o ./swagger.json
+<pre class="language-"><code>swagger generate spec -o ./swagger.json
 </code></pre><p>You give it a main file and it will parse all the files that are reachable by that main
 package to produce a swagger specification.</p>
 <p>To use you can add a go:generate comment to your main file for example:</p>
-<pre><code>//go:generate swagger generate spec
+<pre class="language-"><code>//go:generate swagger generate spec
 </code></pre><p>The command requires a main package or file and it wants your code to compile. It uses the go tools loader to load an application and then scans all the packages that are in use by the code base.
 This means that for something to be discoverable it needs to be reachable by a code path triggered through the main package.</p>
 <p>If an annotation is not yet supported or you want to merge with a pre-existing spec, you can use the -i parameter.</p>
-<pre><code>swagger generate spec -i ./swagger.yml -o ./swagger.json
+<pre class="language-"><code>swagger generate spec -i ./swagger.yml -o ./swagger.json
 </code></pre><p>The idea is that there are certain things that are more easily expressed by just using yaml, to</p>
 <h4 id="parsing-rules"><a name="parsing-rules" class="plugin-anchor" href="#parsing-rules"><i class="fa fa-link" aria-hidden="true"></i></a>Parsing rules</h4>
 <p><img class="emoji" title=":warning" alt=":warning" src="https://assets-cdn.github.com/images/icons/emoji/unicode/26a0.png?v5" width="20" height="20" align="absmiddle">This command relies heavily on the way godoc works. <img class="emoji" title=":warning" alt=":warning" src="https://assets-cdn.github.com/images/icons/emoji/unicode/26a0.png?v5" width="20" height="20" align="absmiddle"></p>
@@ -602,6 +602,10 @@ When an embedded type isn&apos;t decorated with the <code>swagger:allOf</code> a
 <td>x-class</td>
 <td>this is used in conjunction with discriminators to give a full type name</td>
 </tr>
+<tr>
+<td>x-omitempty</td>
+<td>this is used with arrays to control presence of omitempty tag to be used by JSON Marshaler</td>
+</tr>
 </tbody>
 </table>
 
@@ -647,7 +651,7 @@ When an embedded type isn&apos;t decorated with the <code>swagger:allOf</code> a
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"swagger.json","level":"1.6.4","depth":2,"next":{"title":"swagger:meta","level":"1.6.4.1","depth":3,"path":"generate/spec/meta.md","ref":"generate/spec/meta.md","articles":[]},"previous":{"title":"Model generation rules","level":"1.6.3","depth":2,"path":"use/schemas.md","ref":"use/schemas.md","articles":[]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"prism":{},"anchors":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"generate/spec.md","mtime":"2017-04-05T00:30:59.646Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-04-29T19:20:19.683Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"swagger.json","level":"1.6.4","depth":2,"next":{"title":"swagger:meta","level":"1.6.4.1","depth":3,"path":"generate/spec/meta.md","ref":"generate/spec/meta.md","articles":[]},"previous":{"title":"Model generation rules","level":"1.6.3","depth":2,"path":"use/schemas.md","ref":"use/schemas.md","articles":[]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"prism":{},"anchors":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"generate/spec.md","mtime":"2017-10-20T03:25:36.000Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2017-10-20T04:54:46.015Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

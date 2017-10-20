@@ -7,7 +7,7 @@
         <title>swagger:response · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 3.2.2">
+        <meta name="generator" content="GitBook 3.2.3">
         
         
         
@@ -515,7 +515,7 @@
 A swagger:route can specify a response name for a status code and then the matching response will be used for that operation in the swagger definition.</p>
 <!--more-->
 <h5 id="syntax"><a name="syntax" class="plugin-anchor" href="#syntax"><i class="fa fa-link" aria-hidden="true"></i></a>Syntax:</h5>
-<pre><code>swagger:response [?response name]
+<pre class="language-"><code>swagger:response [?response name]
 </code></pre><h5 id="properties"><a name="properties" class="plugin-anchor" href="#properties"><i class="fa fa-link" aria-hidden="true"></i></a>Properties:</h5>
 <table>
 <thead>
@@ -616,23 +616,23 @@ level the value is a 0-based index, so items.minLength is the same as items.0.mi
 </tbody>
 </table>
 <h5 id="example"><a name="example" class="plugin-anchor" href="#example"><i class="fa fa-link" aria-hidden="true"></i></a>Example:</h5>
-<pre><code class="lang-go"><span class="token comment" spellcheck="true">// A ValidationError is an error that is used when the required input fails validation.</span>
+<pre class="language-"><code class="lang-go"><span class="token comment" spellcheck="true">// A ValidationError is an error that is used when the required input fails validation.</span>
 <span class="token comment" spellcheck="true">// swagger:response validationError</span>
-<span class="token keyword">type</span> ValidationError <span class="token keyword">struct</span> <span class="token operator">{</span>
+<span class="token keyword">type</span> ValidationError <span class="token keyword">struct</span> <span class="token punctuation">{</span>
     <span class="token comment" spellcheck="true">// The error message</span>
     <span class="token comment" spellcheck="true">// in: body</span>
-    Body <span class="token keyword">struct</span> <span class="token operator">{</span>
+    Body <span class="token keyword">struct</span> <span class="token punctuation">{</span>
         <span class="token comment" spellcheck="true">// The validation message</span>
         <span class="token comment" spellcheck="true">//</span>
         <span class="token comment" spellcheck="true">// Required: true</span>
         Message <span class="token builtin">string</span>
         <span class="token comment" spellcheck="true">// An optional field name to which this validation applies</span>
         FieldName <span class="token builtin">string</span>
-    <span class="token operator">}</span>
-<span class="token operator">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
 </code></pre>
 <h5 id="result"><a name="result" class="plugin-anchor" href="#result"><i class="fa fa-link" aria-hidden="true"></i></a>Result:</h5>
-<pre><code class="lang-yaml"><span class="token punctuation">-</span><span class="token punctuation">-</span><span class="token punctuation">-</span>
+<pre class="language-"><code class="lang-yaml"><span class="token punctuation">---</span>
 <span class="token key atrule">responses</span><span class="token punctuation">:</span>
   <span class="token key atrule">validationError</span><span class="token punctuation">:</span>
     <span class="token key atrule">description</span><span class="token punctuation">:</span> A ValidationError is an error that is used when the required input fails validation.
@@ -692,7 +692,7 @@ level the value is a 0-based index, so items.minLength is the same as items.0.mi
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"swagger:response","level":"1.6.4.5","depth":3,"next":{"title":"swagger:model","level":"1.6.4.6","depth":3,"path":"generate/spec/model.md","ref":"generate/spec/model.md","articles":[]},"previous":{"title":"swagger:operation","level":"1.6.4.4","depth":3,"path":"generate/spec/operation.md","ref":"generate/spec/operation.md","articles":[]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"prism":{},"anchors":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"generate/spec/response.md","mtime":"2017-04-05T00:30:59.646Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-04-29T19:20:19.683Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"swagger:response","level":"1.6.4.5","depth":3,"next":{"title":"swagger:model","level":"1.6.4.6","depth":3,"path":"generate/spec/model.md","ref":"generate/spec/model.md","articles":[]},"previous":{"title":"swagger:operation","level":"1.6.4.4","depth":3,"path":"generate/spec/operation.md","ref":"generate/spec/operation.md","articles":[]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"prism":{},"anchors":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"generate/spec/response.md","mtime":"2017-04-05T16:24:39.000Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2017-10-20T04:54:46.015Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

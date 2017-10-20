@@ -7,7 +7,7 @@
         <title>Introduction · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 3.2.2">
+        <meta name="generator" content="GitBook 3.2.3">
         
         
         
@@ -537,7 +537,7 @@
 <h2 id="migrating"><a name="migrating" class="plugin-anchor" href="#migrating"><i class="fa fa-link" aria-hidden="true"></i></a>Migrating</h2>
 <h3 id="from-050-to-060"><a name="from-050-to-060" class="plugin-anchor" href="#from-050-to-060"><i class="fa fa-link" aria-hidden="true"></i></a>From 0.5.0 to 0.6.0</h3>
 <p>You will have to rename some imports:</p>
-<pre><code>github.com/go-swagger/go-swagger/httpkit/validate to github.com/go-openapi/validate
+<pre class="language-"><code>github.com/go-swagger/go-swagger/httpkit/validate to github.com/go-openapi/validate
 github.com/go-swagger/go-swagger/httpkit to github.com/go-openapi/runtime
 github.com/naoina/denco to github.com/go-openapi/runtime/middleware/denco
 github.com/go-swagger/go-swagger to github.com/go-openapi
@@ -546,57 +546,52 @@ github.com/go-swagger/go-swagger to github.com/go-openapi
 <h3 id="binary-distribution"><a name="binary-distribution" class="plugin-anchor" href="#binary-distribution"><i class="fa fa-link" aria-hidden="true"></i></a>Binary distribution</h3>
 <p>go-swagger is distributed as binaries that are built of signed tags. It is published as github release, rpm, deb and docker image.</p>
 <h4 id="docker-image"><a name="docker-image" class="plugin-anchor" href="#docker-image"><i class="fa fa-link" aria-hidden="true"></i></a>Docker image</h4>
-<pre><code class="lang-shell">docker pull quay.io/goswagger/swagger
+<pre class="language-"><code>docker pull quay.io/goswagger/swagger
 
 alias swagger=&quot;docker run --rm -it -v $HOME:$HOME -w $(pwd) quay.io/goswagger/swagger&quot;
 swagger version
-</code></pre>
-<h4 id="homebrewlinuxbrew"><a name="homebrewlinuxbrew" class="plugin-anchor" href="#homebrewlinuxbrew"><i class="fa fa-link" aria-hidden="true"></i></a>Homebrew/Linuxbrew</h4>
-<pre><code class="lang-shell">brew tap go-swagger/go-swagger
+</code></pre><h4 id="homebrewlinuxbrew"><a name="homebrewlinuxbrew" class="plugin-anchor" href="#homebrewlinuxbrew"><i class="fa fa-link" aria-hidden="true"></i></a>Homebrew/Linuxbrew</h4>
+<pre class="language-"><code>brew tap go-swagger/go-swagger
 brew install go-swagger
-</code></pre>
-<h4 id="static-binary"><a name="static-binary" class="plugin-anchor" href="#static-binary"><i class="fa fa-link" aria-hidden="true"></i></a>Static binary</h4>
+</code></pre><h4 id="static-binary"><a name="static-binary" class="plugin-anchor" href="#static-binary"><i class="fa fa-link" aria-hidden="true"></i></a>Static binary</h4>
 <p>You can download a binary for your platform from github:</p>
 <p><a href="https://github.com/go-swagger/go-swagger/releases/latest" target="_blank">https://github.com/go-swagger/go-swagger/releases/latest</a></p>
-<pre><code class="lang-shell">latestv=$(curl -s https://api.github.com/repos/go-swagger/go-swagger/releases/latest | jq -r .tag_name)
+<pre class="language-"><code>latestv=$(curl -s https://api.github.com/repos/go-swagger/go-swagger/releases/latest | jq -r .tag_name)
 curl -o /usr/local/bin/swagger -L&apos;#&apos; https://github.com/go-swagger/go-swagger/releases/download/$latestv/swagger_$(echo `uname`|tr &apos;[:upper:]&apos; &apos;[:lower:]&apos;)_amd64
 chmod +x /usr/local/bin/swagger
-</code></pre>
-<h4 id="debian-packages---"><a name="debian-packages---" class="plugin-anchor" href="#debian-packages---"><i class="fa fa-link" aria-hidden="true"></i></a>Debian packages <a href="https://bintray.com/go-swagger/goswagger-debian/swagger/_latestVersion" target="_blank"> <img src="https://api.bintray.com/packages/go-swagger/goswagger-debian/swagger/images/download.svg" alt="Download"> </a></h4>
+</code></pre><h4 id="debian-packages---"><a name="debian-packages---" class="plugin-anchor" href="#debian-packages---"><i class="fa fa-link" aria-hidden="true"></i></a>Debian packages <a href="https://bintray.com/go-swagger/goswagger-debian/swagger/_latestVersion" target="_blank"> <img src="https://api.bintray.com/packages/go-swagger/goswagger-debian/swagger/images/download.svg" alt="Download"> </a></h4>
 <p>This repo will work for any debian, the only file it contains gets copied to /usr/bin</p>
-<pre><code class="lang-shell">echo &quot;deb https://dl.bintray.com/go-swagger/goswagger-debian ubuntu main&quot; | sudo tee -a /etc/apt/sources.list
-</code></pre>
-<h4 id="rpm-packages---"><a name="rpm-packages---" class="plugin-anchor" href="#rpm-packages---"><i class="fa fa-link" aria-hidden="true"></i></a>RPM packages <a href="https://bintray.com/go-swagger/goswagger-rpm/swagger/_latestVersion" target="_blank"> <img src="https://api.bintray.com/packages/go-swagger/goswagger-rpm/swagger/images/download.svg" alt="Download"> </a></h4>
+<pre class="language-"><code>echo &quot;deb https://dl.bintray.com/go-swagger/goswagger-debian ubuntu main&quot; | sudo tee -a /etc/apt/sources.list
+</code></pre><h4 id="rpm-packages---"><a name="rpm-packages---" class="plugin-anchor" href="#rpm-packages---"><i class="fa fa-link" aria-hidden="true"></i></a>RPM packages <a href="https://bintray.com/go-swagger/goswagger-rpm/swagger/_latestVersion" target="_blank"> <img src="https://api.bintray.com/packages/go-swagger/goswagger-rpm/swagger/images/download.svg" alt="Download"> </a></h4>
 <p>This repo should work on any distro that wants rpm packages, the only file it contains gets copied to /usr/bin/</p>
-<pre><code class="lang-shell">wget https://bintray.com/go-swagger/goswagger-rpm/rpm -O bintray-go-swagger-goswagger-rpm.repo
-</code></pre>
-<h3 id="from-source"><a name="from-source" class="plugin-anchor" href="#from-source"><i class="fa fa-link" aria-hidden="true"></i></a>From source</h3>
+<pre class="language-"><code>wget https://bintray.com/go-swagger/goswagger-rpm/rpm -O bintray-go-swagger-goswagger-rpm.repo
+</code></pre><h3 id="from-source"><a name="from-source" class="plugin-anchor" href="#from-source"><i class="fa fa-link" aria-hidden="true"></i></a>From source</h3>
 <p>Install or update from source:</p>
-<pre><code>go get -u github.com/go-swagger/go-swagger/cmd/swagger
+<pre class="language-"><code>go get -u github.com/go-swagger/go-swagger/cmd/swagger
 </code></pre><p>The implementation also provides a number of command line tools to help working with swagger.</p>
 <p>Currently there is a <a href="https://goswagger.io/usage/validate.html" target="_blank">spec validator tool</a>:</p>
-<pre><code>swagger validate https://raw.githubusercontent.com/swagger-api/swagger-spec/master/examples/v2.0/json/petstore-expanded.json
+<pre class="language-"><code>swagger validate https://raw.githubusercontent.com/swagger-api/swagger-spec/master/examples/v2.0/json/petstore-expanded.json
 </code></pre><p>To generate a <a href="https://goswagger.io/generate/server.html" target="_blank">server for a swagger spec</a> document:</p>
-<pre><code>swagger generate server [-f ./swagger.json] -A [application-name [--principal [principal-name]]
+<pre class="language-"><code>swagger generate server [-f ./swagger.json] -A [application-name [--principal [principal-name]]
 </code></pre><p>To generate a <a href="https://goswagger.io/generate/client.html" target="_blank">client for a swagger spec</a> document:</p>
-<pre><code>swagger generate client [-f ./swagger.json] -A [application-name [--principal [principal-name]]
+<pre class="language-"><code>swagger generate client [-f ./swagger.json] -A [application-name [--principal [principal-name]]
 </code></pre><p>To generate a <a href="https://goswagger.io/generate/spec.html" target="_blank">swagger spec document for a go application</a>:</p>
-<pre><code>swagger generate spec -o ./swagger.json
+<pre class="language-"><code>swagger generate spec -o ./swagger.json
 </code></pre><h3 id="bash-completion"><a name="bash-completion" class="plugin-anchor" href="#bash-completion"><i class="fa fa-link" aria-hidden="true"></i></a>Bash Completion</h3>
 <p>Bash completion is supported and can be activated as follows:</p>
-<pre><code>source ./cmd/swagger/completion/swagger.bash-completion
+<pre class="language-"><code>source ./cmd/swagger/completion/swagger.bash-completion
 </code></pre><p>Note that this does require you already setup bash completion,
 which can be done in 2 simple steps:</p>
 <p>1) install <code>bash-completion</code> using your favourite package manager;</p>
 <p>2) run <code>source /etc/bash_completion</code> in bash;</p>
 <h3 id="zsh-completion"><a name="zsh-completion" class="plugin-anchor" href="#zsh-completion"><i class="fa fa-link" aria-hidden="true"></i></a>Zsh Completion</h3>
 <p>Zsh completion is supported and can be copied/soft-linked from:</p>
-<pre><code>./cmd/swagger/completion/swagger.zsh-completion
+<pre class="language-"><code>./cmd/swagger/completion/swagger.zsh-completion
 </code></pre><p>In case you&apos;re new to adding auto-completion to zsh completion,
 here is how you could enable swagger&apos;s zsh completion step by step:</p>
 <p>1) create a folder used to store your completions (eg. <code>$HOME/.zsh/completion</code>);</p>
 <p>2) append the following to your <code>$HOME/.zshrc</code> file:</p>
-<pre><code># add auto-completion directory to zsh&apos;s fpath
+<pre class="language-"><code># add auto-completion directory to zsh&apos;s fpath
 fpath=($HOME/.zsh/completion $fpath)
 
 # compsys initiatlization
@@ -737,7 +732,7 @@ compinit
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Introduction","level":"1.1","depth":1,"next":{"title":"Tutorials","level":"1.2","depth":1,"ref":"","articles":[{"title":"Simple Server","level":"1.2.1","depth":2,"path":"tutorial/todo-list.md","ref":"tutorial/todo-list.md","articles":[]},{"title":"Middleware","level":"1.2.2","depth":2,"path":"use/middleware.md","ref":"use/middleware.md","articles":[]},{"title":"Custom Server","level":"1.2.3","depth":2,"path":"tutorial/custom-server.md","ref":"tutorial/custom-server.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"prism":{},"anchors":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"README.md","mtime":"2017-04-10T03:41:12.327Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-04-29T19:20:19.683Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Introduction","level":"1.1","depth":1,"next":{"title":"Tutorials","level":"1.2","depth":1,"ref":"","articles":[{"title":"Simple Server","level":"1.2.1","depth":2,"path":"tutorial/todo-list.md","ref":"tutorial/todo-list.md","articles":[]},{"title":"Middleware","level":"1.2.2","depth":2,"path":"use/middleware.md","ref":"use/middleware.md","articles":[]},{"title":"Custom Server","level":"1.2.3","depth":2,"path":"tutorial/custom-server.md","ref":"tutorial/custom-server.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"prism":{},"anchors":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"README.md","mtime":"2017-10-20T04:54:26.000Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2017-10-20T04:54:46.015Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>

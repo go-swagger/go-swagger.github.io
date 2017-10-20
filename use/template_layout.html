@@ -7,7 +7,7 @@
         <title>Custom generation · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 3.2.2">
+        <meta name="generator" content="GitBook 3.2.3">
         
         
         
@@ -538,7 +538,7 @@ You also provide the target directory and the file name. Directory and file name
 </tr>
 <tr>
 <td>camelize</td>
-<td>every word boundary starts with a capital except the first word; &quot;some long name&quot; becomes SomeLongName</td>
+<td>every word boundary starts with a capital except the first word; &quot;some long name&quot; becomes someLongName</td>
 </tr>
 <tr>
 <td>varname</td>
@@ -614,15 +614,14 @@ You also provide the target directory and the file name. Directory and file name
 </tbody>
 </table>
 <h2 id="server-generation"><a name="server-generation" class="plugin-anchor" href="#server-generation"><i class="fa fa-link" aria-hidden="true"></i></a>Server generation</h2>
-<pre><code class="lang-shell">swagger generate server -A TodoList -f ./swagger.json -C default-server.yml
-</code></pre>
-<p>For the default server generator this config file would have the following content:</p>
-<pre><code class="lang-yaml">layout<span class="token punctuation">:</span>
+<pre class="language-"><code>swagger generate server -A TodoList -f ./swagger.json -C default-server.yml
+</code></pre><p>For the default server generator this config file would have the following content:</p>
+<pre class="language-"><code class="lang-yaml"><span class="token key atrule">layout</span><span class="token punctuation">:</span>
   <span class="token key atrule">application</span><span class="token punctuation">:</span>
     <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> configure
       <span class="token key atrule">source</span><span class="token punctuation">:</span> asset<span class="token punctuation">:</span>serverConfigureapi
       <span class="token key atrule">target</span><span class="token punctuation">:</span> <span class="token string">&quot;{{ joinFilePath .Target .ServerPackage }}&quot;</span>
-      <span class="token key atrule">file_name</span><span class="token punctuation">:</span> <span class="token string">&quot;{{ .Name }}_client.go&quot;</span>
+      <span class="token key atrule">file_name</span><span class="token punctuation">:</span> <span class="token string">&quot;configure_{{ .Name }}.go&quot;</span>
       <span class="token key atrule">skip_exists</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
     <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> main
       <span class="token key atrule">source</span><span class="token punctuation">:</span> asset<span class="token punctuation">:</span>serverMain
@@ -665,10 +664,9 @@ You also provide the target directory and the file name. Directory and file name
   <span class="token key atrule">operation_groups</span><span class="token punctuation">:</span>
 </code></pre>
 <h2 id="client-generation"><a name="client-generation" class="plugin-anchor" href="#client-generation"><i class="fa fa-link" aria-hidden="true"></i></a>Client generation</h2>
-<pre><code class="lang-shell">swagger generate server -A TodoList -f ./swagger.json -C default-client.yml
-</code></pre>
-<p>For the default client generator this config file would have the following content.</p>
-<pre><code class="lang-yaml">layout<span class="token punctuation">:</span>
+<pre class="language-"><code>swagger generate server -A TodoList -f ./swagger.json -C default-client.yml
+</code></pre><p>For the default client generator this config file would have the following content.</p>
+<pre class="language-"><code class="lang-yaml"><span class="token key atrule">layout</span><span class="token punctuation">:</span>
   <span class="token key atrule">application</span><span class="token punctuation">:</span>
     <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> facade
       <span class="token key atrule">source</span><span class="token punctuation">:</span> asset<span class="token punctuation">:</span>clientFacade
@@ -737,7 +735,7 @@ You also provide the target directory and the file name. Directory and file name
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Custom generation","level":"1.6.5","depth":2,"next":{"title":"Custom templates","level":"1.6.5.1","depth":3,"path":"generate/templates.md","ref":"generate/templates.md","articles":[]},"previous":{"title":"swagger:discriminated","level":"1.6.4.9","depth":3,"path":"generate/spec/discriminated.md","ref":"generate/spec/discriminated.md","articles":[]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"prism":{},"anchors":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"use/template_layout.md","mtime":"2017-02-18T21:39:41.246Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-04-29T19:20:19.683Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Custom generation","level":"1.6.5","depth":2,"next":{"title":"Custom templates","level":"1.6.5.1","depth":3,"path":"generate/templates.md","ref":"generate/templates.md","articles":[]},"previous":{"title":"swagger:discriminated","level":"1.6.4.9","depth":3,"path":"generate/spec/discriminated.md","ref":"generate/spec/discriminated.md","articles":[]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"prism":{},"anchors":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"use/template_layout.md","mtime":"2017-10-20T04:54:43.000Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2017-10-20T04:54:46.015Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

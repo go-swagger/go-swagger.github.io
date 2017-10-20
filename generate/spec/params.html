@@ -7,7 +7,7 @@
         <title>swagger:params · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 3.2.2">
+        <meta name="generator" content="GitBook 3.2.3">
         
         
         
@@ -523,7 +523,7 @@ The refs are tracked separately so that they can be renamed later on.</p>
 <p>At this moment the parameters require one or more structs to be defined, it&apos;s not possible to annotate plain var
 entries at this moment.</p>
 <h5 id="syntax"><a name="syntax" class="plugin-anchor" href="#syntax"><i class="fa fa-link" aria-hidden="true"></i></a>Syntax:</h5>
-<pre><code>swagger:parameters [operationid1 operationid2]
+<pre class="language-"><code>swagger:parameters [operationid1 operationid2]
 </code></pre><h5 id="properties"><a name="properties" class="plugin-anchor" href="#properties"><i class="fa fa-link" aria-hidden="true"></i></a>Properties:</h5>
 <p>The fields of this struct can be decorated with a number of annotations. For the field name it uses the struct field
 name, it respects the json struct field tag for customizing the name.</p>
@@ -634,8 +634,8 @@ level the value is a 0-based index, so items.minLength is the same as items.0.mi
 </tbody>
 </table>
 <h5 id="example"><a name="example" class="plugin-anchor" href="#example"><i class="fa fa-link" aria-hidden="true"></i></a>Example:</h5>
-<pre><code class="lang-go"><span class="token comment" spellcheck="true">// swagger:parameters listBars addBars</span>
-<span class="token keyword">type</span> BarSliceParam <span class="token keyword">struct</span> <span class="token operator">{</span>
+<pre class="language-"><code class="lang-go"><span class="token comment" spellcheck="true">// swagger:parameters listBars addBars</span>
+<span class="token keyword">type</span> BarSliceParam <span class="token keyword">struct</span> <span class="token punctuation">{</span>
     <span class="token comment" spellcheck="true">// a BarSlice has bars which are strings</span>
     <span class="token comment" spellcheck="true">//</span>
     <span class="token comment" spellcheck="true">// min items: 3</span>
@@ -650,11 +650,11 @@ level the value is a 0-based index, so items.minLength is the same as items.0.mi
     <span class="token comment" spellcheck="true">// items.items.items.pattern: \w+</span>
     <span class="token comment" spellcheck="true">// collection format: pipe</span>
     <span class="token comment" spellcheck="true">// in: query</span>
-    BarSlice <span class="token operator">[</span><span class="token operator">]</span><span class="token operator">[</span><span class="token operator">]</span><span class="token operator">[</span><span class="token operator">]</span><span class="token builtin">string</span> <span class="token string">`json:&quot;bar_slice&quot;`</span>
-<span class="token operator">}</span>
+    BarSlice <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">string</span> <span class="token string">`json:&quot;bar_slice&quot;`</span>
+<span class="token punctuation">}</span>
 </code></pre>
 <h5 id="result"><a name="result" class="plugin-anchor" href="#result"><i class="fa fa-link" aria-hidden="true"></i></a>Result:</h5>
-<pre><code class="lang-yaml"><span class="token punctuation">-</span><span class="token punctuation">-</span><span class="token punctuation">-</span>
+<pre class="language-"><code class="lang-yaml"><span class="token punctuation">---</span>
 <span class="token key atrule">operations</span><span class="token punctuation">:</span>
   <span class="token key atrule">&quot;/&quot;</span><span class="token punctuation">:</span>
     <span class="token key atrule">get</span><span class="token punctuation">:</span>
@@ -747,7 +747,7 @@ level the value is a 0-based index, so items.minLength is the same as items.0.mi
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"swagger:params","level":"1.6.4.3","depth":3,"next":{"title":"swagger:operation","level":"1.6.4.4","depth":3,"path":"generate/spec/operation.md","ref":"generate/spec/operation.md","articles":[]},"previous":{"title":"swagger:route","level":"1.6.4.2","depth":3,"path":"generate/spec/route.md","ref":"generate/spec/route.md","articles":[]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"prism":{},"anchors":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"generate/spec/params.md","mtime":"2017-02-18T21:39:41.246Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-04-29T19:20:19.683Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"swagger:params","level":"1.6.4.3","depth":3,"next":{"title":"swagger:operation","level":"1.6.4.4","depth":3,"path":"generate/spec/operation.md","ref":"generate/spec/operation.md","articles":[]},"previous":{"title":"swagger:route","level":"1.6.4.2","depth":3,"path":"generate/spec/route.md","ref":"generate/spec/route.md","articles":[]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"prism":{},"anchors":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"generate/spec/params.md","mtime":"2017-02-23T05:04:26.000Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2017-10-20T04:54:46.015Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

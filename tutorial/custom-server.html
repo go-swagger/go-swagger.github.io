@@ -7,7 +7,7 @@
         <title>Custom Server · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 3.2.2">
+        <meta name="generator" content="GitBook 3.2.3">
         
         
         
@@ -523,7 +523,7 @@ Please consult <a href="https://github.com/OAI/OpenAPI-Specification/blob/master
 for more information in case you&apos;re new to OpenAPI (Also known as Swagger).</p>
 <p>The end product of this tutorial can be found as <code>./examples/tutorials/custom-server</code>.</p>
 <p>The server we&apos;ll be building, will be generated using the following spec:</p>
-<pre><code class="lang-yaml"><span class="token punctuation">-</span><span class="token punctuation">-</span><span class="token punctuation">-</span>
+<pre class="language-"><code class="lang-yaml"><span class="token punctuation">---</span>
 <span class="token key atrule">swagger</span><span class="token punctuation">:</span> <span class="token string">&apos;2.0&apos;</span>
 <span class="token key atrule">info</span><span class="token punctuation">:</span>
   <span class="token key atrule">version</span><span class="token punctuation">:</span> 1.0.0
@@ -555,13 +555,12 @@ By default the <a href="https://github.com/go-swagger/go-swagger" target="_blank
 but we&apos;ll store it as <code>./swagger/swagger.yml</code>, to keep our project&apos;s root folder clean and tidy.</p>
 <p>Once we have our OpenAPI specification ready, it is time to generate our server.
 This can be done using the following command, from within our root folder:</p>
-<pre><code class="lang-shellsession">$ swagger generate server -t gen -f ./swagger/swagger.yml --exclude-main -A greeter
-</code></pre>
-<p>In the command above we&apos;re specifying the <code>-t</code> (target) flag,
+<pre class="language-"><code>$ swagger generate server -t gen -f ./swagger/swagger.yml --exclude-main -A greeter
+</code></pre><p>In the command above we&apos;re specifying the <code>-t</code> (target) flag,
 specifying that swagger should store all generated code in the given <em>target</em> directory. We&apos;re also specifying the <code>-f</code> flag, to explicitly define that our spec file can be found at <code>./swagger/swagger.yml</code>, rather then the default <code>./swagger.yml</code>. As we are writing a custom server, we also don&apos;t want the automatically generated <code>cmd</code> server, and is excluded using the <code>--exclude-main</code> flag. Finally we&apos;re also explicitly naming our server using the <code>-A</code> flag.
 Please consult <code>swagger generate server --help</code> for more flags and information.</p>
 <p>Once we&apos;ve executed this command, you should have following file tree:</p>
-<pre><code>&#x251C;&#x2500;&#x2500; gen
+<pre class="language-"><code>&#x251C;&#x2500;&#x2500; gen
 &#x2502;   &#x2514;&#x2500;&#x2500; restapi
 &#x2502;       &#x251C;&#x2500;&#x2500; configure_greeter.go
 &#x2502;       &#x251C;&#x2500;&#x2500; doc.go
@@ -589,69 +588,69 @@ In it we&apos;ll parse some simple flags that can be used to configure the serve
 we&apos;ll setup the API and finally start the server. All in all, very minimal and simple.</p>
 <p>so let&apos;s start writing the <code>./cmd/greeter/main.go</code> file:</p>
 <p>We start by defining our flags, in our example using the standard <code>flag</code> pkg:</p>
-<pre><code class="lang-go"><span class="token keyword">var</span> portFlag <span class="token operator">=</span> flag<span class="token operator">.</span><span class="token function">Int<span class="token punctuation">(</span></span><span class="token string">&quot;port&quot;</span><span class="token operator">,</span> <span class="token number">3000</span><span class="token operator">,</span> <span class="token string">&quot;Port to run this service on&quot;</span><span class="token operator">)</span>
+<pre class="language-"><code class="lang-go"><span class="token keyword">var</span> portFlag <span class="token operator">=</span> flag<span class="token punctuation">.</span><span class="token function">Int</span><span class="token punctuation">(</span><span class="token string">&quot;port&quot;</span><span class="token punctuation">,</span> <span class="token number">3000</span><span class="token punctuation">,</span> <span class="token string">&quot;Port to run this service on&quot;</span><span class="token punctuation">)</span>
 </code></pre>
 <p>Now it&apos;s time to write our main logic,
 starting by loading our embedded swagger spec.
 This is required, as it is used to configure the dynamic server,
 the core of our generated server (found under the <code>./gen/restapi</code> dir).</p>
-<pre><code class="lang-go">swaggerSpec<span class="token operator">,</span> err <span class="token operator">:=</span> loads<span class="token operator">.</span><span class="token function">Analyzed<span class="token punctuation">(</span></span>restapi<span class="token operator">.</span>SwaggerJSON<span class="token operator">,</span> <span class="token string">&quot;&quot;</span><span class="token operator">)</span>
-<span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token operator">{</span>
-    log<span class="token operator">.</span><span class="token function">Fatalln<span class="token punctuation">(</span></span>err<span class="token operator">)</span>
-<span class="token operator">}</span>
+<pre class="language-"><code class="lang-go">swaggerSpec<span class="token punctuation">,</span> err <span class="token operator">:=</span> loads<span class="token punctuation">.</span><span class="token function">Analyzed</span><span class="token punctuation">(</span>restapi<span class="token punctuation">.</span>SwaggerJSON<span class="token punctuation">,</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">)</span>
+<span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">{</span>
+    log<span class="token punctuation">.</span><span class="token function">Fatalln</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
 </code></pre>
 <p>With the spec loaded in, we can create our API and server:</p>
-<pre><code class="lang-go">api <span class="token operator">:=</span> operations<span class="token operator">.</span><span class="token function">NewGreeterAPI<span class="token punctuation">(</span></span>swaggerSpec<span class="token operator">)</span>
-server <span class="token operator">:=</span> restapi<span class="token operator">.</span><span class="token function">NewServer<span class="token punctuation">(</span></span>api<span class="token operator">)</span>
-<span class="token keyword">defer</span> server<span class="token operator">.</span><span class="token function">Shutdown<span class="token punctuation">(</span></span><span class="token operator">)</span>
+<pre class="language-"><code class="lang-go">api <span class="token operator">:=</span> operations<span class="token punctuation">.</span><span class="token function">NewGreeterAPI</span><span class="token punctuation">(</span>swaggerSpec<span class="token punctuation">)</span>
+server <span class="token operator">:=</span> restapi<span class="token punctuation">.</span><span class="token function">NewServer</span><span class="token punctuation">(</span>api<span class="token punctuation">)</span>
+<span class="token keyword">defer</span> server<span class="token punctuation">.</span><span class="token function">Shutdown</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
 </code></pre>
 <p>With the server created, we can overwrite the default port, using our <code>portFlag</code>:</p>
-<pre><code class="lang-go">flag<span class="token operator">.</span><span class="token function">Parse<span class="token punctuation">(</span></span><span class="token operator">)</span>
-server<span class="token operator">.</span>Port <span class="token operator">=</span> <span class="token operator">*</span>portFlag
+<pre class="language-"><code class="lang-go">flag<span class="token punctuation">.</span><span class="token function">Parse</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+server<span class="token punctuation">.</span>Port <span class="token operator">=</span> <span class="token operator">*</span>portFlag
 </code></pre>
 <p>After that, we can serve our API and finish our main logic:</p>
-<pre><code class="lang-go"><span class="token keyword">if</span> err <span class="token operator">:=</span> server<span class="token operator">.</span><span class="token function">Serve<span class="token punctuation">(</span></span><span class="token operator">)</span><span class="token operator">;</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token operator">{</span>
-    log<span class="token operator">.</span><span class="token function">Fatalln<span class="token punctuation">(</span></span>err<span class="token operator">)</span>
-<span class="token operator">}</span>
+<pre class="language-"><code class="lang-go"><span class="token keyword">if</span> err <span class="token operator">:=</span> server<span class="token punctuation">.</span><span class="token function">Serve</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">{</span>
+    log<span class="token punctuation">.</span><span class="token function">Fatalln</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
 </code></pre>
 <p>Putting that all together, we have the following main function:</p>
-<pre><code class="lang-go"><span class="token keyword">func</span> <span class="token function">main<span class="token punctuation">(</span></span><span class="token operator">)</span> <span class="token operator">{</span>
+<pre class="language-"><code class="lang-go"><span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
     <span class="token comment" spellcheck="true">// load embedded swagger file</span>
-    swaggerSpec<span class="token operator">,</span> err <span class="token operator">:=</span> loads<span class="token operator">.</span><span class="token function">Analyzed<span class="token punctuation">(</span></span>restapi<span class="token operator">.</span>SwaggerJSON<span class="token operator">,</span> <span class="token string">&quot;&quot;</span><span class="token operator">)</span>
-    <span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token operator">{</span>
-        log<span class="token operator">.</span><span class="token function">Fatalln<span class="token punctuation">(</span></span>err<span class="token operator">)</span>
-    <span class="token operator">}</span>
+    swaggerSpec<span class="token punctuation">,</span> err <span class="token operator">:=</span> loads<span class="token punctuation">.</span><span class="token function">Analyzed</span><span class="token punctuation">(</span>restapi<span class="token punctuation">.</span>SwaggerJSON<span class="token punctuation">,</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">)</span>
+    <span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">{</span>
+        log<span class="token punctuation">.</span><span class="token function">Fatalln</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
 
     <span class="token comment" spellcheck="true">// create new service API</span>
-    api <span class="token operator">:=</span> operations<span class="token operator">.</span><span class="token function">NewGreeterAPI<span class="token punctuation">(</span></span>swaggerSpec<span class="token operator">)</span>
-    server <span class="token operator">:=</span> restapi<span class="token operator">.</span><span class="token function">NewServer<span class="token punctuation">(</span></span>api<span class="token operator">)</span>
-    <span class="token keyword">defer</span> server<span class="token operator">.</span><span class="token function">Shutdown<span class="token punctuation">(</span></span><span class="token operator">)</span>
+    api <span class="token operator">:=</span> operations<span class="token punctuation">.</span><span class="token function">NewGreeterAPI</span><span class="token punctuation">(</span>swaggerSpec<span class="token punctuation">)</span>
+    server <span class="token operator">:=</span> restapi<span class="token punctuation">.</span><span class="token function">NewServer</span><span class="token punctuation">(</span>api<span class="token punctuation">)</span>
+    <span class="token keyword">defer</span> server<span class="token punctuation">.</span><span class="token function">Shutdown</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
 
     <span class="token comment" spellcheck="true">// parse flags</span>
-    flag<span class="token operator">.</span><span class="token function">Parse<span class="token punctuation">(</span></span><span class="token operator">)</span>
+    flag<span class="token punctuation">.</span><span class="token function">Parse</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
     <span class="token comment" spellcheck="true">// set the port this service will be run on</span>
-    server<span class="token operator">.</span>Port <span class="token operator">=</span> <span class="token operator">*</span>portFlag
+    server<span class="token punctuation">.</span>Port <span class="token operator">=</span> <span class="token operator">*</span>portFlag
 
     <span class="token comment" spellcheck="true">// TODO: Set Handle</span>
 
     <span class="token comment" spellcheck="true">// serve API</span>
-    <span class="token keyword">if</span> err <span class="token operator">:=</span> server<span class="token operator">.</span><span class="token function">Serve<span class="token punctuation">(</span></span><span class="token operator">)</span><span class="token operator">;</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token operator">{</span>
-        log<span class="token operator">.</span><span class="token function">Fatalln<span class="token punctuation">(</span></span>err<span class="token operator">)</span>
-    <span class="token operator">}</span>
-<span class="token operator">}</span>
+    <span class="token keyword">if</span> err <span class="token operator">:=</span> server<span class="token punctuation">.</span><span class="token function">Serve</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">{</span>
+        log<span class="token punctuation">.</span><span class="token function">Fatalln</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
 </code></pre>
 <p>Now that we have our server defined, let&apos;s give it a first spin!
 You can run it from our root directory using the following command:</p>
-<pre><code>$ go run ./cmd/greeter/main.go --port 3000
+<pre class="language-"><code>$ go run ./cmd/greeter/main.go --port 3000
 </code></pre><p>Let&apos;s now try to call our only defined operation,
 using the <a href="https://httpie.org" target="_blank">httpie</a> cli:</p>
-<pre><code>$ http get :3000/hello
+<pre class="language-"><code>$ http get :3000/hello
 </code></pre><p>Sadly this gives us the following output:</p>
-<pre><code class="lang-http"><span class="token response-status">HTTP/1.1 <span class="token property">501 Not Implemented</span></span>
-<span class="token keyword">Connection:</span> close
-<span class="token keyword">Content-Length:</span> 50
-<span class="token keyword">Content-Type:</span> text/plain
-<span class="token keyword">Date:</span> Thu, 26 Jan 2017 13:09:52 GMT
+<pre class="language-"><code class="lang-http"><span class="token response-status">HTTP/1.1 <span class="token property">501 Not Implemented</span></span>
+<span class="token header-name keyword">Connection:</span> close
+<span class="token header-name keyword">Content-Length:</span> 50
+<span class="token header-name keyword">Content-Type:</span> text/plain
+<span class="token header-name keyword">Date:</span> Thu, 26 Jan 2017 13:09:52 GMT
 
 operation GetGreeting has not yet been implemented
 </code></pre>
@@ -665,20 +664,20 @@ Here we&apos;ll see that all our consumers, producers and handlers have sane def
 let&apos;s actually start working towards implementing our handlers.</p>
 <p>Inspecting the <code>gen/restapi/operations/get_greeting.go</code> file,
 we&apos;ll find the following snippet:</p>
-<pre><code class="lang-go"><span class="token comment" spellcheck="true">// GetGreetingHandlerFunc turns a function with the right signature into a get greeting handler</span>
-<span class="token keyword">type</span> GetGreetingHandlerFunc <span class="token keyword">func</span><span class="token operator">(</span>GetGreetingParams<span class="token operator">)</span> middleware<span class="token operator">.</span>Responder
+<pre class="language-"><code class="lang-go"><span class="token comment" spellcheck="true">// GetGreetingHandlerFunc turns a function with the right signature into a get greeting handler</span>
+<span class="token keyword">type</span> GetGreetingHandlerFunc <span class="token keyword">func</span><span class="token punctuation">(</span>GetGreetingParams<span class="token punctuation">)</span> middleware<span class="token punctuation">.</span>Responder
 
 <span class="token comment" spellcheck="true">// Handle executing the request and returning a response</span>
-<span class="token keyword">func</span> <span class="token operator">(</span>fn GetGreetingHandlerFunc<span class="token operator">)</span> <span class="token function">Handle<span class="token punctuation">(</span></span>params GetGreetingParams<span class="token operator">)</span> middleware<span class="token operator">.</span>Responder <span class="token operator">{</span>
-    <span class="token keyword">return</span> <span class="token function">fn<span class="token punctuation">(</span></span>params<span class="token operator">)</span>
-<span class="token operator">}</span>
+<span class="token keyword">func</span> <span class="token punctuation">(</span>fn GetGreetingHandlerFunc<span class="token punctuation">)</span> <span class="token function">Handle</span><span class="token punctuation">(</span>params GetGreetingParams<span class="token punctuation">)</span> middleware<span class="token punctuation">.</span>Responder <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token function">fn</span><span class="token punctuation">(</span>params<span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
 </code></pre>
 <p>Here we can read that there is a function type <code>GetGreetingHandlerFunc</code>, defined for the <code>getGreeting</code> operation which takes in one parameter of type <code>GetGreetingParams</code> and returns a <code>middleware.Responder</code>. This is the type alias our Handler has to adhere to.</p>
 <p>A bit more down we&apos;ll also encounter an interface <code>GetGreetingHandler</code>, defined for the <code>getGreeting</code> operation:</p>
-<pre><code class="lang-go"><span class="token comment" spellcheck="true">// GetGreetingHandler interface for that can handle valid get greeting params</span>
-<span class="token keyword">type</span> GetGreetingHandler <span class="token keyword">interface</span> <span class="token operator">{</span>
-    <span class="token function">Handle<span class="token punctuation">(</span></span>GetGreetingParams<span class="token operator">)</span> middleware<span class="token operator">.</span>Responder
-<span class="token operator">}</span>
+<pre class="language-"><code class="lang-go"><span class="token comment" spellcheck="true">// GetGreetingHandler interface for that can handle valid get greeting params</span>
+<span class="token keyword">type</span> GetGreetingHandler <span class="token keyword">interface</span> <span class="token punctuation">{</span>
+    <span class="token function">Handle</span><span class="token punctuation">(</span>GetGreetingParams<span class="token punctuation">)</span> middleware<span class="token punctuation">.</span>Responder
+<span class="token punctuation">}</span>
 </code></pre>
 <p>Its only defined method looks very similar to the function type <code>GetGreetingHandlerFunc</code> function defined above. This is no coincidence.</p>
 <p>Even better, the <code>GetGreetingHandlerFunc</code> implements the <code>Handle</code> function as defined by the <code>GetGreetingHandler</code> interface, meaning that we can use a function respecting the type alias as defined by <code>GetGreetingHandlerFunc</code>, where we normally would have to implement a struct adhering to the <code>GetGreetingHandler</code> interface.</p>
@@ -686,40 +685,40 @@ we&apos;ll find the following snippet:</p>
 <p>Our Greeter API is however simple enough, that we&apos;ll opt for just a simple method.
 <a href="https://en.wikipedia.org/wiki/KISS_principle" target="_blank">KISS</a> never grows old. So with all of this said, let&apos;s implement our one and only handler.</p>
 <p>Back to the <code>./cmd/greeter/main.go</code> file, we&apos;ll define our handler as follows:</p>
-<pre><code class="lang-go">api<span class="token operator">.</span>GetGreetingHandler <span class="token operator">=</span> operations<span class="token operator">.</span><span class="token function">GetGreetingHandlerFunc<span class="token punctuation">(</span></span>
-    <span class="token keyword">func</span><span class="token operator">(</span>params operations<span class="token operator">.</span>GetGreetingParams<span class="token operator">)</span> middleware<span class="token operator">.</span>Responder <span class="token operator">{</span>
-        name <span class="token operator">:=</span> swag<span class="token operator">.</span><span class="token function">StringValue<span class="token punctuation">(</span></span>params<span class="token operator">.</span>Name<span class="token operator">)</span>
-        <span class="token keyword">if</span> name <span class="token operator">==</span> <span class="token string">&quot;&quot;</span> <span class="token operator">{</span>
+<pre class="language-"><code class="lang-go">api<span class="token punctuation">.</span>GetGreetingHandler <span class="token operator">=</span> operations<span class="token punctuation">.</span><span class="token function">GetGreetingHandlerFunc</span><span class="token punctuation">(</span>
+    <span class="token keyword">func</span><span class="token punctuation">(</span>params operations<span class="token punctuation">.</span>GetGreetingParams<span class="token punctuation">)</span> middleware<span class="token punctuation">.</span>Responder <span class="token punctuation">{</span>
+        name <span class="token operator">:=</span> swag<span class="token punctuation">.</span><span class="token function">StringValue</span><span class="token punctuation">(</span>params<span class="token punctuation">.</span>Name<span class="token punctuation">)</span>
+        <span class="token keyword">if</span> name <span class="token operator">==</span> <span class="token string">&quot;&quot;</span> <span class="token punctuation">{</span>
             name <span class="token operator">=</span> <span class="token string">&quot;World&quot;</span>
-        <span class="token operator">}</span>
+        <span class="token punctuation">}</span>
 
-        greeting <span class="token operator">:=</span> fmt<span class="token operator">.</span><span class="token function">Sprintf<span class="token punctuation">(</span></span><span class="token string">&quot;Hello, %s!&quot;</span><span class="token operator">,</span> name<span class="token operator">)</span>
-        <span class="token keyword">return</span> operations<span class="token operator">.</span><span class="token function">NewGetGreetingOK<span class="token punctuation">(</span></span><span class="token operator">)</span><span class="token operator">.</span><span class="token function">WithPayload<span class="token punctuation">(</span></span>greeting<span class="token operator">)</span>
-    <span class="token operator">}</span><span class="token operator">)</span>
+        greeting <span class="token operator">:=</span> fmt<span class="token punctuation">.</span><span class="token function">Sprintf</span><span class="token punctuation">(</span><span class="token string">&quot;Hello, %s!&quot;</span><span class="token punctuation">,</span> name<span class="token punctuation">)</span>
+        <span class="token keyword">return</span> operations<span class="token punctuation">.</span><span class="token function">NewGetGreetingOK</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">WithPayload</span><span class="token punctuation">(</span>greeting<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
 </code></pre>
 <p>Which replaces the <code>TODO: Set Handle</code> comment, originally defined.</p>
 <p>Let&apos;s break down the snippet above.
 First we make use of the <a href="https://github.com/go-openapi/swag" target="_blank">go-openapi/swag</a> package, which is full of Goodies.
 In this case we use the <code>StringValue</code> function which transforms a <code>*string</code> into a <code>string</code>. The result will be empty in case it was nil. This comes in handy as we know that our parameter can be nil when not given, as it is <em>not</em> required. Finally we form our greeting and return it as our payload with our <code>200 OK</code> response.</p>
 <p>Let&apos;s run our server:</p>
-<pre><code>$ go run ./cmd/greeter/main.go --port 3000
+<pre class="language-"><code>$ go run ./cmd/greeter/main.go --port 3000
 </code></pre><p>And now we&apos;re ready to test our greeter API once again:</p>
-<pre><code>$ http get :3000/hello
-</code></pre><pre><code class="lang-http"><span class="token response-status">HTTP/1.1 <span class="token property">200 OK</span></span>
-<span class="token keyword">Connection:</span> close
-<span class="token keyword">Content-Length:</span> 13
-<span class="token keyword">Content-Type:</span> text/plain
-<span class="token keyword">Date:</span> Thu, 26 Jan 2017 13:47:49 GMT
+<pre class="language-"><code>$ http get :3000/hello
+</code></pre><pre class="language-"><code class="lang-http"><span class="token response-status">HTTP/1.1 <span class="token property">200 OK</span></span>
+<span class="token header-name keyword">Connection:</span> close
+<span class="token header-name keyword">Content-Length:</span> 13
+<span class="token header-name keyword">Content-Type:</span> text/plain
+<span class="token header-name keyword">Date:</span> Thu, 26 Jan 2017 13:47:49 GMT
 
 Hello, World!
 </code></pre>
 <p>Hurray, let&apos;s now greet <em>Swagger</em>:</p>
-<pre><code>$ http get :3000/hello name==Swagger
-</code></pre><pre><code class="lang-http"><span class="token response-status">HTTP/1.1 <span class="token property">200 OK</span></span>
-<span class="token keyword">Connection:</span> close
-<span class="token keyword">Content-Length:</span> 15
-<span class="token keyword">Content-Type:</span> text/plain
-<span class="token keyword">Date:</span> Thu, 26 Jan 2017 13:48:40 GMT
+<pre class="language-"><code>$ http get :3000/hello name==Swagger
+</code></pre><pre class="language-"><code class="lang-http"><span class="token response-status">HTTP/1.1 <span class="token property">200 OK</span></span>
+<span class="token header-name keyword">Connection:</span> close
+<span class="token header-name keyword">Content-Length:</span> 15
+<span class="token header-name keyword">Content-Type:</span> text/plain
+<span class="token header-name keyword">Date:</span> Thu, 26 Jan 2017 13:48:40 GMT
 
 Hello, Swagger!
 </code></pre>
@@ -771,7 +770,7 @@ same techniques as described in this tutorial.</p>
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Custom Server","level":"1.2.3","depth":2,"next":{"title":"Validate","level":"1.3","depth":1,"path":"usage/validate.md","ref":"usage/validate.md","articles":[]},"previous":{"title":"Middleware","level":"1.2.2","depth":2,"path":"use/middleware.md","ref":"use/middleware.md","articles":[]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"prism":{},"anchors":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"tutorial/custom-server.md","mtime":"2017-04-10T05:49:57.493Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-04-29T19:20:19.683Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Custom Server","level":"1.2.3","depth":2,"next":{"title":"Validate","level":"1.3","depth":1,"path":"usage/validate.md","ref":"usage/validate.md","articles":[]},"previous":{"title":"Middleware","level":"1.2.2","depth":2,"path":"use/middleware.md","ref":"use/middleware.md","articles":[]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"prism":{},"anchors":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"tutorial/custom-server.md","mtime":"2017-10-20T04:53:41.000Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2017-10-20T04:54:46.015Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

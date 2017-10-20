@@ -7,7 +7,7 @@
         <title>swagger:strfmt · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 3.2.2">
+        <meta name="generator" content="GitBook 3.2.3">
         
         
         
@@ -537,12 +537,12 @@ String formats should only be used for <strong>very</strong> well known formats.
 <li>custom string formats</li>
 </ul>
 <h5 id="syntax"><a name="syntax" class="plugin-anchor" href="#syntax"><i class="fa fa-link" aria-hidden="true"></i></a>Syntax:</h5>
-<pre><code>swagger:strfmt [name]
+<pre class="language-"><code>swagger:strfmt [name]
 </code></pre><h5 id="example"><a name="example" class="plugin-anchor" href="#example"><i class="fa fa-link" aria-hidden="true"></i></a>Example:</h5>
-<pre><code class="lang-go"><span class="token keyword">func</span> <span class="token function">init<span class="token punctuation">(</span></span><span class="token operator">)</span> <span class="token operator">{</span>
-  eml <span class="token operator">:=</span> <span class="token function">Email<span class="token punctuation">(</span></span><span class="token string">&quot;&quot;</span><span class="token operator">)</span>
-  Default<span class="token operator">.</span><span class="token function">Add<span class="token punctuation">(</span></span><span class="token string">&quot;email&quot;</span><span class="token operator">,</span> <span class="token operator">&amp;</span>eml<span class="token operator">,</span> govalidator<span class="token operator">.</span>IsEmail<span class="token operator">)</span>
-<span class="token operator">}</span>
+<pre class="language-"><code class="lang-go"><span class="token keyword">func</span> <span class="token function">init</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  eml <span class="token operator">:=</span> <span class="token function">Email</span><span class="token punctuation">(</span><span class="token string">&quot;&quot;</span><span class="token punctuation">)</span>
+  Default<span class="token punctuation">.</span><span class="token function">Add</span><span class="token punctuation">(</span><span class="token string">&quot;email&quot;</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>eml<span class="token punctuation">,</span> govalidator<span class="token punctuation">.</span>IsEmail<span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
 
 <span class="token comment" spellcheck="true">// Email represents the email string format as specified by the json schema spec</span>
 <span class="token comment" spellcheck="true">//</span>
@@ -550,35 +550,35 @@ String formats should only be used for <strong>very</strong> well known formats.
 <span class="token keyword">type</span> Email <span class="token builtin">string</span>
 
 <span class="token comment" spellcheck="true">// MarshalText turns this instance into text</span>
-<span class="token keyword">func</span> <span class="token operator">(</span>e Email<span class="token operator">)</span> <span class="token function">MarshalText<span class="token punctuation">(</span></span><span class="token operator">)</span> <span class="token operator">(</span><span class="token operator">[</span><span class="token operator">]</span><span class="token builtin">byte</span><span class="token operator">,</span> <span class="token builtin">error</span><span class="token operator">)</span> <span class="token operator">{</span>
-    <span class="token keyword">return</span> <span class="token operator">[</span><span class="token operator">]</span><span class="token function">byte<span class="token punctuation">(</span></span><span class="token function">string<span class="token punctuation">(</span></span>e<span class="token operator">)</span><span class="token operator">)</span><span class="token operator">,</span> <span class="token boolean">nil</span>
-<span class="token operator">}</span>
+<span class="token keyword">func</span> <span class="token punctuation">(</span>e Email<span class="token punctuation">)</span> <span class="token function">MarshalText</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">byte</span><span class="token punctuation">,</span> <span class="token builtin">error</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token function">byte</span><span class="token punctuation">(</span><span class="token function">string</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token boolean">nil</span>
+<span class="token punctuation">}</span>
 
 <span class="token comment" spellcheck="true">// UnmarshalText hydrates this instance from text</span>
-<span class="token keyword">func</span> <span class="token operator">(</span>e <span class="token operator">*</span>Email<span class="token operator">)</span> <span class="token function">UnmarshalText<span class="token punctuation">(</span></span>data <span class="token operator">[</span><span class="token operator">]</span><span class="token builtin">byte</span><span class="token operator">)</span> <span class="token builtin">error</span> <span class="token operator">{</span> <span class="token comment" spellcheck="true">// validation is performed later on</span>
-    <span class="token operator">*</span>e <span class="token operator">=</span> <span class="token function">Email<span class="token punctuation">(</span></span><span class="token function">string<span class="token punctuation">(</span></span>data<span class="token operator">)</span><span class="token operator">)</span>
+<span class="token keyword">func</span> <span class="token punctuation">(</span>e <span class="token operator">*</span>Email<span class="token punctuation">)</span> <span class="token function">UnmarshalText</span><span class="token punctuation">(</span>data <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">byte</span><span class="token punctuation">)</span> <span class="token builtin">error</span> <span class="token punctuation">{</span> <span class="token comment" spellcheck="true">// validation is performed later on</span>
+    <span class="token operator">*</span>e <span class="token operator">=</span> <span class="token function">Email</span><span class="token punctuation">(</span><span class="token function">string</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">)</span>
     <span class="token keyword">return</span> <span class="token boolean">nil</span>
-<span class="token operator">}</span>
+<span class="token punctuation">}</span>
 
-<span class="token keyword">func</span> <span class="token operator">(</span>b <span class="token operator">*</span>Email<span class="token operator">)</span> <span class="token function">Scan<span class="token punctuation">(</span></span>raw <span class="token keyword">interface</span><span class="token operator">{</span><span class="token operator">}</span><span class="token operator">)</span> <span class="token builtin">error</span> <span class="token operator">{</span>
-    <span class="token keyword">switch</span> v <span class="token operator">:=</span> raw<span class="token operator">.</span><span class="token operator">(</span><span class="token keyword">type</span><span class="token operator">)</span> <span class="token operator">{</span>
-    <span class="token keyword">case</span> <span class="token operator">[</span><span class="token operator">]</span><span class="token builtin">byte</span><span class="token operator">:</span>
-        <span class="token operator">*</span>b <span class="token operator">=</span> <span class="token function">Email<span class="token punctuation">(</span></span><span class="token function">string<span class="token punctuation">(</span></span>v<span class="token operator">)</span><span class="token operator">)</span>
-    <span class="token keyword">case</span> <span class="token builtin">string</span><span class="token operator">:</span>
-        <span class="token operator">*</span>b <span class="token operator">=</span> <span class="token function">Email<span class="token punctuation">(</span></span>v<span class="token operator">)</span>
-    <span class="token keyword">default</span><span class="token operator">:</span>
-        <span class="token keyword">return</span> fmt<span class="token operator">.</span><span class="token function">Errorf<span class="token punctuation">(</span></span><span class="token string">&quot;cannot sql.Scan() strfmt.Email from: %#v&quot;</span><span class="token operator">,</span> v<span class="token operator">)</span>
-    <span class="token operator">}</span>
+<span class="token keyword">func</span> <span class="token punctuation">(</span>b <span class="token operator">*</span>Email<span class="token punctuation">)</span> <span class="token function">Scan</span><span class="token punctuation">(</span>raw <span class="token keyword">interface</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token builtin">error</span> <span class="token punctuation">{</span>
+    <span class="token keyword">switch</span> v <span class="token operator">:=</span> raw<span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token keyword">type</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">case</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">byte</span><span class="token punctuation">:</span>
+        <span class="token operator">*</span>b <span class="token operator">=</span> <span class="token function">Email</span><span class="token punctuation">(</span><span class="token function">string</span><span class="token punctuation">(</span>v<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token keyword">case</span> <span class="token builtin">string</span><span class="token punctuation">:</span>
+        <span class="token operator">*</span>b <span class="token operator">=</span> <span class="token function">Email</span><span class="token punctuation">(</span>v<span class="token punctuation">)</span>
+    <span class="token keyword">default</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> fmt<span class="token punctuation">.</span><span class="token function">Errorf</span><span class="token punctuation">(</span><span class="token string">&quot;cannot sql.Scan() strfmt.Email from: %#v&quot;</span><span class="token punctuation">,</span> v<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
 
     <span class="token keyword">return</span> <span class="token boolean">nil</span>
-<span class="token operator">}</span>
+<span class="token punctuation">}</span>
 
-<span class="token keyword">func</span> <span class="token operator">(</span>b Email<span class="token operator">)</span> <span class="token function">Value<span class="token punctuation">(</span></span><span class="token operator">)</span> <span class="token operator">(</span>driver<span class="token operator">.</span>Value<span class="token operator">,</span> <span class="token builtin">error</span><span class="token operator">)</span> <span class="token operator">{</span>
-    <span class="token keyword">return</span> driver<span class="token operator">.</span><span class="token function">Value<span class="token punctuation">(</span></span><span class="token function">string<span class="token punctuation">(</span></span>b<span class="token operator">)</span><span class="token operator">)</span><span class="token operator">,</span> <span class="token boolean">nil</span>
-<span class="token operator">}</span>
+<span class="token keyword">func</span> <span class="token punctuation">(</span>b Email<span class="token punctuation">)</span> <span class="token function">Value</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">(</span>driver<span class="token punctuation">.</span>Value<span class="token punctuation">,</span> <span class="token builtin">error</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> driver<span class="token punctuation">.</span><span class="token function">Value</span><span class="token punctuation">(</span><span class="token function">string</span><span class="token punctuation">(</span>b<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token boolean">nil</span>
+<span class="token punctuation">}</span>
 </code></pre>
 <h5 id="result"><a name="result" class="plugin-anchor" href="#result"><i class="fa fa-link" aria-hidden="true"></i></a>Result:</h5>
-<pre><code class="lang-yaml"><span class="token punctuation">-</span><span class="token punctuation">-</span><span class="token punctuation">-</span>
+<pre class="language-"><code class="lang-yaml"><span class="token punctuation">---</span>
 <span class="token key atrule">definitions</span><span class="token punctuation">:</span>
   <span class="token key atrule">user</span><span class="token punctuation">:</span>
     <span class="token key atrule">properties</span><span class="token punctuation">:</span>
@@ -629,7 +629,7 @@ String formats should only be used for <strong>very</strong> well known formats.
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"swagger:strfmt","level":"1.6.4.8","depth":3,"next":{"title":"swagger:discriminated","level":"1.6.4.9","depth":3,"path":"generate/spec/discriminated.md","ref":"generate/spec/discriminated.md","articles":[]},"previous":{"title":"swagger:allOf","level":"1.6.4.7","depth":3,"path":"generate/spec/allOf.md","ref":"generate/spec/allOf.md","articles":[]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"prism":{},"anchors":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"generate/spec/strfmt.md","mtime":"2016-08-25T04:20:38.407Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-04-29T19:20:19.683Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"swagger:strfmt","level":"1.6.4.8","depth":3,"next":{"title":"swagger:discriminated","level":"1.6.4.9","depth":3,"path":"generate/spec/discriminated.md","ref":"generate/spec/discriminated.md","articles":[]},"previous":{"title":"swagger:allOf","level":"1.6.4.7","depth":3,"path":"generate/spec/allOf.md","ref":"generate/spec/allOf.md","articles":[]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"prism":{},"anchors":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"generate/spec/strfmt.md","mtime":"2016-08-01T00:00:09.000Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2017-10-20T04:54:46.015Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

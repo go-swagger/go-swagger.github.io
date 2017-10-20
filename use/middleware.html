@@ -7,7 +7,7 @@
         <title>Middleware · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 3.2.2">
+        <meta name="generator" content="GitBook 3.2.3">
         
         
         
@@ -531,17 +531,17 @@ specification at that path.</p>
 the lifecycle of a request. You can find those hooks in the configure_xxx_api.go file.</p>
 <p>The first one is to add middleware all the way to the top of the middleware stack. To do this you add them in the
 <code>setupGlobalMiddleware</code> method. This middleware applies to everything in the go-swagger managed API.</p>
-<pre><code class="lang-go"><span class="token keyword">func</span> <span class="token function">setupGlobalMiddleware<span class="token punctuation">(</span></span>handler http<span class="token operator">.</span>Handler<span class="token operator">)</span> http<span class="token operator">.</span>Handler <span class="token operator">{</span>
+<pre class="language-"><code class="lang-go"><span class="token keyword">func</span> <span class="token function">setupGlobalMiddleware</span><span class="token punctuation">(</span>handler http<span class="token punctuation">.</span>Handler<span class="token punctuation">)</span> http<span class="token punctuation">.</span>Handler <span class="token punctuation">{</span>
     <span class="token keyword">return</span> handler
-<span class="token operator">}</span>
+<span class="token punctuation">}</span>
 </code></pre>
 <p>The second extension point allows for middleware to be injected right before actually handling a matched request.
 This excludes the swagger.json document from being affected by this middlware though.  This extension point makes the
 middlewares execute right after routing but right before authentication, binding and validation.  You add middlewares
 to this point by editing the <code>setupMiddlewares</code> method in configure_xxx_api.go</p>
-<pre><code class="lang-go"><span class="token keyword">func</span> <span class="token function">setupMiddlewares<span class="token punctuation">(</span></span>handler http<span class="token operator">.</span>Handler<span class="token operator">)</span> http<span class="token operator">.</span>Handler <span class="token operator">{</span>
+<pre class="language-"><code class="lang-go"><span class="token keyword">func</span> <span class="token function">setupMiddlewares</span><span class="token punctuation">(</span>handler http<span class="token punctuation">.</span>Handler<span class="token punctuation">)</span> http<span class="token punctuation">.</span>Handler <span class="token punctuation">{</span>
     <span class="token keyword">return</span> handler
-<span class="token operator">}</span>
+<span class="token punctuation">}</span>
 </code></pre>
 <p>The global middleware is an excellent place to do things like panic handling, request logging or adding metrics.  While
 the plain middleware allows you to kind of filter this by request path without having to take care of routing. You also
@@ -550,48 +550,48 @@ get access to the full context that the go-swagger toolkit uses throughout the l
 <p>A very common requirement for HTTP APIs is to include some form of logging. Another one is to handle panics from your
 API requests.  The example for a possible implementation of this uses <a href="https://github.com/dre1080/recover" target="_blank">this community provided
 middleware</a> to catch panics.</p>
-<pre><code class="lang-go"><span class="token keyword">func</span> <span class="token function">setupGlobalMiddleware<span class="token punctuation">(</span></span>handler http<span class="token operator">.</span>Handler<span class="token operator">)</span> http<span class="token operator">.</span>Handler <span class="token operator">{</span>
-  recovery <span class="token operator">:=</span> <span class="token builtin">recover</span><span class="token operator">.</span><span class="token function">New<span class="token punctuation">(</span></span><span class="token operator">&amp;</span><span class="token builtin">recover</span><span class="token operator">.</span>Options<span class="token operator">{</span>
-    Log<span class="token operator">:</span> log<span class="token operator">.</span>Print<span class="token operator">,</span>
-  <span class="token operator">}</span><span class="token operator">)</span>
-  <span class="token keyword">return</span> <span class="token function">recovery<span class="token punctuation">(</span></span>handler<span class="token operator">)</span>
-<span class="token operator">}</span>
+<pre class="language-"><code class="lang-go"><span class="token keyword">func</span> <span class="token function">setupGlobalMiddleware</span><span class="token punctuation">(</span>handler http<span class="token punctuation">.</span>Handler<span class="token punctuation">)</span> http<span class="token punctuation">.</span>Handler <span class="token punctuation">{</span>
+  recovery <span class="token operator">:=</span> <span class="token builtin">recover</span><span class="token punctuation">.</span><span class="token function">New</span><span class="token punctuation">(</span><span class="token operator">&amp;</span><span class="token builtin">recover</span><span class="token punctuation">.</span>Options<span class="token punctuation">{</span>
+    Log<span class="token punctuation">:</span> log<span class="token punctuation">.</span>Print<span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  <span class="token keyword">return</span> <span class="token function">recovery</span><span class="token punctuation">(</span>handler<span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
 </code></pre>
 <p>There are tons of middlewares out there, some are framework specific and some frameworks don&apos;t really use the plain
 vanilla golang net/http as base abstraction. For those you can use a project like <a href="https://github.com/carbocation/interpose" target="_blank">interpose</a> that serves as an adapter
 layer so you can still reuse middlewares. Of course nobody is stopping you to just implement your own middlewares.</p>
 <p>For example using interpose to integrate with <a href="https://github.com/carbocation/interpose/blob/master/middleware/negronilogrus.go" target="_blank">logrus</a>.</p>
-<pre><code class="lang-go"><span class="token keyword">import</span> <span class="token operator">(</span>
+<pre class="language-"><code class="lang-go"><span class="token keyword">import</span> <span class="token punctuation">(</span>
   interpose <span class="token string">&quot;github.com/carbocation/interpose/middleware&quot;</span>
-<span class="token operator">)</span>
-<span class="token keyword">func</span> <span class="token function">setupGlobalMiddleware<span class="token punctuation">(</span></span>handler http<span class="token operator">.</span>Handler<span class="token operator">)</span> http<span class="token operator">.</span>Handler <span class="token operator">{</span>
-  logViaLogrus <span class="token operator">:=</span> interpose<span class="token operator">.</span><span class="token function">NegroniLogrus<span class="token punctuation">(</span></span><span class="token operator">)</span>
-  <span class="token keyword">return</span> <span class="token function">logViaLogrus<span class="token punctuation">(</span></span>handler<span class="token operator">)</span>
-<span class="token operator">}</span>
+<span class="token punctuation">)</span>
+<span class="token keyword">func</span> <span class="token function">setupGlobalMiddleware</span><span class="token punctuation">(</span>handler http<span class="token punctuation">.</span>Handler<span class="token punctuation">)</span> http<span class="token punctuation">.</span>Handler <span class="token punctuation">{</span>
+  logViaLogrus <span class="token operator">:=</span> interpose<span class="token punctuation">.</span><span class="token function">NegroniLogrus</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token keyword">return</span> <span class="token function">logViaLogrus</span><span class="token punctuation">(</span>handler<span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
 </code></pre>
 <p>And you can compose these middlewares into a stack using functions.</p>
-<pre><code class="lang-go"><span class="token keyword">func</span> <span class="token function">setupGlobalMiddleware<span class="token punctuation">(</span></span>handler http<span class="token operator">.</span>Handler<span class="token operator">)</span> http<span class="token operator">.</span>Handler <span class="token operator">{</span>
-  handlePanic <span class="token operator">:=</span> <span class="token builtin">recover</span><span class="token operator">.</span><span class="token function">New<span class="token punctuation">(</span></span><span class="token operator">&amp;</span><span class="token builtin">recover</span><span class="token operator">.</span>Options<span class="token operator">{</span>
-    Log<span class="token operator">:</span> log<span class="token operator">.</span>Print<span class="token operator">,</span>
-  <span class="token operator">}</span><span class="token operator">)</span>
+<pre class="language-"><code class="lang-go"><span class="token keyword">func</span> <span class="token function">setupGlobalMiddleware</span><span class="token punctuation">(</span>handler http<span class="token punctuation">.</span>Handler<span class="token punctuation">)</span> http<span class="token punctuation">.</span>Handler <span class="token punctuation">{</span>
+  handlePanic <span class="token operator">:=</span> <span class="token builtin">recover</span><span class="token punctuation">.</span><span class="token function">New</span><span class="token punctuation">(</span><span class="token operator">&amp;</span><span class="token builtin">recover</span><span class="token punctuation">.</span>Options<span class="token punctuation">{</span>
+    Log<span class="token punctuation">:</span> log<span class="token punctuation">.</span>Print<span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
 
-  logViaLogrus <span class="token operator">:=</span> interpose<span class="token operator">.</span><span class="token function">NegroniLogrus<span class="token punctuation">(</span></span><span class="token operator">)</span>
+  logViaLogrus <span class="token operator">:=</span> interpose<span class="token punctuation">.</span><span class="token function">NegroniLogrus</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
 
-  <span class="token keyword">return</span> <span class="token function">handlePanic<span class="token punctuation">(</span></span>
-    <span class="token function">logViaLogrus<span class="token punctuation">(</span></span>
+  <span class="token keyword">return</span> <span class="token function">handlePanic</span><span class="token punctuation">(</span>
+    <span class="token function">logViaLogrus</span><span class="token punctuation">(</span>
       handler
-    <span class="token operator">)</span>
-  <span class="token operator">)</span>
-<span class="token operator">}</span>
+    <span class="token punctuation">)</span>
+  <span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
 </code></pre>
 <h4 id="add-rate-limiting"><a name="add-rate-limiting" class="plugin-anchor" href="#add-rate-limiting"><i class="fa fa-link" aria-hidden="true"></i></a>Add rate limiting</h4>
 <p>You can also add rate limiting in a similar way. Lets say we just want to rate limit the valid requests to our swagger
 API. To do so we could use <a href="https://github.com/didip/tollbooth" target="_blank">tollbooth</a>.</p>
-<pre><code class="lang-go"><span class="token keyword">func</span> <span class="token function">setupMiddlewares<span class="token punctuation">(</span></span>handler http<span class="token operator">.</span>Handler<span class="token operator">)</span> http<span class="token operator">.</span>Handler <span class="token operator">{</span>
-  limiter <span class="token operator">:=</span> tollbooth<span class="token operator">.</span><span class="token function">NewLimiter<span class="token punctuation">(</span></span><span class="token number">1</span><span class="token operator">,</span> time<span class="token operator">.</span>Second<span class="token operator">)</span>
-  limiter<span class="token operator">.</span>IPLookups <span class="token operator">=</span> <span class="token operator">[</span><span class="token operator">]</span><span class="token builtin">string</span><span class="token operator">{</span><span class="token string">&quot;RemoteAddr&quot;</span><span class="token operator">,</span> <span class="token string">&quot;X-Forwarded-For&quot;</span><span class="token operator">,</span> <span class="token string">&quot;X-Real-IP&quot;</span><span class="token operator">}</span>
-    <span class="token keyword">return</span> tollbooth<span class="token operator">.</span><span class="token function">LimitFuncHandler<span class="token punctuation">(</span></span>handler<span class="token operator">)</span>
-<span class="token operator">}</span>
+<pre class="language-"><code class="lang-go"><span class="token keyword">func</span> <span class="token function">setupMiddlewares</span><span class="token punctuation">(</span>handler http<span class="token punctuation">.</span>Handler<span class="token punctuation">)</span> http<span class="token punctuation">.</span>Handler <span class="token punctuation">{</span>
+  limiter <span class="token operator">:=</span> tollbooth<span class="token punctuation">.</span><span class="token function">NewLimiter</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> time<span class="token punctuation">.</span>Second<span class="token punctuation">)</span>
+  limiter<span class="token punctuation">.</span>IPLookups <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">string</span><span class="token punctuation">{</span><span class="token string">&quot;RemoteAddr&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;X-Forwarded-For&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;X-Real-IP&quot;</span><span class="token punctuation">}</span>
+    <span class="token keyword">return</span> tollbooth<span class="token punctuation">.</span><span class="token function">LimitFuncHandler</span><span class="token punctuation">(</span>handler<span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
 </code></pre>
 <p>And with this you&apos;ve added rate limitting to your application.</p>
 
@@ -637,7 +637,7 @@ API. To do so we could use <a href="https://github.com/didip/tollbooth" target="
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Middleware","level":"1.2.2","depth":2,"next":{"title":"Custom Server","level":"1.2.3","depth":2,"path":"tutorial/custom-server.md","ref":"tutorial/custom-server.md","articles":[]},"previous":{"title":"Simple Server","level":"1.2.1","depth":2,"path":"tutorial/todo-list.md","ref":"tutorial/todo-list.md","articles":[]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"prism":{},"anchors":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"use/middleware.md","mtime":"2017-01-26T05:56:37.377Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-04-29T19:20:19.683Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Middleware","level":"1.2.2","depth":2,"next":{"title":"Custom Server","level":"1.2.3","depth":2,"path":"tutorial/custom-server.md","ref":"tutorial/custom-server.md","articles":[]},"previous":{"title":"Simple Server","level":"1.2.1","depth":2,"path":"tutorial/todo-list.md","ref":"tutorial/todo-list.md","articles":[]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"prism":{},"anchors":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"use/middleware.md","mtime":"2017-02-23T05:04:26.000Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2017-10-20T04:54:46.015Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
