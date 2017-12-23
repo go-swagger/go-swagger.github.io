@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>Usage · GitBook</title>
+        <title>API testing · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.2">
@@ -65,10 +65,10 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="../generate/model.md" />
+    <link rel="next" href="../faq_documenting.md" />
     
     
-    <link rel="prev" href="../generate/server.html" />
+    <link rel="prev" href="faq_spec.html" />
     
 
     </head>
@@ -169,9 +169,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.3.2" data-path="middleware.html">
+        <li class="chapter " data-level="1.3.2" data-path="../use/middleware.html">
             
-                <a href="middleware.html">
+                <a href="../use/middleware.html">
             
                     
                     Middleware
@@ -281,7 +281,7 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.4.3.1.1" data-path="client.md">
+        <li class="chapter " data-level="1.4.3.1.1" data-path="../use/client.md">
             
                 <span>
             
@@ -313,9 +313,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter active" data-level="1.4.3.2.1" data-path="server.html">
+        <li class="chapter " data-level="1.4.3.2.1" data-path="../use/server.html">
             
-                <a href="server.html">
+                <a href="../use/server.html">
             
                     
                     Usage
@@ -345,9 +345,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.4.3.3.1" data-path="schemas.html">
+        <li class="chapter " data-level="1.4.3.3.1" data-path="../use/schemas.html">
             
-                <a href="schemas.html">
+                <a href="../use/schemas.html">
             
                     
                     Model generation rules
@@ -522,9 +522,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.5" data-path="template_layout.html">
+        <li class="chapter " data-level="1.5" data-path="../use/template_layout.html">
             
-                <a href="template_layout.html">
+                <a href="../use/template_layout.html">
             
                     
                     Custom generation
@@ -567,9 +567,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.7" data-path="../faq/">
+        <li class="chapter " data-level="1.7" data-path="./">
             
-                <a href="../faq/">
+                <a href="./">
             
                     
                     FAQ
@@ -581,9 +581,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.7.1" data-path="../faq/faq_setup.html">
+        <li class="chapter " data-level="1.7.1" data-path="faq_setup.html">
             
-                <a href="../faq/faq_setup.html">
+                <a href="faq_setup.html">
             
                     
                     Installation,setup and environment
@@ -594,9 +594,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.7.2" data-path="../faq/faq_model.html">
+        <li class="chapter " data-level="1.7.2" data-path="faq_model.html">
             
-                <a href="../faq/faq_model.html">
+                <a href="faq_model.html">
             
                     
                     Model generation
@@ -607,9 +607,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.7.3" data-path="../faq/faq_server.html">
+        <li class="chapter " data-level="1.7.3" data-path="faq_server.html">
             
-                <a href="../faq/faq_server.html">
+                <a href="faq_server.html">
             
                     
                     Server generation & customization
@@ -620,9 +620,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.7.4" data-path="../faq/faq_client.html">
+        <li class="chapter " data-level="1.7.4" data-path="faq_client.html">
             
-                <a href="../faq/faq_client.html">
+                <a href="faq_client.html">
             
                     
                     Client generation
@@ -633,9 +633,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.7.5" data-path="../faq/faq_spec.html">
+        <li class="chapter " data-level="1.7.5" data-path="faq_spec.html">
             
-                <a href="../faq/faq_spec.html">
+                <a href="faq_spec.html">
             
                     
                     Spec generation from source
@@ -646,9 +646,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.7.6" data-path="../faq/faq_testing.html">
+        <li class="chapter active" data-level="1.7.6" data-path="faq_testing.html">
             
-                <a href="../faq/faq_testing.html">
+                <a href="faq_testing.html">
             
                     
                     API testing
@@ -707,7 +707,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >Usage</a>
+        <a href=".." >API testing</a>
     </h1>
 </div>
 
@@ -722,84 +722,96 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="use-the-generated-server"><a name="use-the-generated-server" class="plugin-anchor" href="#use-the-generated-server"><i class="fa fa-link" aria-hidden="true"></i></a>Use the generated server</h1>
-<p>The generated server serves the API but the default implementation returns 501 Not implemented for everything. Let&apos;s
-look into using the generated code.</p>
-<!--more-->
-<p>Go swagger primarily deals with HTTP and originally only supports the stdlib <code>net/http</code> interface. A typical HTTP
-request expects a response.  This is reflected in go-swagger where a handler is typically defined as a function of
-input parameters to a responder.</p>
-<pre><code class="lang-go"><span class="token keyword">type</span> ListTravelsHandler <span class="token keyword">interface</span> <span class="token operator">{</span>
-    <span class="token function">Handle<span class="token punctuation">(</span></span>ListTravelsParams<span class="token operator">)</span> middleware<span class="token operator">.</span>Responder
-<span class="token operator">}</span>
-</code></pre>
-<p>The signature of this handler is one of 2 possible variations. When a handler doesn&apos;t use authentication then a handler
-interface consists out of input parameters and a responder.</p>
-<pre><code class="lang-go"><span class="token keyword">type</span> AddOneAuthenticatedHandler <span class="token keyword">interface</span> <span class="token operator">{</span>
-    <span class="token function">Handle<span class="token punctuation">(</span></span>AddOneParams<span class="token operator">,</span> <span class="token keyword">interface</span><span class="token operator">{</span><span class="token operator">}</span><span class="token operator">)</span> middleware<span class="token operator">.</span>Responder
-<span class="token operator">}</span>
-</code></pre>
-<p>When a handler does use authentication then the second argument to the handler function represents the security
-principal for your application. You can specify the type name for this principal at generation time by specifying the
--P or --principal flag.</p>
-<pre><code>swagger generate server -P models.User
-swagger generate client -P models.User
-</code></pre><p>When you would execute the generate step with that parameter for the security principal then the
-AddOneAuthenticatedHandler would look a bit like this:</p>
-<pre><code class="lang-go"><span class="token keyword">type</span> AddOneAuthenticatedHandler <span class="token keyword">interface</span> <span class="token operator">{</span>
-    <span class="token function">Handle<span class="token punctuation">(</span></span>AddOneParams<span class="token operator">,</span> <span class="token operator">*</span>models<span class="token operator">.</span>User<span class="token operator">)</span> middleware<span class="token operator">.</span>Responder
-<span class="token operator">}</span>
-</code></pre>
-<h2 id="implement-handlers"><a name="implement-handlers" class="plugin-anchor" href="#implement-handlers"><i class="fa fa-link" aria-hidden="true"></i></a>Implement handlers</h2>
-<p>A handler is an interface/contract that defines a statically typed representation of the input and output parameters of
-an operation on your API.
-The tool generates handlers that are stubbed with a NotImplemented response when you first generate the server.</p>
-<h3 id="the-not-implemented-handler"><a name="the-not-implemented-handler" class="plugin-anchor" href="#the-not-implemented-handler"><i class="fa fa-link" aria-hidden="true"></i></a>The not implemented handler</h3>
-<p>The not implemented handler is actually a not implemented responder, it returns a responder that will always respond
-with status code 501 and a message that lets people know it&apos;s not the fault of the client that things don&apos;t work.</p>
-<pre><code class="lang-go">middleware<span class="token operator">.</span><span class="token function">NotImplemented<span class="token punctuation">(</span></span><span class="token string">&quot;operation todos.AddOne has not yet been implemented&quot;</span><span class="token operator">)</span>
-</code></pre>
-<h3 id="your-own-code"><a name="your-own-code" class="plugin-anchor" href="#your-own-code"><i class="fa fa-link" aria-hidden="true"></i></a>Your own code</h3>
-<p>Each HTTP request expects a response of some sort, this response might have no data but it&apos;s a response none the less.</p>
-<p>Every incoming request is described as a bunch of input parameters which have been validated prior to calling the
-handler. So whenever your code is executed, the input parameters are guaranteed to be valid according to what the
-swagger specification prescribes.</p>
-<p>All the input parameters have been validated, and the request has been authenticated should it have triggered
-authentication.</p>
-<p>You probably want to return something a bit more useful to the users of your API than a not implemented response.</p>
-<p>A possible implementation of the <code>ListTravelsHandler</code> interface might look like this:</p>
-<pre><code class="lang-go"><span class="token keyword">type</span> PublicListTravelsOK <span class="token keyword">struct</span> <span class="token operator">{</span>
-  Body <span class="token operator">[</span><span class="token operator">]</span>models<span class="token operator">.</span>Travel
-<span class="token operator">}</span>
-<span class="token keyword">func</span> <span class="token operator">(</span>m <span class="token operator">*</span>PublicListTravelsOK<span class="token operator">)</span> <span class="token function">WriteResponse<span class="token punctuation">(</span></span>rw http<span class="token operator">.</span>ResponseWriter<span class="token operator">,</span> producer httpkit<span class="token operator">.</span>Producer<span class="token operator">)</span><span class="token operator">{</span>
-  <span class="token comment" spellcheck="true">// generated code here</span>
-<span class="token operator">}</span>
+                                <!-- Questions about testing -->
+<h2 id="api-testing"><a name="api-testing" class="plugin-anchor" href="#api-testing"><i class="fa fa-link" aria-hidden="true"></i></a>API testing</h2>
+<h3 id="any-suggestions-how-to-leverage-the-generated-client-for-benchmarking-the-api"><a name="any-suggestions-how-to-leverage-the-generated-client-for-benchmarking-the-api" class="plugin-anchor" href="#any-suggestions-how-to-leverage-the-generated-client-for-benchmarking-the-api"><i class="fa fa-link" aria-hidden="true"></i></a>Any suggestions how to leverage the generated client for benchmarking the API?</h3>
+<p><em>Use-Case</em>: I want to benchmark the throughput and latency of different API calls.</p>
+<blockquote>
+<p>I can think of using the go testing/benchmarking framework and hand role the API calls, or I can leverage the generated client and augment it with a benchmarking framework.</p>
+</blockquote>
+<p><em>What have others done?</em></p>
+<p>At the moment, the toolkit does not generate testing tools. You may be interested in this contribution: <a href="https://github.com/go-openapi/stubs" target="_blank">https://github.com/go-openapi/stubs</a>
+(generates random JSON to fill in testcases).</p>
+<p>We acknowledge that  API testing is an important use-case. However, it is not yet supported. Pull requests to move on forward in that direction are welcome.</p>
+<p>Originally from issue <a href="https://github.com/go-swagger/go-swagger/issues/787" target="_blank">#787</a>.</p>
+<h3 id="using-httptest"><a name="using-httptest" class="plugin-anchor" href="#using-httptest"><i class="fa fa-link" aria-hidden="true"></i></a>Using httptest</h3>
+<p><em>Use-Case</em>: I would like to use httptest for testing my handlers.
+Go-swagger provides a Server, but not a configured handler. </p>
+<p><strong>Hint</strong>: I use this hack : in a file <code>test.go</code> in the restapi folder, I steal the private <code>configureAPI</code> function. It works.</p>
+<pre><code class="lang-golang">package restapi
 
-<span class="token keyword">type</span> PublicListTravelsError <span class="token keyword">struct</span> <span class="token operator">{</span>
-  Body models<span class="token operator">.</span>Error
-<span class="token operator">}</span>
-<span class="token keyword">func</span> <span class="token operator">(</span>m <span class="token operator">*</span>PublicListTravelsOK<span class="token operator">)</span> <span class="token function">WriteResponse<span class="token punctuation">(</span></span>rw http<span class="token operator">.</span>ResponseWriter<span class="token operator">,</span> producer httpkit<span class="token operator">.</span>Producer<span class="token operator">)</span><span class="token operator">{</span>
-  <span class="token comment" spellcheck="true">// generated code here</span>
-<span class="token operator">}</span>
+import (
+    loads &quot;github.com/go-openapi/loads&quot;
+    &quot;github.com/pim/pam/poum/restapi/operations&quot;
+    &quot;net/http&quot;
+)
 
-<span class="token keyword">type</span> PublicListTravelsHandler <span class="token keyword">struct</span> <span class="token operator">{</span>
-  db <span class="token keyword">interface</span> <span class="token operator">{</span>
-    <span class="token function">FetchTravels<span class="token punctuation">(</span></span><span class="token operator">*</span>PublicListTravelsParams<span class="token operator">)</span> <span class="token operator">(</span><span class="token operator">[</span><span class="token operator">]</span>models<span class="token operator">.</span>Travel<span class="token operator">,</span> <span class="token builtin">error</span><span class="token operator">)</span>
-  <span class="token operator">}</span>
-<span class="token operator">}</span>
+func getAPI() (*operations.ThefactoryAPI, error) {
+    swaggerSpec, err := loads.Analyzed(SwaggerJSON, &quot;&quot;)
+    if err != nil {
+        return nil, err
+    }
+    api := operations.NewThefactoryAPI(swaggerSpec)
+    return api, nil
+}
 
-<span class="token keyword">func</span> <span class="token operator">(</span>m <span class="token operator">*</span>PublicListTravelsHandler<span class="token operator">)</span> <span class="token function">Handle<span class="token punctuation">(</span></span>params ListTravelsParams<span class="token operator">)</span> middleware<span class="token operator">.</span>Responder <span class="token operator">{</span>
-  travels<span class="token operator">,</span> err <span class="token operator">:=</span> m<span class="token operator">.</span>db<span class="token operator">.</span><span class="token function">FetchTravels<span class="token punctuation">(</span></span><span class="token operator">&amp;</span>params<span class="token operator">)</span>
-  <span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token operator">{</span>
-    <span class="token keyword">return</span> <span class="token operator">&amp;</span>PublicListTravelsError<span class="token operator">{</span>Body<span class="token operator">:</span> models<span class="token operator">.</span>Error<span class="token operator">{</span>Message<span class="token operator">:</span> err<span class="token operator">.</span><span class="token function">Error<span class="token punctuation">(</span></span><span class="token operator">)</span><span class="token operator">}</span><span class="token operator">}</span>
-  <span class="token operator">}</span>
-  <span class="token keyword">return</span> <span class="token operator">&amp;</span>PublicListTravelsOK<span class="token operator">{</span>Body<span class="token operator">:</span> travels<span class="token operator">}</span>
-<span class="token operator">}</span>
+func GetAPIHandler() (http.Handler, error) {
+    api, err := getAPI()
+    if err != nil {
+        return nil, err
+    }
+    h := configureAPI(api)
+    err = api.Validate()
+    if err != nil {
+        return nil, err
+    }
+    return h, nil
+}
 </code></pre>
-<p>In the example above we have a handler implementation with a hypothetical database fetch interface. When the handle
-method is executed there are 2 possible responses for the provided parameters. There can either be an error in which
-case the PublicListTravelsError will be returned, otherwise the PublicListTravelsOK will be returned.</p>
-<p>The code generator has written the remaining code to render that response with the headers etc.</p>
+<p>And I can use this in tests like this:</p>
+<pre><code class="lang-golang">handler, err := restapi.GetAPIHandler()
+if err != nil {
+    t.Fatal(&quot;get api handler&quot;, err)
+}
+ts := httptest.NewServer(handler)
+defer ts.Close()
+res, err := http.Get(ts.URL + &quot;/api/v1/boxes&quot;)
+</code></pre>
+<p>But, hacking restapi, which use my handlers is cyclic, I can&apos;t drop my test near my handlers, and this is still a hack.</p>
+<p><em>What is the offical way to manage handler testing?</em></p>
+<p><strong>Hint</strong>: you don&apos;t actually need httptest to test the handlers.
+A handler is essentially a function of parameters to result.
+The result knows how to write itself to a http.ResponseWriter, and you already know that that part works.
+So to test a handler what you require is to test just your code.</p>
+<p>So to test the AddOne operation from the todo list this, there are 2 functions involved in the implementation.</p>
+<p>The first function uses the data from the request to actually write the todo item to a store, this can be tested separately.</p>
+<pre><code class="lang-golang">func addItem(item *models.Item) error {
+    if item == nil {
+        return errors.New(500, &quot;item must be present&quot;)
+    }
+
+    itemsLock.Lock()
+    defer itemsLock.Unlock()
+
+    newID := newItemID()
+    item.ID = newID
+    items[newID] = item
+
+    return nil
+}
+</code></pre>
+<p>Then there is the actual handler:</p>
+<pre><code class="lang-golang">todos.AddOneHandlerFunc(func(params todos.AddOneParams) middleware.Responder {
+    if err := addItem(params.Body); err != nil {
+        return todos.NewAddOneDefault(500).WithPayload(&amp;models.Error{Code: 500, Message: swag.String(err.Error())})
+    }
+    return todos.NewAddOneCreated().WithPayload(params.Body)
+})
+</code></pre>
+<p>To test this second function we don&apos;t need to use the httptest package, you can assume that that part of the code works. So all you have to test is whether or not you get the right return types for a given set of parameters.</p>
+<p>Originally from issue <a href="https://github.com/go-swagger/go-swagger/issues/719" target="_blank">#719</a>.</p>
+<hr>
+<p>Back to <a href="./#all-contributed-questions">all contributions</a></p>
 
                                 
                                 </section>
@@ -827,12 +839,12 @@ case the PublicListTravelsError will be returned, otherwise the PublicListTravel
 
             
                 
-                <a href="../generate/server.html" class="navigation navigation-prev " aria-label="Previous page: API Server">
+                <a href="faq_spec.html" class="navigation navigation-prev " aria-label="Previous page: Spec generation from source">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="../generate/model.md" class="navigation navigation-next " aria-label="Next page: API Model">
+                <a href="../faq_documenting.md" class="navigation navigation-next " aria-label="Next page: Documenting your API">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -843,7 +855,7 @@ case the PublicListTravelsError will be returned, otherwise the PublicListTravel
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Usage","level":"1.4.3.2.1","depth":4,"next":{"title":"API Model","level":"1.4.3.3","depth":3,"path":"generate/model.md","ref":"generate/model.md","articles":[{"title":"Model generation rules","level":"1.4.3.3.1","depth":4,"path":"use/schemas.md","ref":"use/schemas.md","articles":[]}]},"previous":{"title":"API Server","level":"1.4.3.2","depth":3,"path":"generate/server.md","ref":"generate/server.md","articles":[{"title":"Usage","level":"1.4.3.2.1","depth":4,"path":"use/server.md","ref":"use/server.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"prism":{},"anchors":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"use/server.md","mtime":"2017-11-20T00:45:12.007Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-12-23T20:27:08.853Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"API testing","level":"1.7.6","depth":2,"next":{"title":"Documenting your API","level":"1.7.7","depth":2,"path":"faq_documenting.md","ref":"faq_documenting.md","articles":[]},"previous":{"title":"Spec generation from source","level":"1.7.5","depth":2,"path":"faq/faq_spec.md","ref":"faq/faq_spec.md","articles":[]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"prism":{},"anchors":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"faq/faq_testing.md","mtime":"2017-12-23T20:27:02.245Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-12-23T20:27:08.853Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>Introduction · GitBook</title>
+        <title>Features · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.2">
@@ -65,8 +65,8 @@
     <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="about.html" />
     
+    <link rel="prev" href="about.html" />
     
 
     </head>
@@ -95,7 +95,7 @@
         
         
     
-        <li class="chapter active" data-level="1.1" data-path="./">
+        <li class="chapter " data-level="1.1" data-path="./">
             
                 <a href="./">
             
@@ -127,7 +127,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.2" data-path="features.html">
+        <li class="chapter active" data-level="1.2" data-path="features.html">
             
                 <a href="features.html">
             
@@ -705,7 +705,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="." >Introduction</a>
+        <a href="." >Features</a>
     </h1>
 </div>
 
@@ -720,49 +720,52 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="swagger-20----"><a name="swagger-20----" class="plugin-anchor" href="#swagger-20----"><i class="fa fa-link" aria-hidden="true"></i></a>Swagger 2.0 <a href="https://circleci.com/gh/go-swagger/go-swagger" target="_blank"><img src="https://circleci.com/gh/go-swagger/go-swagger.svg?style=shield" alt="Build Status"></a> <a href="https://ci.appveyor.com/project/casualjim/go-swagger/branch/master" target="_blank"><img src="https://ci.appveyor.com/api/projects/status/x377t5o9ennm847o/branch/master?svg=true" alt="Build status"></a> <a href="https://codecov.io/gh/go-swagger/go-swagger" target="_blank"><img src="https://codecov.io/gh/go-swagger/go-swagger/branch/master/graph/badge.svg" alt="codecov"></a> <a href="https://slackin.goswagger.io" target="_blank"><img src="https://slackin.goswagger.io/badge.svg" alt="Slack Status"></a></h1>
-<p><a href="https://raw.githubusercontent.com/swagger-api/swagger-spec/master/LICENSE" target="_blank"><img src="http://img.shields.io/badge/license-Apache%20v2-orange.svg" alt="license"></a> <a href="http://godoc.org/github.com/go-swagger/go-swagger" target="_blank"><img src="https://godoc.org/github.com/go-swagger/go-swagger?status.svg" alt="GoDoc"></a> <a href="https://badge.fury.io/gh/go-swagger%2Fgo-swagger" target="_blank"><img src="https://badge.fury.io/gh/go-swagger%2Fgo-swagger.svg" alt="GitHub version"></a> <a href="https://quay.io/repository/goswagger/swagger" target="_blank"><img src="https://quay.io/repository/goswagger/swagger/status" alt="Docker Repository on Quay" title="Docker Repository on Quay"></a></p>
-<p>Development of this toolkit is sponsored by VMware<br><a href="https://vmware.github.io" target="_blank"><img src="https://avatars2.githubusercontent.com/u/473334?v=3&amp;s=200" alt="VMWare"></a>  </p>
-<p>Contains an implementation of Swagger 2.0 (aka <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md" target="_blank">OpenAPI 2.0</a>). It knows how to serialize and deserialize swagger specifications.</p>
-<p><a href="https://swagger.io/" target="_blank">Swagger</a> is a simple yet powerful representation of your RESTful API.<br>With the largest ecosystem of API tooling on the planet, thousands of developers are supporting Swagger in almost every modern programming language and deployment environment.</p>
-<p>With a Swagger-enabled API, you get interactive documentation, client SDK generation and discoverability. We created Swagger to help fulfill the promise of APIs.</p>
-<p>Swagger helps companies like Apigee, Getty Images, Intuit, LivingSocial, McKesson, Microsoft, Morningstar, and PayPal build the best possible services with RESTful APIs. Now in version 2.0, Swagger is more enabling than ever. And it&apos;s 100% open source software.</p>
-<h2 id="how-is-this-different-from-go-generator-in-swagger-codegen"><a name="how-is-this-different-from-go-generator-in-swagger-codegen" class="plugin-anchor" href="#how-is-this-different-from-go-generator-in-swagger-codegen"><i class="fa fa-link" aria-hidden="true"></i></a>How is this different from go generator in swagger-codegen?</h2>
-<p><strong>tl;dr</strong> The main difference at this moment is that this one will actually work.</p>
-<p>The swagger-codegen project only generates a client and even there it will only support flat models.</p>
+                                <h2 id="full-features-list"><a name="full-features-list" class="plugin-anchor" href="#full-features-list"><i class="fa fa-link" aria-hidden="true"></i></a>Full features list</h2>
+<p>For a V1 I want to have this feature set completed:</p>
 <ul>
-<li>This project supports most features offered by jsonschema including polymorphism.</li>
-<li>It allows for generating a swagger specification from go code.</li>
-<li>It allows for generating a server from a swagger definition and to generate an equivalent spec back from that codebase.</li>
-<li>It allows for generating a client from a swagger definition.</li>
-<li>It has support for several common swagger vendor extensions.</li>
-</ul>
-<p>Why is this not done in the swagger-codegen project? Because:</p>
-<ul>
-<li>I don&apos;t really know java very well and so I&apos;d be learning both java and the object model of the codegen which was in heavy flux as opposed to doing go and I really wanted to go experience of designing a large codebase with it.</li>
-<li>Go&apos;s super limited type system makes it so that it doesn&apos;t fit well in the model of swagger-codegen</li>
-<li>Go&apos;s idea of polymorphism doesn&apos;t reconcile very well with a solution designed for languages that actually have inheritance and so forth.</li>
-<li>For supporting types like <code>[][][]map[string][][]int64</code> I don&apos;t think it&apos;s possible with mustache</li>
-<li>I gravely underestimated the amount of work that would be involved in making something useful out of it.</li>
-<li>My personal mission: I want the jvm to go away, it was great way back when now it&apos;s just silly (vm in container on vm in vm in container)</li>
-</ul>
-<h2 id="whats-inside"><a name="whats-inside" class="plugin-anchor" href="#whats-inside"><i class="fa fa-link" aria-hidden="true"></i></a>What&apos;s inside?</h2>
-<p>Here is an outline of available features (see the full list <a href="https://github.com/go-swagger/go-swagger/docs/features.md" target="_blank">here</a>):</p>
-<ul>
-<li>[x] An object model that serializes to swagger-compliant yaml or json</li>
+<li>[x] An object model that serializes to swagger yaml or json</li>
 <li><p>[x] A tool to work with swagger</p>
 <ul>
 <li>[x] Serve swagger UI for any swagger spec file</li>
-<li><p>[x] Flexible code generation, with customizable templates</p>
-<ul>
+<li>[x] Flexible code generation, with customizable templates</li>
 <li>[x] Generate API based on swagger spec</li>
 <li>[x] Generate go client from a swagger spec</li>
+<li><p>[x] Validate a swagger spec document, with extra rules outlined <a href="https://github.com/apigee-127/sway/blob/master/docs/README.md#semantic-validation" target="_blank">here</a></p>
+<ul>
+<li>[x] definition can&apos;t declare a property that&apos;s already defined by one of its ancestors (Error)</li>
+<li>[x] definition&apos;s ancestor can&apos;t be a descendant of the same model (Error)</li>
+<li>[x] each api path should be non-verbatim (account for path param names) unique per method (Error)</li>
+<li>[x] each path parameter should correspond to a parameter placeholder and vice versa (Error)</li>
+<li>[x] path parameter declarations do not allow empty names <em>(<code>/path/{}</code> is not valid)</em> (Error)</li>
+<li>[x] each definition property listed in the required array must be defined in the properties of the model (Error)</li>
+<li>[x] each parameter should have a unique <code>name</code> and <code>in</code> combination (Error)</li>
+<li>[x] each operation should have at most 1 parameter of type body (Error)</li>
+<li>[x] each operation cannot have both a body parameter and a formData parameter (Error)</li>
+<li>[x] each operation must have an unique <code>operationId</code> (Error)</li>
+<li>[x] each reference must point to a valid object (Error)</li>
+<li>[x] every default value that is specified must validate against the schema for that property (Error)</li>
+<li>[x] items property is required for all schemas/definitions of type <code>array</code> (Error)</li>
+<li>|x] param in path must have the property required: true</li>
+<li>[ ] every example that is specified must validate against the schema for that property (Error)</li>
+<li>[ ] $ref should not have siblings (Warning)</li>
+<li>[x] each referable definition must have references (Warning)</li>
 </ul>
 </li>
-<li><p>[x] Validate a swagger spec document, with extra rules outlined <a href="https://github.com/apigee-127/sway/blob/master/docs/README.md#semantic-validation" target="_blank">here</a></p>
+<li><p>[x] Validate against jsonschema (Draft 4), with full $ref support</p>
 </li>
-<li>[x] Validate against jsonschema (Draft 4), with full $ref support</li>
-<li>[x] Generate spec document based on annotated code</li>
+<li><p>[x] Generate spec document based on annotated code</p>
+<ul>
+<li>[x] generate meta data (top level swagger properties) from package docs</li>
+<li>[x] generate definition entries for models</li>
+<li>[x] support composed structs out of several embeds</li>
+<li>[x] support allOf for composed structs</li>
+<li>[x] generate path entries for routes</li>
+<li>[x] generate responses from structs</li>
+<li>[x] support composed structs out of several embeds</li>
+<li>[x] generate parameters from structs</li>
+<li>[x] support composed structs out of several embeds</li>
+</ul>
+</li>
 </ul>
 </li>
 <li><p>[x] Middlewares</p>
@@ -771,87 +774,50 @@
 <li>[x] routing</li>
 <li>[x] validation</li>
 <li>[x] additional validation through an interface</li>
-<li>[x] authorization</li>
-<li>[x] swagger docs UI</li>
+<li><p>[x] authorization</p>
+<ul>
+<li>[x] basic auth</li>
+<li>[x] api key auth</li>
+<li>[x] oauth2 bearer auth</li>
+</ul>
+</li>
+<li><p>[x] swagger docs UI</p>
+</li>
 </ul>
 </li>
 <li><p>[x] Typed JSON Schema implementation</p>
+<ul>
+<li>[x] JSON Pointer that knows about structs</li>
+<li>[x] JSON Reference that knows about structs</li>
+<li>[x] Passes current json schema test suite</li>
+</ul>
 </li>
-<li>[x] Extended string and numeric formats</li>
-<li>[x] Project documentation site</li>
+<li><p>[x] extended string and numeric formats</p>
+<ul>
+<li>[x] uuid, uuid3, uuid4, uuid5</li>
+<li>[x] email</li>
+<li>[x] uri (absolute)</li>
+<li>[x] hostname</li>
+<li>[x] ipv4</li>
+<li>[x] ipv6</li>
+<li>[x] mac</li>
+<li>[x] credit card</li>
+<li>[x] isbn, isbn10, isbn13</li>
+<li>[x] social security number</li>
+<li>[x] hexcolor</li>
+<li>[x] rgbcolor</li>
+<li>[x] date</li>
+<li>[x] date-time</li>
+<li>[x] duration</li>
+<li>[x] password</li>
+<li>[x] custom string formats</li>
+<li>[x] int32, int64, float, double</li>
+</ul>
+</li>
+<li><p>[x] Project documentation site</p>
+</li>
 <li>[x] Play nice with golint, go vet etc.</li>
 </ul>
-<h2 id="documentation"><a name="documentation" class="plugin-anchor" href="#documentation"><i class="fa fa-link" aria-hidden="true"></i></a>Documentation</h2>
-<p><a href="https://goswagger.io" target="_blank">https://goswagger.io</a></p>
-<h2 id="installing"><a name="installing" class="plugin-anchor" href="#installing"><i class="fa fa-link" aria-hidden="true"></i></a>Installing</h2>
-<h3 id="installing-from-binary-distributions"><a name="installing-from-binary-distributions" class="plugin-anchor" href="#installing-from-binary-distributions"><i class="fa fa-link" aria-hidden="true"></i></a>Installing from binary distributions</h3>
-<p>go-swagger releases are distributed as binaries that are built from signed tags. It is published <a href="https://github.com/go-swagger/go-swagger/tags" target="_blank">as github release</a>,
-rpm, deb and docker image.</p>
-<h4 id="docker-image"><a name="docker-image" class="plugin-anchor" href="#docker-image"><i class="fa fa-link" aria-hidden="true"></i></a>Docker image</h4>
-<pre><code>docker pull quay.io/goswagger/swagger
-
-alias swagger=&quot;docker run --rm -it -v $HOME:$HOME -w $(pwd) quay.io/goswagger/swagger&quot;
-swagger version
-</code></pre><h4 id="homebrewlinuxbrew"><a name="homebrewlinuxbrew" class="plugin-anchor" href="#homebrewlinuxbrew"><i class="fa fa-link" aria-hidden="true"></i></a>Homebrew/Linuxbrew</h4>
-<pre><code>brew tap go-swagger/go-swagger
-brew install go-swagger
-</code></pre><h4 id="static-binary"><a name="static-binary" class="plugin-anchor" href="#static-binary"><i class="fa fa-link" aria-hidden="true"></i></a>Static binary</h4>
-<p>You can download a binary for your platform from github:
-<a href="https://github.com/go-swagger/go-swagger/releases/latest" target="_blank">https://github.com/go-swagger/go-swagger/releases/latest</a></p>
-<pre><code>latestv=$(curl -s https://api.github.com/repos/go-swagger/go-swagger/releases/latest | jq -r .tag_name)
-curl -o /usr/local/bin/swagger -L&apos;#&apos; https://github.com/go-swagger/go-swagger/releases/download/$latestv/swagger_$(echo `uname`|tr &apos;[:upper:]&apos; &apos;[:lower:]&apos;)_amd64
-chmod +x /usr/local/bin/swagger
-</code></pre><h4 id="debian-packages---"><a name="debian-packages---" class="plugin-anchor" href="#debian-packages---"><i class="fa fa-link" aria-hidden="true"></i></a>Debian packages <a href="https://bintray.com/go-swagger/goswagger-debian/swagger/_latestVersion" target="_blank"> <img src="https://api.bintray.com/packages/go-swagger/goswagger-debian/swagger/images/download.svg" alt="Download"> </a></h4>
-<p>This repo will work for any debian, the only file it contains gets copied to <code>/usr/bin</code></p>
-<pre><code>echo &quot;deb https://dl.bintray.com/go-swagger/goswagger-debian ubuntu main&quot; | sudo tee -a /etc/apt/sources.list
-</code></pre><h4 id="rpm-packages---"><a name="rpm-packages---" class="plugin-anchor" href="#rpm-packages---"><i class="fa fa-link" aria-hidden="true"></i></a>RPM packages <a href="https://bintray.com/go-swagger/goswagger-rpm/swagger/_latestVersion" target="_blank"> <img src="https://api.bintray.com/packages/go-swagger/goswagger-rpm/swagger/images/download.svg" alt="Download"> </a></h4>
-<p>This repo should work on any distro that wants rpm packages, the only file it contains gets copied to <code>/usr/bin</code></p>
-<pre><code>wget https://bintray.com/go-swagger/goswagger-rpm/rpm -O bintray-go-swagger-goswagger-rpm.repo
-</code></pre><h3 id="installing-from-source"><a name="installing-from-source" class="plugin-anchor" href="#installing-from-source"><i class="fa fa-link" aria-hidden="true"></i></a>Installing from source</h3>
-<p>Install or update from source:</p>
-<pre><code>go get -u github.com/go-swagger/go-swagger/cmd/swagger
-</code></pre><h2 id="use-cases"><a name="use-cases" class="plugin-anchor" href="#use-cases"><i class="fa fa-link" aria-hidden="true"></i></a>Use-cases</h2>
-<p>The main package of the toolkit, go-swagger/go-swagger, provides a number of command line tools to help working with swagger.</p>
-<p>The toolkit is highly customizable and allows endless possibilities to work with OpenAPI2.0 specifications.</p>
-<p>Beside the go-swagger CLI tool and generator, the <a href="https://github.com/go-openapi" target="_blank">go-openapi packages</a> provide modular functionality to build custom solutions
-on top of OpenAPI.</p>
-<p>The CLI supports shell autocompletion utilities: see <a href="https://github.com/go-swagger/go-swagger/docs/cli_helpers.md" target="_blank">here</a>.</p>
-<h3 id="serve-spec-ui"><a name="serve-spec-ui" class="plugin-anchor" href="#serve-spec-ui"><i class="fa fa-link" aria-hidden="true"></i></a>Serve spec UI</h3>
-<p>Most basic use-case: serve a UI for your spec:</p>
-<pre><code>swagger serve https://raw.githubusercontent.com/swagger-api/swagger-spec/master/examples/v2.0/json/petstore-expanded.json
-</code></pre><h3 id="validate-an-openapi-20-spec"><a name="validate-an-openapi-20-spec" class="plugin-anchor" href="#validate-an-openapi-20-spec"><i class="fa fa-link" aria-hidden="true"></i></a>Validate an OpenAPI 2.0 spec</h3>
-<p>To <a href="https://goswagger.io/usage/validate.html" target="_blank">validate</a> a Swagger specification:</p>
-<pre><code>swagger validate https://raw.githubusercontent.com/swagger-api/swagger-spec/master/examples/v2.0/json/petstore-expanded.json
-</code></pre><h3 id="generate-an-api-server"><a name="generate-an-api-server" class="plugin-anchor" href="#generate-an-api-server"><i class="fa fa-link" aria-hidden="true"></i></a>Generate an API server</h3>
-<p>To generate a <a href="https://goswagger.io/generate/server.html" target="_blank">server for a swagger spec</a> document:</p>
-<pre><code>swagger generate server [-f ./swagger.json] -A [application-name [--principal [principal-name]]
-</code></pre><h3 id="generate-an-api-client"><a name="generate-an-api-client" class="plugin-anchor" href="#generate-an-api-client"><i class="fa fa-link" aria-hidden="true"></i></a>Generate an API client</h3>
-<p>To generate a <a href="https://goswagger.io/generate/client.html" target="_blank">client for a swagger spec</a> document:</p>
-<pre><code>swagger generate client [-f ./swagger.json] -A [application-name [--principal [principal-name]]
-</code></pre><h3 id="generate-a-spec-from-source"><a name="generate-a-spec-from-source" class="plugin-anchor" href="#generate-a-spec-from-source"><i class="fa fa-link" aria-hidden="true"></i></a>Generate a spec from source</h3>
-<p>To generate a <a href="https://goswagger.io/generate/spec.html" target="_blank">swagger spec document for a go application</a>:</p>
-<pre><code>swagger generate spec -o ./swagger.json
-</code></pre><h3 id="generate-a-data-model"><a name="generate-a-data-model" class="plugin-anchor" href="#generate-a-data-model"><i class="fa fa-link" aria-hidden="true"></i></a>Generate a data model</h3>
-<p>To generate model structures and validators exposed by the API:</p>
-<pre><code>swagger generate model
-</code></pre><h3 id="transform-specs"><a name="transform-specs" class="plugin-anchor" href="#transform-specs"><i class="fa fa-link" aria-hidden="true"></i></a>Transform specs</h3>
-<p>Resolve and expand $ref&apos;s in your spec as inline definitions:</p>
-<pre><code>swagger expand {spec}
-</code></pre><p>Flatten you spec: all external $ref&apos;s are imported into the main document and inline schemas reorganized as definitions.</p>
-<pre><code>swagger flatten {spec}
-</code></pre><p>Merge specifications (composition):</p>
-<pre><code>swagger mixin {spec1} {spec2}
-</code></pre><h2 id="note-to-users-migrating-from-older-releases"><a name="note-to-users-migrating-from-older-releases" class="plugin-anchor" href="#note-to-users-migrating-from-older-releases"><i class="fa fa-link" aria-hidden="true"></i></a>Note to users migrating from older releases</h2>
-<h3 id="using-050"><a name="using-050" class="plugin-anchor" href="#using-050"><i class="fa fa-link" aria-hidden="true"></i></a>Using 0.5.0</h3>
-<p>Because 0.5.0 and master have diverged significantly, you should checkout the tag 0.5.0 for go-swagger when you use the currently released version.</p>
-<h3 id="migrating-from-050-to-060"><a name="migrating-from-050-to-060" class="plugin-anchor" href="#migrating-from-050-to-060"><i class="fa fa-link" aria-hidden="true"></i></a>Migrating from 0.5.0 to 0.6.0</h3>
-<p>You will have to rename some imports:</p>
-<pre><code>github.com/go-swagger/go-swagger/httpkit/validate to github.com/go-openapi/validate
-github.com/go-swagger/go-swagger/httpkit to github.com/go-openapi/runtime
-github.com/naoina/denco to github.com/go-openapi/runtime/middleware/denco
-github.com/go-swagger/go-swagger to github.com/go-openapi
-</code></pre><h2 id="licensing"><a name="licensing" class="plugin-anchor" href="#licensing"><i class="fa fa-link" aria-hidden="true"></i></a>Licensing</h2>
-<p>The toolkit itself is licensed as Apache Software License 2.0. Just like swagger, this does not cover code generated by the toolkit. That code is entirely yours to license however you see fit.</p>
 
                                 
                                 </section>
@@ -879,10 +845,10 @@ github.com/go-swagger/go-swagger to github.com/go-openapi
 
             
                 
-                
-                <a href="about.html" class="navigation navigation-next navigation-unique" aria-label="Next page: Approach">
-                    <i class="fa fa-angle-right"></i>
+                <a href="about.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: Approach">
+                    <i class="fa fa-angle-left"></i>
                 </a>
+                
                 
             
         
@@ -891,7 +857,7 @@ github.com/go-swagger/go-swagger to github.com/go-openapi
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Introduction","level":"1.1","depth":1,"next":{"title":"Approach","level":"1.1.1","depth":2,"path":"about.md","ref":"about.md","articles":[]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"prism":{},"anchors":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"README.md","mtime":"2017-12-23T20:27:02.245Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-12-23T20:27:08.853Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Features","level":"1.2","depth":1,"next":{"title":"Tutorials","level":"1.3","depth":1,"ref":"","articles":[{"title":"Simple Server","level":"1.3.1","depth":2,"path":"tutorial/todo-list.md","ref":"tutorial/todo-list.md","articles":[]},{"title":"Middleware","level":"1.3.2","depth":2,"path":"use/middleware.md","ref":"use/middleware.md","articles":[]},{"title":"Custom Server","level":"1.3.3","depth":2,"path":"tutorial/custom-server.md","ref":"tutorial/custom-server.md","articles":[]},{"title":"Dynamic Server","level":"1.3.4","depth":2,"path":"tutorial/dynamic.md","ref":"tutorial/dynamic.md","articles":[]}]},"previous":{"title":"Approach","level":"1.1.1","depth":2,"path":"about.md","ref":"about.md","articles":[]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"prism":{},"anchors":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"features.md","mtime":"2017-12-23T20:27:02.245Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-12-23T20:27:08.853Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>
