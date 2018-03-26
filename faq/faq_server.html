@@ -325,9 +325,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.4.3" data-path="../generate/model.md">
+        <li class="chapter " data-level="1.4.4.3" data-path="../generate/model.html">
             
-                <span>
+                <a href="../generate/model.html">
             
                     
                     API Model
@@ -766,7 +766,7 @@ I realize that this question is not so much about logging <em>per se</em>, but m
 Subsequently it&apos;s probably a good idea to generate code with <code>--exclude-main</code> so the update is preserved.</p>
 <p>See also: <a href="https://github.com/spf13/pflag#supporting-go-flags-when-using-pflag" target="_blank">https://github.com/spf13/pflag#supporting-go-flags-when-using-pflag</a></p>
 <p>Example:</p>
-<pre><code class="lang-golang">import (
+<pre class="language-"><code class="lang-golang">import (
     goflag &quot;flag&quot;
     flag &quot;github.com/spf13/pflag&quot;
 )
@@ -813,7 +813,7 @@ This is possible in 2 ways.</p>
 <li>the second way is making a middleware (not global)</li>
 </ul>
 <p>Example with Authenticator:</p>
-<pre><code class="lang-golang">// Authenticator represents an authentication strategy
+<pre class="language-"><code class="lang-golang">// Authenticator represents an authentication strategy
 // implementations of Authenticator know how to authenticate the
 // request data and translate that into a valid principal object or an error
 type Authenticator interface {
@@ -822,21 +822,21 @@ type Authenticator interface {
 </code></pre>
 <p>You may see the schemes currently supported here: <a href="https://github.com/go-openapi/runtime/tree/master/security" target="_blank">https://github.com/go-openapi/runtime/tree/master/security</a></p>
 <p>Example with Middleware:</p>
-<pre><code class="lang-golang">// The middleware configuration is for the handler executors. These do not apply to the swagger.json document.
+<pre class="language-"><code class="lang-golang">// The middleware configuration is for the handler executors. These do not apply to the swagger.json document.
 // The middleware executes after routing but before authentication, binding and validation
 func setupMiddlewares(handler http.Handler) http.Handler {
     return handler
 }
 </code></pre>
 <p>to get to the matched route in one of those you can:</p>
-<pre><code class="lang-golang">import &quot;github.com/gorilla/context&quot;
+<pre class="language-"><code class="lang-golang">import &quot;github.com/gorilla/context&quot;
 context.Get(3, request)
 </code></pre>
 <p>That gets you a matched route.</p>
 <blockquote>
 <p>Note: it might be worth it to expose <code>Context</code> as an exported method on the API builder.
 That would be a simple PR to add the following code in go-swagger</p>
-<pre><code class="lang-golang">func (o *LifecycleManagerAPI) Context() *middleware.Context {
+<pre class="language-"><code class="lang-golang">func (o *LifecycleManagerAPI) Context() *middleware.Context {
     if o.context == nil {
         o.context = middleware.NewRoutableContext(o.spec, o, nil)
     }
@@ -900,7 +900,7 @@ and provide you the <em>tools</em> to adapt to your own use case.
 The <code>swagger</code> command line and standard templates only covers general purpose use-cases.</p>
 <p>If you think your use-case would benefit to many people, feel free to make the necessary changes for your case to work and submitting a PR. </p>
 <p>Example config file for generation:</p>
-<pre><code class="lang-YAML">layout:
+<pre class="language-"><code class="lang-YAML">layout:
   application:
     - name: configure
       source: asset:serverConfigureapi
@@ -946,27 +946,14 @@ The <code>swagger</code> command line and standard templates only covers general
      target: &quot;{{ joinFilePath .Target .ServerPackage .APIPackage .Package }}&quot;
      file_name: &quot;{{ (snakize (pascalize .Name)) }}.go&quot;
 </code></pre>
-<h3 id="how-to-use-swagger-ui-cors"><a name="how-to-use-swagger-ui-cors" class="plugin-anchor" href="#how-to-use-swagger-ui-cors"><i class="fa fa-link" aria-hidden="true"></i></a>How to use swagger-ui cors?</h3>
-<p><strong>Answer</strong>: you can add a cors middleware.</p>
-<p>Like: <a href="https://github.com/rs/cors" target="_blank">https://github.com/rs/cors</a></p>
-<p><a href="use/middleware.md">Documentation on how to customize middleware</a></p>
-<p>Working example (in <code>configure_name.go</code>):</p>
-<pre><code class="lang-golang">import &quot;github.com/rs/cors&quot;
-
-func setupGlobalMiddleware(handler http.Handler) http.Handler {
-    handleCORS := cors.Default().Handler
-    return handleCORS(handler)
-}
-</code></pre>
-<p>Originally from issue <a href="https://github.com/go-swagger/go-swagger/issues/481" target="_blank">#481</a>.</p>
 <h3 id="support-streaming-responses"><a name="support-streaming-responses" class="plugin-anchor" href="#support-streaming-responses"><i class="fa fa-link" aria-hidden="true"></i></a>Support streaming responses</h3>
 <p><em>Use-Case</em>: Docker client expects a stream of JSON structs from daemon to show a progress bar, as in:</p>
-<pre><code class="lang-bash">curl <span class="token operator">-</span>i <span class="token operator">-</span>X POST http<span class="token punctuation">:</span><span class="token operator">/</span><span class="token operator">/</span>IP<span class="token punctuation">:</span>PORT<span class="token operator">/</span>images<span class="token operator">/</span>create<span class="token operator">?</span>fromImage<span class="token operator">=</span>alpine<span class="token operator">&amp;</span>tag<span class="token operator">=</span>latest
+<pre class="language-"><code class="lang-bash">curl -i -X POST http://IP:PORT/images/create?fromImage<span class="token operator">=</span>alpine<span class="token operator">&amp;</span>tag<span class="token operator">=</span>latest
 </code></pre>
 <p><em>How could I write a server providing a streaming response?</em></p>
 <p><strong>Answer</strong>: Operations in the generated server are expected to return a responder.</p>
 <p>This interface is defined as:</p>
-<pre><code class="lang-golang">// Responder is an interface for types to implement
+<pre class="language-"><code class="lang-golang">// Responder is an interface for types to implement
 // when they want to be considered for writing HTTP responses
 type Responder interface {
     WriteResponse(http.ResponseWriter, httpkit.Producer)
@@ -1026,7 +1013,7 @@ I can be persuaded to implement such a responder though, and should somebody sen
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Server generation & customization","level":"1.7.3","depth":2,"next":{"title":"Client generation","level":"1.7.4","depth":2,"path":"faq/faq_client.md","ref":"faq/faq_client.md","articles":[]},"previous":{"title":"Model generation","level":"1.7.2","depth":2,"path":"faq/faq_model.md","ref":"faq/faq_model.md","articles":[]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"prism":{},"anchors":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"faq/faq_server.md","mtime":"2017-12-23T20:27:02.245Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-01-11T23:55:46.378Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Server generation & customization","level":"1.7.3","depth":2,"next":{"title":"Client generation","level":"1.7.4","depth":2,"path":"faq/faq_client.md","ref":"faq/faq_client.md","articles":[]},"previous":{"title":"Model generation","level":"1.7.2","depth":2,"path":"faq/faq_model.md","ref":"faq/faq_model.md","articles":[]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"prism":{},"anchors":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"faq/faq_server.md","mtime":"2018-03-26T07:48:24.615Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-03-26T07:59:44.355Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

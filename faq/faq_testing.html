@@ -325,9 +325,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.4.3" data-path="../generate/model.md">
+        <li class="chapter " data-level="1.4.4.3" data-path="../generate/model.html">
             
-                <span>
+                <a href="../generate/model.html">
             
                     
                     API Model
@@ -732,7 +732,7 @@
 <p><em>Use-Case</em>: I would like to use httptest for testing my handlers.
 Go-swagger provides a Server, but not a configured handler. </p>
 <p><strong>Hint</strong>: I use this hack : in a file <code>test.go</code> in the restapi folder, I steal the private <code>configureAPI</code> function. It works.</p>
-<pre><code class="lang-golang">package restapi
+<pre class="language-"><code class="lang-golang">package restapi
 
 import (
     loads &quot;github.com/go-openapi/loads&quot;
@@ -763,7 +763,7 @@ func GetAPIHandler() (http.Handler, error) {
 }
 </code></pre>
 <p>And I can use this in tests like this:</p>
-<pre><code class="lang-golang">handler, err := restapi.GetAPIHandler()
+<pre class="language-"><code class="lang-golang">handler, err := restapi.GetAPIHandler()
 if err != nil {
     t.Fatal(&quot;get api handler&quot;, err)
 }
@@ -779,7 +779,7 @@ The result knows how to write itself to a http.ResponseWriter, and you already k
 So to test a handler what you require is to test just your code.</p>
 <p>So to test the AddOne operation from the todo list this, there are 2 functions involved in the implementation.</p>
 <p>The first function uses the data from the request to actually write the todo item to a store, this can be tested separately.</p>
-<pre><code class="lang-golang">func addItem(item *models.Item) error {
+<pre class="language-"><code class="lang-golang">func addItem(item *models.Item) error {
     if item == nil {
         return errors.New(500, &quot;item must be present&quot;)
     }
@@ -795,7 +795,7 @@ So to test a handler what you require is to test just your code.</p>
 }
 </code></pre>
 <p>Then there is the actual handler:</p>
-<pre><code class="lang-golang">todos.AddOneHandlerFunc(func(params todos.AddOneParams) middleware.Responder {
+<pre class="language-"><code class="lang-golang">todos.AddOneHandlerFunc(func(params todos.AddOneParams) middleware.Responder {
     if err := addItem(params.Body); err != nil {
         return todos.NewAddOneDefault(500).WithPayload(&amp;models.Error{Code: 500, Message: swag.String(err.Error())})
     }
@@ -849,7 +849,7 @@ So to test a handler what you require is to test just your code.</p>
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"API testing","level":"1.7.6","depth":2,"next":{"title":"Documenting your API","level":"1.7.7","depth":2,"path":"faq/faq_documenting.md","ref":"faq/faq_documenting.md","articles":[]},"previous":{"title":"Spec generation from source","level":"1.7.5","depth":2,"path":"faq/faq_spec.md","ref":"faq/faq_spec.md","articles":[]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"prism":{},"anchors":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"faq/faq_testing.md","mtime":"2017-12-23T20:27:02.245Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-01-11T23:55:46.378Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"API testing","level":"1.7.6","depth":2,"next":{"title":"Documenting your API","level":"1.7.7","depth":2,"path":"faq/faq_documenting.md","ref":"faq/faq_documenting.md","articles":[]},"previous":{"title":"Spec generation from source","level":"1.7.5","depth":2,"path":"faq/faq_spec.md","ref":"faq/faq_spec.md","articles":[]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"prism":{},"anchors":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"faq/faq_testing.md","mtime":"2018-02-01T22:20:06.189Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-03-26T07:59:44.355Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

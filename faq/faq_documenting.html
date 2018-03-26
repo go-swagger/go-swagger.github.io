@@ -323,9 +323,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.4.3" data-path="../generate/model.md">
+        <li class="chapter " data-level="1.4.4.3" data-path="../generate/model.html">
             
-                <span>
+                <a href="../generate/model.html">
             
                     
                     API Model
@@ -719,7 +719,7 @@
 <p><em>Use-Case</em>: I was trying to serve swagger-ui from the generated API Server and
 I didn&apos;t find a straightforward enough way in the docs,
 so I&apos;ve created my own swagger-ui middleware:</p>
-<pre><code class="lang-golang">func setupGlobalMiddleware(handler http.Handler) http.Handler {
+<pre class="language-"><code class="lang-golang">func setupGlobalMiddleware(handler http.Handler) http.Handler {
     return uiMiddleware(handler)
 }
 
@@ -752,6 +752,56 @@ vendored and they see all of that.</p>
 </blockquote>
 <p>Originally from issue <a href="https://github.com/go-swagger/go-swagger/issues/370" target="_blank">#370</a>.</p>
 <p>See also: How to serve Swagger UI from a preexisting web app? <a href="https://github.com/go-swagger/go-swagger/issues/1029" target="_blank">#1029</a>.</p>
+<h3 id="how-to-serve-swagger-ui-from-a-preexisting-web-app"><a name="how-to-serve-swagger-ui-from-a-preexisting-web-app" class="plugin-anchor" href="#how-to-serve-swagger-ui-from-a-preexisting-web-app"><i class="fa fa-link" aria-hidden="true"></i></a>How to serve Swagger UI from a preexisting web app?</h3>
+<p><em>Use-Case</em>: Does go-swagger provide an <code>http.HandlerFunc</code> or other easy method for serving Swagger UI from a prexisting web app? 
+I want my web app to expose <code>/swagger-ui</code>, without using code generation, and without hosting a separate server.</p>
+<p><strong>Answer</strong>: there are a few ways you can serve a UI.</p>
+<p>Use the middleware provided in the go-openapi/runtime package: <a href="https://github.com/go-openapi/runtime/blob/master/middleware/redoc.go" target="_blank">https://github.com/go-openapi/runtime/blob/master/middleware/redoc.go</a></p>
+<p>Originally from issues <a href="https://github.com/go-swagger/go-swagger/issues/1029" target="_blank">#1029</a> and <a href="https://github.com/go-swagger/go-swagger/issues/976" target="_blank">#976</a></p>
+<h3 id="how-to-use-swagger-ui-cors"><a name="how-to-use-swagger-ui-cors" class="plugin-anchor" href="#how-to-use-swagger-ui-cors"><i class="fa fa-link" aria-hidden="true"></i></a>How to use swagger-ui cors?</h3>
+<p><strong>Answer</strong>: you can add a cors middleware.</p>
+<p>Like: <a href="https://github.com/rs/cors" target="_blank">https://github.com/rs/cors</a></p>
+<p><a href="use/middleware.md">Documentation on how to customize middleware</a></p>
+<p>Working example (in <code>configure_name.go</code>):</p>
+<pre class="language-"><code class="lang-golang">import &quot;github.com/rs/cors&quot;
+
+func setupGlobalMiddleware(handler http.Handler) http.Handler {
+    handleCORS := cors.Default().Handler
+    return handleCORS(handler)
+}
+</code></pre>
+<p>Originally from issue <a href="https://github.com/go-swagger/go-swagger/issues/481" target="_blank">#481</a>.</p>
+<h3 id="how-to-serve-my-ui-files"><a name="how-to-serve-my-ui-files" class="plugin-anchor" href="#how-to-serve-my-ui-files"><i class="fa fa-link" aria-hidden="true"></i></a>How to serve my UI files?</h3>
+<p><em>Use-Case</em>: I generated server code using go-swagger with my swagger.yaml file like below.</p>
+<pre class="language-"><code class="lang-bash">$ swagger generate server --exclude-main -A myapp -t gen -f ./swagger.yaml
+</code></pre>
+<p>And I want to add new handler to serve my own UI files. 
+In this case, is middleware only solution to serve UI files? Or can I add new handler to serve files without middleware?</p>
+<pre class="language-"><code class="lang-go"><span class="token comment" spellcheck="true">// Handler example which I want to add to swagger server</span>
+<span class="token keyword">func</span> <span class="token function">pastaWorkspacePage</span><span class="token punctuation">(</span>w http<span class="token punctuation">.</span>ResponseWriter<span class="token punctuation">,</span> r <span class="token operator">*</span>http<span class="token punctuation">.</span>Request<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    http<span class="token punctuation">.</span><span class="token function">ServeFile</span><span class="token punctuation">(</span>w<span class="token punctuation">,</span> r<span class="token punctuation">,</span> <span class="token string">&quot;./static/workspace.html&quot;</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>I solved the problem using middleware.</p>
+<pre class="language-"><code class="lang-go"><span class="token keyword">func</span> <span class="token function">FileServerMiddleware</span><span class="token punctuation">(</span>next http<span class="token punctuation">.</span>Handler<span class="token punctuation">)</span> http<span class="token punctuation">.</span>Handler <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> http<span class="token punctuation">.</span><span class="token function">HandlerFunc</span><span class="token punctuation">(</span><span class="token keyword">func</span><span class="token punctuation">(</span>w http<span class="token punctuation">.</span>ResponseWriter<span class="token punctuation">,</span> r <span class="token operator">*</span>http<span class="token punctuation">.</span>Request<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> strings<span class="token punctuation">.</span><span class="token function">HasPrefix</span><span class="token punctuation">(</span>r<span class="token punctuation">.</span>URL<span class="token punctuation">.</span>Path<span class="token punctuation">,</span> <span class="token string">&quot;/api&quot;</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            next<span class="token punctuation">.</span><span class="token function">ServeHTTP</span><span class="token punctuation">(</span>w<span class="token punctuation">,</span> r<span class="token punctuation">)</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+            http<span class="token punctuation">.</span><span class="token function">FileServer</span><span class="token punctuation">(</span>http<span class="token punctuation">.</span><span class="token function">Dir</span><span class="token punctuation">(</span><span class="token string">&quot;./static&quot;</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">ServeHTTP</span><span class="token punctuation">(</span>w<span class="token punctuation">,</span> r<span class="token punctuation">)</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>But I&apos;m not sure it is the best solution.</p>
+<p><strong>Hint:</strong> more info on using middlewares is found here: <a href="https://goswagger.io/use/middleware.html" target="_blank">https://goswagger.io/use/middleware.html</a>
+That page also contains a link to a good explanation on how to create net/http middlewares.</p>
+<blockquote>
+<p>An implementation example is provided by the go-swagger serve UI command. It constructs a server with a redoc middleware:
+<a href="https://github.com/go-swagger/go-swagger/blob/f552963ac0dfdec0450f6749aeeeeb2d31cd5544/cmd/swagger/commands/serve.go#L35" target="_blank">https://github.com/go-swagger/go-swagger/blob/f552963ac0dfdec0450f6749aeeeeb2d31cd5544/cmd/swagger/commands/serve.go#L35</a>.</p>
+</blockquote>
+<p>Besides, every swagger generated server comes with the redoc UI baked in at <code>/{basepath}/docs</code></p>
+<p>Originally from issue <a href="https://github.com/go-swagger/go-swagger/issues/1375" target="_blank">#1375</a>.</p>
 <hr>
 <p>Back to <a href="./#all-contributed-questions">all contributions</a></p>
 
@@ -793,7 +843,7 @@ vendored and they see all of that.</p>
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Documenting your API","level":"1.7.7","depth":2,"previous":{"title":"API testing","level":"1.7.6","depth":2,"path":"faq/faq_testing.md","ref":"faq/faq_testing.md","articles":[]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"prism":{},"anchors":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"faq/faq_documenting.md","mtime":"2017-12-23T20:27:02.245Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-01-11T23:55:46.378Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Documenting your API","level":"1.7.7","depth":2,"previous":{"title":"API testing","level":"1.7.6","depth":2,"path":"faq/faq_testing.md","ref":"faq/faq_testing.md","articles":[]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"prism":{},"anchors":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"faq/faq_documenting.md","mtime":"2018-03-26T07:48:24.615Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-03-26T07:59:44.355Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

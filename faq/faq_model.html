@@ -325,9 +325,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.4.3" data-path="../generate/model.md">
+        <li class="chapter " data-level="1.4.4.3" data-path="../generate/model.html">
             
-                <span>
+                <a href="../generate/model.html">
             
                     
                     API Model
@@ -718,6 +718,39 @@
                                 
                                 <!-- Questions about model generation -->
 <h2 id="model-generation"><a name="model-generation" class="plugin-anchor" href="#model-generation"><i class="fa fa-link" aria-hidden="true"></i></a>Model generation</h2>
+<h3 id="custom-validation"><a name="custom-validation" class="plugin-anchor" href="#custom-validation"><i class="fa fa-link" aria-hidden="true"></i></a>Custom validation</h3>
+<p><em>Use-Case</em>: is it possible to write own validation for custom types ? If it is, can someone give me example ?</p>
+<blockquote>
+<p>For example! 
+There is bookstore, with info about books: author, title, price. 
+And we want, that books from some author will not cost more the some price.
+So I want write function ValidateBookCustom() like:</p>
+<pre class="language-"><code class="lang-golang">if book.author == &quot;Some author&quot; {
+    if book.price &gt; 1000 {
+       return false
+   }
+    else return true
+}
+</code></pre>
+<p>And I want to use this function.</p>
+</blockquote>
+<p><strong>Answer</strong>: there are several ways to achieve that.</p>
+<ul>
+<li>reusing customized models</li>
+<li>reusing custom go types</li>
+<li>customizing code generation</li>
+</ul>
+<p>You should know that models may be generated independently from server, then reused when generating a new server.</p>
+<p>You might build on that: generating a first model, customizing the validation code, then reusing this model (possibly with some others) in your servers.</p>
+<p>Another way is to use the <code>x-go-type extension</code>, to replace type generation with a custom type.</p>
+<p>There is the opportunity to get go-swagger to reuse a predefined type to satisfy the definition in the swagger spec.
+Imported package and type alias may be specified as options, as shown in this example: 
+<a href="https://github.com/go-swagger/go-swagger/blob/master/fixtures/codegen/existing-model.yml#L84-L88" target="_blank">https://github.com/go-swagger/go-swagger/blob/master/fixtures/codegen/existing-model.yml#L84-L88</a></p>
+<p>That example reuses a type provided by a library with a package alias and type name. The code generator will respect this.</p>
+<p>You might use both, preparing a customized model from an initially generated structure, then reusing type custom type in other declarations by hinting the generator with x-go-type.</p>
+<p>Further, for repetitive customization, you might be willing to customize the generator&apos;s templates. Like in <a href="https://github.com/go-swagger/go-swagger/blob/master/generator/templates/schemavalidator.gotmpl" target="_blank">here</a>
+for models, or in <a href="https://github.com/go-swagger/go-swagger/blob/master/generator/templates/server/parameter.gotmpl" target="_blank">here</a> for inline parameters.</p>
+<p>Originally from issues <a href="https://github.com/go-swagger/go-swagger/issues/997" target="_blank">#997</a> and <a href="https://github.com/go-swagger/go-swagger/issues/1334" target="_blank">#1334</a></p>
 <h3 id="non-required-or-nullable-property"><a name="non-required-or-nullable-property" class="plugin-anchor" href="#non-required-or-nullable-property"><i class="fa fa-link" aria-hidden="true"></i></a>Non-required or nullable property?</h3>
 <p><em>Use-Case</em>: when a definition has a property N, if N is a number and is not required,
 the corresponding generated model has the struct flag <code>omitempty</code> for N.
@@ -736,7 +769,7 @@ defined as false, 0, a nil pointer, a nil interface value, and any empty array, 
 <p><em>Use-case</em>: I want to create an operation with string parameter in body, but go-swagger fails while generating.</p>
 <p>When I change body to query, it works. How can I send my parameter in body with type string?</p>
 <p>This <em>works</em> (param in query):</p>
-<pre><code class="lang-YAML">post:
+<pre class="language-"><code class="lang-YAML">post:
   description: post func
   operationId: postfunc
   parameters:
@@ -745,7 +778,7 @@ defined as false, 0, a nil pointer, a nil interface value, and any empty array, 
       type: string
 </code></pre>
 <p><strong>But this fails (param in body):</strong></p>
-<pre><code class="lang-YAML">post:
+<pre class="language-"><code class="lang-YAML">post:
   description: post func
   operationId: postfunc
   parameters:
@@ -754,7 +787,7 @@ defined as false, 0, a nil pointer, a nil interface value, and any empty array, 
       type: string
 </code></pre>
 <p><strong>Answer</strong>: add the schema definition in body. This works:</p>
-<pre><code class="lang-YAML">post:
+<pre class="language-"><code class="lang-YAML">post:
   description: post func
   operationId: postfunc
   parameters:
@@ -770,7 +803,7 @@ defined as false, 0, a nil pointer, a nil interface value, and any empty array, 
 <p><em>Use-Case</em>: I have a POST request that returns different object models based on the query parameters.</p>
 <p><em>Is there any way to add multiple responses under the swagger route annotation?</em></p>
 <p>Like:</p>
-<pre><code class="lang-YAML">Responses:
+<pre class="language-"><code class="lang-YAML">Responses:
   200: response1
   200: response2
   ... etc
@@ -779,7 +812,7 @@ defined as false, 0, a nil pointer, a nil interface value, and any empty array, 
 <p><strong>Answer</strong>: <strong>No</strong>, as this is not supported in Openapi 2.0 specification</p>
 <p>That being said, if you specify a wrapper class or base class, you can return multiple responses.</p>
 <p>For example (in pseudo-swagger):</p>
-<pre><code class="lang-YAML">ResponseWrapper:
+<pre class="language-"><code class="lang-YAML">ResponseWrapper:
   type: object
   properties:
     response1:
@@ -788,7 +821,7 @@ defined as false, 0, a nil pointer, a nil interface value, and any empty array, 
       $ref: &apos;#/definitions/response2&apos;
 </code></pre>
 <p>or perhaps more elegantly:</p>
-<pre><code class="lang-YAML">BaseObject:
+<pre class="language-"><code class="lang-YAML">BaseObject:
   type: object
   properties:
     id:
@@ -811,7 +844,7 @@ Response2:
 </code></pre>
 <p>Allegedly, with OpenAPI 3.0 you&apos;ll be able to use the <code>anyOf:</code> operator, with the different response types.</p>
 <p>Regarding parameters, you may also achieve this by putting in the path the query parameters that dictate the model.</p>
-<pre><code class="lang-YAML">paths:
+<pre class="language-"><code class="lang-YAML">paths:
   &quot;/something?objectType=thisThing&quot;:
       get:
 ...
@@ -824,7 +857,7 @@ Response2:
 <p>JSON schema and Swagger (aka OpenAPI 2.0) define ISO-8601 dates as a known format (e.g. date-time, or <code>yyyy-MM-dd&apos;T&apos;HH:mm:ss.SSS&apos;Z</code>).</p>
 <p>This format definition is used by go-swagger validators.
 You just have to define the format as in:</p>
-<pre><code class="lang-JSON">{
+<pre class="language-"><code class="lang-JSON">{
   &quot;description&quot;: &quot;The date and time that the device was registered.&quot;,
   &quot;type&quot;:&quot;string&quot;,
   &quot;format&quot;: &quot;date-time&quot;
@@ -838,7 +871,7 @@ Regarding dates, this package extends validation to <a href="https://tools.ietf.
 <p><em>Use-Case</em>: I was wondering how I would get the default response from the client?</p>
 <p>Note: see also <a href="https://github.com/go-swagger/go-swagger/issues/597" target="_blank">Access HTTP status code from client#597</a>. </p>
 <p>I have a spec like this:</p>
-<pre><code class="lang-YAML">/deploys/{deploy_id}:
+<pre class="language-"><code class="lang-YAML">/deploys/{deploy_id}:
   get:
     operationId: getDeploy
     parameters:
@@ -857,7 +890,7 @@ Regarding dates, this package extends validation to <a href="https://tools.ietf.
           $ref: &quot;#/definitions/error&quot;
 </code></pre>
 <p>This spec generates two models: <code>GetDeployOK</code> and <code>GetDeployDefault</code>. The API generated will return the OK case.</p>
-<pre><code class="lang-golang">func (a *Client) GetDeploy(params *GetDeployParams, authInfo runtime.ClientAuthInfoWriter) (*GetDeployOK, error) {
+<pre class="language-"><code class="lang-golang">func (a *Client) GetDeploy(params *GetDeployParams, authInfo runtime.ClientAuthInfoWriter) (*GetDeployOK, error) {
     // TODO: Validate the params before sending
     if params == nil {
         params = NewGetDeployParams()
@@ -882,7 +915,7 @@ Regarding dates, this package extends validation to <a href="https://tools.ietf.
 </code></pre>
 <p><em>Does that mean that, if I get a non-2xx response, I should check the err to actually be a <code>GetDeployDefault</code> reference?</em></p>
 <p>Something like:</p>
-<pre><code class="lang-golang">resp, err := c.Operations.GetDeploy(&amp;params, authInfo)
+<pre class="language-"><code class="lang-golang">resp, err := c.Operations.GetDeploy(&amp;params, authInfo)
 if err != nil {
     if casted, ok := err.(models.GetDeployDefault); ok {
         // do something here....
@@ -896,7 +929,7 @@ if err != nil {
 However, it remains unclear how that response is actually surfaced.</p>
 </blockquote>
 <p><strong>Answer</strong>: you can get pretty close to that with something like:</p>
-<pre><code class="lang-golang">casted, ok := err.(*operations.GetDeployDefault)
+<pre class="language-"><code class="lang-golang">casted, ok := err.(*operations.GetDeployDefault)
 </code></pre>
 <p>Because it&apos;s a struct type it will be a pointer.</p>
 <p>Originally from issue <a href="https://github.com/go-swagger/go-swagger/issues/616" target="_blank">#616</a>.</p>
@@ -983,7 +1016,7 @@ deep copy of that data structure from subsystem to API if we want to avoid type 
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Model generation","level":"1.7.2","depth":2,"next":{"title":"Server generation & customization","level":"1.7.3","depth":2,"path":"faq/faq_server.md","ref":"faq/faq_server.md","articles":[]},"previous":{"title":"Installation,setup and environment","level":"1.7.1","depth":2,"path":"faq/faq_setup.md","ref":"faq/faq_setup.md","articles":[]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"prism":{},"anchors":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"faq/faq_model.md","mtime":"2017-12-23T20:27:02.245Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-01-11T23:55:46.378Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Model generation","level":"1.7.2","depth":2,"next":{"title":"Server generation & customization","level":"1.7.3","depth":2,"path":"faq/faq_server.md","ref":"faq/faq_server.md","articles":[]},"previous":{"title":"Installation,setup and environment","level":"1.7.1","depth":2,"path":"faq/faq_setup.md","ref":"faq/faq_setup.md","articles":[]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"prism":{},"anchors":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"faq/faq_model.md","mtime":"2018-03-26T07:48:24.615Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-03-26T07:59:44.355Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

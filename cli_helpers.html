@@ -325,9 +325,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.4.3" data-path="generate/model.md">
+        <li class="chapter " data-level="1.4.4.3" data-path="generate/model.html">
             
-                <span>
+                <a href="generate/model.html">
             
                     
                     API Model
@@ -719,7 +719,7 @@
                                 <h2 id="cli-helpers"><a name="cli-helpers" class="plugin-anchor" href="#cli-helpers"><i class="fa fa-link" aria-hidden="true"></i></a>CLI helpers</h2>
 <h4 id="bash-completion"><a name="bash-completion" class="plugin-anchor" href="#bash-completion"><i class="fa fa-link" aria-hidden="true"></i></a>Bash Completion</h4>
 <p>Bash completion is supported and can be activated as follows:</p>
-<pre><code class="lang-bash"><span class="token function">source</span> <span class="token punctuation">.</span><span class="token operator">/</span>cmd<span class="token operator">/</span>swagger<span class="token operator">/</span>completion<span class="token operator">/</span>swagger<span class="token punctuation">.</span><span class="token function">bash</span><span class="token operator">-</span>completion
+<pre class="language-"><code class="lang-bash"><span class="token function">source</span> ./cmd/swagger/completion/swagger.bash-completion
 </code></pre>
 <p>Note that this does require you already setup bash completion,
 which can be done in 2 simple steps:</p>
@@ -727,12 +727,12 @@ which can be done in 2 simple steps:</p>
 <p>2) run <code>source /etc/bash_completion</code> in bash;</p>
 <h4 id="zsh-completion"><a name="zsh-completion" class="plugin-anchor" href="#zsh-completion"><i class="fa fa-link" aria-hidden="true"></i></a>Zsh Completion</h4>
 <p>Zsh completion is supported and can be copied/soft-linked from:</p>
-<pre><code>./cmd/swagger/completion/swagger.zsh-completion
+<pre class="language-"><code>./cmd/swagger/completion/swagger.zsh-completion
 </code></pre><p>In case you&apos;re new to adding auto-completion to zsh completion,
 here is how you could enable swagger&apos;s zsh completion step by step:</p>
 <p>1) create a folder used to store your completions (eg. <code>$HOME/.zsh/completion</code>);</p>
 <p>2) append the following to your <code>$HOME/.zshrc</code> file:</p>
-<pre><code class="lang-zsh"># add auto-completion directory to zsh&apos;s fpath
+<pre class="language-"><code class="lang-zsh"># add auto-completion directory to zsh&apos;s fpath
 fpath=($HOME/.zsh/completion $fpath)
 
 # compsys initialization
@@ -783,7 +783,7 @@ compinit
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"CLI autocompletion","level":"1.6","depth":1,"next":{"title":"FAQ","level":"1.7","depth":1,"path":"faq/README.md","ref":"faq/README.md","articles":[{"title":"Installation,setup and environment","level":"1.7.1","depth":2,"path":"faq/faq_setup.md","ref":"faq/faq_setup.md","articles":[]},{"title":"Model generation","level":"1.7.2","depth":2,"path":"faq/faq_model.md","ref":"faq/faq_model.md","articles":[]},{"title":"Server generation & customization","level":"1.7.3","depth":2,"path":"faq/faq_server.md","ref":"faq/faq_server.md","articles":[]},{"title":"Client generation","level":"1.7.4","depth":2,"path":"faq/faq_client.md","ref":"faq/faq_client.md","articles":[]},{"title":"Spec generation from source","level":"1.7.5","depth":2,"path":"faq/faq_spec.md","ref":"faq/faq_spec.md","articles":[]},{"title":"API testing","level":"1.7.6","depth":2,"path":"faq/faq_testing.md","ref":"faq/faq_testing.md","articles":[]},{"title":"Documenting your API","level":"1.7.7","depth":2,"path":"faq/faq_documenting.md","ref":"faq/faq_documenting.md","articles":[]}]},"previous":{"title":"Custom templates","level":"1.5.1","depth":2,"path":"generate/templates.md","ref":"generate/templates.md","articles":[]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"prism":{},"anchors":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"cli_helpers.md","mtime":"2017-12-23T20:27:02.245Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-01-11T23:55:46.378Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"CLI autocompletion","level":"1.6","depth":1,"next":{"title":"FAQ","level":"1.7","depth":1,"path":"faq/README.md","ref":"faq/README.md","articles":[{"title":"Installation,setup and environment","level":"1.7.1","depth":2,"path":"faq/faq_setup.md","ref":"faq/faq_setup.md","articles":[]},{"title":"Model generation","level":"1.7.2","depth":2,"path":"faq/faq_model.md","ref":"faq/faq_model.md","articles":[]},{"title":"Server generation & customization","level":"1.7.3","depth":2,"path":"faq/faq_server.md","ref":"faq/faq_server.md","articles":[]},{"title":"Client generation","level":"1.7.4","depth":2,"path":"faq/faq_client.md","ref":"faq/faq_client.md","articles":[]},{"title":"Spec generation from source","level":"1.7.5","depth":2,"path":"faq/faq_spec.md","ref":"faq/faq_spec.md","articles":[]},{"title":"API testing","level":"1.7.6","depth":2,"path":"faq/faq_testing.md","ref":"faq/faq_testing.md","articles":[]},{"title":"Documenting your API","level":"1.7.7","depth":2,"path":"faq/faq_documenting.md","ref":"faq/faq_documenting.md","articles":[]}]},"previous":{"title":"Custom templates","level":"1.5.1","depth":2,"path":"generate/templates.md","ref":"generate/templates.md","articles":[]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"prism":{},"anchors":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"cli_helpers.md","mtime":"2018-02-01T22:20:06.189Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-03-26T07:59:44.355Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>

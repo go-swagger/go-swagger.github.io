@@ -325,9 +325,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.4.3" data-path="../generate/model.md">
+        <li class="chapter " data-level="1.4.4.3" data-path="../generate/model.html">
             
-                <span>
+                <a href="../generate/model.html">
             
                     
                     API Model
@@ -741,7 +741,7 @@
 <blockquote>
 <p>My generated spec is now working but seems to be missing a parameter &quot;description&quot; to indicate to end user of the API URL endpoint of what&apos;s its doing. Example below, I wanted the line &quot;Disable/enable a compute node EC2 machine with a given IP address&quot; to show up as some sorta of description for the parameter... Am I missing something?</p>
 </blockquote>
-<pre><code class="lang-golang">// v2PutXXX disable/enable a compute node EC2 machine with a given IP address
+<pre class="language-"><code class="lang-golang">// v2PutXXX disable/enable a compute node EC2 machine with a given IP address
 //
 // swagger:route PUT /compute/nodes/{nodeIPAddress} v2PutXXX
 //
@@ -771,7 +771,7 @@ func v2PutXXX(....)
 <code>Func: mountItem</code> looks like extra function. Could you explain?</p>
 <p><strong>Answer</strong>: swagger tool generates a correct specification for proposed routes without calling fake func mountItem.</p>
 <p>The main rule is <strong>empty line between <code>swagger:routes</code></strong> like that:</p>
-<pre><code class="lang-golang">// ServeAPI serves the API for this record store
+<pre class="language-"><code class="lang-golang">// ServeAPI serves the API for this record store
 func ServeAPI(host, basePath string, schemes []string) error {
     // swagger:route GET /pets pets users listPets
 
@@ -802,7 +802,7 @@ it returns <code>items doesn&apos;t support maps</code>.</p>
 <p><em>Use-case</em>: annotating a go struct in order to produce a response as application/octet-stream.</p>
 <p>Example:
 I would like to get a generated specification like:</p>
-<pre><code class="lang-JSON">&quot;fileResponse&quot;: {
+<pre class="language-"><code class="lang-JSON">&quot;fileResponse&quot;: {
   &quot;description&quot;: &quot;OK&quot;,
   &quot;schema&quot;: {
     &quot;type&quot;: &quot;file&quot;
@@ -813,7 +813,7 @@ I would like to get a generated specification like:</p>
 <p>However, I am unable to figure out how to do this with go-swagger response struct and annotations.</p>
 </blockquote>
 <p><strong>Answer</strong>: you can use <code>runtime.File</code> or <code>os.File</code> in your struct:</p>
-<pre><code class="lang-golang">type fileResponse struct {
+<pre class="language-"><code class="lang-golang">type fileResponse struct {
     // In: body
     File runtime.File
 }
@@ -821,14 +821,14 @@ I would like to get a generated specification like:</p>
 <p>Originally from issue <a href="https://github.com/go-swagger/go-swagger/issues/1003" target="_blank">#1003</a>.</p>
 <h3 id="how-to-use-swagger-params"><a name="how-to-use-swagger-params" class="plugin-anchor" href="#how-to-use-swagger-params"><i class="fa fa-link" aria-hidden="true"></i></a>How to use swagger params?</h3>
 <p><em>Use-Case</em>: I defined a route with!</p>
-<pre><code class="lang-golang">// swagger:route GET /services/{serviceName}/version/{version} pets listOneService
+<pre class="language-"><code class="lang-golang">// swagger:route GET /services/{serviceName}/version/{version} pets listOneService
 </code></pre>
 <p><em>How to comment the two params(&apos;serviceName&apos; and &apos;version&apos;)?</em></p>
 <p><strong>Answer</strong>: <code>swagger:params</code> is used to indicate which operations the properties of the operation are included in the struct.</p>
 <p>So you&apos;d use something like these:
 <a href="https://github.com/go-swagger/go-swagger/blob/master/fixtures/goparsing/petstore/rest/handlers/orders.go#L24-L46" target="_blank">https://github.com/go-swagger/go-swagger/blob/master/fixtures/goparsing/petstore/rest/handlers/orders.go#L24-L46</a></p>
 <p>or:</p>
-<pre><code class="lang-golang">// swagger:params listOneService
+<pre class="language-"><code class="lang-golang">// swagger:params listOneService
 type ListOneParams struct {
     // ServiceName description goes here
     //
@@ -851,7 +851,7 @@ When I generate a spec from source, I get empty definitions.</p>
 <p>If the model isn&apos;t used through a parameter or response object it&apos;s not part of the API because there is no way that it goes in or out through the API.</p>
 <p>Example:</p>
 <p>doc.go</p>
-<pre><code class="lang-golang">// Schemes: http, https
+<pre class="language-"><code class="lang-golang">// Schemes: http, https
 // Host: localhost
 // BasePath: /v1
 // Version: 0.0.1
@@ -871,7 +871,7 @@ package main
 ...
 </code></pre>
 <p>user.go</p>
-<pre><code class="lang-golang">// Copyright 2015 go-swagger maintainers
+<pre class="language-"><code class="lang-golang">// Copyright 2015 go-swagger maintainers
 //
 // ...
 
@@ -900,7 +900,7 @@ type User struct {
 </code></pre>
 <p>Originally from issue <a href="https://github.com/go-swagger/go-swagger/issues/561" target="_blank">#561</a>.</p>
 <h3 id="documentation-or-tutorials-on-code-annotation"><a name="documentation-or-tutorials-on-code-annotation" class="plugin-anchor" href="#documentation-or-tutorials-on-code-annotation"><i class="fa fa-link" aria-hidden="true"></i></a>Documentation or tutorials on code annotation</h3>
-<p>_Use-Case: documentation is scant on how to generate swagger files from annotations.
+<p><em>Use-Case</em>: documentation is scant on how to generate swagger files from annotations.
 Is it really all there in <a href="http://goswagger.io/generate/spec/?" target="_blank">http://goswagger.io/generate/spec/?</a></p>
 <p><strong>Answer</strong>: yes, it&apos;s all in there (or directly in the repo: <a href="https://github.com/go-swagger/go-swagger/tree/master/docs/generate/spec" target="_blank">https://github.com/go-swagger/go-swagger/tree/master/docs/generate/spec</a>)</p>
 <p><em>How about some code examples that show annotations being used?</em></p>
@@ -916,7 +916,7 @@ All help we can get is absolutely welcome.</p>
 <p>Originally from issue <a href="https://github.com/go-swagger/go-swagger/issues/599" target="_blank">#599</a>.</p>
 <h3 id="wrong-schema-in-response-structure"><a name="wrong-schema-in-response-structure" class="plugin-anchor" href="#wrong-schema-in-response-structure"><i class="fa fa-link" aria-hidden="true"></i></a>Wrong schema in response structure?</h3>
 <p>I set up this response struct:</p>
-<pre><code class="lang-golang">// swagger:response SuccessResponse
+<pre class="language-"><code class="lang-golang">// swagger:response SuccessResponse
 type SuccessResponse struct {
     // In: body
     Data ResponseData `json:&quot;data&quot;`
@@ -928,7 +928,7 @@ type ResponseData struct {
 }
 </code></pre>
 <p>Expected schema:</p>
-<pre><code class="lang-JSON">{
+<pre class="language-"><code class="lang-JSON">{
   &quot;responses&quot;: {
     &quot;ErrorResponse&quot;: {},
     &quot;SuccessResponse&quot;: {
@@ -941,7 +941,7 @@ type ResponseData struct {
 }
 </code></pre>
 <p>but getting instead:</p>
-<pre><code class="lang-JSON">{
+<pre class="language-"><code class="lang-JSON">{
   &quot;responses&quot;: {
     &quot;ErrorResponse&quot;: {},
     &quot;SuccessResponse&quot;: {
@@ -957,7 +957,7 @@ type ResponseData struct {
 I don&apos;t want to add additional level of structs just to support pretty output.</p>
 <p><strong>Answer</strong>: you can rename the model in the json with the swagger:model doc tag on the response
 data struct, that would get you the expected output.</p>
-<pre><code class="lang-golang">// swagger:response SuccessResponse
+<pre class="language-"><code class="lang-golang">// swagger:response SuccessResponse
 type SuccessResponse struct {
     // In: body
     Data ResponseData `json:&quot;data&quot;`
@@ -972,7 +972,7 @@ type ResponseData struct {
 <p>Originally from issue <a href="https://github.com/go-swagger/go-swagger/issues/407" target="_blank">#407</a>.</p>
 <h3 id="go-swagger-not-generating-model-info-and-showing-error-on-swagger-ui"><a name="go-swagger-not-generating-model-info-and-showing-error-on-swagger-ui" class="plugin-anchor" href="#go-swagger-not-generating-model-info-and-showing-error-on-swagger-ui"><i class="fa fa-link" aria-hidden="true"></i></a>go-swagger not generating model info and showing error on swagger UI</h3>
 <p><em>Use-Case</em>: when I&apos;m executing : <code>swagger generate spec -o ./swagger.json</code> to generate the json spec I&apos;m getting:</p>
-<pre><code class="lang-JSON">{
+<pre class="language-"><code class="lang-JSON">{
   &quot;consumes&quot;: [&quot;application/json&quot;, &quot;application/xml&quot;],
   &quot;produces&quot;: [&quot;application/json&quot;, &quot;application/xml&quot;],
   &quot;schemes&quot;: [&quot;http&quot;, &quot;https&quot;],
@@ -1028,14 +1028,14 @@ type ResponseData struct {
 }
 </code></pre>
 <p>Note that my definitions are empty, not sure why. If I paste the same json spec in <a href="http://editor.swagger.io/#/" target="_blank">http://editor.swagger.io/#/</a> It says</p>
-<pre><code>Error
+<pre class="language-"><code>Error
 Object
 message: &quot;options.definition is required&quot;
 code: &quot;UNCAUGHT_SWAY_WORKER_ERROR&quot;
 </code></pre><p>Any directions on what is the right way to generate swagger documentation would help</p>
 <p><strong>Answer</strong>: can you move the <code>swagger:model</code> annotation to be the last line in the doc comments for a struct?</p>
 <p>Alternatively, I see some definitions for responses in your specification document, but no matching <code>swagger:response</code> definitions structs.</p>
-<pre><code class="lang-golang">// swagger:response errorResponse
+<pre class="language-"><code class="lang-golang">// swagger:response errorResponse
 type ErrorResponse struct {
     // in: body
     Body struct {
@@ -1207,7 +1207,7 @@ Originally from issue [#400](https://github.com/go-swagger/go-swagger/issues/400
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Spec generation from source","level":"1.7.5","depth":2,"next":{"title":"API testing","level":"1.7.6","depth":2,"path":"faq/faq_testing.md","ref":"faq/faq_testing.md","articles":[]},"previous":{"title":"Client generation","level":"1.7.4","depth":2,"path":"faq/faq_client.md","ref":"faq/faq_client.md","articles":[]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"prism":{},"anchors":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"faq/faq_spec.md","mtime":"2017-12-23T20:27:02.245Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-01-11T23:55:46.378Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Spec generation from source","level":"1.7.5","depth":2,"next":{"title":"API testing","level":"1.7.6","depth":2,"path":"faq/faq_testing.md","ref":"faq/faq_testing.md","articles":[]},"previous":{"title":"Client generation","level":"1.7.4","depth":2,"path":"faq/faq_client.md","ref":"faq/faq_client.md","articles":[]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"prism":{},"anchors":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"faq/faq_spec.md","mtime":"2018-03-26T07:48:24.615Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-03-26T07:59:44.355Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

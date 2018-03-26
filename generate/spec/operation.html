@@ -325,9 +325,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.4.3" data-path="../model.md">
+        <li class="chapter " data-level="1.4.4.3" data-path="../model.html">
             
-                <span>
+                <a href="../model.html">
             
                     
                     API Model
@@ -725,7 +725,7 @@ you provided to your routing library of choice. So you have to specify your path
 yourself in valid swagger (YAML) syntax.</p>
 <!--more-->
 <h5 id="syntax"><a name="syntax" class="plugin-anchor" href="#syntax"><i class="fa fa-link" aria-hidden="true"></i></a>Syntax:</h5>
-<pre><code>swagger:operation [method] [path pattern] [?tag1 tag2 tag3] [operation id]
+<pre class="language-"><code>swagger:operation [method] [path pattern] [?tag1 tag2 tag3] [operation id]
 </code></pre><h5 id="properties"><a name="properties" class="plugin-anchor" href="#properties"><i class="fa fa-link" aria-hidden="true"></i></a>Properties:</h5>
 <p>Any valid Swagger 2.0 YAML <em>Operation</em> property is valid.
 Make sure your indentation is consistent and correct,
@@ -735,8 +735,8 @@ as it won&apos;t parse correctly otherwise.</p>
 YAML spec, you will override the <em>summary</em>, <em>descriptions</em>, <em>tags</em> or <em>operationId</em>, specified as part of the regular swagger syntax above.</p>
 <p>Also note that you need to start your YAML spec with a triple dash <code>---</code>.</p>
 <h5 id="example"><a name="example" class="plugin-anchor" href="#example"><i class="fa fa-link" aria-hidden="true"></i></a>Example:</h5>
-<pre><code class="lang-go"><span class="token comment" spellcheck="true">// ServeAPI serves the API for this record store</span>
-<span class="token keyword">func</span> <span class="token function">ServeAPI<span class="token punctuation">(</span></span>host<span class="token operator">,</span> basePath <span class="token builtin">string</span><span class="token operator">,</span> schemes <span class="token operator">[</span><span class="token operator">]</span><span class="token builtin">string</span><span class="token operator">)</span> <span class="token operator">(</span>err <span class="token builtin">error</span><span class="token operator">)</span> <span class="token operator">{</span>
+<pre class="language-"><code class="lang-go"><span class="token comment" spellcheck="true">// ServeAPI serves the API for this record store</span>
+<span class="token keyword">func</span> <span class="token function">ServeAPI</span><span class="token punctuation">(</span>host<span class="token punctuation">,</span> basePath <span class="token builtin">string</span><span class="token punctuation">,</span> schemes <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">string</span><span class="token punctuation">)</span> <span class="token punctuation">(</span>err <span class="token builtin">error</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
     <span class="token comment" spellcheck="true">// swagger:operation GET /pets getPet</span>
     <span class="token comment" spellcheck="true">//</span>
     <span class="token comment" spellcheck="true">// Returns all pets from the system that the user has access to</span>
@@ -775,13 +775,13 @@ YAML spec, you will override the <em>summary</em>, <em>descriptions</em>, <em>ta
     <span class="token comment" spellcheck="true">//     description: unexpected error</span>
     <span class="token comment" spellcheck="true">//     schema:</span>
     <span class="token comment" spellcheck="true">//       &quot;$ref&quot;: &quot;#/definitions/errorModel&quot;</span>
-    <span class="token function">mountItem<span class="token punctuation">(</span></span><span class="token string">&quot;GET&quot;</span><span class="token operator">,</span> basePath<span class="token operator">+</span><span class="token string">&quot;/pets&quot;</span><span class="token operator">,</span> <span class="token boolean">nil</span><span class="token operator">)</span>
+    <span class="token function">mountItem</span><span class="token punctuation">(</span><span class="token string">&quot;GET&quot;</span><span class="token punctuation">,</span> basePath<span class="token operator">+</span><span class="token string">&quot;/pets&quot;</span><span class="token punctuation">,</span> <span class="token boolean">nil</span><span class="token punctuation">)</span>
 
     <span class="token keyword">return</span>
-<span class="token operator">}</span>
+<span class="token punctuation">}</span>
 </code></pre>
 <h5 id="result"><a name="result" class="plugin-anchor" href="#result"><i class="fa fa-link" aria-hidden="true"></i></a>Result:</h5>
-<pre><code class="lang-yaml"><span class="token punctuation">-</span><span class="token punctuation">-</span><span class="token punctuation">-</span>
+<pre class="language-"><code class="lang-yaml"><span class="token punctuation">---</span>
 <span class="token key atrule">paths</span><span class="token punctuation">:</span>
   <span class="token key atrule">&quot;/pets&quot;</span><span class="token punctuation">:</span>
     <span class="token key atrule">get</span><span class="token punctuation">:</span>
@@ -861,7 +861,7 @@ YAML spec, you will override the <em>summary</em>, <em>descriptions</em>, <em>ta
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"swagger:operation","level":"1.4.5.4","depth":3,"next":{"title":"swagger:response","level":"1.4.5.5","depth":3,"path":"generate/spec/response.md","ref":"generate/spec/response.md","articles":[]},"previous":{"title":"swagger:params","level":"1.4.5.3","depth":3,"path":"generate/spec/params.md","ref":"generate/spec/params.md","articles":[]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"prism":{},"anchors":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"generate/spec/operation.md","mtime":"2017-07-28T06:35:48.591Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-01-11T23:55:46.378Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"swagger:operation","level":"1.4.5.4","depth":3,"next":{"title":"swagger:response","level":"1.4.5.5","depth":3,"path":"generate/spec/response.md","ref":"generate/spec/response.md","articles":[]},"previous":{"title":"swagger:params","level":"1.4.5.3","depth":3,"path":"generate/spec/params.md","ref":"generate/spec/params.md","articles":[]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"prism":{},"anchors":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"generate/spec/operation.md","mtime":"2018-02-01T22:20:06.192Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-03-26T07:59:44.355Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
