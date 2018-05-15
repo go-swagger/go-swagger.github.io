@@ -887,7 +887,7 @@ we&apos;ll find the following snippet:</p>
 </code></pre>
 <p>Its only defined method looks very similar to the function type <code>GetGreetingHandlerFunc</code> function defined above. This is no coincidence.</p>
 <p>Even better, the <code>GetGreetingHandlerFunc</code> implements the <code>Handle</code> function as defined by the <code>GetGreetingHandler</code> interface, meaning that we can use a function respecting the type alias as defined by <code>GetGreetingHandlerFunc</code>, where we normally would have to implement a struct adhering to the <code>GetGreetingHandler</code> interface.</p>
-<p>Implementing our handler as a struct always us to handle with certain state in mind. You can check out the <a href="https://github.com/go-openapi/kvstore" target="_blank">kvstore example</a> to see a more elaborate example, where you can see the handlers being implemented using a struct per operation.</p>
+<p>Implementing our handler as a struct allows us to handle with a certain state in mind. You can check out the <a href="https://github.com/go-openapi/kvstore" target="_blank">kvstore example</a> to see a more elaborate example, where you can see the handlers being implemented using a struct per operation.</p>
 <p>Our Greeter API is however simple enough, that we&apos;ll opt for just a simple method.
 <a href="https://en.wikipedia.org/wiki/KISS_principle" target="_blank">KISS</a> never grows old. So with all of this said, let&apos;s implement our one and only handler.</p>
 <p>Back to the <code>./cmd/greeter/main.go</code> file, we&apos;ll define our handler as follows:</p>
