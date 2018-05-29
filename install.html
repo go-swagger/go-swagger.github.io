@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>CLI autocompletion · GitBook</title>
+        <title>Installation · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -65,10 +65,10 @@
     <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="faq/" />
+    <link rel="next" href="features.html" />
     
     
-    <link rel="prev" href="generate/templates.html" />
+    <link rel="prev" href="about.html" />
     
 
     </head>
@@ -124,7 +124,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.1.2" data-path="install.html">
+        <li class="chapter active" data-level="1.1.2" data-path="install.html">
             
                 <a href="install.html">
             
@@ -619,7 +619,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.6" data-path="cli_helpers.html">
+        <li class="chapter " data-level="1.6" data-path="cli_helpers.html">
             
                 <a href="cli_helpers.html">
             
@@ -772,7 +772,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="." >CLI autocompletion</a>
+        <a href="." >Installation</a>
     </h1>
 </div>
 
@@ -787,30 +787,41 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h2 id="cli-helpers"><a name="cli-helpers" class="plugin-anchor" href="#cli-helpers"><i class="fa fa-link" aria-hidden="true"></i></a>CLI helpers</h2>
-<h4 id="bash-completion"><a name="bash-completion" class="plugin-anchor" href="#bash-completion"><i class="fa fa-link" aria-hidden="true"></i></a>Bash Completion</h4>
-<p>Bash completion is supported and can be activated as follows:</p>
-<pre class="language-"><code class="lang-bash"><span class="token function">source</span> ./cmd/swagger/completion/swagger.bash-completion
-</code></pre>
-<p>Note that this does require you already setup bash completion,
-which can be done in 2 simple steps:</p>
-<p>1) install <code>bash-completion</code> using your favorite package manager;</p>
-<p>2) run <code>source /etc/bash_completion</code> in bash;</p>
-<h4 id="zsh-completion"><a name="zsh-completion" class="plugin-anchor" href="#zsh-completion"><i class="fa fa-link" aria-hidden="true"></i></a>Zsh Completion</h4>
-<p>Zsh completion is supported and can be copied/soft-linked from:</p>
-<pre class="language-"><code>./cmd/swagger/completion/swagger.zsh-completion
-</code></pre><p>In case you&apos;re new to adding auto-completion to zsh completion,
-here is how you could enable swagger&apos;s zsh completion step by step:</p>
-<p>1) create a folder used to store your completions (eg. <code>$HOME/.zsh/completion</code>);</p>
-<p>2) append the following to your <code>$HOME/.zshrc</code> file:</p>
-<pre class="language-"><code class="lang-zsh"># add auto-completion directory to zsh&apos;s fpath
-fpath=($HOME/.zsh/completion $fpath)
+                                <h2 id="installing"><a name="installing" class="plugin-anchor" href="#installing"><i class="fa fa-link" aria-hidden="true"></i></a>Installing</h2>
+<h3 id="installing-from-binary-distributions"><a name="installing-from-binary-distributions" class="plugin-anchor" href="#installing-from-binary-distributions"><i class="fa fa-link" aria-hidden="true"></i></a>Installing from binary distributions</h3>
+<p>go-swagger releases are distributed as binaries that are built from signed tags. It is published <a href="https://github.com/go-swagger/go-swagger/tags" target="_blank">as github release</a>,
+rpm, deb and docker image.</p>
+<h4 id="docker-image-"><a name="docker-image-" class="plugin-anchor" href="#docker-image-"><i class="fa fa-link" aria-hidden="true"></i></a>Docker image <a href="https://quay.io/repository/goswagger/swagger" target="_blank"><img src="https://quay.io/repository/goswagger/swagger/status" alt="Docker Repository on Quay" title="Docker Repository on Quay"></a></h4>
+<pre class="language-"><code>docker pull quay.io/goswagger/swagger
 
-# compsys initialization
-autoload -U compinit
-compinit
-</code></pre>
-<p>3) copy/soft-link <code>./cmd/swagger/completion/swagger.zsh-completion</code> to <code>$HOME/.zsh/completion/_swagger</code>;</p>
+alias swagger=&quot;docker run --rm -it -e GOPATH=$HOME/go:/go -v $HOME:$HOME -w $(pwd) quay.io/goswagger/swagger&quot;
+swagger version
+</code></pre><h4 id="homebrewlinuxbrew"><a name="homebrewlinuxbrew" class="plugin-anchor" href="#homebrewlinuxbrew"><i class="fa fa-link" aria-hidden="true"></i></a>Homebrew/Linuxbrew</h4>
+<pre class="language-"><code>brew tap go-swagger/go-swagger
+brew install go-swagger
+</code></pre><h4 id="static-binary"><a name="static-binary" class="plugin-anchor" href="#static-binary"><i class="fa fa-link" aria-hidden="true"></i></a>Static binary</h4>
+<p>You can download a binary for your platform from github:
+<a href="https://github.com/go-swagger/go-swagger/releases/latest" target="_blank">https://github.com/go-swagger/go-swagger/releases/latest</a></p>
+<pre class="language-"><code>latestv=$(curl -s https://api.github.com/repos/go-swagger/go-swagger/releases/latest | jq -r .tag_name)
+curl -o /usr/local/bin/swagger -L&apos;#&apos; https://github.com/go-swagger/go-swagger/releases/download/$latestv/swagger_$(echo `uname`|tr &apos;[:upper:]&apos; &apos;[:lower:]&apos;)_amd64
+chmod +x /usr/local/bin/swagger
+</code></pre><h4 id="debian-packages---"><a name="debian-packages---" class="plugin-anchor" href="#debian-packages---"><i class="fa fa-link" aria-hidden="true"></i></a>Debian packages <a href="https://bintray.com/go-swagger/goswagger-debian/swagger/_latestVersion" target="_blank"> <img src="https://api.bintray.com/packages/go-swagger/goswagger-debian/swagger/images/download.svg" alt="Download"> </a></h4>
+<p>This repo will work for any debian, the only file it contains gets copied to <code>/usr/bin</code></p>
+<pre class="language-"><code>echo &quot;deb https://dl.bintray.com/go-swagger/goswagger-debian ubuntu main&quot; | sudo tee -a /etc/apt/sources.list
+</code></pre><h4 id="rpm-packages---"><a name="rpm-packages---" class="plugin-anchor" href="#rpm-packages---"><i class="fa fa-link" aria-hidden="true"></i></a>RPM packages <a href="https://bintray.com/go-swagger/goswagger-rpm/swagger/_latestVersion" target="_blank"> <img src="https://api.bintray.com/packages/go-swagger/goswagger-rpm/swagger/images/download.svg" alt="Download"> </a></h4>
+<p>This repo should work on any distro that wants rpm packages, the only file it contains gets copied to <code>/usr/bin</code></p>
+<pre class="language-"><code>wget https://bintray.com/go-swagger/goswagger-rpm/rpm -O bintray-go-swagger-goswagger-rpm.repo
+</code></pre><h3 id="installing-from-source"><a name="installing-from-source" class="plugin-anchor" href="#installing-from-source"><i class="fa fa-link" aria-hidden="true"></i></a>Installing from source</h3>
+<p>Install or update from current source master:</p>
+<pre class="language-"><code>go get -u github.com/go-swagger/go-swagger/cmd/swagger
+</code></pre><p>You are welcome to clone this repo and start contributing:</p>
+<pre class="language-"><code>cd $GOPATH/src
+mkdir -p github.com/go-swagger
+cd github.com/go-swagger
+git clone https:/github.com/go-swagger/go-swagger
+</code></pre><blockquote>
+<p><strong>NOTE</strong>: go-swagger works on *nix as well as Windows OS </p>
+</blockquote>
 
                                 
                                 </section>
@@ -838,12 +849,12 @@ compinit
 
             
                 
-                <a href="generate/templates.html" class="navigation navigation-prev " aria-label="Previous page: Custom templates">
+                <a href="about.html" class="navigation navigation-prev " aria-label="Previous page: Approaches">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="faq/" class="navigation navigation-next " aria-label="Next page: FAQ">
+                <a href="features.html" class="navigation navigation-next " aria-label="Next page: Features">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -854,7 +865,7 @@ compinit
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"CLI autocompletion","level":"1.6","depth":1,"next":{"title":"FAQ","level":"1.7","depth":1,"path":"faq/README.md","ref":"faq/README.md","articles":[{"title":"Installation,setup and environment","level":"1.7.1","depth":2,"path":"faq/faq_setup.md","ref":"faq/faq_setup.md","articles":[]},{"title":"Model generation","level":"1.7.2","depth":2,"path":"faq/faq_model.md","ref":"faq/faq_model.md","articles":[]},{"title":"Server generation & customization","level":"1.7.3","depth":2,"path":"faq/faq_server.md","ref":"faq/faq_server.md","articles":[]},{"title":"Client generation","level":"1.7.4","depth":2,"path":"faq/faq_client.md","ref":"faq/faq_client.md","articles":[]},{"title":"Spec generation from source","level":"1.7.5","depth":2,"path":"faq/faq_spec.md","ref":"faq/faq_spec.md","articles":[]},{"title":"API testing","level":"1.7.6","depth":2,"path":"faq/faq_testing.md","ref":"faq/faq_testing.md","articles":[]},{"title":"Documenting your API","level":"1.7.7","depth":2,"path":"faq/faq_documenting.md","ref":"faq/faq_documenting.md","articles":[]}]},"previous":{"title":"Custom templates","level":"1.5.1","depth":2,"path":"generate/templates.md","ref":"generate/templates.md","articles":[]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"prism":{},"anchors":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"cli_helpers.md","mtime":"2018-02-01T22:20:06.189Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-05-29T00:18:32.923Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Installation","level":"1.1.2","depth":2,"next":{"title":"Features","level":"1.2","depth":1,"path":"features.md","ref":"features.md","articles":[]},"previous":{"title":"Approaches","level":"1.1.1","depth":2,"path":"about.md","ref":"about.md","articles":[]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"prism":{},"anchors":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"install.md","mtime":"2018-05-25T15:42:44.446Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-05-29T00:18:32.923Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>

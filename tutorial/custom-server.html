@@ -116,7 +116,20 @@
                 <a href="../about.html">
             
                     
-                    Approach
+                    Approaches
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2" data-path="../install.html">
+            
+                <a href="../install.html">
+            
+                    
+                    Installation
             
                 </a>
             
@@ -205,6 +218,64 @@
                 </a>
             
 
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.5" >
+            
+                <span>
+            
+                    
+                    Security
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.5.1" data-path="authentication/">
+            
+                <a href="authentication/">
+            
+                    
+                    Authentication
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.5.2" data-path="oauth2/">
+            
+                <a href="oauth2/">
+            
+                    
+                    OAuth2
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.5.3" data-path="composed-auth/">
+            
+                <a href="composed-auth/">
+            
+                    
+                    Composition
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
             
         </li>
     
@@ -887,7 +958,7 @@ we&apos;ll find the following snippet:</p>
 </code></pre>
 <p>Its only defined method looks very similar to the function type <code>GetGreetingHandlerFunc</code> function defined above. This is no coincidence.</p>
 <p>Even better, the <code>GetGreetingHandlerFunc</code> implements the <code>Handle</code> function as defined by the <code>GetGreetingHandler</code> interface, meaning that we can use a function respecting the type alias as defined by <code>GetGreetingHandlerFunc</code>, where we normally would have to implement a struct adhering to the <code>GetGreetingHandler</code> interface.</p>
-<p>Implementing our handler as a struct always us to handle with certain state in mind. You can check out the <a href="https://github.com/go-openapi/kvstore" target="_blank">kvstore example</a> to see a more elaborate example, where you can see the handlers being implemented using a struct per operation.</p>
+<p>Implementing our handler as a struct allows us to handle with a certain state in mind. You can check out the <a href="https://github.com/go-openapi/kvstore" target="_blank">kvstore example</a> to see a more elaborate example, where you can see the handlers being implemented using a struct per operation.</p>
 <p>Our Greeter API is however simple enough, that we&apos;ll opt for just a simple method.
 <a href="https://en.wikipedia.org/wiki/KISS_principle" target="_blank">KISS</a> never grows old. So with all of this said, let&apos;s implement our one and only handler.</p>
 <p>Back to the <code>./cmd/greeter/main.go</code> file, we&apos;ll define our handler as follows:</p>
@@ -976,7 +1047,7 @@ same techniques as described in this tutorial.</p>
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Custom Server","level":"1.3.3","depth":2,"next":{"title":"Dynamic Server","level":"1.3.4","depth":2,"path":"tutorial/dynamic.md","ref":"tutorial/dynamic.md","articles":[]},"previous":{"title":"Middleware","level":"1.3.2","depth":2,"path":"use/middleware.md","ref":"use/middleware.md","articles":[]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"prism":{},"anchors":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"tutorial/custom-server.md","mtime":"2018-02-01T22:20:06.215Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-03-26T07:59:44.355Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Custom Server","level":"1.3.3","depth":2,"next":{"title":"Dynamic Server","level":"1.3.4","depth":2,"path":"tutorial/dynamic.md","ref":"tutorial/dynamic.md","articles":[]},"previous":{"title":"Middleware","level":"1.3.2","depth":2,"path":"use/middleware.md","ref":"use/middleware.md","articles":[]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"prism":{},"anchors":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"tutorial/custom-server.md","mtime":"2018-05-25T15:42:44.446Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-05-29T00:18:32.923Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

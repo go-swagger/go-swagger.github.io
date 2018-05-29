@@ -66,7 +66,7 @@
 
     
     
-    <link rel="prev" href="about.html" />
+    <link rel="prev" href="install.html" />
     
 
     </head>
@@ -114,7 +114,20 @@
                 <a href="about.html">
             
                     
-                    Approach
+                    Approaches
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2" data-path="install.html">
+            
+                <a href="install.html">
+            
+                    
+                    Installation
             
                 </a>
             
@@ -203,6 +216,64 @@
                 </a>
             
 
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.5" >
+            
+                <span>
+            
+                    
+                    Security
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.5.1" data-path="tutorial/authentication/">
+            
+                <a href="tutorial/authentication/">
+            
+                    
+                    Authentication
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.5.2" data-path="tutorial/oauth2/">
+            
+                <a href="tutorial/oauth2/">
+            
+                    
+                    OAuth2
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.5.3" data-path="tutorial/composed-auth/">
+            
+                <a href="tutorial/composed-auth/">
+            
+                    
+                    Composition
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
             
         </li>
     
@@ -715,15 +786,15 @@
                                 <section class="normal markdown-section">
                                 
                                 <h2 id="full-features-list"><a name="full-features-list" class="plugin-anchor" href="#full-features-list"><i class="fa fa-link" aria-hidden="true"></i></a>Full features list</h2>
-<p>For a V1 I want to have this feature set completed:</p>
 <ul>
-<li>[x] An object model that serializes to swagger yaml or json</li>
+<li>[x] An object model that serializes to swagger yaml or json (see: <a href="https://github.com/go-openapi/spec" target="_blank">spec package</a>)</li>
 <li><p>[x] A tool to work with swagger</p>
 <ul>
 <li>[x] Serve swagger UI for any swagger spec file</li>
-<li>[x] Flexible code generation, with customizable templates</li>
+<li>[x] Flexible code generation, with customizable templates (package generator)</li>
 <li>[x] Generate API based on swagger spec</li>
 <li>[x] Generate go client from a swagger spec</li>
+<li>[x] Support swagger polymorphism (discriminator with allOf composition)</li>
 <li><p>[x] Validate a swagger spec document, with extra rules outlined <a href="https://github.com/apigee-127/sway/blob/master/docs/README.md#semantic-validation" target="_blank">here</a></p>
 <ul>
 <li>[x] definition can&apos;t declare a property that&apos;s already defined by one of its ancestors (Error)</li>
@@ -740,14 +811,17 @@
 <li>[x] every default value that is specified must validate against the schema for that property (Error)</li>
 <li>[x] items property is required for all schemas/definitions of type <code>array</code> (Error)</li>
 <li>|x] param in path must have the property required: true</li>
-<li>[ ] every example that is specified must validate against the schema for that property (Error)</li>
-<li>[ ] $ref should not have siblings (Warning)</li>
+<li>[x] every example that is specified should validate against the schema for that property (Warning)</li>
+<li>[x] $ref should not have siblings (Warning)</li>
 <li>[x] each referable definition must have references (Warning)</li>
 </ul>
 </li>
-<li><p>[x] Validate against jsonschema (Draft 4), with full $ref support</p>
+<li><p>[x] Validate JSON data against jsonschema (Draft 4), with full $ref support (see: <a href="https://github.com/go-openapi/validate" target="_blank">validate package</a>)</p>
+<ul>
+<li>[x] Passes current json schema test suite</li>
+</ul>
 </li>
-<li><p>[x] Generate spec document based on annotated code</p>
+<li><p>[x] Generate spec document based on annotated code (package scan)</p>
 <ul>
 <li>[x] generate meta data (top level swagger properties) from package docs</li>
 <li>[x] generate definition entries for models</li>
@@ -762,20 +836,20 @@
 </li>
 </ul>
 </li>
-<li><p>[x] Middlewares</p>
+<li><p>[x] Middlewares (see: <a href="https://github.com/go-openapi/runtime" target="_blank">runtime package</a>)</p>
 <ul>
 <li>[x] serve spec</li>
 <li>[x] routing</li>
 <li>[x] validation</li>
 <li>[x] additional validation through an interface</li>
-<li><p>[x] authorization</p>
+<li><p>[x] authorization, with auth composition (AND|OR authorization schemes)</p>
 <ul>
 <li>[x] basic auth</li>
 <li>[x] api key auth</li>
 <li>[x] oauth2 bearer auth</li>
 </ul>
 </li>
-<li><p>[x] swagger docs UI</p>
+<li><p>[x] swagger docs UI (docUI and redoc flavors)</p>
 </li>
 </ul>
 </li>
@@ -783,35 +857,48 @@
 <ul>
 <li>[x] JSON Pointer that knows about structs</li>
 <li>[x] JSON Reference that knows about structs</li>
-<li>[x] Passes current json schema test suite</li>
+<li>[x] Supports most JSON schema features<sup><a href="#footnote1">1</a></sup></li>
 </ul>
 </li>
-<li><p>[x] extended string and numeric formats</p>
+<li><p>[x] extended string and numeric formats (see: <a href="https://github.com/go-openapi/strfmt" target="_blank">strfmt package</a>)</p>
 <ul>
-<li>[x] uuid, uuid3, uuid4, uuid5</li>
-<li>[x] email</li>
-<li>[x] uri (absolute)</li>
-<li>[x] hostname</li>
-<li>[x] ipv4</li>
-<li>[x] ipv6</li>
-<li>[x] mac</li>
-<li>[x] credit card</li>
-<li>[x] isbn, isbn10, isbn13</li>
-<li>[x] social security number</li>
-<li>[x] hexcolor</li>
-<li>[x] rgbcolor</li>
-<li>[x] date</li>
-<li>[x] date-time</li>
-<li>[x] duration</li>
-<li>[x] password</li>
-<li>[x] custom string formats</li>
-<li>[x] int32, int64, float, double</li>
+<li><p>[x] JSON-schema draft 4 formats</p>
+<ul>
+<li>date-time</li>
+<li>email</li>
+<li>hostname</li>
+<li>ipv4</li>
+<li>ipv6</li>
+<li>uri</li>
 </ul>
 </li>
-<li><p>[x] Project documentation site</p>
-</li>
-<li>[x] Play nice with golint, go vet etc.</li>
+<li><p>[x] swagger 2.0 format extensions</p>
+<ul>
+<li>binary</li>
+<li>byte (e.g. base64 encoded string)</li>
+<li>date (e.g. &quot;1970-01-01&quot;)</li>
+<li>password</li>
 </ul>
+</li>
+<li><p>[x] go-openapi custom format extensions</p>
+<ul>
+<li>bsonobjectid (BSON objectID)</li>
+<li>creditcard</li>
+<li>duration (e.g. &quot;3 weeks&quot;, &quot;1ms&quot;)</li>
+<li>hexcolor (e.g. &quot;#FFFFFF&quot;)</li>
+<li>isbn, isbn10, isbn13</li>
+<li>mac (e.g &quot;01:02:03:04:05:06&quot;)</li>
+<li>rgbcolor (e.g. &quot;rgb(100,100,100)&quot;)</li>
+<li>ssn</li>
+<li>uuid, uuid3, uuid4, uuid5</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>[x] Play nice with golint, go vet etc.</p>
+</li>
+</ul>
+<p><a name="footnote1">1</a>: currently adds extra support for <code>additionalItems</code>(not part of swagger), but not <code>anyOf</code>, <code>oneOf</code> and <code>not</code>.</p>
 
                                 
                                 </section>
@@ -839,7 +926,7 @@
 
             
                 
-                <a href="about.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: Approach">
+                <a href="install.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: Installation">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
@@ -851,7 +938,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Features","level":"1.2","depth":1,"next":{"title":"Tutorials","level":"1.3","depth":1,"ref":"","articles":[{"title":"Simple Server","level":"1.3.1","depth":2,"path":"tutorial/todo-list.md","ref":"tutorial/todo-list.md","articles":[]},{"title":"Middleware","level":"1.3.2","depth":2,"path":"use/middleware.md","ref":"use/middleware.md","articles":[]},{"title":"Custom Server","level":"1.3.3","depth":2,"path":"tutorial/custom-server.md","ref":"tutorial/custom-server.md","articles":[]},{"title":"Dynamic Server","level":"1.3.4","depth":2,"path":"tutorial/dynamic.md","ref":"tutorial/dynamic.md","articles":[]}]},"previous":{"title":"Approach","level":"1.1.1","depth":2,"path":"about.md","ref":"about.md","articles":[]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"prism":{},"anchors":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"features.md","mtime":"2018-02-01T22:20:06.189Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-03-26T07:59:44.355Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Features","level":"1.2","depth":1,"next":{"title":"Tutorials","level":"1.3","depth":1,"ref":"","articles":[{"title":"Simple Server","level":"1.3.1","depth":2,"path":"tutorial/todo-list.md","ref":"tutorial/todo-list.md","articles":[]},{"title":"Middleware","level":"1.3.2","depth":2,"path":"use/middleware.md","ref":"use/middleware.md","articles":[]},{"title":"Custom Server","level":"1.3.3","depth":2,"path":"tutorial/custom-server.md","ref":"tutorial/custom-server.md","articles":[]},{"title":"Dynamic Server","level":"1.3.4","depth":2,"path":"tutorial/dynamic.md","ref":"tutorial/dynamic.md","articles":[]},{"title":"Security","level":"1.3.5","depth":2,"ref":"","articles":[{"title":"Authentication","level":"1.3.5.1","depth":3,"path":"tutorial/authentication/README.md","ref":"tutorial/authentication/README.md","articles":[]},{"title":"OAuth2","level":"1.3.5.2","depth":3,"path":"tutorial/oauth2/README.md","ref":"tutorial/oauth2/README.md","articles":[]},{"title":"Composition","level":"1.3.5.3","depth":3,"path":"tutorial/composed-auth/README.md","ref":"tutorial/composed-auth/README.md","articles":[]}]}]},"previous":{"title":"Installation","level":"1.1.2","depth":2,"path":"install.md","ref":"install.md","articles":[]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"prism":{},"anchors":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"features.md","mtime":"2018-05-25T15:42:44.446Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-05-29T00:18:32.923Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>

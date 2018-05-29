@@ -116,7 +116,20 @@
                 <a href="../about.html">
             
                     
-                    Approach
+                    Approaches
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2" data-path="../install.html">
+            
+                <a href="../install.html">
+            
+                    
+                    Installation
             
                 </a>
             
@@ -205,6 +218,64 @@
                 </a>
             
 
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.5" >
+            
+                <span>
+            
+                    
+                    Security
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.5.1" data-path="../tutorial/authentication/">
+            
+                <a href="../tutorial/authentication/">
+            
+                    
+                    Authentication
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.5.2" data-path="../tutorial/oauth2/">
+            
+                <a href="../tutorial/oauth2/">
+            
+                    
+                    OAuth2
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.5.3" data-path="../tutorial/composed-auth/">
+            
+                <a href="../tutorial/composed-auth/">
+            
+                    
+                    Composition
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
             
         </li>
     
@@ -736,6 +807,7 @@ Feel free to contribute new questions and share your experience with go-swagger!
 </ul>
 <h4 id="model-generation"><a name="model-generation" class="plugin-anchor" href="#model-generation"><i class="fa fa-link" aria-hidden="true"></i></a>Model generation</h4>
 <ul>
+<li><a href="faq_model.html#custom-validation">Custom validation</a></li>
 <li><a href="faq_model.html#non-required-or-nullable-property">Non-required or nullable property?</a></li>
 <li><a href="faq_model.html#string-parameter-in-body-and-query">String parameter in body and query?</a></li>
 <li><a href="faq_model.html#request-response-can-have-different-objects-returned-based-on-query-parameters">Request response can have different objects returned based on query parameters</a></li>
@@ -749,10 +821,9 @@ Feel free to contribute new questions and share your experience with go-swagger!
 <li><a href="faq_server.html#what-are-the-dependencies-required-by-the-generated-server">What are the dependencies required by the generated server?</a></li>
 <li><a href="faq_server.html#how-to-add-custom-flags">How to add custom flags?</a></li>
 <li><a href="faq_server.html#how-do-you-integrate-the-flag-sets-of-go-swagger-and-other-packages-in-particular-glog">How do you integrate the flag sets of go-swagger and other packages, in particular, glog?</a></li>
+<li><a href="faq_server.html#how-to-serve-two-or-more-swagger-specs-from-one-server">How to serve two or more swagger specs from one server?</a></li>
 <li><a href="faq_server.html#how-to-access-access-api-struct-inside-operator-handler">How to access access API struct inside operator handler?</a></li>
 <li><a href="faq_server.html#use-go-swagger-to-generate-different-client-or-servers">Use go-swagger to generate different client or servers</a></li>
-<li><a href="faq_server.html#how-to-serve-two-or-more-swagger-specs-from-one-server">How to serve two or more swagger specs from one server?</a></li>
-<li><a href="faq_server.html#how-to-use-swagger-ui-cors">How to use swagger-ui/cors?</a></li>
 <li><a href="faq_server.html#support-streaming-responses">Support streaming responses</a></li>
 </ul>
 <h4 id="client-generation"><a name="client-generation" class="plugin-anchor" href="#client-generation"><i class="fa fa-link" aria-hidden="true"></i></a>Client generation</h4>
@@ -776,12 +847,15 @@ Feel free to contribute new questions and share your experience with go-swagger!
 </ul>
 <h4 id="api-testing"><a name="api-testing" class="plugin-anchor" href="#api-testing"><i class="fa fa-link" aria-hidden="true"></i></a>API testing</h4>
 <ul>
-<li><a href="faq_testing.html#using-httptest">Using httptest</a></li>
 <li><a href="faq_testing.html#any-suggestions-how-to-leverage-the-generated-client-for-benchmarking-the-api">Any suggestions how to leverage the generated client for benchmarking the API?</a></li>
+<li><a href="faq_testing.html#using-httptest">Using httptest</a></li>
 </ul>
 <h4 id="documenting-your-api"><a name="documenting-your-api" class="plugin-anchor" href="#documenting-your-api"><i class="fa fa-link" aria-hidden="true"></i></a>Documenting your API</h4>
 <ul>
 <li><a href="faq_documenting.html#serving-swagger-ui-with-the-api-server">Serving swagger-ui with the API Server</a></li>
+<li><a href="faq_documenting.html#how-to-serve-swagger-ui-from-a-preexisting-web-app">Serving UI from existing app</a></li>
+<li><a href="faq_server.html#how-to-use-swagger-ui-cors">How to use swagger-ui/cors?</a></li>
+<li><a href="faq_server.html#how-to-serve-my-ui-files">Serving my own UI files</a></li>
 </ul>
 <!-- More on that...
 #### Documentation and tutorials
@@ -829,7 +903,7 @@ Feel free to contribute new questions and share your experience with go-swagger!
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"FAQ","level":"1.7","depth":1,"next":{"title":"Installation,setup and environment","level":"1.7.1","depth":2,"path":"faq/faq_setup.md","ref":"faq/faq_setup.md","articles":[]},"previous":{"title":"CLI autocompletion","level":"1.6","depth":1,"path":"cli_helpers.md","ref":"cli_helpers.md","articles":[]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"prism":{},"anchors":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"faq/README.md","mtime":"2018-02-01T22:20:06.189Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-03-26T07:59:44.355Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"FAQ","level":"1.7","depth":1,"next":{"title":"Installation,setup and environment","level":"1.7.1","depth":2,"path":"faq/faq_setup.md","ref":"faq/faq_setup.md","articles":[]},"previous":{"title":"CLI autocompletion","level":"1.6","depth":1,"path":"cli_helpers.md","ref":"cli_helpers.md","articles":[]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"prism":{},"anchors":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"faq/README.md","mtime":"2018-05-04T15:13:55.468Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-05-29T00:18:32.923Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
