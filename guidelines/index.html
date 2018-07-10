@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>Serve UI · GitBook</title>
+        <title>Guidelines to maintainers · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -65,10 +65,10 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="validate.html" />
+    <link rel="next" href="../faq/" />
     
     
-    <link rel="prev" href="swagger.html" />
+    <link rel="prev" href="../cli_helpers.html" />
     
 
     </head>
@@ -285,9 +285,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.4.1" data-path="swagger.html">
+        <li class="chapter " data-level="1.4.1" data-path="../usage/swagger.html">
             
-                <a href="swagger.html">
+                <a href="../usage/swagger.html">
             
                     
                     Options and commands
@@ -298,9 +298,9 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.4.2" data-path="serve_ui.html">
+        <li class="chapter " data-level="1.4.2" data-path="../usage/serve_ui.html">
             
-                <a href="serve_ui.html">
+                <a href="../usage/serve_ui.html">
             
                     
                     Serve UI
@@ -311,9 +311,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.3" data-path="validate.html">
+        <li class="chapter " data-level="1.4.3" data-path="../usage/validate.html">
             
-                <a href="validate.html">
+                <a href="../usage/validate.html">
             
                     
                     Validate
@@ -338,9 +338,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.4.4.1" data-path="flatten.html">
+        <li class="chapter " data-level="1.4.4.1" data-path="../usage/flatten.html">
             
-                <a href="flatten.html">
+                <a href="../usage/flatten.html">
             
                     
                     Flatten
@@ -351,9 +351,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.4.2" data-path="expand.html">
+        <li class="chapter " data-level="1.4.4.2" data-path="../usage/expand.html">
             
-                <a href="expand.html">
+                <a href="../usage/expand.html">
             
                     
                     Expand
@@ -364,9 +364,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.4.3" data-path="mixin.html">
+        <li class="chapter " data-level="1.4.4.3" data-path="../usage/mixin.html">
             
-                <a href="mixin.html">
+                <a href="../usage/mixin.html">
             
                     
                     Mixin
@@ -780,9 +780,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.8" data-path="../guidelines/">
+        <li class="chapter active" data-level="1.8" data-path="./">
             
-                <a href="../guidelines/">
+                <a href="./">
             
                     
                     Guidelines to maintainers
@@ -933,7 +933,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >Serve UI</a>
+        <a href=".." >Guidelines to maintainers</a>
     </h1>
 </div>
 
@@ -948,51 +948,212 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="serve-a-documentation-site"><a name="serve-a-documentation-site" class="plugin-anchor" href="#serve-a-documentation-site"><i class="fa fa-link" aria-hidden="true"></i></a>Serve a documentation site</h1>
-<p>The toolkit has a command to serve a spec json document and optionally a UI for a given spec. 
-It embeds redoc, so you can use that documentation site without an internet connection.
-Or it can load your local spec into the swagger docs viewer at <a href="http://petstore.swagger.io" target="_blank">http://petstore.swagger.io</a></p>
-<!--more-->
-<h3 id="usage"><a name="usage" class="plugin-anchor" href="#usage"><i class="fa fa-link" aria-hidden="true"></i></a>Usage</h3>
-<p>To serve a documentation site:</p>
-<pre class="language-"><code>Usage:
-  swagger [OPTIONS] serve [serve-OPTIONS]
+                                <h1 id="guidelines-to-maintainers"><a name="guidelines-to-maintainers" class="plugin-anchor" href="#guidelines-to-maintainers"><i class="fa fa-link" aria-hidden="true"></i></a>Guidelines to maintainers</h1>
+<p>A quick guide on how to contribute to <code>go-swagger</code> and the other <code>go-openapi</code> repos.</p>
+<h3 id="getting-started"><a name="getting-started" class="plugin-anchor" href="#getting-started"><i class="fa fa-link" aria-hidden="true"></i></a>Getting started</h3>
+<p>Repos follow standard go building and testing rules.</p>
+<p>Building and installing go-swagger from source on your system:</p>
+<pre class="language-"><code>go install github.com/go-swagger/go-swagger/cmd/swagger
+</code></pre><p>Running standard unit tests:</p>
+<pre class="language-"><code> go test ./...
+</code></pre><p>More advanced tests are run by CI. See <a href="#continuous-integration">below</a>.</p>
+<h3 id="generally-accepted-rules-for-pull-requests"><a name="generally-accepted-rules-for-pull-requests" class="plugin-anchor" href="#generally-accepted-rules-for-pull-requests"><i class="fa fa-link" aria-hidden="true"></i></a>Generally accepted rules for pull requests</h3>
+<p>All PR&apos;s are welcome and generally accepted (so far, 95% were accepted...).
+There are just a few common sense rules to be followed.</p>
+<ol>
+<li>PRs which are not ready to merge should be prefixed with &quot;WIP:&quot;</li>
+<li>Generally, contributors should squash their commits (use <code>git rebase -i ...</code>)</li>
+<li>Provide sufficient test coverage with changes</li>
+<li>Do not bring in uncontrolled dependencies, including from fixtures or examples.
+Adding dependencies is possible with a vendor update (<code>dep ensure -update</code>).</li>
+<li>Use the &quot;fixes #xxx&quot; feature in PR to automate issue closing</li>
+</ol>
+<h3 id="go-environment"><a name="go-environment" class="plugin-anchor" href="#go-environment"><i class="fa fa-link" aria-hidden="true"></i></a>Go environment</h3>
+<p>We want to always support the two most recent go versions.</p>
+<p>However, we try to avoid introducing breaking changes, especially on the more
+stable <code>go-openapi</code> repos. We manage this with build tags. Notice the very
+important blank line after your build tag comment line.</p>
+<p>Example (from <code>go-openapi/swag</code>):</p>
+<pre class="language-"><code class="lang-go"><span class="token comment" spellcheck="true">// +build !go1.8</span>
 
-serve a spec and swagger or redoc documentation ui
+<span class="token keyword">package</span> swag
 
-Application Options:
-  -q, --quiet                         silence logs
-  -o, --output=LOG-FILE               redirect logs to file
+<span class="token keyword">import</span> <span class="token string">&quot;net/url&quot;</span>
 
-Help Options:
-  -h, --help                          Show this help message
-
-[serve command options]
-          --base-path=                the base path to serve the spec and UI at
-      -F, --flavor=[redoc|swagger]    the flavor of docs, can be swagger or redoc (default: redoc)
-          --doc-url=                  override the url which takes a url query param to render the doc ui
-          --no-open                   when present won&apos;t open the the browser to show the url
-          --no-ui                     when present, only the swagger spec will be served
-      -p, --port=                     the port to serve this site [$PORT]
-          --host=                     the interface to serve this site, defaults to 0.0.0.0 [$HOST]
-</code></pre><p>This will start a server with cors enabled so that sites on other domains can load your specification document. </p>
-<h3 id="flavors"><a name="flavors" class="plugin-anchor" href="#flavors"><i class="fa fa-link" aria-hidden="true"></i></a>Flavors</h3>
-<p>At this moment the UI can be served into 2 flavors.</p>
-<h4 id="redoc"><a name="redoc" class="plugin-anchor" href="#redoc"><i class="fa fa-link" aria-hidden="true"></i></a>Redoc</h4>
-<p>The swagger source code has a middleware for embedding Redoc.
-So for the redoc flavor we make use of that and use it with the spec you have on disk.</p>
-<h4 id="swagger-ui"><a name="swagger-ui" class="plugin-anchor" href="#swagger-ui"><i class="fa fa-link" aria-hidden="true"></i></a>Swagger UI</h4>
-<p>For the swagger flavor we use the UI hosted at <a href="http://petstore.swagger.io" target="_blank">http://petstore.swagger.io</a>.
-The server has CORS enabled and appends the url for the spec JSON to the petstore url as a query string. </p>
-<h4 id="your-own-ui"><a name="your-own-ui" class="plugin-anchor" href="#your-own-ui"><i class="fa fa-link" aria-hidden="true"></i></a>Your own UI</h4>
-<p>You can use your own UI by pointing it to the spec served by this command.
-When no ui is being served, the terminal will print the url to the spec document.
-You can also use the <code>--doc-url</code> to provide another url as base. 
-The url to your documentation site for example, which would need to recognize the query param url to load the swagger spec from, through the browser.</p>
-<h3 id="more"><a name="more" class="plugin-anchor" href="#more"><i class="fa fa-link" aria-hidden="true"></i></a>More</h3>
-<p>There are some more options for this command which you can view with:</p>
-<pre class="language-"><code>swagger serve --help
+<span class="token keyword">func</span> <span class="token function">pathUnescape</span><span class="token punctuation">(</span>path <span class="token builtin">string</span><span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token builtin">string</span><span class="token punctuation">,</span> <span class="token builtin">error</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> url<span class="token punctuation">.</span><span class="token function">QueryUnescape</span><span class="token punctuation">(</span>path<span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
 </code></pre>
+<p>All repos should remain go-gettable and testable with <code>go test ./...</code></p>
+<h3 id="continuous-integration"><a name="continuous-integration" class="plugin-anchor" href="#continuous-integration"><i class="fa fa-link" aria-hidden="true"></i></a>Continuous integration</h3>
+<p>All PR&apos;s require a review by a team member, whatever the CI engines tell.</p>
+<h5 id="go-swaggergo-swagger"><a name="go-swaggergo-swagger" class="plugin-anchor" href="#go-swaggergo-swagger"><i class="fa fa-link" aria-hidden="true"></i></a>go-swagger/go-swagger</h5>
+<p>Enabled CI engines:</p>
+<ul>
+<li>CircleCI (linux)</li>
+<li>Appveyor (windows)</li>
+<li>GolangCI</li>
+<li>Codecov</li>
+</ul>
+<p>Codecov results are not blocking.</p>
+<p>CI runs description/configuration:</p>
+<table>
+<thead>
+<tr>
+<th>CI engine</th>
+<th>Test type</th>
+<th>Configuration</th>
+<th>Comment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CircleCI</td>
+<td>unit test</td>
+<td>.circleci/config.yml</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>build test (1)</td>
+<td>./hack/codegen-nonreg.sh</td>
+<td>Codegen and build test on many (~ 80) specs in <code>fixtures/codegen</code> and `fixtures/bugs``</td>
+</tr>
+<tr>
+<td></td>
+<td>build test (2)</td>
+<td>./hack/run-canary.sh</td>
+<td>Codegen and build test on (large) specs in fixtures/canary`</td>
+</tr>
+<tr>
+<td>Appveyor</td>
+<td>unit test</td>
+<td>appveyor.yml</td>
+<td><code>go test -v ./...</code></td>
+</tr>
+<tr>
+<td>GolangCI</td>
+<td>linting</td>
+<td>.golangci.yml</td>
+<td>equ. <code>golangci-lint run</code></td>
+</tr>
+<tr>
+<td>Codecov</td>
+<td>test coverage</td>
+<td>-</td>
+<td>project test coverage and PR diff coverage</td>
+</tr>
+</tbody>
+</table>
+<p>Deprecated engines:</p>
+<ul>
+<li>hound (<code>.hound.yml</code>): previous linting checker before we moved to golangCI</li>
+</ul>
+<blockquote>
+<p><strong>NOTE on Appveyor</strong>:
+Appveyor runs our UT on Windows. This makes sure everything works fine
+on this platform as well.
+The peculiarity with this CI is that it does not tolerate output to <code>stderr</code>
+from test programs (this is actually a Powershell limitation).
+Therefore, please make sure your UT remain mute on stderr or capture the
+output if you need to assert something from the output.</p>
+</blockquote>
+<p>The <code>./hackcodegen-nonreg.sh</code> runs on CI with a single generation option.
+You may run it manually to explore more generation options (expand spec, flatten, etc...).</p>
+<p>CircleCI has a separate CI workflow to build releases, baking and checking newly released docker 
+images.</p>
+<h5 id="go-openapi-repos"><a name="go-openapi-repos" class="plugin-anchor" href="#go-openapi-repos"><i class="fa fa-link" aria-hidden="true"></i></a>go-openapi repos</h5>
+<p>Enabled CI engines:</p>
+<ul>
+<li>Travis (linux)</li>
+<li>GolangCI</li>
+<li>Codecov</li>
+</ul>
+<blockquote>
+<p><strong>NOTE</strong>: setting up Appveyor on go-openapi/spec and validate is on the todo list.</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>CI engine</th>
+<th>Test type</th>
+<th>Configuration</th>
+<th>Comment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Travis</td>
+<td>unit test</td>
+<td>.travis.yml</td>
+<td><code>go test -v ./...</code></td>
+</tr>
+<tr>
+<td>GolangCI</td>
+<td>linting</td>
+<td>.golangci.yml</td>
+<td>equ. <code>golangci-lint run</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="vendoring"><a name="vendoring" class="plugin-anchor" href="#vendoring"><i class="fa fa-link" aria-hidden="true"></i></a>Vendoring</h3>
+<p><code>go-swagger/go-swagger</code> repo comes with a vendor directory. This is because
+we release binary distributions (docker, debian...).</p>
+<p>The <code>go-openapi</code> packages are <strong>not</strong> vendored.</p>
+<p>Vendoring is managed using the current <em>official</em> <code>dep</code> tool.
+Configuration is in <code>Gopkg.toml</code>.</p>
+<p>Run <code>dep ensure -update</code> to update dependencies. Please do not cherry-pick
+updates manually.</p>
+<blockquote>
+<p><strong>NOTE</strong>: since there are many dependencies, running an update may update
+many things.
+We prefer to get vendor updates as separate commits with changes to vendor only.</p>
+</blockquote>
+<h5 id="testing-prs-requiring-integration-of-a-dependency-eg-another-pending-pr-on-go-openapi"><a name="testing-prs-requiring-integration-of-a-dependency-eg-another-pending-pr-on-go-openapi" class="plugin-anchor" href="#testing-prs-requiring-integration-of-a-dependency-eg-another-pending-pr-on-go-openapi"><i class="fa fa-link" aria-hidden="true"></i></a>Testing PRs requiring integration of a dependency (e.g. another pending PR on <code>go-openapi</code>)</h5>
+<p>This happens for instance whenever you want to test the full integration in <code>go-swagger</code> of an unmerged PR
+in one of the <code>go-openapi</code> repos.</p>
+<p>With <code>go-swagger</code> (vendored):</p>
+<ul>
+<li>prepare a &quot;WIP&quot; PR with a temporary vendor update commit</li>
+<li>this vendor update temporarily alters the <code>branch</code> and <code>source</code> in <code>Gopkg.toml</code>
+to get the proper version of the required dependency from the unmerged branch (e.g. from your fork)</li>
+</ul>
+<p>With <code>go-openapi</code> (non vendored):</p>
+<ul>
+<li>for your &quot;WIP&quot; PR, temporarily alter the CI config script (e.g. <code>.travis.yml</code>) and 
+replace the <code>go get</code> requirements to build your CI with the adequate <code>git clone</code>
+pointing to the required branches</li>
+</ul>
+<h3 id="update-templates"><a name="update-templates" class="plugin-anchor" href="#update-templates"><i class="fa fa-link" aria-hidden="true"></i></a>Update templates</h3>
+<p><code>go-swagger</code> is built with an in-memory image of templates.
+Binary encoded assets are auto-generated from the <code>generator/templates</code> directory using <code>bindata</code>
+(the result is <code>generator/bindata.go</code>).</p>
+<p>While developing, you may work with dynamically updated templates (i.e. no need to rebuild)
+using <code>bindata.go</code> generated in debug mode (use script: <code>./generator/gen-debug.sh</code>).</p>
+<p>There is a <code>.githook</code> script configured as pre-commit: every time you commit to the repo, <code>generator/bindata.go</code>
+is regenerated and added to the current commit (without debug mode).</p>
+<blockquote>
+<p><strong>NOTE</strong>: we are carrying out unit tests on codegen mostly by asserting lines in generated code.
+There is a bunch of test utility functions for this. See <code>generator/*_test.go</code>.
+If you want to bring in more advanced testing go programs with your fixtures, please tag 
+those so they don&apos;t affect the <code>go ./...</code> command (e.g. with <code>// +build +integration</code>).</p>
+</blockquote>
+<h3 id="updating-examples"><a name="updating-examples" class="plugin-anchor" href="#updating-examples"><i class="fa fa-link" aria-hidden="true"></i></a>Updating examples</h3>
+<p>Whenever code generation rules change, we feel it is important to maintain
+consistency with the generated code provided as examples.  </p>
+<p>The script <code>./hack/regen-samples.sh</code> does just that.</p>
+<p>Do not forget to update this script when you add a new example.</p>
+<h3 id="writing-documentation"><a name="writing-documentation" class="plugin-anchor" href="#writing-documentation"><i class="fa fa-link" aria-hidden="true"></i></a>Writing documentation</h3>
+<h5 id="go-swaggergo-swagger"><a name="go-swaggergo-swagger" class="plugin-anchor" href="#go-swaggergo-swagger"><i class="fa fa-link" aria-hidden="true"></i></a>go-swagger/go-swagger</h5>
+<p>The <code>go-swagger</code> documentation site (<code>goswagger.io</code>) is built with GitBooks.
+Configuration is in <code>book.json</code>. The documents root is in <code>./docs</code></p>
+<p>We systematically copy the repository main <code>README.md</code> to <code>docs/README.md</code>.
+Please make sure links work both from github and gitbook.</p>
+<p>There is also a minimal godoc for goswagger.</p>
+<p>Please make sure new CLI options remain well documented in <code>./docs/usage</code> and <code>./docs/generate</code>.</p>
+<h5 id="go-openapi-repos"><a name="go-openapi-repos" class="plugin-anchor" href="#go-openapi-repos"><i class="fa fa-link" aria-hidden="true"></i></a>go-openapi repos</h5>
+<p>Documentation is limited to the repo&apos;s README.md and godoc, published on godoc.org.</p>
+
                                 
                                 </section>
                             
@@ -1019,12 +1180,12 @@ The url to your documentation site for example, which would need to recognize th
 
             
                 
-                <a href="swagger.html" class="navigation navigation-prev " aria-label="Previous page: Options and commands">
+                <a href="../cli_helpers.html" class="navigation navigation-prev " aria-label="Previous page: CLI autocompletion">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="validate.html" class="navigation navigation-next " aria-label="Next page: Validate">
+                <a href="../faq/" class="navigation navigation-next " aria-label="Next page: FAQ">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -1035,7 +1196,7 @@ The url to your documentation site for example, which would need to recognize th
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Serve UI","level":"1.4.2","depth":2,"next":{"title":"Validate","level":"1.4.3","depth":2,"path":"usage/validate.md","ref":"usage/validate.md","articles":[]},"previous":{"title":"Options and commands","level":"1.4.1","depth":2,"path":"usage/swagger.md","ref":"usage/swagger.md","articles":[]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors","livereload"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"prism":{},"livereload":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"usage/serve_ui.md","mtime":"2018-02-01T22:20:06.215Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-07-10T07:27:37.867Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Guidelines to maintainers","level":"1.8","depth":1,"next":{"title":"FAQ","level":"1.9","depth":1,"path":"faq/README.md","ref":"faq/README.md","articles":[{"title":"Installation,setup and environment","level":"1.9.1","depth":2,"path":"faq/faq_setup.md","ref":"faq/faq_setup.md","articles":[]},{"title":"Model generation","level":"1.9.2","depth":2,"path":"faq/faq_model.md","ref":"faq/faq_model.md","articles":[]},{"title":"Server generation & customization","level":"1.9.3","depth":2,"path":"faq/faq_server.md","ref":"faq/faq_server.md","articles":[]},{"title":"Client generation","level":"1.9.4","depth":2,"path":"faq/faq_client.md","ref":"faq/faq_client.md","articles":[]},{"title":"Spec generation from source","level":"1.9.5","depth":2,"path":"faq/faq_spec.md","ref":"faq/faq_spec.md","articles":[]},{"title":"API testing","level":"1.9.6","depth":2,"path":"faq/faq_testing.md","ref":"faq/faq_testing.md","articles":[]},{"title":"Documenting your API","level":"1.9.7","depth":2,"path":"faq/faq_documenting.md","ref":"faq/faq_documenting.md","articles":[]}]},"previous":{"title":"CLI autocompletion","level":"1.7","depth":1,"path":"cli_helpers.md","ref":"cli_helpers.md","articles":[]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors","livereload"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"prism":{},"livereload":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"guidelines/README.md","mtime":"2018-07-10T06:26:50.898Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-07-10T07:27:37.867Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

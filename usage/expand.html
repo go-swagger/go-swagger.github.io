@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>Serve UI · GitBook</title>
+        <title>Expand · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -65,10 +65,10 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="validate.html" />
+    <link rel="next" href="mixin.html" />
     
     
-    <link rel="prev" href="swagger.html" />
+    <link rel="prev" href="flatten.html" />
     
 
     </head>
@@ -298,7 +298,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.4.2" data-path="serve_ui.html">
+        <li class="chapter " data-level="1.4.2" data-path="serve_ui.html">
             
                 <a href="serve_ui.html">
             
@@ -351,7 +351,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.4.2" data-path="expand.html">
+        <li class="chapter active" data-level="1.4.4.2" data-path="expand.html">
             
                 <a href="expand.html">
             
@@ -933,7 +933,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >Serve UI</a>
+        <a href=".." >Expand</a>
     </h1>
 </div>
 
@@ -948,50 +948,27 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="serve-a-documentation-site"><a name="serve-a-documentation-site" class="plugin-anchor" href="#serve-a-documentation-site"><i class="fa fa-link" aria-hidden="true"></i></a>Serve a documentation site</h1>
-<p>The toolkit has a command to serve a spec json document and optionally a UI for a given spec. 
-It embeds redoc, so you can use that documentation site without an internet connection.
-Or it can load your local spec into the swagger docs viewer at <a href="http://petstore.swagger.io" target="_blank">http://petstore.swagger.io</a></p>
-<!--more-->
+                                <h1 id="expand-a-swagger-spec"><a name="expand-a-swagger-spec" class="plugin-anchor" href="#expand-a-swagger-spec"><i class="fa fa-link" aria-hidden="true"></i></a>Expand a swagger spec</h1>
+<p>The toolkit has a command to expand a swagger specification.</p>
+<p>Expanding a specification resolve all <code>$ref</code> (remote or local) and replace them by their expanded
+content in the main spec document.</p>
 <h3 id="usage"><a name="usage" class="plugin-anchor" href="#usage"><i class="fa fa-link" aria-hidden="true"></i></a>Usage</h3>
-<p>To serve a documentation site:</p>
+<p>To expand a specification:</p>
 <pre class="language-"><code>Usage:
-  swagger [OPTIONS] serve [serve-OPTIONS]
+  swagger [OPTIONS] expand [expand-OPTIONS]
 
-serve a spec and swagger or redoc documentation ui
+expands the $refs in a swagger document to inline schemas
 
 Application Options:
-  -q, --quiet                         silence logs
-  -o, --output=LOG-FILE               redirect logs to file
+  -q, --quiet                     silence logs
 
 Help Options:
-  -h, --help                          Show this help message
+  -h, --help                      Show this help message
 
-[serve command options]
-          --base-path=                the base path to serve the spec and UI at
-      -F, --flavor=[redoc|swagger]    the flavor of docs, can be swagger or redoc (default: redoc)
-          --doc-url=                  override the url which takes a url query param to render the doc ui
-          --no-open                   when present won&apos;t open the the browser to show the url
-          --no-ui                     when present, only the swagger spec will be served
-      -p, --port=                     the port to serve this site [$PORT]
-          --host=                     the interface to serve this site, defaults to 0.0.0.0 [$HOST]
-</code></pre><p>This will start a server with cors enabled so that sites on other domains can load your specification document. </p>
-<h3 id="flavors"><a name="flavors" class="plugin-anchor" href="#flavors"><i class="fa fa-link" aria-hidden="true"></i></a>Flavors</h3>
-<p>At this moment the UI can be served into 2 flavors.</p>
-<h4 id="redoc"><a name="redoc" class="plugin-anchor" href="#redoc"><i class="fa fa-link" aria-hidden="true"></i></a>Redoc</h4>
-<p>The swagger source code has a middleware for embedding Redoc.
-So for the redoc flavor we make use of that and use it with the spec you have on disk.</p>
-<h4 id="swagger-ui"><a name="swagger-ui" class="plugin-anchor" href="#swagger-ui"><i class="fa fa-link" aria-hidden="true"></i></a>Swagger UI</h4>
-<p>For the swagger flavor we use the UI hosted at <a href="http://petstore.swagger.io" target="_blank">http://petstore.swagger.io</a>.
-The server has CORS enabled and appends the url for the spec JSON to the petstore url as a query string. </p>
-<h4 id="your-own-ui"><a name="your-own-ui" class="plugin-anchor" href="#your-own-ui"><i class="fa fa-link" aria-hidden="true"></i></a>Your own UI</h4>
-<p>You can use your own UI by pointing it to the spec served by this command.
-When no ui is being served, the terminal will print the url to the spec document.
-You can also use the <code>--doc-url</code> to provide another url as base. 
-The url to your documentation site for example, which would need to recognize the query param url to load the swagger spec from, through the browser.</p>
-<h3 id="more"><a name="more" class="plugin-anchor" href="#more"><i class="fa fa-link" aria-hidden="true"></i></a>More</h3>
-<p>There are some more options for this command which you can view with:</p>
-<pre class="language-"><code>swagger serve --help
+[expand command options]
+          --compact               applies to JSON formated specs. When present, doesn&apos;t prettify the json
+      -o, --output=               the file to write to
+          --format=[yaml|json]    the format for the spec document (default: json)
 </code></pre>
                                 
                                 </section>
@@ -1019,12 +996,12 @@ The url to your documentation site for example, which would need to recognize th
 
             
                 
-                <a href="swagger.html" class="navigation navigation-prev " aria-label="Previous page: Options and commands">
+                <a href="flatten.html" class="navigation navigation-prev " aria-label="Previous page: Flatten">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="validate.html" class="navigation navigation-next " aria-label="Next page: Validate">
+                <a href="mixin.html" class="navigation navigation-next " aria-label="Next page: Mixin">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -1035,7 +1012,7 @@ The url to your documentation site for example, which would need to recognize th
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Serve UI","level":"1.4.2","depth":2,"next":{"title":"Validate","level":"1.4.3","depth":2,"path":"usage/validate.md","ref":"usage/validate.md","articles":[]},"previous":{"title":"Options and commands","level":"1.4.1","depth":2,"path":"usage/swagger.md","ref":"usage/swagger.md","articles":[]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors","livereload"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"prism":{},"livereload":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"usage/serve_ui.md","mtime":"2018-02-01T22:20:06.215Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-07-10T07:27:37.867Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Expand","level":"1.4.4.2","depth":3,"next":{"title":"Mixin","level":"1.4.4.3","depth":3,"path":"usage/mixin.md","ref":"usage/mixin.md","articles":[]},"previous":{"title":"Flatten","level":"1.4.4.1","depth":3,"path":"usage/flatten.md","ref":"usage/flatten.md","articles":[]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors","livereload"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"prism":{},"livereload":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"usage/expand.md","mtime":"2018-07-10T06:26:50.898Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-07-10T07:27:37.867Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

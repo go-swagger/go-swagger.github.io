@@ -1,0 +1,1793 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Schema generation rules · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-forkmegithub/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-prism/prism.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-anchors/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    
+    <link rel="prev" href="../model.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../../">
+            
+                <a href="../../">
+            
+                    
+                    Primer
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.1" data-path="../../about.html">
+            
+                <a href="../../about.html">
+            
+                    
+                    Approaches
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2" data-path="../../install.html">
+            
+                <a href="../../install.html">
+            
+                    
+                    Installation
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../../features.html">
+            
+                <a href="../../features.html">
+            
+                    
+                    Features
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" >
+            
+                <span>
+            
+                    
+                    Tutorials
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="../../tutorial/todo-list.html">
+            
+                <a href="../../tutorial/todo-list.html">
+            
+                    
+                    Simple Server
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="../../tutorial/custom-server.html">
+            
+                <a href="../../tutorial/custom-server.html">
+            
+                    
+                    Custom Server
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3" data-path="../../tutorial/dynamic.html">
+            
+                <a href="../../tutorial/dynamic.html">
+            
+                    
+                    Dynamic Server
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.4" >
+            
+                <span>
+            
+                    
+                    Security
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.4.1" data-path="../../tutorial/authentication/">
+            
+                <a href="../../tutorial/authentication/">
+            
+                    
+                    Authentication
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.4.2" data-path="../../tutorial/oauth2/">
+            
+                <a href="../../tutorial/oauth2/">
+            
+                    
+                    OAuth2
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.4.3" data-path="../../tutorial/composed-auth/">
+            
+                <a href="../../tutorial/composed-auth/">
+            
+                    
+                    Composition
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" >
+            
+                <span>
+            
+                    
+                    Use-Cases
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="../../usage/swagger.html">
+            
+                <a href="../../usage/swagger.html">
+            
+                    
+                    Options and commands
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="../../usage/serve_ui.html">
+            
+                <a href="../../usage/serve_ui.html">
+            
+                    
+                    Serve UI
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3" data-path="../../usage/validate.html">
+            
+                <a href="../../usage/validate.html">
+            
+                    
+                    Validate
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4" data-path="../transform.html">
+            
+                <a href="../transform.html">
+            
+                    
+                    Transform spec
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.4.1" data-path="../../usage/flatten.html">
+            
+                <a href="../../usage/flatten.html">
+            
+                    
+                    Flatten
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4.2" data-path="../../usage/expand.html">
+            
+                <a href="../../usage/expand.html">
+            
+                    
+                    Expand
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4.3" data-path="../../usage/mixin.html">
+            
+                <a href="../../usage/mixin.html">
+            
+                    
+                    Mixin
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.5" >
+            
+                <span>
+            
+                    
+                    Generate code from spec
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.5.1" data-path="../../generate/requirements.html">
+            
+                <a href="../../generate/requirements.html">
+            
+                    
+                    Dependencies & Requirements
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.5.2" data-path="../../generate/client.html">
+            
+                <a href="../../generate/client.html">
+            
+                    
+                    API Client
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.5.3" >
+            
+                <span>
+            
+                    
+                    API Server
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.5.3.1" data-path="../../generate/server.html">
+            
+                <a href="../../generate/server.html">
+            
+                    
+                    Server Usage
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.5.3.2" data-path="../server.html">
+            
+                <a href="../server.html">
+            
+                    
+                    How to use the server
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.5.4" >
+            
+                <span>
+            
+                    
+                    API Model
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.5.4.1" data-path="../../generate/model.html">
+            
+                <a href="../../generate/model.html">
+            
+                    
+                    Model Usage
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.5.4.2" data-path="../model.html">
+            
+                <a href="../model.html">
+            
+                    
+                    How to use models
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter active" data-level="1.4.5.4.2.1" data-path="schemas.html">
+            
+                <a href="schemas.html">
+            
+                    
+                    Schema generation rules
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.6" >
+            
+                <span>
+            
+                    
+                    Generate spec from source
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.6.1" data-path="../../generate/spec.html">
+            
+                <a href="../../generate/spec.html">
+            
+                    
+                    Spec Usage
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.6.2" data-path="../spec.html">
+            
+                <a href="../spec.html">
+            
+                    
+                    Spec generation rules
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.6.2.1" data-path="../spec/meta.html">
+            
+                <a href="../spec/meta.html">
+            
+                    
+                    swagger:meta
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.6.2.2" data-path="../spec/route.html">
+            
+                <a href="../spec/route.html">
+            
+                    
+                    swagger:route
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.6.2.3" data-path="../spec/params.html">
+            
+                <a href="../spec/params.html">
+            
+                    
+                    swagger:params
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.6.2.4" data-path="../spec/operation.html">
+            
+                <a href="../spec/operation.html">
+            
+                    
+                    swagger:operation
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.6.2.5" data-path="../spec/response.html">
+            
+                <a href="../spec/response.html">
+            
+                    
+                    swagger:response
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.6.2.6" data-path="../spec/model.html">
+            
+                <a href="../spec/model.html">
+            
+                    
+                    swagger:model
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.6.2.7" data-path="../spec/allOf.html">
+            
+                <a href="../spec/allOf.html">
+            
+                    
+                    swagger:allOf
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.6.2.8" data-path="../spec/strfmt.html">
+            
+                <a href="../spec/strfmt.html">
+            
+                    
+                    swagger:strfmt
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.6.2.9" data-path="../spec/discriminated.html">
+            
+                <a href="../spec/discriminated.html">
+            
+                    
+                    swagger:discriminated
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.6.2.10" data-path="../spec/ignore.html">
+            
+                <a href="../spec/ignore.html">
+            
+                    
+                    swagger:ignore
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="../middleware.html">
+            
+                <a href="../middleware.html">
+            
+                    
+                    Using middleware
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="../template_layout.html">
+            
+                <a href="../template_layout.html">
+            
+                    
+                    Custom generation
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.1" data-path="../../generate/templates.html">
+            
+                <a href="../../generate/templates.html">
+            
+                    
+                    Custom templates
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="../../cli_helpers.html">
+            
+                <a href="../../cli_helpers.html">
+            
+                    
+                    CLI autocompletion
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" data-path="../../guidelines/">
+            
+                <a href="../../guidelines/">
+            
+                    
+                    Guidelines to maintainers
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" data-path="../../faq/">
+            
+                <a href="../../faq/">
+            
+                    
+                    FAQ
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.9.1" data-path="../../faq/faq_setup.html">
+            
+                <a href="../../faq/faq_setup.html">
+            
+                    
+                    Installation,setup and environment
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.2" data-path="../../faq/faq_model.html">
+            
+                <a href="../../faq/faq_model.html">
+            
+                    
+                    Model generation
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.3" data-path="../../faq/faq_server.html">
+            
+                <a href="../../faq/faq_server.html">
+            
+                    
+                    Server generation & customization
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.4" data-path="../../faq/faq_client.html">
+            
+                <a href="../../faq/faq_client.html">
+            
+                    
+                    Client generation
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.5" data-path="../../faq/faq_spec.html">
+            
+                <a href="../../faq/faq_spec.html">
+            
+                    
+                    Spec generation from source
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.6" data-path="../../faq/faq_testing.html">
+            
+                <a href="../../faq/faq_testing.html">
+            
+                    
+                    API testing
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.7" data-path="../../faq/faq_documenting.html">
+            
+                <a href="../../faq/faq_documenting.html">
+            
+                    
+                    Documenting your API
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../.." >Schema generation rules</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="schema-generation-rules"><a name="schema-generation-rules" class="plugin-anchor" href="#schema-generation-rules"><i class="fa fa-link" aria-hidden="true"></i></a>Schema generation rules</h1>
+<p>Lots of the work carried out by go-swagger is to generate models, which can have all kinds of rules like polymorphism and
+validations.  Go-swagger models are the go data structures used for serialization and validation.</p>
+<p>Of course none of this is possible without a set of rules and trade offs.</p>
+<h3 id="about-schemas"><a name="about-schemas" class="plugin-anchor" href="#about-schemas"><i class="fa fa-link" aria-hidden="true"></i></a>About schemas</h3>
+<p>A schema is a data structure specified in a Swagger document. Loosely speaking, a swagger schema corresponds to
+a JSONSchema-draft4 schema (see <a href="#swagger-vs-jsonschema">differences</a> below).
+For each schema, <code>go-swagger</code> will generate one or more model types in go.</p>
+<blockquote>
+<p><strong>NOTE</strong>: Swagger makes a distinction between schemas and &quot;simple schemas&quot;.
+We use simple schemas to describe parameters and headers for operations.
+Simple schemas are supported by <code>go-swagger</code> (including validation), but are not rendered as standalone models.
+Rather, simple schema structures and validation methods are generated with the operation they are attached to.</p>
+<p>Models are dedicated to the description of Swagger schemas, which are described as a parameter body, a response or a
+spec definition.</p>
+</blockquote>
+<h4 id="interfaces"><a name="interfaces" class="plugin-anchor" href="#interfaces"><i class="fa fa-link" aria-hidden="true"></i></a>Interfaces</h4>
+<p>The generated models implements:</p>
+<ul>
+<li>a serialization interface<ul>
+<li><code>MarshalJSON()</code>, <code>UnmarshalJSON()</code>:<ul>
+<li>standard structures use JSON decoder tags (serialization tags are customizable)</li>
+<li>composed and extensible structures use custom marshalers (<code>allOf</code>, <code>additionalProperties</code>, tuples and polymorphic types)</li>
+</ul>
+</li>
+<li><code>MarshalBinary()</code>, <code>UnmarshalBinary()</code> interfaces (<code>encoding/BinaryMarshaler</code>, <code>encoding/BinaryUnmarshaler</code>),
+which may use the fast <a href="https://github.com/mailru/easyjson" target="_blank"><code>mailru/easyjson</code></a> package</li>
+</ul>
+</li>
+<li>a validation interface (<a href="https://github.com/go-openapi/runtime/blob/master/interfaces.go#L101" target="_blank"><code>go-openapi/runtime/Validatable</code></a>), with a <code>Validate(strfmt.Registry) error</code> method</li>
+</ul>
+<p>Validation methods are wired at generation time, and rely mostly on native types: this makes validation faster than a
+dynamic general purpose JSON schema validator.</p>
+<p>Example of a generated structure:</p>
+<pre class="language-"><code class="lang-golang">// Principal principal
+// swagger:model principal
+type Principal struct {
+
+    // name
+    Name string `json:&quot;name,omitempty&quot;`
+
+    // roles
+    Roles []string `json:&quot;roles&quot;`
+}
+</code></pre>
+<blockquote>
+<p><strong>NOTE</strong>: if you are looking for a <strong>dynamic</strong>, fully JSONSchema compliant, general purpose validator,
+the <a href="https://github.com/go-openapi/validate" target="_blank"><code>go-openapi/validate</code></a> package
+is what you want. It is fully tested against the JSONSchema-Test-Suite (supports JSON-schema-draft4).
+See a working example <a href="https://godoc.org/github.com/go-openapi/validate#ex-AgainstSchema" target="_blank">here</a>.</p>
+</blockquote>
+<h4 id="mapping-patterns"><a name="mapping-patterns" class="plugin-anchor" href="#mapping-patterns"><i class="fa fa-link" aria-hidden="true"></i></a>Mapping patterns</h4>
+<p>The general idea is that you should rarely see <code>interface{}</code> in the generated code:
+you get a complete representation of a swagger document in somewhat idiomatic go.</p>
+<p>There is set of mapping patterns that are applied to transform a spec into go types:</p>
+<ul>
+<li>definition of primitive =&gt; type alias/name</li>
+<li>definition of array =&gt; type alias/name</li>
+<li>definition of map =&gt; type alias/name</li>
+<li>definition of object with properties =&gt; struct</li>
+<li>definition of $ref =&gt; type alias/name</li>
+<li>object with only additional properties =&gt; map[string]T</li>
+<li>object with additional properties and properties =&gt; custom serializer</li>
+<li>schema with schema array in items =&gt; tuple (struct with properties, custom serializer)</li>
+<li>schema with all of =&gt; struct</li>
+<li>all of schema with ref =&gt; embedded value</li>
+<li>all of schema with properties =&gt; properties are included in struct</li>
+<li>adding an all of schema with just <code>x-isnullable</code>: true or <code>x-nullable</code>: true turns
+the schema into a pointer when there are only other extension properties provided</li>
+<li>additional items in tuples =&gt;
+JSONSchema and by extension swagger allow for items that have a fixed size array
+with schema&apos;s describing the items at each index. This can be combined with additional items
+to form some kind of tuple with varargs.
+To map this to go it creates a struct that has fixed names and a custom json serializer.</li>
+</ul>
+<h4 id="minimal-use-of-gos-reflection"><a name="minimal-use-of-gos-reflection" class="plugin-anchor" href="#minimal-use-of-gos-reflection"><i class="fa fa-link" aria-hidden="true"></i></a>Minimal use of go&apos;s reflection</h4>
+<p>Generated models uses <em>no reflection</em> except for <code>enum</code> and <code>required</code> validations. This makes validation faster.</p>
+<h4 id="doc-strings"><a name="doc-strings" class="plugin-anchor" href="#doc-strings"><i class="fa fa-link" aria-hidden="true"></i></a>Doc strings</h4>
+<p>All documentation items provided by the spec are integrated as godoc-friendly comments in the
+generated source. You may look at how a trivial example is rendered <a href="https://godoc.org/github.com/go-swagger/go-swagger/examples/generated/models" target="_blank">here</a>.</p>
+<p>The code that is generated also gets the same doc comments that are used by the scanner
+to generate a spec from go code (e.g. comments like <code>// swagger:xxx</code>).
+So that after generation you should be able to reverse-generate a spec from the code that was generated by your spec.
+It should be equivalent to the original spec but might miss some default values and examples.</p>
+<h4 id="types-reusability"><a name="types-reusability" class="plugin-anchor" href="#types-reusability"><i class="fa fa-link" aria-hidden="true"></i></a>Types reusability</h4>
+<p>Models can be generated independently from other components of your API.
+Internal model structures may thus be safely regenerated if the contract at your endpoints does not change.</p>
+<p>Previously generated models can be reused when constructing a new API server or client (e.g. using <code>swagger generate server --model=[my existing package]</code>).</p>
+<p>The generator makes every effort to keep the go code readable, idiomatic and commented: models may thus be manually customized or extended.
+Such customized types may be later on reused in other specs, using the <code>x-go-type</code> extension.</p>
+<h3 id="swagger-vs-jsonschema"><a name="swagger-vs-jsonschema" class="plugin-anchor" href="#swagger-vs-jsonschema"><i class="fa fa-link" aria-hidden="true"></i></a>Swagger vs JSONSchema</h3>
+<p>A Swagger 2.0 schema corresponds by and large to a JSON-schema-draft4. However, there are some substantial differences (see <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#schema-object" target="_blank">swagger</a>):</p>
+<p>In JSONSchema, but <em>not</em> in Swagger 2.0:</p>
+<ul>
+<li><code>anyOf</code>, <code>oneOf</code> and <code>not</code> constructs are not supported (this is for OpenAPI 3)</li>
+<li>the <code>null</code> type is not supported (the <code>nullable</code> keyword is defined in OpenAPI 3)</li>
+<li><code>additionalItems</code> are not supported (go-swagger does support it)</li>
+<li><code>patternProperties</code> are not supported</li>
+<li><code>dependencies</code> are not supported</li>
+<li>multiple types, defined as <code>type: [ ... ]</code> are not supported</li>
+</ul>
+<p>Conversely, what we have in Swagger 2.0, but <em>not</em> in JSON-schema:</p>
+<ul>
+<li>the <code>discriminator</code> attribute controls polymorphism (<a href="#polymorphic-types">see below</a>)</li>
+<li>properties may be given a <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#fixed-fields-13" target="_blank"><code>readOnly</code> attribute</a> (same as in JSONSchema-draft7)</li>
+<li><code>array</code> types <strong>must</strong> have an <code>items</code> restriction</li>
+<li><code>format</code> supports more values for strings and numbers</li>
+</ul>
+<p>Other minor differences:</p>
+<ul>
+<li><code>default</code> values <strong>must</strong> validate their schema</li>
+<li>types <code>array</code> <strong>must</strong> have an <code>items</code> specification</li>
+<li>extensions may be specified as special <code>x-...</code> annotations. Go-swagger defines <a href="#custom-extensions">some custom tags</a> to customize generated code.</li>
+<li>other available attributes: <code>example</code>, <code>xml</code> and <code>externalDocs</code></li>
+</ul>
+<blockquote>
+<p><strong>NOTE</strong>: <code>example</code> and <code>externalDocs</code> do not currently influence models generation.</p>
+</blockquote>
+<h3 id="go-swagger-vs-swagger"><a name="go-swagger-vs-swagger" class="plugin-anchor" href="#go-swagger-vs-swagger"><i class="fa fa-link" aria-hidden="true"></i></a>Go-swagger vs Swagger</h3>
+<p>go-swagger models implements <em>almost</em> all Swagger 2.0 schema features.</p>
+<p>We also wanted to support as much JSONSchema features as possible: the model generator may be used independently
+to generate data structure using the Swagger specification as a serialization description language.</p>
+<p>There are some small differences or implementation details to be aware of.</p>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>JSON-schema-draft4</th>
+<th>Swagger 2.0</th>
+<th>go-swagger</th>
+<th>Comment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>&quot;format&quot;</code></td>
+<td>Y</td>
+<td>Y</td>
+<td>Y</td>
+<td>Formats are provided by the extensible <a href="https://github.com/go-openapi/strfmt" target="_blank"><code>go-openapi/strfmt</code> package</a>. See also <a href="#formatted-types">here</a></td>
+</tr>
+<tr>
+<td><code>&quot;additionalProperties&quot;: {schema}</code></td>
+<td>Y</td>
+<td>Y</td>
+<td>Y</td>
+<td>Rendered as <code>map[string]T</code></td>
+</tr>
+<tr>
+<td>`&quot;additionalProperties&quot;: true\</td>
+<td>false`</td>
+<td>Y</td>
+<td>Y</td>
+<td>partial</td>
+<td>Rendered as <code>map[string]interface{}</code></td>
+</tr>
+<tr>
+<td><code>&quot;additionalItems&quot;: {schema}</code></td>
+<td>Y</td>
+<td><strong>N</strong></td>
+<td>Y</td>
+<td>Rendered with <a href="#tuples-and-additional-items">tuple models</a></td>
+</tr>
+<tr>
+<td>`&quot;additionalItems&quot;: true\</td>
+<td>false`</td>
+<td>Y</td>
+<td><strong>N</strong></td>
+<td>partial</td>
+<td>See <a href="#extensible-types">extensible types</a></td>
+</tr>
+<tr>
+<td>empty object: <code>{ &quot;type&quot;: &quot;object&quot;}</code></td>
+<td>Y</td>
+<td>Y</td>
+<td>Y</td>
+<td>Rendered as <code>interface{}</code> (anything) rather than <code>map[string]inferface{}</code> (any JSON object, e.g. not arrays)</td>
+</tr>
+<tr>
+<td><code>&quot;pattern&quot;</code></td>
+<td>Y</td>
+<td>Y</td>
+<td>partial</td>
+<td>Speed for strictness trade-off: support go regexp, which slighty differ from JSONSchema ECMA regexp (e.g does not support backtracking)</td>
+</tr>
+<tr>
+<td>large number, arbitrary precision</td>
+<td>Y</td>
+<td><strong>N</strong></td>
+<td>N</td>
+<td></td>
+</tr>
+<tr>
+<td><code>&quot;readOnly&quot;</code></td>
+<td>N</td>
+<td>Y</td>
+<td>N</td>
+<td><code>readOnly</code> is currently not supported by the model validation method</td>
+</tr>
+<tr>
+<td><code>&quot;type&quot;: [ &quot;object&quot;, ... ]</code></td>
+<td>Y</td>
+<td>N</td>
+<td>N</td>
+<td>JSONSchema multiple types are not supported: use Swagger polymorphism instead</td>
+</tr>
+<tr>
+<td>implicit type from values in <code>enum</code></td>
+<td>Y</td>
+<td>?</td>
+<td>N</td>
+<td>As of v1.0, when the type is empty, the object is rendered as <code>interface{}</code> and the <code>enum</code> constraint is ignored</td>
+</tr>
+<tr>
+<td>tuple validation `type: &quot;array&quot; items:[...]</td>
+<td>Y</td>
+<td>Y</td>
+<td>partial</td>
+<td>As of v1.0, incomplete tuples and tuples with array validation are not properly validated</td>
+</tr>
+</tbody>
+</table>
+<p>JSONSchema defaults to <code>&quot;additionalProperties&quot;: true</code>, <code>go-swagger</code> default to ignoring this. Same for <code>additionalItems</code>.</p>
+<p>When<code>&quot;additionalProperties&quot;: false</code> (resp. <code>&quot;additionalItems&quot;: false</code>), uwanted properties (resp. items) do not invalidate data
+but does not store them in the model. This is the default if <code>additionalProperties</code> (resp. <code>additionalItems</code>) is not provided.
+This is an optimization as it makes the code simpler (and faster).
+Explicitly specifying <code>true</code> will produce models that retain those additional properties (resp. items).</p>
+<h3 id="known-limitations-with-go-swagger-models"><a name="known-limitations-with-go-swagger-models" class="plugin-anchor" href="#known-limitations-with-go-swagger-models"><i class="fa fa-link" aria-hidden="true"></i></a>Known limitations with go-swagger models</h3>
+<p>Recap as of release <code>1.0</code>:</p>
+<ul>
+<li><p>re <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#schema-object" target="_blank">Swagger 2.0 specification</a></p>
+<ul>
+<li>no validation support for the <code>readOnly</code> attribute</li>
+</ul>
+</li>
+<li><p>re <a href="https://tools.ietf.org/html/draft-fge-json-schema-validation-00" target="_blank">JSON-schema-draft4</a></p>
+<ul>
+<li><code>&quot;additionalProperties&quot;: false</code>, <code>&quot;additionalItems&quot;: false</code> do not invalidate data with extra properties. We trade strictness for speed and
+truncate unwanted properties or items without further validation.</li>
+<li>when <code>enum</code> values cannot be marshalled into their schema, a runtime panic occurs - the <code>go-openapi/validate</code> package does not yet detect this situation</li>
+<li><code>minProperties</code>, <code>maxProperties</code> are not supported</li>
+<li><code>patternProperties</code> and <code>dependencies</code>are not supported</li>
+<li>use of <code>additionalItems</code> requires the <code>--skip-validation</code> flag (<code>go-openapi/validate</code> is strict regarding Swagger specification)</li>
+<li>JSONSchema defaults to the <code>&quot;additionalProperties&quot;: true</code>, <code>go-swagger</code> default to ignore this. Same for <code>additionalItems</code>.</li>
+<li>use of <code>additionalItems</code> requires the <code>--skip-validation</code> flag (<code>go-openapi/validate</code> is strict regarding Swagger specification)</li>
+<li>array validations (<code>minItems</code>, etc.) are not yet supported for tuples, as of 1.0</li>
+<li>objects with no properties and no additional properties schema have no validation at all (e.g. passing an array is not invalid) (rendered as <code>interface{}</code>)</li>
+<li><code>null</code> JSON type: the <code>null</code> type is not supported by Swagger - use of the <code>x-nullable</code> extension makes <code>null</code> values valid
+(notice that combining the use of <code>required</code> and <code>x-nullable</code> is not fully JSONSchema compliant - see <a href="#nullability">below</a>)</li>
+</ul>
+</li>
+</ul>
+<h3 id="custom-extensions"><a name="custom-extensions" class="plugin-anchor" href="#custom-extensions"><i class="fa fa-link" aria-hidden="true"></i></a>Custom extensions</h3>
+<p>Model generation may be altered with the following extensions:</p>
+<ul>
+<li><code>x-go-name: &quot;string&quot;</code>: give explicit type name to the generated model </li>
+<li><code>x-go-custom-tag: &quot;string&quot;</code>: add serialization tags to an object property</li>
+<li><code>x-nullable: true|false</code> (or equivalently <code>x-is-nullable:true|false</code>): accepts null values (i.e. rendered as a pointer)</li>
+<li><code>x-go-type: &quot;string&quot;</code>: explicitly reuse an already available go type</li>
+<li><code>x-class: &quot;string&quot;</code>: give explicit polymorphic class name in discriminator</li>
+<li><code>x-order: number</code>: indicates explicit generation ordering for schemas (e.g. models, properties, allOf, ...)</li>
+</ul>
+<h3 id="primitive-types"><a name="primitive-types" class="plugin-anchor" href="#primitive-types"><i class="fa fa-link" aria-hidden="true"></i></a>Primitive types</h3>
+<p>Swagger types are rendered as follows by <code>go-swagger</code>:</p>
+<table>
+<thead>
+<tr>
+<th>Swagger type</th>
+<th>go type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>string</code> (no format)</td>
+<td><code>string</code></td>
+</tr>
+<tr>
+<td><code>boolean</code></td>
+<td><code>bool</code></td>
+</tr>
+<tr>
+<td><code>number</code></td>
+<td><code>float64</code></td>
+</tr>
+<tr>
+<td><code>number format double</code></td>
+<td><code>float64</code></td>
+</tr>
+<tr>
+<td><code>number format float</code></td>
+<td><code>float32</code></td>
+</tr>
+<tr>
+<td><code>integer</code></td>
+<td><code>int64</code></td>
+</tr>
+<tr>
+<td><code>integer format int64</code></td>
+<td><code>int64</code></td>
+</tr>
+<tr>
+<td><code>integer format int32</code></td>
+<td><code>int32</code></td>
+</tr>
+<tr>
+<td><code>integer format uint64</code></td>
+<td><code>uint64</code></td>
+</tr>
+<tr>
+<td><code>integer format uint32</code></td>
+<td><code>uint32</code></td>
+</tr>
+<tr>
+<td><code>file</code></td>
+<td><code>io.ReadCloser</code>(server) or <code>io.Writer</code> (client)</td>
+</tr>
+<tr>
+<td><code>string format binary</code></td>
+<td><code>io.ReadCloser</code>or <code>io.Writer</code></td>
+</tr>
+<tr>
+<td><code>string</code> with other formats</td>
+<td>corresponding type exported by <code>go-openapi/strfmt</code></td>
+</tr>
+</tbody>
+</table>
+<p>The <code>file</code> type is exposed as a <code>io.ReadCloser</code> (or <code>io.Writer</code>) interface. The actual implementation in a
+runtime server or client is provided by the <a href="https://github.com/go-openapi/runtime/blob/master/file.go#L20" target="_blank"><code>go-openapi/runtime/File</code> type</a>.</p>
+<h3 id="formatted-types"><a name="formatted-types" class="plugin-anchor" href="#formatted-types"><i class="fa fa-link" aria-hidden="true"></i></a>Formatted types</h3>
+<p>The <code>go-openapi/strfmt</code> packages provides a number of predefined &quot;formats&quot; for JSON string types.
+The full list of formats supported by this package is <a href="https://github.com/go-openapi/strfmt/blob/master/README.md" target="_blank">here</a></p>
+<h3 id="nullability"><a name="nullability" class="plugin-anchor" href="#nullability"><i class="fa fa-link" aria-hidden="true"></i></a>Nullability</h3>
+<p>Here are the rules that turn something into a pointer.</p>
+<ul>
+<li>structs</li>
+<li><code>x-nullable</code>, <code>x-isnullable</code>: explicit override to accept null values (otherwise not accepted by Swagger)</li>
+<li>required property</li>
+<li>extending with <code>allOf</code> a schema with another schema with just <code>x-nullable</code> (or other extensions,
+but no new properties) turns the schema into a pointer</li>
+</ul>
+<p>Primitive types (number, bool and string) are turned into pointers whenever:</p>
+<ul>
+<li>we need to validate valid zero values vs unset (i.e. the zero value is explicitly checked against validation)</li>
+</ul>
+<p>Examples:</p>
+<pre class="language-"><code class="lang-yaml"><span class="token key atrule">definitions</span><span class="token punctuation">:</span>
+  <span class="token key atrule">myInteger</span><span class="token punctuation">:</span>
+    <span class="token key atrule">type</span><span class="token punctuation">:</span> integer
+    <span class="token key atrule">minimum</span><span class="token punctuation">:</span> <span class="token number">0</span>
+  <span class="token key atrule">myString</span><span class="token punctuation">:</span>
+    <span class="token key atrule">type</span><span class="token punctuation">:</span> string
+    <span class="token key atrule">minLength</span><span class="token punctuation">:</span> <span class="token number">0</span>
+</code></pre>
+<p>Yields:</p>
+<pre class="language-"><code class="lang-go"><span class="token keyword">type</span> MyInteger <span class="token operator">*</span><span class="token builtin">int64</span>
+<span class="token operator">...</span>
+<span class="token keyword">type</span> MyString <span class="token operator">*</span><span class="token builtin">string</span>
+</code></pre>
+<p>Notice that the following equivalent does not produce a pointer:</p>
+<pre class="language-"><code class="lang-yaml"><span class="token key atrule">definitions</span><span class="token punctuation">:</span>
+  <span class="token key atrule">myInteger</span><span class="token punctuation">:</span>
+    <span class="token key atrule">type</span><span class="token punctuation">:</span> integer
+    <span class="token key atrule">format</span><span class="token punctuation">:</span> uint64
+</code></pre>
+<blockquote>
+<p>NOTE: read-only properties are not rendered as pointers.</p>
+</blockquote>
+<p>API developers may use the converter utilities provided by the <code>go-openapi/swag</code> and <code>go-openapi/strfmt/conv</code> packages
+to manipulate pointers more easily.</p>
+<blockquote>
+<p><strong>Known limitations</strong>:
+pointers are used to distinguish in golang a zero value from no value set.</p>
+<p>This design comes with some shortcomings:</p>
+<ul>
+<li>it is built around the validation use case.
+In the general case it is not possible to know if a value has been set
+to a zero value when the type is not a pointer. In cases where this is
+important, use the <code>x-nullable</code> extension</li>
+<li>using <code>null</code> as a proxy for unset, makes uneasy the explicit use of the JSON <code>null</code> type
+Swagger APIs are not supposed to carry <code>null</code> values. 
+<code>go-swagger</code> generated APIs can, using the <code>x-nullable</code> extension, and it is then not possible
+to distinguish a field explicitly set to <code>null</code> from an unset field</li>
+</ul>
+<p>An alternate design has been experimented but not released. For those interested in pushing forward this project again,
+see <a href="https://github.com/go-swagger/go-swagger/pull/557" target="_blank">this pull request</a></p>
+</blockquote>
+<h3 id="validation"><a name="validation" class="plugin-anchor" href="#validation"><i class="fa fa-link" aria-hidden="true"></i></a>Validation</h3>
+<p>All produced models implement the <a href="https://github.com/go-openapi/runtime/blob/master/interfaces.go#L101" target="_blank">Validatable</a> interface.</p>
+<p>Exceptions:</p>
+<ul>
+<li><code>file</code> types do not support validation (however generated operations may check the <code>maxLength</code> of a file)</li>
+<li>empty schemas (<code>any</code> type, rendered as <code>interface{}</code>) do not support validation</li>
+</ul>
+<p>Therefore, type aliases constructed on either a swagger <code>file</code> or an empty schema does not implement this interface.</p>
+<p>Validation errors:</p>
+<ul>
+<li>Returned errors are supported by the <code>go-openapi/errors/Error</code> type, which supports errors codes and composite errors.</li>
+</ul>
+<p>Validation stops assessing errors down to the property level and does not continue digging all nested strutures as soon
+as an error is found.</p>
+<h3 id="type-aliasing"><a name="type-aliasing" class="plugin-anchor" href="#type-aliasing"><i class="fa fa-link" aria-hidden="true"></i></a>Type aliasing</h3>
+<p>A definition may create an <em>aliased</em> type like this:</p>
+<pre class="language-"><code class="lang-yaml"><span class="token key atrule">definitions</span><span class="token punctuation">:</span>
+  <span class="token key atrule">myDate</span><span class="token punctuation">:</span>
+    <span class="token key atrule">type</span><span class="token punctuation">:</span> string
+    <span class="token key atrule">format</span><span class="token punctuation">:</span> date
+</code></pre>
+<p>Rendered as:</p>
+<pre class="language-"><code class="lang-go"><span class="token keyword">type</span> MyDate strfmt<span class="token punctuation">.</span>Date
+</code></pre>
+<blockquote>
+<p><strong>NOTE</strong>: go 1.9 type aliasing is not being used in generated code at the moment.</p>
+<p><strong>Known limitations</strong>:</p>
+<p>Currently, re-aliasing types (i.e. a definition as a <code>$ref</code> on another definition) works only for objects.
+Map or slice realiasing still suffers some implementation bugs.</p>
+</blockquote>
+<p>Notice that setting <code>x-nullable: true</code> in such an alias will not render the type itself into a pointer, but rather,
+all containers of his type will use it as a pointer.</p>
+<p>Example:</p>
+<pre class="language-"><code class="lang-yaml"><span class="token key atrule">definitions</span><span class="token punctuation">:</span>
+  <span class="token key atrule">myDate</span><span class="token punctuation">:</span>
+    <span class="token key atrule">type</span><span class="token punctuation">:</span> string
+    <span class="token key atrule">format</span><span class="token punctuation">:</span> date
+    <span class="token key atrule">x-nullable</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+  <span class="token key atrule">anArrayOfDates</span><span class="token punctuation">:</span>
+    <span class="token key atrule">type</span><span class="token punctuation">:</span> array
+    <span class="token key atrule">items</span><span class="token punctuation">:</span>
+      <span class="token key atrule">$ref</span><span class="token punctuation">:</span> &apos;<span class="token comment" spellcheck="true">#/definitions/myDate&apos;</span>
+</code></pre>
+<p>Yields:</p>
+<pre class="language-"><code class="lang-go"><span class="token keyword">type</span> MyDate strfmt<span class="token punctuation">.</span>Date
+<span class="token operator">...</span>
+<span class="token keyword">type</span> AnArrayOfDates <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token operator">*</span>MyDate
+</code></pre>
+<h3 id="extensible-types"><a name="extensible-types" class="plugin-anchor" href="#extensible-types"><i class="fa fa-link" aria-hidden="true"></i></a>Extensible types</h3>
+<h5 id="objects-and-additional-properties"><a name="objects-and-additional-properties" class="plugin-anchor" href="#objects-and-additional-properties"><i class="fa fa-link" aria-hidden="true"></i></a>Objects and additional properties</h5>
+<p>Additional properties in a JSON object are represented in a go struct by <code>map[string]T</code>.</p>
+<p>Examples:</p>
+<pre class="language-"><code class="lang-yaml"><span class="token key atrule">definitions</span><span class="token punctuation">:</span>
+  <span class="token key atrule">extensibleObject</span><span class="token punctuation">:</span>
+    <span class="token key atrule">properties</span><span class="token punctuation">:</span>
+      <span class="token key atrule">prop1</span><span class="token punctuation">:</span>
+        <span class="token key atrule">type</span><span class="token punctuation">:</span>  integer
+    <span class="token key atrule">additionalProperties</span><span class="token punctuation">:</span>
+      <span class="token key atrule">type</span><span class="token punctuation">:</span> string
+      <span class="token key atrule">format</span><span class="token punctuation">:</span> date
+</code></pre>
+<p>Is rendered as:</p>
+<pre class="language-"><code class="lang-golang">type ExtensibleObject struct {
+    Prop1 int64
+    ExtensibleObjectProperties map[string]strfmt.Date
+}
+</code></pre>
+<p>If there is no restriction on the additional properties:</p>
+<pre class="language-"><code class="lang-yaml"><span class="token key atrule">definitions</span><span class="token punctuation">:</span>
+  <span class="token key atrule">extensibleObject</span><span class="token punctuation">:</span>
+    <span class="token key atrule">type</span><span class="token punctuation">:</span> object
+    <span class="token key atrule">properties</span><span class="token punctuation">:</span>
+      <span class="token key atrule">prop1</span><span class="token punctuation">:</span>
+        <span class="token key atrule">type</span><span class="token punctuation">:</span> integer
+    <span class="token key atrule">additionalProperties</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+</code></pre>
+<p>We get:</p>
+<pre class="language-"><code class="lang-golang">type ExtensibleObject struct {
+    Prop1 int64
+    ExtensibleObjectProperties map[string]interface{}
+}
+</code></pre>
+<h5 id="tuples-and-additional-items"><a name="tuples-and-additional-items" class="plugin-anchor" href="#tuples-and-additional-items"><i class="fa fa-link" aria-hidden="true"></i></a>Tuples and additional items</h5>
+<p>A tuple is rendered as a structure with a property for each element of the tuple.</p>
+<p>Example:</p>
+<pre class="language-"><code class="lang-yaml"><span class="token key atrule">definitions</span><span class="token punctuation">:</span>
+  <span class="token key atrule">tuple</span><span class="token punctuation">:</span>
+    <span class="token key atrule">type</span><span class="token punctuation">:</span> array
+    <span class="token key atrule">items</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> <span class="token key atrule">type</span><span class="token punctuation">:</span> integer
+    <span class="token punctuation">-</span> <span class="token key atrule">type</span><span class="token punctuation">:</span> string
+    <span class="token punctuation">-</span> <span class="token key atrule">type</span><span class="token punctuation">:</span> string
+      <span class="token key atrule">format</span><span class="token punctuation">:</span> uuid
+</code></pre>
+<p>Gives:</p>
+<pre class="language-"><code class="lang-golang">type Tuple struct {
+    P0 *int64
+    P1 *string
+    P2 *strfmt.UUID
+}
+</code></pre>
+<p>If we specify additional items as in:</p>
+<pre class="language-"><code class="lang-yaml"><span class="token key atrule">definitions</span><span class="token punctuation">:</span>
+  <span class="token key atrule">extensibleTuple</span><span class="token punctuation">:</span>
+    <span class="token key atrule">type</span><span class="token punctuation">:</span> array
+    <span class="token key atrule">items</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> <span class="token key atrule">type</span><span class="token punctuation">:</span> integer
+    <span class="token punctuation">-</span> <span class="token key atrule">type</span><span class="token punctuation">:</span> string
+    <span class="token punctuation">-</span> <span class="token key atrule">type</span><span class="token punctuation">:</span> string
+      <span class="token key atrule">format</span><span class="token punctuation">:</span> uuid
+    <span class="token key atrule">additionalItems</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> <span class="token key atrule">type</span><span class="token punctuation">:</span> number
+</code></pre>
+<p>Gives:</p>
+<pre class="language-"><code class="lang-golang">type ExtensibleTuple struct {
+    P0 *int64
+    P1 *string
+    P2 *strfmt.UUID
+    ExtensibleTupleItems []float64
+}
+</code></pre>
+<blockquote>
+<p><strong>NOTE</strong>: currently the P0, P1, ... names are not customizable.</p>
+</blockquote>
+<h3 id="polymorphic-types"><a name="polymorphic-types" class="plugin-anchor" href="#polymorphic-types"><i class="fa fa-link" aria-hidden="true"></i></a>Polymorphic types</h3>
+<p>Polymorphic types are swagger&apos;s flavor for inheritance (aka <em>hierarchized composition</em>...).
+The use of the <code>discriminator</code> keyword gives a special meaning to <code>allOf</code> compositions.</p>
+<h4 id="base-types"><a name="base-types" class="plugin-anchor" href="#base-types"><i class="fa fa-link" aria-hidden="true"></i></a>Base types</h4>
+<p>Whenever the special attribute <code>discriminator</code> is used, this means this object definition is
+a base type, to be used to extend other types, or subtypes.</p>
+<p>The discriminator property indicates which subtype is used whenever an instance of the base type is found.
+The discriminator&apos;s possible values are the names of the subtypes (no aliasing is supported in Swagger 2.0).</p>
+<blockquote>
+<p><strong>NOTE</strong>: the discriminator is a <code>required</code> property with <code>&quot;type&quot;: &quot;string&quot;</code>.
+No validation attached to this property, save <code>required</code>, will be honored, as
+a discriminator property is implicitly an <code>enum</code> with all the subtype names found in the spec.</p>
+</blockquote>
+<p>The base type must be a JSON-schema object (it has at least one property, the discriminator).
+It may define other properties than the discriminator. Like <code>name</code> in this example.</p>
+<p>Example:</p>
+<pre class="language-"><code class="lang-yaml">  <span class="token key atrule">Pet</span><span class="token punctuation">:</span>
+    <span class="token key atrule">type</span><span class="token punctuation">:</span> object
+    <span class="token key atrule">discriminator</span><span class="token punctuation">:</span> petType
+    <span class="token key atrule">properties</span><span class="token punctuation">:</span>
+      <span class="token key atrule">name</span><span class="token punctuation">:</span>
+        <span class="token key atrule">type</span><span class="token punctuation">:</span> string
+      <span class="token key atrule">petType</span><span class="token punctuation">:</span>
+        <span class="token key atrule">type</span><span class="token punctuation">:</span> string
+    <span class="token key atrule">required</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> name
+    <span class="token punctuation">-</span> petType
+</code></pre>
+<p>A base type is rendered as an interface, with getter/setter funcs on all attributes.</p>
+<pre class="language-"><code class="lang-go"><span class="token comment" spellcheck="true">// Pet pet</span>
+<span class="token comment" spellcheck="true">// swagger:discriminator Pet petType</span>
+<span class="token keyword">type</span> Pet <span class="token keyword">interface</span> <span class="token punctuation">{</span>
+    runtime<span class="token punctuation">.</span>Validatable
+
+    <span class="token comment" spellcheck="true">// name</span>
+    <span class="token comment" spellcheck="true">// Required: true</span>
+    <span class="token function">Name</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">*</span><span class="token builtin">string</span>
+    <span class="token function">SetName</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token builtin">string</span><span class="token punctuation">)</span>
+
+    <span class="token comment" spellcheck="true">// pet type</span>
+    <span class="token comment" spellcheck="true">// Required: true</span>
+    <span class="token function">PetType</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">string</span>
+    <span class="token function">SetPetType</span><span class="token punctuation">(</span><span class="token builtin">string</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<blockquote>
+<p><strong>NOTE</strong>: an unexported reference concrete type is also generated, but not currently used by models.</p>
+</blockquote>
+<h4 id="subtypes"><a name="subtypes" class="plugin-anchor" href="#subtypes"><i class="fa fa-link" aria-hidden="true"></i></a>Subtypes</h4>
+<p>A subtype <em>extends</em> a base type. It is defined by composing the base type with an <code>allOf</code> construct.
+All subtypes implement the interface of their base type. So in this examples, all instances of <code>Dog</code> may pretend
+to be a <code>Pet</code>.</p>
+<p>Example:</p>
+<pre class="language-"><code class="lang-yaml">  <span class="token key atrule">Dog</span><span class="token punctuation">:</span>
+    <span class="token key atrule">type</span><span class="token punctuation">:</span> object
+    <span class="token key atrule">description</span><span class="token punctuation">:</span> A representation of a dog
+    <span class="token key atrule">allOf</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> <span class="token key atrule">$ref</span><span class="token punctuation">:</span> &apos;<span class="token comment" spellcheck="true">#/definitions/Pet&apos;</span>
+    <span class="token punctuation">-</span> <span class="token key atrule">properties</span><span class="token punctuation">:</span>
+        <span class="token key atrule">packSize</span><span class="token punctuation">:</span>
+          <span class="token key atrule">type</span><span class="token punctuation">:</span> integer
+          <span class="token key atrule">format</span><span class="token punctuation">:</span> int32
+          <span class="token key atrule">description</span><span class="token punctuation">:</span> the size of the pack the dog is from
+          <span class="token key atrule">default</span><span class="token punctuation">:</span> <span class="token number">0</span>
+          <span class="token key atrule">minimum</span><span class="token punctuation">:</span> <span class="token number">0</span>
+      <span class="token key atrule">required</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> packSize
+</code></pre>
+<p>Yields:</p>
+<pre class="language-"><code class="lang-go"><span class="token comment" spellcheck="true">// Dog A representation of a dog</span>
+<span class="token comment" spellcheck="true">// swagger:model Dog</span>
+<span class="token keyword">type</span> Dog <span class="token keyword">struct</span> <span class="token punctuation">{</span>
+    nameField <span class="token operator">*</span><span class="token builtin">string</span>
+
+    <span class="token comment" spellcheck="true">// the size of the pack the dog is from</span>
+    <span class="token comment" spellcheck="true">// Required: true</span>
+    <span class="token comment" spellcheck="true">// Minimum: 0</span>
+    PackSize <span class="token operator">*</span><span class="token builtin">int32</span> <span class="token string">`json:&quot;packSize&quot;`</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment" spellcheck="true">// Name gets the name of this subtype</span>
+<span class="token keyword">func</span> <span class="token punctuation">(</span>m <span class="token operator">*</span>Dog<span class="token punctuation">)</span> <span class="token function">Name</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">*</span><span class="token builtin">string</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> m<span class="token punctuation">.</span>nameField
+<span class="token punctuation">}</span>
+
+<span class="token comment" spellcheck="true">// SetName sets the name of this subtype</span>
+<span class="token keyword">func</span> <span class="token punctuation">(</span>m <span class="token operator">*</span>Dog<span class="token punctuation">)</span> <span class="token function">SetName</span><span class="token punctuation">(</span>val <span class="token operator">*</span><span class="token builtin">string</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    m<span class="token punctuation">.</span>nameField <span class="token operator">=</span> val
+<span class="token punctuation">}</span>
+
+<span class="token comment" spellcheck="true">// PetType gets the pet type of this subtype</span>
+<span class="token keyword">func</span> <span class="token punctuation">(</span>m <span class="token operator">*</span>Dog<span class="token punctuation">)</span> <span class="token function">PetType</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">string</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token string">&quot;Dog&quot;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment" spellcheck="true">// SetPetType sets the pet type of this subtype</span>
+<span class="token keyword">func</span> <span class="token punctuation">(</span>m <span class="token operator">*</span>Dog<span class="token punctuation">)</span> <span class="token function">SetPetType</span><span class="token punctuation">(</span>val <span class="token builtin">string</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+<span class="token punctuation">}</span>
+</code></pre>
+<p>Notice the unexported fields which correspond to the description of the base type.
+The properties of the base type are available with getter/setter functions.</p>
+<blockquote>
+<p><strong>NOTE</strong>: if you expand your spec, the <code>allOf</code> semantics are lost.
+Do not expand specs with polymorphic types for code generation.</p>
+</blockquote>
+<p>You may define several such derived types.</p>
+<p>Example:</p>
+<pre class="language-"><code class="lang-yaml">  <span class="token key atrule">cat</span><span class="token punctuation">:</span>
+    <span class="token key atrule">type</span><span class="token punctuation">:</span> object
+    <span class="token key atrule">description</span><span class="token punctuation">:</span> A representation of a cat
+    <span class="token key atrule">allOf</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> <span class="token key atrule">$ref</span><span class="token punctuation">:</span> &apos;<span class="token comment" spellcheck="true">#/definitions/Pet&apos;</span>
+    <span class="token punctuation">-</span> <span class="token key atrule">properties</span><span class="token punctuation">:</span>
+        <span class="token key atrule">huntingSkill</span><span class="token punctuation">:</span>
+          <span class="token key atrule">type</span><span class="token punctuation">:</span> string
+          <span class="token key atrule">description</span><span class="token punctuation">:</span> The measured skill for hunting
+          <span class="token key atrule">default</span><span class="token punctuation">:</span> lazy
+          <span class="token key atrule">enum</span><span class="token punctuation">:</span>
+          <span class="token punctuation">-</span> clueless
+          <span class="token punctuation">-</span> lazy
+          <span class="token punctuation">-</span> adventurous
+          <span class="token punctuation">-</span> aggressive
+      <span class="token key atrule">required</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> huntingSkill
+</code></pre>
+<pre class="language-"><code class="lang-go"><span class="token comment" spellcheck="true">// Cat A representation of a cat</span>
+<span class="token comment" spellcheck="true">// swagger:model cat</span>
+<span class="token keyword">type</span> Cat <span class="token keyword">struct</span> <span class="token punctuation">{</span>
+    nameField <span class="token operator">*</span><span class="token builtin">string</span>
+
+    <span class="token comment" spellcheck="true">// The measured skill for hunting</span>
+    <span class="token comment" spellcheck="true">// Required: true</span>
+    <span class="token comment" spellcheck="true">// Enum: [clueless lazy adventurous aggressive]</span>
+    HuntingSkill <span class="token operator">*</span><span class="token builtin">string</span> <span class="token string">`json:&quot;huntingSkill&quot;`</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment" spellcheck="true">// Name gets the name of this subtype</span>
+<span class="token keyword">func</span> <span class="token punctuation">(</span>m <span class="token operator">*</span>Cat<span class="token punctuation">)</span> <span class="token function">Name</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">*</span><span class="token builtin">string</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> m<span class="token punctuation">.</span>nameField
+<span class="token punctuation">}</span>
+
+<span class="token comment" spellcheck="true">// SetName sets the name of this subtype</span>
+<span class="token keyword">func</span> <span class="token punctuation">(</span>m <span class="token operator">*</span>Cat<span class="token punctuation">)</span> <span class="token function">SetName</span><span class="token punctuation">(</span>val <span class="token operator">*</span><span class="token builtin">string</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    m<span class="token punctuation">.</span>nameField <span class="token operator">=</span> val
+<span class="token punctuation">}</span>
+
+<span class="token comment" spellcheck="true">// PetType gets the pet type of this subtype</span>
+<span class="token keyword">func</span> <span class="token punctuation">(</span>m <span class="token operator">*</span>Cat<span class="token punctuation">)</span> <span class="token function">PetType</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">string</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token string">&quot;cat&quot;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment" spellcheck="true">// SetPetType sets the pet type of this subtype</span>
+<span class="token keyword">func</span> <span class="token punctuation">(</span>m <span class="token operator">*</span>Cat<span class="token punctuation">)</span> <span class="token function">SetPetType</span><span class="token punctuation">(</span>val <span class="token builtin">string</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+<span class="token punctuation">}</span>
+</code></pre>
+<p>Notice that the value of the discriminator field is case sensitive, e.g. <code>&quot;Dog&quot;</code> and <code>&quot;cat&quot;</code> above.</p>
+<h4 id="type-composition"><a name="type-composition" class="plugin-anchor" href="#type-composition"><i class="fa fa-link" aria-hidden="true"></i></a>Type composition</h4>
+<p>Base types and subtypes may be used in other constructs. While subtypes are mostly handled like ordinary objects,
+there are special provisions taken to generate new types composing base types.</p>
+<p>Example:</p>
+<pre class="language-"><code class="lang-yaml">  <span class="token key atrule">Kennel</span><span class="token punctuation">:</span>
+    <span class="token key atrule">type</span><span class="token punctuation">:</span> object
+    <span class="token key atrule">required</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> pets
+    <span class="token key atrule">properties</span><span class="token punctuation">:</span>
+      <span class="token key atrule">id</span><span class="token punctuation">:</span>
+        <span class="token key atrule">type</span><span class="token punctuation">:</span> integer
+        <span class="token key atrule">format</span><span class="token punctuation">:</span> int64
+      <span class="token key atrule">pets</span><span class="token punctuation">:</span>          <span class="token comment" spellcheck="true"># &lt;-- this may contain Cats and Dogs</span>
+        <span class="token key atrule">type</span><span class="token punctuation">:</span> array
+        <span class="token key atrule">items</span><span class="token punctuation">:</span>
+          <span class="token key atrule">$ref</span><span class="token punctuation">:</span> &quot;<span class="token comment" spellcheck="true">#/definitions/Pet&quot;</span>
+</code></pre>
+<p>Yields:</p>
+<pre class="language-"><code class="lang-go"><span class="token comment" spellcheck="true">// Kennel kennel</span>
+<span class="token comment" spellcheck="true">// swagger:model Kennel</span>
+<span class="token keyword">type</span> Kennel <span class="token keyword">struct</span> <span class="token punctuation">{</span>
+
+    <span class="token comment" spellcheck="true">// id</span>
+    ID <span class="token builtin">int64</span> <span class="token string">`json:&quot;id,omitempty&quot;`</span>
+
+    petsField <span class="token punctuation">[</span><span class="token punctuation">]</span>Pet
+<span class="token punctuation">}</span>
+
+<span class="token comment" spellcheck="true">// Pets gets the pets of this base type</span>
+<span class="token keyword">func</span> <span class="token punctuation">(</span>m <span class="token operator">*</span>Kennel<span class="token punctuation">)</span> <span class="token function">Pets</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>Pet <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> m<span class="token punctuation">.</span>petsField
+<span class="token punctuation">}</span>
+
+<span class="token comment" spellcheck="true">// SetPets sets the pets of this base type</span>
+<span class="token keyword">func</span> <span class="token punctuation">(</span>m <span class="token operator">*</span>Kennel<span class="token punctuation">)</span> <span class="token function">SetPets</span><span class="token punctuation">(</span>val <span class="token punctuation">[</span><span class="token punctuation">]</span>Pet<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    m<span class="token punctuation">.</span>petsField <span class="token operator">=</span> val
+<span class="token punctuation">}</span>
+</code></pre>
+<blockquote>
+<p><strong>NOTE</strong>: this representation with unexported fields for references to base types might be subject to change in
+the future, as it is not consistent in all cases. If you are intested to participate this design work,
+feel free to comment and express your views <a href="https://github.com/go-swagger/go-swagger/issues/232" target="_blank">here</a>.</p>
+</blockquote>
+<h4 id="factories-for-base-types"><a name="factories-for-base-types" class="plugin-anchor" href="#factories-for-base-types"><i class="fa fa-link" aria-hidden="true"></i></a>Factories for base types</h4>
+<p>Subtypes and composed types have custom [un]marshallers.</p>
+<p>Unmarshalling a base type is not carried through the standard MarshalJSON()/UnmarshalJSON() pair, but with
+factories created for each base type.</p>
+<p>Example:</p>
+<pre class="language-"><code class="lang-go"><span class="token comment" spellcheck="true">// UnmarshalPet unmarshals polymorphic Pet</span>
+<span class="token keyword">func</span> <span class="token function">UnmarshalPet</span><span class="token punctuation">(</span>reader io<span class="token punctuation">.</span>Reader<span class="token punctuation">,</span> consumer runtime<span class="token punctuation">.</span>Consumer<span class="token punctuation">)</span> <span class="token punctuation">(</span>Pet<span class="token punctuation">,</span> <span class="token builtin">error</span><span class="token punctuation">)</span>
+
+<span class="token comment" spellcheck="true">// UnmarshalPetSlice unmarshals polymorphic slices of Pet</span>
+<span class="token keyword">func</span> <span class="token function">UnmarshalPetSlice</span><span class="token punctuation">(</span>reader io<span class="token punctuation">.</span>Reader<span class="token punctuation">,</span> consumer runtime<span class="token punctuation">.</span>Consumer<span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">]</span>Pet<span class="token punctuation">,</span> <span class="token builtin">error</span><span class="token punctuation">)</span>
+</code></pre>
+<p>Note that the marshalling of a base type into JSON is processed naturally, so there is no need for a special function.</p>
+<blockquote>
+<p><strong>Known limitations</strong>:
+As of v1.0, there are still some known limitations:</p>
+<ul>
+<li>Unmarshalling maps of base types is not supported at the moment (e.g. <code>UnmarshalPetMap()</code> factory)</li>
+<li>More complex constructs like <code>[][]Pet</code>, <code>[]map[string]Pet</code> are not supported yet</li>
+<li>composing tuples containing base types is not supported yet</li>
+</ul>
+</blockquote>
+<h3 id="serialization-interfaces"><a name="serialization-interfaces" class="plugin-anchor" href="#serialization-interfaces"><i class="fa fa-link" aria-hidden="true"></i></a>Serialization interfaces</h3>
+<!--
+
+TODO
+
+##### Serializer's tags
+
+##### Custom tags
+
+JSON
+
+XML
+-->
+<h5 id="custom-serializers"><a name="custom-serializers" class="plugin-anchor" href="#custom-serializers"><i class="fa fa-link" aria-hidden="true"></i></a>Custom serializers</h5>
+<p>Tags are generally sufficient to provide proper JSON marshalling capabilities.</p>
+<p>Models define some custom [un]marshallers in the following situations:</p>
+<ul>
+<li>tuples: array elements are dispatched in the tuple&apos;s struct</li>
+<li>additionalProperties: additional content is dispatched in the <code>map[string]...</code></li>
+<li>subtypes of base types</li>
+<li>types composed of base types</li>
+<li>aliases on formatted types when the underlying type is not string (e.g. Date, Datetime)</li>
+</ul>
+<!--
+##### [Un]MarshalBinary interfaces
+
+TODO
+-->
+<!-- References -->
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="../model.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: How to use models">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Schema generation rules","level":"1.4.5.4.2.1","depth":5,"next":{"title":"Generate spec from source","level":"1.4.6","depth":2,"ref":"","articles":[{"title":"Spec Usage","level":"1.4.6.1","depth":3,"path":"generate/spec.md","ref":"generate/spec.md","articles":[]},{"title":"Spec generation rules","level":"1.4.6.2","depth":3,"path":"use/spec.md","ref":"use/spec.md","articles":[{"title":"swagger:meta","level":"1.4.6.2.1","depth":4,"path":"use/spec/meta.md","ref":"use/spec/meta.md","articles":[]},{"title":"swagger:route","level":"1.4.6.2.2","depth":4,"path":"use/spec/route.md","ref":"use/spec/route.md","articles":[]},{"title":"swagger:params","level":"1.4.6.2.3","depth":4,"path":"use/spec/params.md","ref":"use/spec/params.md","articles":[]},{"title":"swagger:operation","level":"1.4.6.2.4","depth":4,"path":"use/spec/operation.md","ref":"use/spec/operation.md","articles":[]},{"title":"swagger:response","level":"1.4.6.2.5","depth":4,"path":"use/spec/response.md","ref":"use/spec/response.md","articles":[]},{"title":"swagger:model","level":"1.4.6.2.6","depth":4,"path":"use/spec/model.md","ref":"use/spec/model.md","articles":[]},{"title":"swagger:allOf","level":"1.4.6.2.7","depth":4,"path":"use/spec/allOf.md","ref":"use/spec/allOf.md","articles":[]},{"title":"swagger:strfmt","level":"1.4.6.2.8","depth":4,"path":"use/spec/strfmt.md","ref":"use/spec/strfmt.md","articles":[]},{"title":"swagger:discriminated","level":"1.4.6.2.9","depth":4,"path":"use/spec/discriminated.md","ref":"use/spec/discriminated.md","articles":[]},{"title":"swagger:ignore","level":"1.4.6.2.10","depth":4,"path":"use/spec/ignore.md","ref":"use/spec/ignore.md","articles":[]}]}]},"previous":{"title":"How to use models","level":"1.4.5.4.2","depth":4,"path":"use/model.md","ref":"use/model.md","articles":[{"title":"Schema generation rules","level":"1.4.5.4.2.1","depth":5,"path":"use/models/schemas.md","ref":"use/models/schemas.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors","livereload"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"prism":{},"livereload":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"use/models/schemas.md","mtime":"2018-07-10T06:26:50.901Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-07-10T07:27:37.867Z"},"basePath":"../..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../../gitbook/gitbook.js"></script>
+    <script src="../../gitbook/theme.js"></script>
+    
+        
+        <script src="../../gitbook/gitbook-plugin-forkmegithub/plugin.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-livereload/plugin.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
