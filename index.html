@@ -1026,7 +1026,7 @@ My personal mission: I want the jvm to go away, it was great way back when now i
 </ul>
 <p>There is more to that...</p>
 <ul>
-<li>A <a href="https://gowagger.io/use/model.html" target="_blank">typed JSON Schema implementation</a>, supporting most Draft 4 features</li>
+<li>A <a href="https://goswagger.io/use/model.html" target="_blank">typed JSON Schema implementation</a>, supporting most Draft 4 features</li>
 <li>Extended string and numeric formats: <a href="https://github.com/go-openapi/strfmt" target="_blank">strfmt</a></li>
 <li>Utilities to work with JSON, convert data types and pointers: <a href="https://github.com/go-openapi/swag" target="_blank">swag</a></li>
 <li>A jsonschema (Draft 4) validator, with full $ref support: <a href="https://github.com/go-openapi/validate" target="_blank">validate</a></li>
@@ -1106,8 +1106,8 @@ github.com/naoina/denco to github.com/go-openapi/runtime/middleware/denco
 github.com/go-swagger/go-swagger to github.com/go-openapi
 </code></pre><h3 id="migrating-from-012-to-013"><a name="migrating-from-012-to-013" class="plugin-anchor" href="#migrating-from-012-to-013"><i class="fa fa-link" aria-hidden="true"></i></a>Migrating from 0.12 to 0.13</h3>
 <p>Spec flattening and $ref resolution brought breaking changes in model generation, since all complex things generate their own definitions.</p>
-<h3 id="migrating-from-014-to-10"><a name="migrating-from-014-to-10" class="plugin-anchor" href="#migrating-from-014-to-10"><i class="fa fa-link" aria-hidden="true"></i></a>Migrating from 0.14 to 1.0</h3>
-<p>Generated servers no more imports the following package (replaced by go1.8 native functionality):</p>
+<h3 id="migrating-from-014-to-015"><a name="migrating-from-014-to-015" class="plugin-anchor" href="#migrating-from-014-to-015"><i class="fa fa-link" aria-hidden="true"></i></a>Migrating from 0.14 to 0.15</h3>
+<p>Generated servers no more import the following package (replaced by go1.8 native functionality):</p>
 <pre class="language-"><code>github.com/tylerb/graceful
 </code></pre><p>Spec flattening now defaults to minimal changes to models and should be workable for 0.12 users.</p>
 <p>Users who prefer to stick to 0.13 and 0.14 default flattening mode may now use the <code>--with-flatten=full</code> option.</p>
@@ -1151,7 +1151,7 @@ github.com/go-swagger/go-swagger to github.com/go-openapi
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Primer","level":"1.1","depth":1,"next":{"title":"Approaches","level":"1.1.1","depth":2,"path":"about.md","ref":"about.md","articles":[]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors","livereload"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"prism":{},"livereload":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"README.md","mtime":"2018-07-10T07:25:47.215Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-07-10T07:27:37.867Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Primer","level":"1.1","depth":1,"next":{"title":"Approaches","level":"1.1.1","depth":2,"path":"about.md","ref":"about.md","articles":[]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"prism":{},"anchors":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"README.md","mtime":"2018-07-12T15:53:29.391Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-07-12T15:53:35.572Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>
@@ -1162,10 +1162,6 @@ github.com/go-swagger/go-swagger to github.com/go-openapi
     
         
         <script src="gitbook/gitbook-plugin-forkmegithub/plugin.js"></script>
-        
-    
-        
-        <script src="gitbook/gitbook-plugin-livereload/plugin.js"></script>
         
     
         
