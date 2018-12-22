@@ -898,6 +898,19 @@
             
         </li>
     
+        <li class="chapter " data-level="1.9.8" data-path="../../faq/faq_swagger.html">
+            
+                <a href="../../faq/faq_swagger.html">
+            
+                    
+                    Swagger specification
+            
+                </a>
+            
+
+            
+        </li>
+    
 
             </ul>
             
@@ -1011,6 +1024,10 @@ The refs are tracked separately so that they can be renamed later on.</p>
 <td><strong>Read Only</strong></td>
 <td>when set to true this value will be marked as read-only and is not required in request bodies</td>
 </tr>
+<tr>
+<td><strong>Example</strong></td>
+<td>an example value, parsed as the field&apos;s type<br>(objects and slices are parsed as JSON)</td>
+</tr>
 </tbody>
 </table>
 <p>For slice properties there are also items to be defined. This might be a nested collection, for indicating nesting
@@ -1085,6 +1102,7 @@ level the value is a 0-based index, so items.minLength is the same as items.0.mi
     <span class="token comment" spellcheck="true">// the email address for this user</span>
     <span class="token comment" spellcheck="true">//</span>
     <span class="token comment" spellcheck="true">// required: true</span>
+    <span class="token comment" spellcheck="true">// example: user@provider.net</span>
     Email strfmt<span class="token punctuation">.</span>Email <span class="token string">`json:&quot;login&quot;`</span>
 
     <span class="token comment" spellcheck="true">// the friends for this user</span>
@@ -1117,6 +1135,7 @@ level the value is a 0-based index, so items.minLength is the same as items.0.mi
         <span class="token key atrule">type</span><span class="token punctuation">:</span> string
         <span class="token key atrule">format</span><span class="token punctuation">:</span> email
         <span class="token key atrule">x-go-name</span><span class="token punctuation">:</span> Email
+        <span class="token key atrule">example</span><span class="token punctuation">:</span> user@provider.net
       <span class="token key atrule">friends</span><span class="token punctuation">:</span>
         <span class="token key atrule">description</span><span class="token punctuation">:</span> the friends for this user
         <span class="token key atrule">type</span><span class="token punctuation">:</span> array
@@ -1166,7 +1185,7 @@ level the value is a 0-based index, so items.minLength is the same as items.0.mi
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"swagger:model","level":"1.4.6.2.6","depth":4,"next":{"title":"swagger:allOf","level":"1.4.6.2.7","depth":4,"path":"use/spec/allOf.md","ref":"use/spec/allOf.md","articles":[]},"previous":{"title":"swagger:response","level":"1.4.6.2.5","depth":4,"path":"use/spec/response.md","ref":"use/spec/response.md","articles":[]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"prism":{},"anchors":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"use/spec/model.md","mtime":"2018-07-10T06:26:50.901Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-10-07T04:56:41.352Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"swagger:model","level":"1.4.6.2.6","depth":4,"next":{"title":"swagger:allOf","level":"1.4.6.2.7","depth":4,"path":"use/spec/allOf.md","ref":"use/spec/allOf.md","articles":[]},"previous":{"title":"swagger:response","level":"1.4.6.2.5","depth":4,"path":"use/spec/response.md","ref":"use/spec/response.md","articles":[]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"prism":{},"anchors":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"use/spec/model.md","mtime":"2018-12-22T19:17:40.071Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-12-22T20:42:17.966Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

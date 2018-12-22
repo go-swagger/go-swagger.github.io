@@ -898,6 +898,19 @@
             
         </li>
     
+        <li class="chapter " data-level="1.9.8" data-path="faq_swagger.html">
+            
+                <a href="faq_swagger.html">
+            
+                    
+                    Swagger specification
+            
+                </a>
+            
+
+            
+        </li>
+    
 
             </ul>
             
@@ -1041,7 +1054,7 @@ Instead of URL for lookup key I decided to use Operation.ID.
 Lookup would be faster in that way because each operation has a unique id according to swagger specification.
 The problem comes when I want to check against that ACL of mine...</p>
 </blockquote>
-<p><strong>Suggestions</strong>: 
+<p><strong>Suggestions</strong>:
 This is possible in 2 ways.</p>
 <ul>
 <li>first way is by using an authenticator,</li>
@@ -1093,7 +1106,7 @@ I was looking for some examples of this but couldn&apos;t find anything.</p>
 And main() doesn&apos;t call configureAPI() ...
 that was a little confusing looking through the other examples and not seeing any changes to the vanilla config code.</p>
 <p><em>Similar use-case</em>: dependency injection</p>
-<p>Wouldn&apos;t it be better to have all the handlers automatically be part of a default struct that simply has a Context member variable or empty interface? </p>
+<p>Wouldn&apos;t it be better to have all the handlers automatically be part of a default struct that simply has a Context member variable or empty interface?</p>
 <blockquote>
 <p>That would save everyone a lot of copy/paste when we need to inject some info.
 I mean, a different context than the one available on params.HTTPRequest.Context(),
@@ -1133,7 +1146,7 @@ This means different number of files and different functionalities.</p>
 <p>Also keep in mind that <code>go-openapi</code> and <code>go-swagger</code> constitute a <em>toolkit</em>
 and provide you the <em>tools</em> to adapt to your own use case.
 The <code>swagger</code> command line and standard templates only covers general purpose use-cases.</p>
-<p>If you think your use-case would benefit to many people, feel free to make the necessary changes for your case to work and submitting a PR. </p>
+<p>If you think your use-case would benefit to many people, feel free to make the necessary changes for your case to work and submitting a PR.</p>
 <p>Example config file for generation:</p>
 <pre class="language-"><code class="lang-YAML">layout:
   application:
@@ -1202,7 +1215,79 @@ where you want a streaming response.</p>
 I decided against this because it seemed to just add complexity for little benefit.
 I can be persuaded to implement such a responder though, and should somebody send a PR like that I would not say no to it.</p>
 </blockquote>
-<p>Originally from issue Originally from issue <a href="https://github.com/go-swagger/go-swagger/issues/305" target="_blank">#305</a>.</p>
+<p>Originally from issue <a href="https://github.com/go-swagger/go-swagger/issues/305" target="_blank">#305</a>.</p>
+<h3 id="oauth-authentication-does-not-redirect-to-the-authorization-server"><a name="oauth-authentication-does-not-redirect-to-the-authorization-server" class="plugin-anchor" href="#oauth-authentication-does-not-redirect-to-the-authorization-server"><i class="fa fa-link" aria-hidden="true"></i></a>OAuth authentication does not redirect to the authorization server</h3>
+<p><em>Use-Case</em>: oauth2 accessCode flow does not redirect to the authorization server</p>
+<blockquote>
+<p>In my understanding, if the accessCode flow is used for oauth2 securitydefinition, the generated server could redirect the authentication to the oauth2 server, e.g., <a href="https://accounts.google.com/o/oauth2/v2/auth" target="_blank">https://accounts.google.com/o/oauth2/v2/auth</a>. However, my generated code does not perform the redirection. Could anyone help on this? Thanks.</p>
+</blockquote>
+<p>Like in:</p>
+<pre class="language-"><code class="lang-yaml"><span class="token punctuation">---</span>
+<span class="token key atrule">swagger</span><span class="token punctuation">:</span> <span class="token string">&apos;2.0&apos;</span>
+<span class="token key atrule">info</span><span class="token punctuation">:</span>
+  <span class="token key atrule">title</span><span class="token punctuation">:</span> oauth2 debug
+  <span class="token key atrule">version</span><span class="token punctuation">:</span> 0.3.0
+<span class="token key atrule">produces</span><span class="token punctuation">:</span>
+<span class="token punctuation">-</span> application/json
+<span class="token key atrule">schemes</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> http
+<span class="token key atrule">basePath</span><span class="token punctuation">:</span> /api
+<span class="token key atrule">securityDefinitions</span><span class="token punctuation">:</span>
+  <span class="token key atrule">OauthSecurity</span><span class="token punctuation">:</span>
+    <span class="token key atrule">type</span><span class="token punctuation">:</span> oauth2
+    <span class="token key atrule">flow</span><span class="token punctuation">:</span> accessCode
+    <span class="token key atrule">authorizationUrl</span><span class="token punctuation">:</span> <span class="token string">&apos;https://accounts.google.com/o/oauth2/v2/auth&apos;</span>
+    <span class="token key atrule">tokenUrl</span><span class="token punctuation">:</span> <span class="token string">&apos;hhttps://www.googleapis.com/oauth2/v4/token&apos;</span>
+    <span class="token key atrule">scopes</span><span class="token punctuation">:</span>
+      <span class="token key atrule">admin</span><span class="token punctuation">:</span> Admin scope
+      <span class="token key atrule">user</span><span class="token punctuation">:</span> User scope
+<span class="token key atrule">security</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> <span class="token key atrule">OauthSecurity</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> user
+<span class="token key atrule">paths</span><span class="token punctuation">:</span>
+  <span class="token key atrule">/customers</span><span class="token punctuation">:</span>
+  <span class="token punctuation">...</span>.
+</code></pre>
+<blockquote>
+<p>The generated server does not redirect the browser to the google login page.</p>
+</blockquote>
+<p><strong>Answer</strong>: Redirection flow is for UI. The spec has them so your UI can do the redirection.</p>
+<p>Swagger 2.0 only defines those properties as hints for a UI to work,
+this doesn&apos;t have to be server side. At the same time the redirection flow is not supported in an API
+but you can use an OAuth 2.0 middleware from any library to get you that functionality</p>
+<p>Originally from issue <a href="https://github.com/go-swagger/go-swagger/issues/1217" target="_blank">#1217</a>.</p>
+<h3 id="https-tls-cipher-suites-not-supported-by-aws-elastic-loadbalancer"><a name="https-tls-cipher-suites-not-supported-by-aws-elastic-loadbalancer" class="plugin-anchor" href="#https-tls-cipher-suites-not-supported-by-aws-elastic-loadbalancer"><i class="fa fa-link" aria-hidden="true"></i></a>HTTPS TLS Cipher Suites not supported by AWS Elastic LoadBalancer</h3>
+<p><em>Use-case</em>: AWS Elastic LoadBalancer forwards https requests to instances, and their security policy is &apos;ELBSecurityPolicy-2016-08&apos;.
+However, while running the server on https, the server keeps on logging</p>
+<p><code>http: TLS handshake error from 192.168.X.X:XXXXX: tls: no cipher suite supported by both client and server.</code></p>
+<p>If we remove the cipher suites on the generated code, it resolves the issue -</p>
+<pre class="language-"><code class="lang-golang">CipherSuites: []uint16{
+  tls.TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384,
+  tls.TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384,
+  tls.TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256,
+  tls.TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,
+},
+</code></pre>
+<p>The ELB security policy &apos;ELBSecurityPolicy-2016-08&apos; does include these cipher suites, however all requests sent by the ELB are rejected by the server.</p>
+<p><strong>Answer</strong>: you can generate the server with a different compatibility mode for the older generation of ciphers</p>
+<pre class="language-"><code>swagger generate server --compatibility-mode=intermediate
+</code></pre><p>Originally from issue <a href="https://github.com/go-swagger/go-swagger/issues/1383" target="_blank">#1383</a>.</p>
+<h3 id="which-mime-types-are-supported"><a name="which-mime-types-are-supported" class="plugin-anchor" href="#which-mime-types-are-supported"><i class="fa fa-link" aria-hidden="true"></i></a>Which mime types are supported?</h3>
+<p><em>Use-Case</em>: I seem to be unable to find supported mime-types that the API&apos;s can consume and produce. Any references?</p>
+<p><strong>Answer</strong>: see the current list of supported media MIMEs <a href="https://github.com/go-swagger/go-swagger/blob/3099f611ada66d42974160ac4e0ec475d24b7041/generator/support.go#L279" target="_blank">here</a>
+You can add more through the consumer producer mechanism.</p>
+<p>Originally from issue <a href="https://github.com/go-swagger/go-swagger/issues/1022" target="_blank">#1022</a>.</p>
+<h3 id="is-it-possible-to-return-error-to-main-function-of-server"><a name="is-it-possible-to-return-error-to-main-function-of-server" class="plugin-anchor" href="#is-it-possible-to-return-error-to-main-function-of-server"><i class="fa fa-link" aria-hidden="true"></i></a>Is it possible to return error to main function of server?</h3>
+<p><em>Use-Case</em>: Is it possible to return error to main function of server?</p>
+<blockquote>
+<p>For example, my server saves some configs in file, and I want that if config file is missing,
+then server must be stopped with some error code. It is possible to do it with panic(err),
+but I think it is not good way. So can I return error main function of server ?</p>
+</blockquote>
+<p><strong>Answer</strong>: you can make your own main function.</p>
+<p>There is an example here: <a href="https://github.com/go-openapi/kvstore/blob/master/cmd/kvstored/main.go" target="_blank">https://github.com/go-openapi/kvstore/blob/master/cmd/kvstored/main.go</a></p>
+<p>There is a command line argument to avoid overwriting the main when generating: <code>--exclude-main</code>.</p>
+<p>Originally from issue <a href="https://github.com/go-swagger/go-swagger/issues/1060" target="_blank">#1060</a>.</p>
 <hr>
 <p>Back to <a href="./#all-contributed-questions">all contributions</a></p>
 
@@ -1248,7 +1333,7 @@ I can be persuaded to implement such a responder though, and should somebody sen
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Server generation & customization","level":"1.9.3","depth":2,"next":{"title":"Client generation","level":"1.9.4","depth":2,"path":"faq/faq_client.md","ref":"faq/faq_client.md","articles":[]},"previous":{"title":"Model generation","level":"1.9.2","depth":2,"path":"faq/faq_model.md","ref":"faq/faq_model.md","articles":[]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"prism":{},"anchors":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"faq/faq_server.md","mtime":"2018-09-07T03:38:56.016Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-10-07T04:56:41.352Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Server generation & customization","level":"1.9.3","depth":2,"next":{"title":"Client generation","level":"1.9.4","depth":2,"path":"faq/faq_client.md","ref":"faq/faq_client.md","articles":[]},"previous":{"title":"Model generation","level":"1.9.2","depth":2,"path":"faq/faq_model.md","ref":"faq/faq_model.md","articles":[]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"prism":{},"anchors":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"faq/faq_server.md","mtime":"2018-12-22T19:21:13.092Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-12-22T20:42:17.966Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

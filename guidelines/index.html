@@ -898,6 +898,19 @@
             
         </li>
     
+        <li class="chapter " data-level="1.9.8" data-path="../faq/faq_swagger.html">
+            
+                <a href="../faq/faq_swagger.html">
+            
+                    
+                    Swagger specification
+            
+                </a>
+            
+
+            
+        </li>
+    
 
             </ul>
             
@@ -952,24 +965,32 @@
 <p>A quick guide on how to contribute to <code>go-swagger</code> and the other <code>go-openapi</code> repos.</p>
 <h3 id="getting-started"><a name="getting-started" class="plugin-anchor" href="#getting-started"><i class="fa fa-link" aria-hidden="true"></i></a>Getting started</h3>
 <p>Repos follow standard go building and testing rules.</p>
+<p>Cloning <code>go-swagger</code>:</p>
+<pre class="language-"><code class="lang-bash"><span class="token function">mkdir</span> -p <span class="token variable">$GOPATH</span>/src/github.com/go-swagger
+<span class="token function">cd</span> <span class="token variable">$GOPATH</span>/src/github.com/go-swagger
+<span class="token function">git</span> clone https://github.com/go-swagger/go-swagger
+</code></pre>
+<p>All dependencies are available in the checked out <code>vendor</code> directory.</p>
 <p>Building and installing go-swagger from source on your system:</p>
 <pre class="language-"><code>go install github.com/go-swagger/go-swagger/cmd/swagger
 </code></pre><p>Running standard unit tests:</p>
-<pre class="language-"><code> go test ./...
-</code></pre><p>More advanced tests are run by CI. See <a href="#continuous-integration">below</a>.</p>
+<pre class="language-"><code class="lang-bash">go <span class="token function">test</span> ./<span class="token punctuation">..</span>.
+</code></pre>
+<p>More advanced tests are run by CI. See <a href="#continuous-integration">below</a>.</p>
 <h3 id="generally-accepted-rules-for-pull-requests"><a name="generally-accepted-rules-for-pull-requests" class="plugin-anchor" href="#generally-accepted-rules-for-pull-requests"><i class="fa fa-link" aria-hidden="true"></i></a>Generally accepted rules for pull requests</h3>
 <p>All PR&apos;s are welcome and generally accepted (so far, 95% were accepted...).
 There are just a few common sense rules to be followed.</p>
 <ol>
-<li>PRs which are not ready to merge should be prefixed with &quot;WIP:&quot;</li>
-<li>Generally, contributors should squash their commits (use <code>git rebase -i ...</code>)</li>
+<li>PRs which are not ready to merge should be prefixed with <code>WIP:</code></li>
+<li>Generally, contributors should squash their commits (use <code>git rebase -i master</code>)</li>
 <li>Provide sufficient test coverage with changes</li>
-<li>Do not bring in uncontrolled dependencies, including from fixtures or examples.
-Adding dependencies is possible with a vendor update (<code>dep ensure -update</code>).</li>
-<li>Use the &quot;fixes #xxx&quot; feature in PR to automate issue closing</li>
+<li>Do not bring in uncontrolled dependencies, including from fixtures or examples
+Adding dependencies is possible with a vendor update (<code>dep ensure -update</code>)</li>
+<li>Use the <code>fixes #xxx</code> github feature in PR to automate issue closing</li>
+<li>Sign-off commits with <code>git commit -s</code>. PGP-signed commits with verified signatures are not mandatory (but much appreciated)</li>
 </ol>
 <h3 id="go-environment"><a name="go-environment" class="plugin-anchor" href="#go-environment"><i class="fa fa-link" aria-hidden="true"></i></a>Go environment</h3>
-<p>We want to always support the two most recent go versions.</p>
+<p>We want to always support the <strong>two most recent go versions</strong>.</p>
 <p>However, we try to avoid introducing breaking changes, especially on the more
 stable <code>go-openapi</code> repos. We manage this with build tags. Notice the very
 important blank line after your build tag comment line.</p>
@@ -984,16 +1005,19 @@ important blank line after your build tag comment line.</p>
     <span class="token keyword">return</span> url<span class="token punctuation">.</span><span class="token function">QueryUnescape</span><span class="token punctuation">(</span>path<span class="token punctuation">)</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<p>All repos should remain go-gettable and testable with <code>go test ./...</code></p>
+<p>All repos should remain go-gettable (i.e. available with the <code>go get ./...</code> command)
+and testable with <code>go test ./...</code></p>
 <h3 id="continuous-integration"><a name="continuous-integration" class="plugin-anchor" href="#continuous-integration"><i class="fa fa-link" aria-hidden="true"></i></a>Continuous integration</h3>
 <p>All PR&apos;s require a review by a team member, whatever the CI engines tell.</p>
 <h5 id="go-swaggergo-swagger"><a name="go-swaggergo-swagger" class="plugin-anchor" href="#go-swaggergo-swagger"><i class="fa fa-link" aria-hidden="true"></i></a>go-swagger/go-swagger</h5>
-<p>Enabled CI engines:</p>
+<p>Enabled CI engines and bots:</p>
 <ul>
 <li>CircleCI (linux)</li>
 <li>Appveyor (windows)</li>
 <li>GolangCI</li>
 <li>Codecov</li>
+<li>DCO (enfore signed-off commits)</li>
+<li>WIP (blocks PRs wih title WIP/do not merge, etc...)</li>
 </ul>
 <p>Codecov results are not blocking.</p>
 <p>CI runs description/configuration:</p>
@@ -1043,6 +1067,18 @@ important blank line after your build tag comment line.</p>
 <td>-</td>
 <td>project test coverage and PR diff coverage</td>
 </tr>
+<tr>
+<td>DCO</td>
+<td>commit signed</td>
+<td>-</td>
+<td><a href="https://probot.github.io/apps/dco" target="_blank">https://probot.github.io/apps/dco</a></td>
+</tr>
+<tr>
+<td>WIP</td>
+<td>PR title</td>
+<td>-</td>
+<td><a href="https://github.com/apps/wip" target="_blank">https://github.com/apps/wip</a></td>
+</tr>
 </tbody>
 </table>
 <p>Deprecated engines:</p>
@@ -1058,9 +1094,9 @@ from test programs (this is actually a Powershell limitation).
 Therefore, please make sure your UT remain mute on stderr or capture the
 output if you need to assert something from the output.</p>
 </blockquote>
-<p>The <code>./hackcodegen-nonreg.sh</code> runs on CI with a single generation option.
+<p>The script <code>./hack/codegen-nonreg.sh</code> runs on CI with a single generation option.
 You may run it manually to explore more generation options (expand spec, flatten, etc...).</p>
-<p>CircleCI has a separate CI workflow to build releases, baking and checking newly released docker 
+<p>CircleCI has a separate CI workflow to build releases, baking and checking newly released docker
 images.</p>
 <h5 id="go-openapi-repos"><a name="go-openapi-repos" class="plugin-anchor" href="#go-openapi-repos"><i class="fa fa-link" aria-hidden="true"></i></a>go-openapi repos</h5>
 <p>Enabled CI engines:</p>
@@ -1120,27 +1156,28 @@ to get the proper version of the required dependency from the unmerged branch (e
 </ul>
 <p>With <code>go-openapi</code> (non vendored):</p>
 <ul>
-<li>for your &quot;WIP&quot; PR, temporarily alter the CI config script (e.g. <code>.travis.yml</code>) and 
+<li>for your &quot;WIP&quot; PR, temporarily alter the CI config script (e.g. <code>.travis.yml</code>) and
 replace the <code>go get</code> requirements to build your CI with the adequate <code>git clone</code>
 pointing to the required branches</li>
 </ul>
 <h3 id="update-templates"><a name="update-templates" class="plugin-anchor" href="#update-templates"><i class="fa fa-link" aria-hidden="true"></i></a>Update templates</h3>
-<p><code>go-swagger</code> is built with an in-memory image of templates.
-Binary encoded assets are auto-generated from the <code>generator/templates</code> directory using <code>bindata</code>
+<p><code>go-swagger</code> is built with an in-memory image of templates.</p>
+<p>Binary encoded assets are auto-generated from the <code>generator/templates</code> directory using <code>bindata</code>
 (the result is <code>generator/bindata.go</code>).</p>
 <p>While developing, you may work with dynamically updated templates (i.e. no need to rebuild)
 using <code>bindata.go</code> generated in debug mode (use script: <code>./generator/gen-debug.sh</code>).</p>
 <p>There is a <code>.githook</code> script configured as pre-commit: every time you commit to the repo, <code>generator/bindata.go</code>
 is regenerated and added to the current commit (without debug mode).</p>
+<p>For <code>bindata</code> please use the fork found at: <code>github.com/kevinburke/go-bindata</code>.</p>
 <blockquote>
 <p><strong>NOTE</strong>: we are carrying out unit tests on codegen mostly by asserting lines in generated code.
 There is a bunch of test utility functions for this. See <code>generator/*_test.go</code>.
-If you want to bring in more advanced testing go programs with your fixtures, please tag 
+If you want to bring in more advanced testing go programs with your fixtures, please tag
 those so they don&apos;t affect the <code>go ./...</code> command (e.g. with <code>// +build +integration</code>).</p>
 </blockquote>
 <h3 id="updating-examples"><a name="updating-examples" class="plugin-anchor" href="#updating-examples"><i class="fa fa-link" aria-hidden="true"></i></a>Updating examples</h3>
 <p>Whenever code generation rules change, we feel it is important to maintain
-consistency with the generated code provided as examples.  </p>
+consistency with the generated code provided as examples.</p>
 <p>The script <code>./hack/regen-samples.sh</code> does just that.</p>
 <p>Do not forget to update this script when you add a new example.</p>
 <h3 id="writing-documentation"><a name="writing-documentation" class="plugin-anchor" href="#writing-documentation"><i class="fa fa-link" aria-hidden="true"></i></a>Writing documentation</h3>
@@ -1196,7 +1233,7 @@ Please make sure links work both from github and gitbook.</p>
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Guidelines to maintainers","level":"1.8","depth":1,"next":{"title":"FAQ","level":"1.9","depth":1,"path":"faq/README.md","ref":"faq/README.md","articles":[{"title":"Installation,setup and environment","level":"1.9.1","depth":2,"path":"faq/faq_setup.md","ref":"faq/faq_setup.md","articles":[]},{"title":"Model generation","level":"1.9.2","depth":2,"path":"faq/faq_model.md","ref":"faq/faq_model.md","articles":[]},{"title":"Server generation & customization","level":"1.9.3","depth":2,"path":"faq/faq_server.md","ref":"faq/faq_server.md","articles":[]},{"title":"Client generation","level":"1.9.4","depth":2,"path":"faq/faq_client.md","ref":"faq/faq_client.md","articles":[]},{"title":"Spec generation from source","level":"1.9.5","depth":2,"path":"faq/faq_spec.md","ref":"faq/faq_spec.md","articles":[]},{"title":"API testing","level":"1.9.6","depth":2,"path":"faq/faq_testing.md","ref":"faq/faq_testing.md","articles":[]},{"title":"Documenting your API","level":"1.9.7","depth":2,"path":"faq/faq_documenting.md","ref":"faq/faq_documenting.md","articles":[]}]},"previous":{"title":"CLI autocompletion","level":"1.7","depth":1,"path":"cli_helpers.md","ref":"cli_helpers.md","articles":[]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"prism":{},"anchors":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"guidelines/README.md","mtime":"2018-07-10T06:26:50.898Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-10-07T04:56:41.352Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Guidelines to maintainers","level":"1.8","depth":1,"next":{"title":"FAQ","level":"1.9","depth":1,"path":"faq/README.md","ref":"faq/README.md","articles":[{"title":"Installation,setup and environment","level":"1.9.1","depth":2,"path":"faq/faq_setup.md","ref":"faq/faq_setup.md","articles":[]},{"title":"Model generation","level":"1.9.2","depth":2,"path":"faq/faq_model.md","ref":"faq/faq_model.md","articles":[]},{"title":"Server generation & customization","level":"1.9.3","depth":2,"path":"faq/faq_server.md","ref":"faq/faq_server.md","articles":[]},{"title":"Client generation","level":"1.9.4","depth":2,"path":"faq/faq_client.md","ref":"faq/faq_client.md","articles":[]},{"title":"Spec generation from source","level":"1.9.5","depth":2,"path":"faq/faq_spec.md","ref":"faq/faq_spec.md","articles":[]},{"title":"API testing","level":"1.9.6","depth":2,"path":"faq/faq_testing.md","ref":"faq/faq_testing.md","articles":[]},{"title":"Documenting your API","level":"1.9.7","depth":2,"path":"faq/faq_documenting.md","ref":"faq/faq_documenting.md","articles":[]},{"title":"Swagger specification","level":"1.9.8","depth":2,"path":"faq/faq_swagger.md","ref":"faq/faq_swagger.md","articles":[]}]},"previous":{"title":"CLI autocompletion","level":"1.7","depth":1,"path":"cli_helpers.md","ref":"cli_helpers.md","articles":[]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"prism":{},"anchors":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"guidelines/README.md","mtime":"2018-12-22T19:21:13.092Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-12-22T20:42:17.966Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

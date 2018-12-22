@@ -898,6 +898,19 @@
             
         </li>
     
+        <li class="chapter " data-level="1.9.8" data-path="faq_swagger.html">
+            
+                <a href="faq_swagger.html">
+            
+                    
+                    Swagger specification
+            
+                </a>
+            
+
+            
+        </li>
+    
 
             </ul>
             
@@ -954,7 +967,7 @@
 <p><em>Use-Case</em>: is it possible to write my own validation code for custom types? If so, can someone give me an example?</p>
 <blockquote>
 <p>Usage example:
-There is bookstore, with info about books: author, title, price. 
+There is bookstore, with info about books: author, title, price.
 And we want that books from some author will not cost more than some price.
 So I want to write and use a function ValidateBookCustom() like:</p>
 <pre class="language-"><code class="lang-golang">if book.author == &quot;Some author&quot; {
@@ -975,7 +988,7 @@ So I want to write and use a function ValidateBookCustom() like:</p>
 <p>You might build on that: generating a first model, customizing the validation code, then reusing this model (possibly with some others) in your servers.</p>
 <p>Another way is to use the <code>x-go-type extension</code>, to replace type generation with a custom type.</p>
 <p>There is the opportunity to get go-swagger to reuse a predefined type to satisfy the definition in the swagger spec.
-Imported package and type alias may be specified as options, as shown in this example: 
+Imported package and type alias may be specified as options, as shown in this example:
 <a href="https://github.com/go-swagger/go-swagger/blob/master/fixtures/codegen/existing-model.yml#L99-L103" target="_blank">https://github.com/go-swagger/go-swagger/blob/master/fixtures/codegen/existing-model.yml#L99-L103</a></p>
 <p>That example reuses a type provided by a library with a package alias and type name. The code generator will respect this.</p>
 <p>You might use both, preparing a customized model from an initially generated structure, then reusing type custom type in other declarations by hinting the generator with x-go-type.</p>
@@ -1100,7 +1113,7 @@ Regarding dates, this package extends validation to <a href="https://tools.ietf.
 <p>Originally from issue <a href="https://github.com/go-swagger/go-swagger/issues/643" target="_blank">#643</a>.</p>
 <h3 id="accessing-the-default-return-value"><a name="accessing-the-default-return-value" class="plugin-anchor" href="#accessing-the-default-return-value"><i class="fa fa-link" aria-hidden="true"></i></a>Accessing the Default return value</h3>
 <p><em>Use-Case</em>: I was wondering how I would get the default response from the client?</p>
-<p>Note: see also <a href="https://github.com/go-swagger/go-swagger/issues/597" target="_blank">Access HTTP status code from client#597</a>. </p>
+<p>Note: see also <a href="https://github.com/go-swagger/go-swagger/issues/597" target="_blank">Access HTTP status code from client#597</a>.</p>
 <p>I have a spec like this:</p>
 <pre class="language-"><code class="lang-YAML">/deploys/{deploy_id}:
   get:
@@ -1173,7 +1186,7 @@ model universe.</p>
 </blockquote>
 <p><em>How do others deal with this problem?</em></p>
 <ul>
-<li>If your question is &quot;How do I write arbitrary response bodies from go-swagger generated server code?&quot; 
+<li>If your question is &quot;How do I write arbitrary response bodies from go-swagger generated server code?&quot;
 (e.g. from subsystem structs that you have marshalled) then you may want to write your own <code>middleware.Responder</code>,
 which gives you direct access to the underlying <code>http.ResponseWriter</code>.
 At this point, though, why use go-swagger instead  of a lighter-weight framework?</li>
@@ -1202,6 +1215,119 @@ deep copy of that data structure from subsystem to API if we want to avoid type 
 <p><strong>Hint</strong>: you may use the <code>x-go-type</code> model annotation that allows you to use pre-existing types as models, you annotate your spec like this:
 <a href="https://github.com/go-swagger/go-swagger/blob/master/fixtures/codegen/existing-model.yml#L84-L88" target="_blank">https://github.com/go-swagger/go-swagger/blob/master/fixtures/codegen/existing-model.yml#L84-L88</a></p>
 <p>Originally from issue <a href="https://github.com/go-swagger/go-swagger/issues/948" target="_blank">#948</a>.</p>
+<h3 id="extra-sections-in-post-body"><a name="extra-sections-in-post-body" class="plugin-anchor" href="#extra-sections-in-post-body"><i class="fa fa-link" aria-hidden="true"></i></a>Extra sections in POST body</h3>
+<p><em>Use-case</em>: additional properties in object</p>
+<p>If I have a swagger spec that expects</p>
+<p>{&quot;foo&quot;: 123}</p>
+<p>and provide</p>
+<p>{&quot;foo&quot;: 123, &quot;blah&quot;: 345}</p>
+<p>it happily goes on about this way.</p>
+<p>Two questions:</p>
+<ol>
+<li>can I make it complain if extra stuff is included</li>
+<li>can I access these extra sections within the go code/handler?</li>
+</ol>
+<p><strong>Answer</strong>: use <code>additionalProperties: false</code> or <code>additionalProperties: true</code> in your definition.
+when it&apos;s set to true you&apos;ll have a <code>map[string]interface{}</code> added.</p>
+<p>Originally from issue <a href="https://github.com/go-swagger/go-swagger/issues/1337" target="_blank">#1337</a>.</p>
+<h3 id="how-to-support-generate-type-int"><a name="how-to-support-generate-type-int" class="plugin-anchor" href="#how-to-support-generate-type-int"><i class="fa fa-link" aria-hidden="true"></i></a>How to support generate type int?</h3>
+<p><em>Use-case</em>: generating <code>int</code> types</p>
+<blockquote>
+<p>I need to use swagger to generate my modes in go code.
+But I find I can hardly generate type <code>int</code>, always <code>int64</code>.
+Since I need to keep back compatibility for my project, I can hardly change the type.
+So in this case, does go-swagger meet this requirement?</p>
+</blockquote>
+<p><strong>Answer</strong>:  int is not a good option to support when it comes to contracts.</p>
+<blockquote>
+<p>Consider the following: you have an arm32 client on which int is int32, however your server is amd64.
+At this stage it&apos;s perfectly valid for the server to return int32 max value + 1, this will cause the client to overflow.
+So while go allows int as type I think for API contracts int is too ambiguous as definition leading to subtle but hard to debug failures.
+Similarly other languages may choose to default to int32 type instead of int64 type regardless of platform.</p>
+</blockquote>
+<p>Originally from issue <a href="https://github.com/go-swagger/go-swagger/issues/1205" target="_blank">#1205</a>.</p>
+<h3 id="generate-all-models-necessary-for-specified-operation"><a name="generate-all-models-necessary-for-specified-operation" class="plugin-anchor" href="#generate-all-models-necessary-for-specified-operation"><i class="fa fa-link" aria-hidden="true"></i></a>Generate all models necessary for specified operation</h3>
+<p><em>Use-case</em>: I&apos;m specifying specific operations and I&apos;d like to restrict the models to those needed for those operations. Is there a way to do that?</p>
+<p><strong>Answer:</strong> when using the generate server command, a repeatable --operation=xxx is available to restrict the scope of operations.</p>
+<blockquote>
+<p>NOTE: this option is not available for <code>generate model</code>.</p>
+</blockquote>
+<p>Originally from issue <a href="https://github.com/go-swagger/go-swagger/issues/1427" target="_blank">#1427</a>.</p>
+<h3 id="generated-code-changes-the-order-of-properties-in-struct"><a name="generated-code-changes-the-order-of-properties-in-struct" class="plugin-anchor" href="#generated-code-changes-the-order-of-properties-in-struct"><i class="fa fa-link" aria-hidden="true"></i></a>Generated code changes the order of properties in struct</h3>
+<p><em>Use-case</em>: the generated struct has attributes ordered differently than the original specification</p>
+<p>Example:</p>
+<pre class="language-"><code class="lang-yaml"><span class="token key atrule">Product</span><span class="token punctuation">:</span>
+    <span class="token key atrule">type</span><span class="token punctuation">:</span> <span class="token string">&quot;object&quot;</span>
+    <span class="token key atrule">properties</span><span class="token punctuation">:</span>
+      <span class="token key atrule">product_id</span><span class="token punctuation">:</span>
+        <span class="token key atrule">type</span><span class="token punctuation">:</span> <span class="token string">&quot;string&quot;</span>
+      <span class="token key atrule">name</span><span class="token punctuation">:</span>
+        <span class="token key atrule">type</span><span class="token punctuation">:</span> <span class="token string">&quot;string&quot;</span>
+</code></pre>
+<p>Generated by &quot;swagger generate server&quot;:</p>
+<pre class="language-"><code class="lang-go"><span class="token keyword">type</span> Product <span class="token keyword">struct</span> <span class="token punctuation">{</span>
+    Name <span class="token builtin">string</span> <span class="token string">`json:&quot;name,omitempty&quot;`</span>
+    ProductID <span class="token builtin">string</span> <span class="token string">`json:&quot;product_id,omitempty&quot;`</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>I want product_id be the first property of Product struct.
+Is there any way to keep the order of properties?</p>
+<p><strong>Answer:</strong> try x-order: n extension</p>
+<p>Originally from issue <a href="https://github.com/go-swagger/go-swagger/issues/1759" target="_blank">#1759</a>.</p>
+<h3 id="fail-to-use-swagger-generate-model--name"><a name="fail-to-use-swagger-generate-model--name" class="plugin-anchor" href="#fail-to-use-swagger-generate-model--name"><i class="fa fa-link" aria-hidden="true"></i></a>Fail to use swagger generate model -name</h3>
+<p><em>Use-case</em>: I met a problem when I tried to rename the filename of the auto-generated model.</p>
+<p>Example:</p>
+<ol>
+<li><code>swagger generate model -m ./models/vo  --name Person</code>
+<code>unknown models: Person</code></li>
+<li><code>swagger generate model -m ./models/vo  -name Person</code>
+<code>unknown models: ame</code></li>
+<li><code>swagger generate model -m ./models/vo  -name= Person</code>
+<code>unknown models: ame=</code></li>
+</ol>
+<p><code>json
+{
+  &quot;swagger&quot;: &quot;2.0&quot;,
+   &quot;info&quot;: {
+        &quot;version&quot;: &quot;1.0.0&quot;,
+        &quot;title&quot;: &quot;Simple API&quot;,
+        &quot;description&quot;: &quot;A simple API to learn how to write OpenAPI Specification&quot;
+    },
+   &quot;schemes&quot;: [
+        &quot;http&quot;
+    ],
+  &quot;paths&quot;: {
+      &quot;/persons&quot;:{
+          &quot;get&quot;:{
+              &quot;summary&quot;:&quot;&#x83B7;&#x53D6;&#x4E00;&#x4E9B;&#x76EE;&#x6807;person&quot;,
+              &quot;description&quot;: &quot;Returns a list containing all persons.&quot;,
+              &quot;responses&quot;: {
+                    &quot;200&quot;: {
+                        &quot;description&quot;: &quot;A list of Person&quot;,
+                        &quot;schema&quot;: {
+                            &quot;type&quot;: &quot;array&quot;,
+                            &quot;items&quot;: {
+                                &quot;properties&quot;: {
+                                    &quot;firstName&quot;: {
+                                        &quot;type&quot;: &quot;string&quot;
+                                    },
+                                    &quot;lastName&quot;: {
+                                        &quot;type&quot;: &quot;string&quot;
+                                    },
+                                    &quot;username&quot;: {
+                                        &quot;type&quot;: &quot;string&quot;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+          }
+    }
+  }
+}</code>json</p>
+<p><strong>Answer:</strong> you need to make it available with that name in the definitions section then it will know</p>
+<p>Originally from issue <a href="https://github.com/go-swagger/go-swagger/issues/1517" target="_blank">#1517</a>.</p>
 <hr>
 <p>Back to <a href="./#all-contributed-questions">all contributions</a></p>
 
@@ -1247,7 +1373,7 @@ deep copy of that data structure from subsystem to API if we want to avoid type 
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Model generation","level":"1.9.2","depth":2,"next":{"title":"Server generation & customization","level":"1.9.3","depth":2,"path":"faq/faq_server.md","ref":"faq/faq_server.md","articles":[]},"previous":{"title":"Installation,setup and environment","level":"1.9.1","depth":2,"path":"faq/faq_setup.md","ref":"faq/faq_setup.md","articles":[]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"prism":{},"anchors":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"faq/faq_model.md","mtime":"2018-09-22T04:55:34.176Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-10-07T04:56:41.352Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Model generation","level":"1.9.2","depth":2,"next":{"title":"Server generation & customization","level":"1.9.3","depth":2,"path":"faq/faq_server.md","ref":"faq/faq_server.md","articles":[]},"previous":{"title":"Installation,setup and environment","level":"1.9.1","depth":2,"path":"faq/faq_setup.md","ref":"faq/faq_setup.md","articles":[]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"prism":{},"anchors":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"faq/faq_model.md","mtime":"2018-12-22T19:21:13.092Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-12-22T20:42:17.966Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

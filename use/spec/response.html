@@ -898,6 +898,19 @@
             
         </li>
     
+        <li class="chapter " data-level="1.9.8" data-path="../../faq/faq_swagger.html">
+            
+                <a href="../../faq/faq_swagger.html">
+            
+                    
+                    Swagger specification
+            
+                </a>
+            
+
+            
+        </li>
+    
 
             </ul>
             
@@ -964,6 +977,10 @@ A swagger:route can specify a response name for a status code and then the match
 </thead>
 <tbody>
 <tr>
+<td><strong>In</strong></td>
+<td>where to find the field</td>
+</tr>
+<tr>
 <td><strong>Collection Format</strong></td>
 <td>when a slice the formatter for the collection when serialized on the request</td>
 </tr>
@@ -1002,6 +1019,10 @@ A swagger:route can specify a response name for a status code and then the match
 <tr>
 <td><strong>Unique</strong></td>
 <td>when set to true the slice can only contain unique items</td>
+</tr>
+<tr>
+<td><strong>Example</strong></td>
+<td>an example value, parsed as the field&apos;s type<br>(objects and slices are parsed as JSON)</td>
 </tr>
 </tbody>
 </table>
@@ -1063,6 +1084,7 @@ level the value is a 0-based index, so items.minLength is the same as items.0.mi
         <span class="token comment" spellcheck="true">// The validation message</span>
         <span class="token comment" spellcheck="true">//</span>
         <span class="token comment" spellcheck="true">// Required: true</span>
+        <span class="token comment" spellcheck="true">// Example: Expected type int</span>
         Message <span class="token builtin">string</span>
         <span class="token comment" spellcheck="true">// An optional field name to which this validation applies</span>
         FieldName <span class="token builtin">string</span>
@@ -1083,6 +1105,7 @@ level the value is a 0-based index, so items.minLength is the same as items.0.mi
         <span class="token key atrule">Message</span><span class="token punctuation">:</span>
           <span class="token key atrule">type</span><span class="token punctuation">:</span> string
           <span class="token key atrule">description</span><span class="token punctuation">:</span> The validation message
+          <span class="token key atrule">example</span><span class="token punctuation">:</span> Expected type int
         <span class="token key atrule">FieldName</span><span class="token punctuation">:</span>
           <span class="token key atrule">type</span><span class="token punctuation">:</span> string
           <span class="token key atrule">description</span><span class="token punctuation">:</span> an optional field name to which this validation applies
@@ -1130,7 +1153,7 @@ level the value is a 0-based index, so items.minLength is the same as items.0.mi
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"swagger:response","level":"1.4.6.2.5","depth":4,"next":{"title":"swagger:model","level":"1.4.6.2.6","depth":4,"path":"use/spec/model.md","ref":"use/spec/model.md","articles":[]},"previous":{"title":"swagger:operation","level":"1.4.6.2.4","depth":4,"path":"use/spec/operation.md","ref":"use/spec/operation.md","articles":[]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"prism":{},"anchors":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"use/spec/response.md","mtime":"2018-07-10T06:26:50.901Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-10-07T04:56:41.352Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"swagger:response","level":"1.4.6.2.5","depth":4,"next":{"title":"swagger:model","level":"1.4.6.2.6","depth":4,"path":"use/spec/model.md","ref":"use/spec/model.md","articles":[]},"previous":{"title":"swagger:operation","level":"1.4.6.2.4","depth":4,"path":"use/spec/operation.md","ref":"use/spec/operation.md","articles":[]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"prism":{},"anchors":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"use/spec/response.md","mtime":"2018-12-22T19:17:40.071Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-12-22T20:42:17.966Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

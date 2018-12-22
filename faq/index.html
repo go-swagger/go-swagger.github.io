@@ -898,6 +898,19 @@
             
         </li>
     
+        <li class="chapter " data-level="1.9.8" data-path="faq_swagger.html">
+            
+                <a href="faq_swagger.html">
+            
+                    
+                    Swagger specification
+            
+                </a>
+            
+
+            
+        </li>
+    
 
             </ul>
             
@@ -974,9 +987,14 @@ Feel free to contribute new questions and share your experience with go-swagger!
 <li><a href="faq_model.html#request-response-can-have-different-objects-returned-based-on-query-parameters">Request response can have different objects returned based on query parameters</a></li>
 <li><a href="faq_model.html#how-to-validate-dates-and-times">How to validate dates and times?</a></li>
 <li><a href="faq_model.html#accessing-the-default-return-value">Accessing the return value from Default response</a></li>
-<li><a href="faq_model.html#how-to-avoid-deep-copies-of-complex-data-structures-that-need-to-be-marshalled-across-the-api">How to avoid deep copies of complex data structures that need to be marshalled across the API?</a><!-- * How to make custom validators? -->
-</li>
+<li><a href="faq_model.html#how-to-avoid-deep-copies-of-complex-data-structures-that-need-to-be-marshalled-across-the-api">How to avoid deep copies of complex data structures that need to be marshalled across the API?</a></li>
+<li><a href="faq_model.html#extra-sections-in-post-body">Extra sections in POST body</a></li>
+<li><a href="faq_model.html#how-to-support-generate-type-int">How to support generate type int?</a></li>
+<li><a href="faq_model.html#generate-all-models-necessary-for-specified-operation">Generate all models necessary for specified operation</a></li>
+<li><a href="faq_model.html#generated-code-changes-the-order-of-properties-in-struct">Generated code changes the order of properties in struct</a></li>
+<li><a href="faq_model.html#fail-to-use-swagger-generate-model-name">Fail to use swagger generate model -name</a></li>
 </ul>
+<!-- * How to make custom validators? -->
 <h4 id="server-generation-and-customization"><a name="server-generation-and-customization" class="plugin-anchor" href="#server-generation-and-customization"><i class="fa fa-link" aria-hidden="true"></i></a>Server generation and customization</h4>
 <ul>
 <li><a href="faq_server.html#what-are-the-dependencies-required-by-the-generated-server">What are the dependencies required by the generated server?</a></li>
@@ -986,6 +1004,10 @@ Feel free to contribute new questions and share your experience with go-swagger!
 <li><a href="faq_server.html#how-to-access-access-api-struct-inside-operator-handler">How to access access API struct inside operator handler?</a></li>
 <li><a href="faq_server.html#use-go-swagger-to-generate-different-client-or-servers">Use go-swagger to generate different client or servers</a></li>
 <li><a href="faq_server.html#support-streaming-responses">Support streaming responses</a></li>
+<li><a href="faq_server.html#oauth-authentication-does-not-redirect-to-the-authorization-server">OAuth authentication does not redirect to the authorization server</a></li>
+<li><a href="faq_server.html#https-tls-cipher-suites-not-supported-by-aws-elastic-loadbalancer">HTTPS TLS Cipher Suites not supported by AWS Elastic LoadBalancer</a></li>
+<li><a href="faq_server.html#which-mime-types-are-supported">Which mime types are supported?</a></li>
+<li><a href="faq_server.html#is-it-possible-to-return-error-to-main-function-of-server">Is it possible to return error to main function of server?</a></li>
 </ul>
 <h4 id="client-generation"><a name="client-generation" class="plugin-anchor" href="#client-generation"><i class="fa fa-link" aria-hidden="true"></i></a>Client generation</h4>
 <ul>
@@ -1017,6 +1039,12 @@ Feel free to contribute new questions and share your experience with go-swagger!
 <li><a href="faq_documenting.html#how-to-serve-swagger-ui-from-a-preexisting-web-app">Serving UI from existing app</a></li>
 <li><a href="faq_server.html#how-to-use-swagger-ui-cors">How to use swagger-ui/cors?</a></li>
 <li><a href="faq_server.html#how-to-serve-my-ui-files">Serving my own UI files</a></li>
+</ul>
+<h4 id="swagger-specification"><a name="swagger-specification" class="plugin-anchor" href="#swagger-specification"><i class="fa fa-link" aria-hidden="true"></i></a>Swagger specification</h4>
+<ul>
+<li><a href="faq_swagger.html#default-vs-required">Default vs_required</a></li>
+<li><a href="faq_swagger.html#type-string-format-int64-not-respected-in-generator">type string, format int64 not respected in generator</a></li>
+<li><a href="faq_swagger.html#duplicate-operationid-error">Duplicate operationId error</a></li>
 </ul>
 <!-- More on that...
 #### Documentation and tutorials
@@ -1064,7 +1092,7 @@ Feel free to contribute new questions and share your experience with go-swagger!
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"FAQ","level":"1.9","depth":1,"next":{"title":"Installation,setup and environment","level":"1.9.1","depth":2,"path":"faq/faq_setup.md","ref":"faq/faq_setup.md","articles":[]},"previous":{"title":"Guidelines to maintainers","level":"1.8","depth":1,"path":"guidelines/README.md","ref":"guidelines/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"prism":{},"anchors":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"faq/README.md","mtime":"2018-05-04T15:13:55.468Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-10-07T04:56:41.352Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"FAQ","level":"1.9","depth":1,"next":{"title":"Installation,setup and environment","level":"1.9.1","depth":2,"path":"faq/faq_setup.md","ref":"faq/faq_setup.md","articles":[]},"previous":{"title":"Guidelines to maintainers","level":"1.8","depth":1,"path":"guidelines/README.md","ref":"guidelines/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"prism":{},"anchors":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"faq/README.md","mtime":"2018-12-22T19:21:13.092Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-12-22T20:42:17.966Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

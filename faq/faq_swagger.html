@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>API testing · GitBook</title>
+        <title>Swagger specification · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -65,10 +65,8 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="faq_documenting.html" />
     
-    
-    <link rel="prev" href="faq_spec.html" />
+    <link rel="prev" href="faq_documenting.html" />
     
 
     </head>
@@ -872,7 +870,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.9.6" data-path="faq_testing.html">
+        <li class="chapter " data-level="1.9.6" data-path="faq_testing.html">
             
                 <a href="faq_testing.html">
             
@@ -898,7 +896,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.9.8" data-path="faq_swagger.html">
+        <li class="chapter active" data-level="1.9.8" data-path="faq_swagger.html">
             
                 <a href="faq_swagger.html">
             
@@ -946,7 +944,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >API testing</a>
+        <a href=".." >Swagger specification</a>
     </h1>
 </div>
 
@@ -961,94 +959,196 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <!-- Questions about testing -->
-<h2 id="api-testing"><a name="api-testing" class="plugin-anchor" href="#api-testing"><i class="fa fa-link" aria-hidden="true"></i></a>API testing</h2>
-<h3 id="any-suggestions-how-to-leverage-the-generated-client-for-benchmarking-the-api"><a name="any-suggestions-how-to-leverage-the-generated-client-for-benchmarking-the-api" class="plugin-anchor" href="#any-suggestions-how-to-leverage-the-generated-client-for-benchmarking-the-api"><i class="fa fa-link" aria-hidden="true"></i></a>Any suggestions how to leverage the generated client for benchmarking the API?</h3>
-<p><em>Use-Case</em>: I want to benchmark the throughput and latency of different API calls.</p>
+                                <!-- Questions about swagger specs -->
+<h2 id="swagger-specification"><a name="swagger-specification" class="plugin-anchor" href="#swagger-specification"><i class="fa fa-link" aria-hidden="true"></i></a>Swagger specification</h2>
+<h3 id="default-vs-required"><a name="default-vs-required" class="plugin-anchor" href="#default-vs-required"><i class="fa fa-link" aria-hidden="true"></i></a>Default vs required</h3>
+<p><em>Use-Case</em>:  spec validation rejects default object without required properties</p>
 <blockquote>
-<p>I can think of using the go testing/benchmarking framework and hand role the API calls, or I can leverage the generated client and augment it with a benchmarking framework.</p>
+<p>If we have the default for the firstName and lastName but didn&apos;t set the username, which is required,
+we will have an error message showing that we have to put the default for the required field &quot;username&quot; as well.</p>
+<p>The &quot;default&quot; section must contain any &quot;required&quot; properties, which is counterintuitive because the &quot;required&quot; properties
+should always be provided explicitly and shouldn&#x2019;t have defaults.</p>
 </blockquote>
-<p><em>What have others done?</em></p>
-<p>At the moment, the toolkit does not generate testing tools. You may be interested in this contribution: <a href="https://github.com/go-openapi/stubs" target="_blank">https://github.com/go-openapi/stubs</a>
-(generates random JSON to fill in testcases).</p>
-<p>We acknowledge that  API testing is an important use-case. However, it is not yet supported. Pull requests to move on forward in that direction are welcome.</p>
-<p>Originally from issue <a href="https://github.com/go-swagger/go-swagger/issues/787" target="_blank">#787</a>.</p>
-<h3 id="using-httptest"><a name="using-httptest" class="plugin-anchor" href="#using-httptest"><i class="fa fa-link" aria-hidden="true"></i></a>Using httptest</h3>
-<p><em>Use-Case</em>: I would like to use httptest for testing my handlers.
-Go-swagger provides a Server, but not a configured handler. </p>
-<p><strong>Hint</strong>: I use this hack : in a file <code>test.go</code> in the restapi folder, I steal the private <code>configureAPI</code> function. It works.</p>
-<pre class="language-"><code class="lang-golang">package restapi
-
-import (
-    loads &quot;github.com/go-openapi/loads&quot;
-    &quot;github.com/pim/pam/poum/restapi/operations&quot;
-    &quot;net/http&quot;
-)
-
-func getAPI() (*operations.ThefactoryAPI, error) {
-    swaggerSpec, err := loads.Analyzed(SwaggerJSON, &quot;&quot;)
-    if err != nil {
-        return nil, err
-    }
-    api := operations.NewThefactoryAPI(swaggerSpec)
-    return api, nil
-}
-
-func GetAPIHandler() (http.Handler, error) {
-    api, err := getAPI()
-    if err != nil {
-        return nil, err
-    }
-    h := configureAPI(api)
-    err = api.Validate()
-    if err != nil {
-        return nil, err
-    }
-    return h, nil
-}
+<p>Example:</p>
+<pre class="language-"><code class="lang-yaml"><span class="token key atrule">paths</span><span class="token punctuation">:</span>
+  /person/<span class="token punctuation">{</span>id<span class="token punctuation">}</span><span class="token punctuation">:</span>
+    <span class="token key atrule">put</span><span class="token punctuation">:</span>
+      <span class="token key atrule">summary</span><span class="token punctuation">:</span> Put a person
+      <span class="token key atrule">description</span><span class="token punctuation">:</span> Put a person.
+      <span class="token key atrule">consumes</span><span class="token punctuation">:</span>
+        <span class="token punctuation">-</span> application/json
+      <span class="token key atrule">parameters</span><span class="token punctuation">:</span>
+        <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> id
+          <span class="token key atrule">in</span><span class="token punctuation">:</span> path
+          <span class="token key atrule">description</span><span class="token punctuation">:</span> ID of person
+          <span class="token key atrule">required</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+          <span class="token key atrule">type</span><span class="token punctuation">:</span> integer
+        <span class="token punctuation">-</span> <span class="token key atrule">in</span><span class="token punctuation">:</span> body
+          <span class="token key atrule">name</span><span class="token punctuation">:</span> body
+          <span class="token key atrule">description</span><span class="token punctuation">:</span> Person
+          <span class="token key atrule">schema</span><span class="token punctuation">:</span>
+            <span class="token key atrule">type</span><span class="token punctuation">:</span> object
+            <span class="token key atrule">required</span><span class="token punctuation">:</span>
+              <span class="token punctuation">-</span> username
+            <span class="token key atrule">default</span><span class="token punctuation">:</span>
+              <span class="token key atrule">firstName</span><span class="token punctuation">:</span> John
+              <span class="token key atrule">lastName</span><span class="token punctuation">:</span> Smith
+            <span class="token key atrule">properties</span><span class="token punctuation">:</span>
+              <span class="token key atrule">firstName</span><span class="token punctuation">:</span>
+                <span class="token key atrule">type</span><span class="token punctuation">:</span> string
+              <span class="token key atrule">lastName</span><span class="token punctuation">:</span>
+                <span class="token key atrule">type</span><span class="token punctuation">:</span> string
+              <span class="token key atrule">username</span><span class="token punctuation">:</span>
+                <span class="token key atrule">type</span><span class="token punctuation">:</span> string
+      <span class="token key atrule">responses</span><span class="token punctuation">:</span>
+        <span class="token key atrule">200</span><span class="token punctuation">:</span>
+          <span class="token key atrule">description</span><span class="token punctuation">:</span> successful
 </code></pre>
-<p>And I can use this in tests like this:</p>
-<pre class="language-"><code class="lang-golang">handler, err := restapi.GetAPIHandler()
-if err != nil {
-    t.Fatal(&quot;get api handler&quot;, err)
-}
-ts := httptest.NewServer(handler)
-defer ts.Close()
-res, err := http.Get(ts.URL + &quot;/api/v1/boxes&quot;)
+<p><code>swagger generate model -f person.yaml</code></p>
+<p>I notice that the error message could be prevented if I use <code>swagger generate model --skip-validation</code>.
+But I think the error message should not show even I just use <code>swagger generate model -f person.yaml</code> because
+&quot;required&quot; properties should always be provided explicitly and shouldn&#x2019;t have defaults.</p>
+<p><strong>Answer:</strong> Those defaults need to be put on the individual members.</p>
+<blockquote>
+<p>The default where you put it is a default for the entire object if it is not provided at all.
+Thus it must pass validation of the object schema.
+As per swagger, defaults MUST validate their schema. This differs fro json-Schema spec.</p>
+</blockquote>
+<p>Originally from issue <a href="https://github.com/go-swagger/go-swagger/issues/1552" target="_blank">#1552</a>.</p>
+<p><em>Use-Case</em>: <code>go-swagger</code> rejects default object that misses required properties.</p>
+<blockquote>
+<p>My understanding is that properties in default and those listed as required are mutually exclusive, because one is supposed
+to explicitly provide required properties, while properties in default can be filled in.
+See <a href="https://swagger.io/blog/unlocking-the-spec-the-default-keyword" target="_blank">https://swagger.io/blog/unlocking-the-spec-the-default-keyword</a></p>
+</blockquote>
+<p>Example:</p>
+<pre class="language-"><code class="lang-yaml"><span class="token key atrule">paths</span><span class="token punctuation">:</span>
+  /person/<span class="token punctuation">{</span>id<span class="token punctuation">}</span><span class="token punctuation">:</span>
+    <span class="token key atrule">put</span><span class="token punctuation">:</span>
+      <span class="token key atrule">summary</span><span class="token punctuation">:</span> Put a person
+      <span class="token key atrule">description</span><span class="token punctuation">:</span> Put a person.
+      <span class="token key atrule">consumes</span><span class="token punctuation">:</span>
+        <span class="token punctuation">-</span> application/json
+      <span class="token key atrule">parameters</span><span class="token punctuation">:</span>
+        <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> id
+          <span class="token key atrule">in</span><span class="token punctuation">:</span> path
+          <span class="token key atrule">description</span><span class="token punctuation">:</span> ID of person
+          <span class="token key atrule">required</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+          <span class="token key atrule">type</span><span class="token punctuation">:</span> integer
+        <span class="token punctuation">-</span> <span class="token key atrule">in</span><span class="token punctuation">:</span> body
+          <span class="token key atrule">name</span><span class="token punctuation">:</span> body
+          <span class="token key atrule">description</span><span class="token punctuation">:</span> Person
+          <span class="token key atrule">schema</span><span class="token punctuation">:</span>
+            <span class="token key atrule">type</span><span class="token punctuation">:</span> object
+            <span class="token key atrule">required</span><span class="token punctuation">:</span>
+              <span class="token punctuation">-</span> username
+            <span class="token key atrule">default</span><span class="token punctuation">:</span>
+              <span class="token key atrule">firstName</span><span class="token punctuation">:</span> John
+              <span class="token key atrule">lastName</span><span class="token punctuation">:</span> Smith
+            <span class="token key atrule">properties</span><span class="token punctuation">:</span>
+              <span class="token key atrule">firstName</span><span class="token punctuation">:</span>
+                <span class="token key atrule">type</span><span class="token punctuation">:</span> string
+              <span class="token key atrule">lastName</span><span class="token punctuation">:</span>
+                <span class="token key atrule">type</span><span class="token punctuation">:</span> string
+              <span class="token key atrule">username</span><span class="token punctuation">:</span>
+                <span class="token key atrule">type</span><span class="token punctuation">:</span> string
+      <span class="token key atrule">responses</span><span class="token punctuation">:</span>
+        <span class="token key atrule">200</span><span class="token punctuation">:</span>
+          <span class="token key atrule">description</span><span class="token punctuation">:</span> successful
 </code></pre>
-<p>But, hacking restapi, which use my handlers is cyclic, I can&apos;t drop my test near my handlers, and this is still a hack.</p>
-<p><em>What is the offical way to manage handler testing?</em></p>
-<p><strong>Hint</strong>: you don&apos;t actually need httptest to test the handlers.
-A handler is essentially a function of parameters to result.
-The result knows how to write itself to a http.ResponseWriter, and you already know that that part works.
-So to test a handler what you require is to test just your code.</p>
-<p>So to test the AddOne operation from the todo list this, there are 2 functions involved in the implementation.</p>
-<p>The first function uses the data from the request to actually write the todo item to a store, this can be tested separately.</p>
-<pre class="language-"><code class="lang-golang">func addItem(item *models.Item) error {
-    if item == nil {
-        return errors.New(500, &quot;item must be present&quot;)
-    }
-
-    itemsLock.Lock()
-    defer itemsLock.Unlock()
-
-    newID := newItemID()
-    item.ID = newID
-    items[newID] = item
-
-    return nil
-}
+<p><strong>Answer:</strong> the spec validation warns you about mixing up default with required.</p>
+<blockquote>
+<p>If you override this validation (with <code>swagger generate model --skip-validation</code>), the model generator would override the
+required clause, and use the default.</p>
+</blockquote>
+<p><strong>Would --skip-validation skip any other validations?</strong></p>
+<p><strong>Answer:</strong> Yes. <code>--skip-validation</code> skips the call to <code>swagger validate {spec}</code>, which is normally carried on before generation.</p>
+<p>For some use cases, we have to, since <code>go-swagger</code> supports constructs that are not stricly swagger-compliant.
+This one is an example: some override silently take place here at generation time.</p>
+<p>Originally from issue <a href="https://github.com/go-swagger/go-swagger/issues/1501" target="_blank">#1501</a>.</p>
+<h3 id="type-string-format-int64-not-respected-in-generator"><a name="type-string-format-int64-not-respected-in-generator" class="plugin-anchor" href="#type-string-format-int64-not-respected-in-generator"><i class="fa fa-link" aria-hidden="true"></i></a>type string, format int64 not respected in generator</h3>
+<p><em>Use-Case</em>:  when generating parameters or models from a swagger file with a definition that specifies type: string and format: int64,
+ the <strong>generation fails</strong>.</p>
+<p>Example:</p>
+<pre class="language-"><code class="lang-json"><span class="token punctuation">{</span>
+    <span class="token property">&quot;consumes&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+        <span class="token string">&quot;application/json&quot;</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;definitions&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">&quot;Test&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+            <span class="token property">&quot;properties&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+                <span class="token property">&quot;id&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+                    <span class="token property">&quot;format&quot;</span><span class="token operator">:</span> <span class="token string">&quot;int64&quot;</span><span class="token punctuation">,</span>
+                    <span class="token property">&quot;type&quot;</span><span class="token operator">:</span> <span class="token string">&quot;string&quot;</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span><span class="token punctuation">,</span>
+            <span class="token property">&quot;type&quot;</span><span class="token operator">:</span> <span class="token string">&quot;object&quot;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+...
 </code></pre>
-<p>Then there is the actual handler:</p>
-<pre class="language-"><code class="lang-golang">todos.AddOneHandlerFunc(func(params todos.AddOneParams) middleware.Responder {
-    if err := addItem(params.Body); err != nil {
-        return todos.NewAddOneDefault(500).WithPayload(&amp;models.Error{Code: 500, Message: swag.String(err.Error())})
-    }
-    return todos.NewAddOneCreated().WithPayload(params.Body)
-})
+<p><strong>Answer</strong>: that&apos;s an invalid type. The openapi 2.0 spec says the type should be</p>
+<pre class="language-"><code>type: integer
+format: int64
+</code></pre><p>Originally from issue <a href="https://github.com/go-swagger/go-swagger/issues/1381" target="_blank">#1381</a>.</p>
+<h3 id="duplicate-operationid-error"><a name="duplicate-operationid-error" class="plugin-anchor" href="#duplicate-operationid-error"><i class="fa fa-link" aria-hidden="true"></i></a>Duplicate operationId error</h3>
+<p><em>Use-Case</em>:  my spec indicates duplicate operationIds but for separate endpoints.
+When generating a server and there are multiple endpoints, the <code>operations</code> directory in <code>restapi</code>
+contains subdirectories for each of those endpoints.</p>
+<p>Example:</p>
+<pre class="language-"><code class="lang-yaml"><span class="token key atrule">paths</span><span class="token punctuation">:</span>
+  &apos;/users/<span class="token punctuation">{</span>id<span class="token punctuation">}</span>&apos;<span class="token punctuation">:</span>
+    <span class="token key atrule">parameters</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> id
+        <span class="token key atrule">in</span><span class="token punctuation">:</span> path
+        <span class="token key atrule">required</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+        <span class="token key atrule">type</span><span class="token punctuation">:</span> string
+    <span class="token key atrule">get</span><span class="token punctuation">:</span>
+      <span class="token key atrule">operationId</span><span class="token punctuation">:</span> getById
+      <span class="token key atrule">summary</span><span class="token punctuation">:</span> Get User By ID
+      <span class="token key atrule">tags</span><span class="token punctuation">:</span>
+        <span class="token punctuation">-</span> Users
+      <span class="token key atrule">responses</span><span class="token punctuation">:</span>
+        <span class="token key atrule">&apos;200&apos;</span><span class="token punctuation">:</span>
+          <span class="token key atrule">description</span><span class="token punctuation">:</span> <span class="token string">&apos;&apos;</span>
+          <span class="token key atrule">schema</span><span class="token punctuation">:</span>
+            <span class="token key atrule">$ref</span><span class="token punctuation">:</span> &apos;<span class="token comment" spellcheck="true">#/definitions/user-output&apos;</span>
+  &apos;/pets/<span class="token punctuation">{</span>id<span class="token punctuation">}</span>&apos;<span class="token punctuation">:</span>
+    <span class="token key atrule">parameters</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> id
+        <span class="token key atrule">in</span><span class="token punctuation">:</span> path
+        <span class="token key atrule">required</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+        <span class="token key atrule">type</span><span class="token punctuation">:</span> string
+    <span class="token key atrule">get</span><span class="token punctuation">:</span>
+      <span class="token key atrule">operationId</span><span class="token punctuation">:</span> getById
+      <span class="token key atrule">summary</span><span class="token punctuation">:</span> Get Pet By ID
+      <span class="token key atrule">tags</span><span class="token punctuation">:</span>
+        <span class="token punctuation">-</span> Pets
+      <span class="token key atrule">responses</span><span class="token punctuation">:</span>
+        <span class="token key atrule">&apos;200&apos;</span><span class="token punctuation">:</span>
+          <span class="token key atrule">description</span><span class="token punctuation">:</span> <span class="token string">&apos;&apos;</span>
+          <span class="token key atrule">schema</span><span class="token punctuation">:</span>
+            <span class="token key atrule">$ref</span><span class="token punctuation">:</span> &apos;<span class="token comment" spellcheck="true">#/definitions/pet-output&apos;</span>
 </code></pre>
-<p>To test this second function we don&apos;t need to use the httptest package, you can assume that that part of the code works. So all you have to test is whether or not you get the right return types for a given set of parameters.</p>
-<p>Originally from issue <a href="https://github.com/go-swagger/go-swagger/issues/719" target="_blank">#719</a>.</p>
+<p>I am expecting a generated structure like so:</p>
+<pre class="language-"><code>&#x2514;&#x2500;&#x2500; restapi
+    ...
+    &#x251C;&#x2500;&#x2500; operations
+    &#x2502;   &#x251C;&#x2500;&#x2500; pets
+    &#x2502;   &#x2502;   &#x251C;&#x2500;&#x2500; ...
+    &#x2502;   &#x251C;&#x2500;&#x2500; users
+    &#x2502;   &#x2502;   &#x251C;&#x2500;&#x2500; ...
+    &#x2502;   &#x2514;&#x2500;&#x2500; ...
+</code></pre><p>However, instead of generating the server I get this error: <code>&quot;getById&quot; is defined 2 times</code></p>
+<p>Is it possible to bypass this validation error IF the operation ids will go into separate directories?</p>
+<p><strong>Answer:</strong> operationId is always globally unique per swagger 2.0 specification. The id MUST be unique among all operations described in the API.</p>
+<p><a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#operationObject" target="_blank">https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#operationObject</a></p>
+<blockquote>
+<p>Unique string used to identify the operation. The id MUST be unique among all operations described in the API.
+Tools and libraries MAY use the operationId to uniquely identify an operation,
+therefore, it is recommended to follow common programming naming conventions.</p>
+</blockquote>
+<p>Originally from issue <a href="https://github.com/go-swagger/go-swagger/issues/1143" target="_blank">#1143</a>.</p>
 <hr>
 <p>Back to <a href="./#all-contributed-questions">all contributions</a></p>
 
@@ -1078,14 +1178,10 @@ So to test a handler what you require is to test just your code.</p>
 
             
                 
-                <a href="faq_spec.html" class="navigation navigation-prev " aria-label="Previous page: Spec generation from source">
+                <a href="faq_documenting.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: Documenting your API">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
-                
-                <a href="faq_documenting.html" class="navigation navigation-next " aria-label="Next page: Documenting your API">
-                    <i class="fa fa-angle-right"></i>
-                </a>
                 
             
         
@@ -1094,7 +1190,7 @@ So to test a handler what you require is to test just your code.</p>
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"API testing","level":"1.9.6","depth":2,"next":{"title":"Documenting your API","level":"1.9.7","depth":2,"path":"faq/faq_documenting.md","ref":"faq/faq_documenting.md","articles":[]},"previous":{"title":"Spec generation from source","level":"1.9.5","depth":2,"path":"faq/faq_spec.md","ref":"faq/faq_spec.md","articles":[]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"prism":{},"anchors":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"faq/faq_testing.md","mtime":"2018-02-01T22:20:06.189Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-12-22T20:42:17.966Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Swagger specification","level":"1.9.8","depth":2,"previous":{"title":"Documenting your API","level":"1.9.7","depth":2,"path":"faq/faq_documenting.md","ref":"faq/faq_documenting.md","articles":[]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"prism":{},"anchors":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"faq/faq_swagger.md","mtime":"2018-12-22T19:21:13.092Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-12-22T20:42:17.966Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
