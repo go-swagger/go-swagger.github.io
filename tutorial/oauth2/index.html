@@ -338,12 +338,12 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.4.4.1" data-path="../../usage/flatten.html">
+        <li class="chapter " data-level="1.4.4.1" data-path="../../usage/diff.html">
             
-                <a href="../../usage/flatten.html">
+                <a href="../../usage/diff.html">
             
                     
-                    Flatten
+                    Diff
             
                 </a>
             
@@ -364,7 +364,20 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.4.3" data-path="../../usage/mixin.html">
+        <li class="chapter " data-level="1.4.4.3" data-path="../../usage/flatten.html">
+            
+                <a href="../../usage/flatten.html">
+            
+                    
+                    Flatten
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4.4" data-path="../../usage/mixin.html">
             
                 <a href="../../usage/mixin.html">
             
@@ -985,7 +998,7 @@ with our API. This mechanism follows the &apos;accessCode&apos; OAuth2 workflow.
 <p>We specify the following security requirements:</p>
 <ul>
 <li>A default requirements for all endpoints: users need to be authenticated within the &quot;user&quot; scope by providing 
-a OAuth token (e.g. Authentication: Bearer header or <code>accss_token</code> query parameter).</li>
+a OAuth token (e.g. Authentication: Bearer header or <code>access_token</code> query parameter).</li>
 </ul>
 <pre class="language-"><code class="lang-yaml"><span class="token key atrule">security</span><span class="token punctuation">:</span>
   <span class="token punctuation">-</span> <span class="token key atrule">OauthSecurity</span><span class="token punctuation">:</span>
@@ -1024,34 +1037,34 @@ is just a string (i.e. the token itself).</p>
 implementation for our workflow.</p>
 <p>First, we need some extra packages to work with OAuth2, OpenID and HTTP redirections:</p>
 <pre class="language-"><code class="lang-go"><span class="token keyword">import</span> <span class="token punctuation">(</span>
-    oidc <span class="token string">&quot;github.com/coreos/go-oidc&quot;</span>            <span class="token comment" spellcheck="true">// Google OpenID client</span>
+    oidc <span class="token string">&quot;github.com/coreos/go-oidc&quot;</span>            <span class="token comment">// Google OpenID client</span>
     <span class="token string">&quot;golang.org/x/net/context&quot;</span>
-    <span class="token string">&quot;golang.org/x/oauth2&quot;</span>                       <span class="token comment" spellcheck="true">// OAuth2 client</span>
+    <span class="token string">&quot;golang.org/x/oauth2&quot;</span>                       <span class="token comment">// OAuth2 client</span>
 <span class="token punctuation">)</span>
 </code></pre>
 <pre class="language-"><code class="lang-go"><span class="token keyword">var</span> <span class="token punctuation">(</span>
-    <span class="token comment" spellcheck="true">// state carries an internal token during the oauth2 workflow</span>
-    <span class="token comment" spellcheck="true">// we just need a non empty initial value</span>
-    state <span class="token operator">=</span> <span class="token string">&quot;foobar&quot;</span> <span class="token comment" spellcheck="true">// Don&apos;t make this a global in production.</span>
+    <span class="token comment">// state carries an internal token during the oauth2 workflow</span>
+    <span class="token comment">// we just need a non empty initial value</span>
+    state <span class="token operator">=</span> <span class="token string">&quot;foobar&quot;</span> <span class="token comment">// Don&apos;t make this a global in production.</span>
 
-    <span class="token comment" spellcheck="true">// the credentials for this API (adapt values when registering API)</span>
-    clientID     <span class="token operator">=</span> <span class="token string">&quot;&quot;</span> <span class="token comment" spellcheck="true">// &lt;= enter registered API client ID here</span>
-    clientSecret <span class="token operator">=</span> <span class="token string">&quot;&quot;</span> <span class="token comment" spellcheck="true">// &lt;= enter registered API client secret here</span>
+    <span class="token comment">// the credentials for this API (adapt values when registering API)</span>
+    clientID     <span class="token operator">=</span> <span class="token string">&quot;&quot;</span> <span class="token comment">// &lt;= enter registered API client ID here</span>
+    clientSecret <span class="token operator">=</span> <span class="token string">&quot;&quot;</span> <span class="token comment">// &lt;= enter registered API client secret here</span>
 
-    <span class="token comment" spellcheck="true">//  unused in this example: the signer of the delivered token</span>
+    <span class="token comment">//  unused in this example: the signer of the delivered token</span>
     issuer       <span class="token operator">=</span> <span class="token string">&quot;https://accounts.google.com&quot;</span>
 
-    <span class="token comment" spellcheck="true">// the Google login URL</span>
+    <span class="token comment">// the Google login URL</span>
     authURL      <span class="token operator">=</span> <span class="token string">&quot;https://accounts.google.com/o/oauth2/v2/auth&quot;</span>
 
-    <span class="token comment" spellcheck="true">// the Google OAuth2 resource provider which delivers access tokens</span>
+    <span class="token comment">// the Google OAuth2 resource provider which delivers access tokens</span>
     tokenURL     <span class="token operator">=</span> <span class="token string">&quot;https://www.googleapis.com/oauth2/v4/token&quot;</span>
     userInfoURL  <span class="token operator">=</span> <span class="token string">&quot;https://www.googleapis.com/oauth2/v3/userinfo&quot;</span>
 
-    <span class="token comment" spellcheck="true">// our endpoint to be called back by the redirected client</span>
+    <span class="token comment">// our endpoint to be called back by the redirected client</span>
     callbackURL  <span class="token operator">=</span> <span class="token string">&quot;http://127.0.0.1:12345/api/auth/callback&quot;</span>
 
-    <span class="token comment" spellcheck="true">// the description of the OAuth2 flow</span>
+    <span class="token comment">// the description of the OAuth2 flow</span>
     endpoint <span class="token operator">=</span> oauth2<span class="token punctuation">.</span>Endpoint<span class="token punctuation">{</span>
         AuthURL<span class="token punctuation">:</span>  authURL<span class="token punctuation">,</span>
         TokenURL<span class="token punctuation">:</span> tokenURL<span class="token punctuation">,</span>
@@ -1068,13 +1081,13 @@ implementation for our workflow.</p>
 </code></pre>
 <h3 id="configure-the-api-in-restapiconfigureauthsamplego"><a name="configure-the-api-in-restapiconfigureauthsamplego" class="plugin-anchor" href="#configure-the-api-in-restapiconfigureauthsamplego"><i class="fa fa-link" aria-hidden="true"></i></a>Configure the API in <code>restapi/configure_auth_sample.go</code></h3>
 <pre class="language-"><code class="lang-go"><span class="token keyword">func</span> <span class="token function">configureAPI</span><span class="token punctuation">(</span>api <span class="token operator">*</span>operations<span class="token punctuation">.</span>OauthSampleAPI<span class="token punctuation">)</span> http<span class="token punctuation">.</span>Handler <span class="token punctuation">{</span>
-    <span class="token comment" spellcheck="true">// configure the api here</span>
+    <span class="token comment">// configure the api here</span>
     api<span class="token punctuation">.</span>ServeError <span class="token operator">=</span> errors<span class="token punctuation">.</span>ServeError
 
-    <span class="token comment" spellcheck="true">// Set your custom logger if needed. Default one is log.Printf</span>
-    <span class="token comment" spellcheck="true">// Expected interface func(string, ...interface{})</span>
-    <span class="token comment" spellcheck="true">//</span>
-    <span class="token comment" spellcheck="true">// Example:</span>
+    <span class="token comment">// Set your custom logger if needed. Default one is log.Printf</span>
+    <span class="token comment">// Expected interface func(string, ...interface{})</span>
+    <span class="token comment">//</span>
+    <span class="token comment">// Example:</span>
     api<span class="token punctuation">.</span>Logger <span class="token operator">=</span> log<span class="token punctuation">.</span>Printf
 
     api<span class="token punctuation">.</span>JSONConsumer <span class="token operator">=</span> runtime<span class="token punctuation">.</span><span class="token function">JSONConsumer</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
@@ -1082,17 +1095,17 @@ implementation for our workflow.</p>
     api<span class="token punctuation">.</span>JSONProducer <span class="token operator">=</span> runtime<span class="token punctuation">.</span><span class="token function">JSONProducer</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
 
     api<span class="token punctuation">.</span>OauthSecurityAuth <span class="token operator">=</span> <span class="token keyword">func</span><span class="token punctuation">(</span>token <span class="token builtin">string</span><span class="token punctuation">,</span> scopes <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">string</span><span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token operator">*</span>models<span class="token punctuation">.</span>Principal<span class="token punctuation">,</span> <span class="token builtin">error</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token comment" spellcheck="true">// This handler is called by the runtime whenever a route needs authentication </span>
-        <span class="token comment" spellcheck="true">// against the &apos;OAuthSecurity&apos; scheme.</span>
-        <span class="token comment" spellcheck="true">// It is passed a token extracted from the Authentication Bearer header, and </span>
-        <span class="token comment" spellcheck="true">// the list of scopes mentioned by the spec for this route.</span>
+        <span class="token comment">// This handler is called by the runtime whenever a route needs authentication </span>
+        <span class="token comment">// against the &apos;OAuthSecurity&apos; scheme.</span>
+        <span class="token comment">// It is passed a token extracted from the Authentication Bearer header, and </span>
+        <span class="token comment">// the list of scopes mentioned by the spec for this route.</span>
 
-        <span class="token comment" spellcheck="true">// NOTE: in this simple implementation, we do not check scopes against  </span>
-        <span class="token comment" spellcheck="true">// the signed claims in the JWT token.</span>
-        <span class="token comment" spellcheck="true">// So whatever the required scope (passed a parameter by the runtime), </span>
-        <span class="token comment" spellcheck="true">// this will succeed provided we get a valid token.</span>
+        <span class="token comment">// NOTE: in this simple implementation, we do not check scopes against  </span>
+        <span class="token comment">// the signed claims in the JWT token.</span>
+        <span class="token comment">// So whatever the required scope (passed a parameter by the runtime), </span>
+        <span class="token comment">// this will succeed provided we get a valid token.</span>
 
-        <span class="token comment" spellcheck="true">// authenticated validates a JWT token at userInfoURL</span>
+        <span class="token comment">// authenticated validates a JWT token at userInfoURL</span>
         ok<span class="token punctuation">,</span> err <span class="token operator">:=</span> <span class="token function">authenticated</span><span class="token punctuation">(</span>token<span class="token punctuation">)</span>
         <span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">{</span>
             <span class="token keyword">return</span> <span class="token boolean">nil</span><span class="token punctuation">,</span> errors<span class="token punctuation">.</span><span class="token function">New</span><span class="token punctuation">(</span><span class="token number">401</span><span class="token punctuation">,</span> <span class="token string">&quot;error authenticate&quot;</span><span class="token punctuation">)</span>
@@ -1101,13 +1114,13 @@ implementation for our workflow.</p>
             <span class="token keyword">return</span> <span class="token boolean">nil</span><span class="token punctuation">,</span> errors<span class="token punctuation">.</span><span class="token function">New</span><span class="token punctuation">(</span><span class="token number">401</span><span class="token punctuation">,</span> <span class="token string">&quot;invalid token&quot;</span><span class="token punctuation">)</span>
         <span class="token punctuation">}</span>
 
-        <span class="token comment" spellcheck="true">// returns the authenticated principal (here just filled in with its token)</span>
+        <span class="token comment">// returns the authenticated principal (here just filled in with its token)</span>
         prin <span class="token operator">:=</span> models<span class="token punctuation">.</span><span class="token function">Principal</span><span class="token punctuation">(</span>token<span class="token punctuation">)</span>
         <span class="token keyword">return</span> <span class="token operator">&amp;</span>prin<span class="token punctuation">,</span> <span class="token boolean">nil</span>
     <span class="token punctuation">}</span>
 
     api<span class="token punctuation">.</span>GetAuthCallbackHandler <span class="token operator">=</span> operations<span class="token punctuation">.</span><span class="token function">GetAuthCallbackHandlerFunc</span><span class="token punctuation">(</span><span class="token keyword">func</span><span class="token punctuation">(</span>params operations<span class="token punctuation">.</span>GetAuthCallbackParams<span class="token punctuation">)</span> middleware<span class="token punctuation">.</span>Responder <span class="token punctuation">{</span>
-        <span class="token comment" spellcheck="true">// implements the callback operation</span>
+        <span class="token comment">// implements the callback operation</span>
         token<span class="token punctuation">,</span> err <span class="token operator">:=</span> <span class="token function">callback</span><span class="token punctuation">(</span>params<span class="token punctuation">.</span>HTTPRequest<span class="token punctuation">)</span>
         <span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">{</span>
             <span class="token keyword">return</span> middleware<span class="token punctuation">.</span><span class="token function">NotImplemented</span><span class="token punctuation">(</span><span class="token string">&quot;operation .GetAuthCallback error&quot;</span><span class="token punctuation">)</span>
@@ -1117,19 +1130,19 @@ implementation for our workflow.</p>
     <span class="token punctuation">}</span><span class="token punctuation">)</span>
 
     api<span class="token punctuation">.</span>GetLoginHandler <span class="token operator">=</span> operations<span class="token punctuation">.</span><span class="token function">GetLoginHandlerFunc</span><span class="token punctuation">(</span><span class="token keyword">func</span><span class="token punctuation">(</span>params operations<span class="token punctuation">.</span>GetLoginParams<span class="token punctuation">)</span> middleware<span class="token punctuation">.</span>Responder <span class="token punctuation">{</span>
-        <span class="token comment" spellcheck="true">// implements the login operation</span>
+        <span class="token comment">// implements the login operation</span>
         <span class="token function">login</span><span class="token punctuation">(</span>params<span class="token punctuation">.</span>HTTPRequest<span class="token punctuation">)</span>
         <span class="token keyword">return</span> middleware<span class="token punctuation">.</span><span class="token function">NotImplemented</span><span class="token punctuation">(</span><span class="token string">&quot;operation .GetLogin has not yet been implemented&quot;</span><span class="token punctuation">)</span>
     <span class="token punctuation">}</span><span class="token punctuation">)</span>
 
     api<span class="token punctuation">.</span>CustomersCreateHandler <span class="token operator">=</span> customers<span class="token punctuation">.</span><span class="token function">CreateHandlerFunc</span><span class="token punctuation">(</span><span class="token keyword">func</span><span class="token punctuation">(</span>params customers<span class="token punctuation">.</span>CreateParams<span class="token punctuation">,</span> principal <span class="token operator">*</span>models<span class="token punctuation">.</span>Principal<span class="token punctuation">)</span> middleware<span class="token punctuation">.</span>Responder <span class="token punctuation">{</span>
-        <span class="token comment" spellcheck="true">// other API endpoint ...</span>
+        <span class="token comment">// other API endpoint ...</span>
         log<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">&quot;hit customer API&quot;</span><span class="token punctuation">)</span>
         <span class="token keyword">return</span> middleware<span class="token punctuation">.</span><span class="token function">NotImplemented</span><span class="token punctuation">(</span><span class="token string">&quot;operation customers.Create has not yet been implemented&quot;</span><span class="token punctuation">)</span>
     <span class="token punctuation">}</span><span class="token punctuation">)</span>
 
     api<span class="token punctuation">.</span>CustomersGetIDHandler <span class="token operator">=</span> customers<span class="token punctuation">.</span><span class="token function">GetIDHandlerFunc</span><span class="token punctuation">(</span><span class="token keyword">func</span><span class="token punctuation">(</span>params customers<span class="token punctuation">.</span>GetIDParams<span class="token punctuation">,</span> principal <span class="token operator">*</span>models<span class="token punctuation">.</span>Principal<span class="token punctuation">)</span> middleware<span class="token punctuation">.</span>Responder <span class="token punctuation">{</span>
-        <span class="token comment" spellcheck="true">// other API endpoint ...</span>
+        <span class="token comment">// other API endpoint ...</span>
         log<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">&quot;hit customer API&quot;</span><span class="token punctuation">)</span>
         <span class="token keyword">return</span> middleware<span class="token punctuation">.</span><span class="token function">NotImplemented</span><span class="token punctuation">(</span><span class="token string">&quot;operation customers.GetID has not yet been implemented&quot;</span><span class="token punctuation">)</span>
     <span class="token punctuation">}</span><span class="token punctuation">)</span>
@@ -1144,7 +1157,7 @@ implementation for our workflow.</p>
 <li>Redirecting to the login page</li>
 </ul>
 <pre class="language-"><code class="lang-go"><span class="token keyword">func</span> <span class="token function">login</span><span class="token punctuation">(</span>r <span class="token operator">*</span>http<span class="token punctuation">.</span>Request<span class="token punctuation">)</span> <span class="token builtin">string</span> <span class="token punctuation">{</span>
-    <span class="token comment" spellcheck="true">// implements the login with a redirection and an access token</span>
+    <span class="token comment">// implements the login with a redirection and an access token</span>
     <span class="token keyword">var</span> accessToken <span class="token builtin">string</span>
     wG <span class="token operator">:=</span> r<span class="token punctuation">.</span><span class="token function">Context</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">Value</span><span class="token punctuation">(</span>ctxResponseWriter<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token punctuation">(</span>http<span class="token punctuation">.</span>ResponseWriter<span class="token punctuation">)</span>
     http<span class="token punctuation">.</span><span class="token function">Redirect</span><span class="token punctuation">(</span>wG<span class="token punctuation">,</span> r<span class="token punctuation">,</span> config<span class="token punctuation">.</span><span class="token function">AuthCodeURL</span><span class="token punctuation">(</span>state<span class="token punctuation">)</span><span class="token punctuation">,</span> http<span class="token punctuation">.</span>StatusFound<span class="token punctuation">)</span>
@@ -1155,10 +1168,10 @@ implementation for our workflow.</p>
 <li>Retrieving the access token</li>
 </ul>
 <pre class="language-"><code class="lang-go"><span class="token keyword">func</span> <span class="token function">callback</span><span class="token punctuation">(</span>r <span class="token operator">*</span>http<span class="token punctuation">.</span>Request<span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token builtin">string</span><span class="token punctuation">,</span> <span class="token builtin">error</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token comment" spellcheck="true">// we expect the redirected client to call us back </span>
-    <span class="token comment" spellcheck="true">// with 2 query params: state and code.</span>
-    <span class="token comment" spellcheck="true">// We use directly the Request params here, since we did not </span>
-    <span class="token comment" spellcheck="true">// bother to document these parameters in the spec.</span>
+    <span class="token comment">// we expect the redirected client to call us back </span>
+    <span class="token comment">// with 2 query params: state and code.</span>
+    <span class="token comment">// We use directly the Request params here, since we did not </span>
+    <span class="token comment">// bother to document these parameters in the spec.</span>
 
     <span class="token keyword">if</span> r<span class="token punctuation">.</span>URL<span class="token punctuation">.</span><span class="token function">Query</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">Get</span><span class="token punctuation">(</span><span class="token string">&quot;state&quot;</span><span class="token punctuation">)</span> <span class="token operator">!=</span> state <span class="token punctuation">{</span>
         log<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">&quot;state did not match&quot;</span><span class="token punctuation">)</span>
@@ -1173,16 +1186,16 @@ implementation for our workflow.</p>
     authCode <span class="token operator">:=</span> r<span class="token punctuation">.</span>URL<span class="token punctuation">.</span><span class="token function">Query</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">Get</span><span class="token punctuation">(</span><span class="token string">&quot;code&quot;</span><span class="token punctuation">)</span>
     log<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">&quot;Authorization code: %v\n&quot;</span><span class="token punctuation">,</span> authCode<span class="token punctuation">)</span>
 
-    <span class="token comment" spellcheck="true">// Exchange converts an authorization code into a token.</span>
-    <span class="token comment" spellcheck="true">// Under the hood, the oauth2 client POST a request to do so</span>
-    <span class="token comment" spellcheck="true">// at tokenURL, then redirects...</span>
+    <span class="token comment">// Exchange converts an authorization code into a token.</span>
+    <span class="token comment">// Under the hood, the oauth2 client POST a request to do so</span>
+    <span class="token comment">// at tokenURL, then redirects...</span>
     oauth2Token<span class="token punctuation">,</span> err <span class="token operator">:=</span> config<span class="token punctuation">.</span><span class="token function">Exchange</span><span class="token punctuation">(</span>ctx<span class="token punctuation">,</span> authCode<span class="token punctuation">)</span>
     <span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">{</span>
         log<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">&quot;failed to exchange token&quot;</span><span class="token punctuation">,</span> err<span class="token punctuation">.</span><span class="token function">Error</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
         <span class="token keyword">return</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span> fmt<span class="token punctuation">.</span><span class="token function">Errorf</span><span class="token punctuation">(</span><span class="token string">&quot;failed to exchange token&quot;</span><span class="token punctuation">)</span>
     <span class="token punctuation">}</span>
 
-    <span class="token comment" spellcheck="true">// the authorization server&apos;s returned token</span>
+    <span class="token comment">// the authorization server&apos;s returned token</span>
     log<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">&quot;Raw token data:&quot;</span><span class="token punctuation">,</span> oauth2Token<span class="token punctuation">)</span>
     <span class="token keyword">return</span> oauth2Token<span class="token punctuation">.</span>AccessToken<span class="token punctuation">,</span> <span class="token boolean">nil</span>
 <span class="token punctuation">}</span>
@@ -1191,7 +1204,7 @@ implementation for our workflow.</p>
 <li>Validating the token</li>
 </ul>
 <pre class="language-"><code class="lang-go"><span class="token keyword">func</span> <span class="token function">authenticated</span><span class="token punctuation">(</span>token <span class="token builtin">string</span><span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token builtin">bool</span><span class="token punctuation">,</span> <span class="token builtin">error</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token comment" spellcheck="true">// validates the token by sending a request at userInfoURL</span>
+    <span class="token comment">// validates the token by sending a request at userInfoURL</span>
     bearToken <span class="token operator">:=</span> <span class="token string">&quot;Bearer &quot;</span> <span class="token operator">+</span> token
     req<span class="token punctuation">,</span> err <span class="token operator">:=</span> http<span class="token punctuation">.</span><span class="token function">NewRequest</span><span class="token punctuation">(</span><span class="token string">&quot;GET&quot;</span><span class="token punctuation">,</span> userInfoURL<span class="token punctuation">,</span> <span class="token boolean">nil</span><span class="token punctuation">)</span>
     <span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">{</span>
@@ -1248,10 +1261,10 @@ login page. </p>
 <pre class="language-"><code class="lang-http"><span class="token response-status">HTTP/1.1 <span class="token property">501 Not Implemented</span></span>
 <span class="token header-name keyword">Content-Type:</span> application/keyauth.api.v1+json
 <span class="token header-name keyword">Date:</span> Fri, 25 Nov 2016 19:14:14 GMT
-<span class="token header-name keyword">Content-Length:</span> 57
+<span class="token header-name keyword">Content-Length:</span> 57<span class="token application/json">
 
-&quot;operation customers.GetID has not yet been implemented&quot;
-</code></pre>
+<span class="token string">&quot;operation customers.GetID has not yet been implemented&quot;</span>
+</span></code></pre>
 <p>Use an random string as the token:</p>
 <pre class="language-"><code class="lang-shellsession">&#xB1; ivan@avalon:~  
  &#xBB; curl -i  -H &apos;Authorization: Bearer RAMDOM_TOKEN&apos; http://127.0.0.1:12345/api/customers
@@ -1259,10 +1272,10 @@ login page. </p>
 <pre class="language-"><code class="lang-http"><span class="token response-status">HTTP/1.1 <span class="token property">401 Unauthorized</span></span>
 <span class="token header-name keyword">Content-Type:</span> application/keyauth.api.v1+json
 <span class="token header-name keyword">Date:</span> Fri, 25 Nov 2016 19:16:49 GMT
-<span class="token header-name keyword">Content-Length:</span> 47
+<span class="token header-name keyword">Content-Length:</span> 47<span class="token application/json">
 
-{&quot;code&quot;:401,&quot;message&quot;:&quot;unauthenticated for invalid credentials&quot;}
-</code></pre>
+<span class="token punctuation">{</span><span class="token string">&quot;code&quot;</span><span class="token punctuation">:</span><span class="token number">401</span><span class="token punctuation">,</span><span class="token string">&quot;message&quot;</span><span class="token punctuation">:</span><span class="token string">&quot;unauthenticated for invalid credentials&quot;</span><span class="token punctuation">}</span>
+</span></code></pre>
 
                                 
                                 </section>
@@ -1306,7 +1319,7 @@ login page. </p>
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"OAuth2","level":"1.3.4.2","depth":3,"next":{"title":"Composition","level":"1.3.4.3","depth":3,"path":"tutorial/composed-auth/README.md","ref":"tutorial/composed-auth/README.md","articles":[]},"previous":{"title":"Authentication","level":"1.3.4.1","depth":3,"path":"tutorial/authentication/README.md","ref":"tutorial/authentication/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"prism":{},"anchors":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"tutorial/oauth2/README.md","mtime":"2018-07-10T06:26:50.898Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-12-23T01:39:45.647Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"OAuth2","level":"1.3.4.2","depth":3,"next":{"title":"Composition","level":"1.3.4.3","depth":3,"path":"tutorial/composed-auth/README.md","ref":"tutorial/composed-auth/README.md","articles":[]},"previous":{"title":"Authentication","level":"1.3.4.1","depth":3,"path":"tutorial/authentication/README.md","ref":"tutorial/authentication/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"prism":{},"anchors":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"tutorial/oauth2/README.md","mtime":"2019-08-06T15:32:52.628Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-08-19T02:12:46.769Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

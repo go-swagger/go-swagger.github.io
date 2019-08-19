@@ -336,12 +336,12 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.4.4.1" data-path="../../usage/flatten.html">
+        <li class="chapter " data-level="1.4.4.1" data-path="../../usage/diff.html">
             
-                <a href="../../usage/flatten.html">
+                <a href="../../usage/diff.html">
             
                     
-                    Flatten
+                    Diff
             
                 </a>
             
@@ -362,7 +362,20 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.4.3" data-path="../../usage/mixin.html">
+        <li class="chapter " data-level="1.4.4.3" data-path="../../usage/flatten.html">
+            
+                <a href="../../usage/flatten.html">
+            
+                    
+                    Flatten
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4.4" data-path="../../usage/mixin.html">
             
                 <a href="../../usage/mixin.html">
             
@@ -1368,12 +1381,6 @@ as an error is found.</p>
 <p>Rendered as:</p>
 <pre class="language-"><code class="lang-go"><span class="token keyword">type</span> MyDate strfmt<span class="token punctuation">.</span>Date
 </code></pre>
-<blockquote>
-<p><strong>NOTE</strong>: go 1.9 type aliasing is not being used in generated code at the moment.</p>
-<p><strong>Known limitations</strong>:</p>
-<p>Currently, re-aliasing types (i.e. a definition as a <code>$ref</code> on another definition) works only for objects.
-Map or slice realiasing still suffers some implementation bugs.</p>
-</blockquote>
 <p>Notice that setting <code>x-nullable: true</code> in such an alias will not render the type itself into a pointer, but rather,
 all containers of his type will use it as a pointer.</p>
 <p>Example:</p>
@@ -1385,12 +1392,25 @@ all containers of his type will use it as a pointer.</p>
   <span class="token key atrule">anArrayOfDates</span><span class="token punctuation">:</span>
     <span class="token key atrule">type</span><span class="token punctuation">:</span> array
     <span class="token key atrule">items</span><span class="token punctuation">:</span>
-      <span class="token key atrule">$ref</span><span class="token punctuation">:</span> &apos;<span class="token comment" spellcheck="true">#/definitions/myDate&apos;</span>
+      <span class="token key atrule">$ref</span><span class="token punctuation">:</span> <span class="token string">&apos;#/definitions/myDate&apos;</span>
 </code></pre>
 <p>Yields:</p>
 <pre class="language-"><code class="lang-go"><span class="token keyword">type</span> MyDate strfmt<span class="token punctuation">.</span>Date
 <span class="token operator">...</span>
 <span class="token keyword">type</span> AnArrayOfDates <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token operator">*</span>MyDate
+</code></pre>
+<p>Realiasing</p>
+<p>Given the above definitions, we add:</p>
+<pre class="language-"><code class="lang-yaml">  <span class="token punctuation">...</span>
+  <span class="token key atrule">herDate</span><span class="token punctuation">:</span>
+    <span class="token key atrule">$ref</span><span class="token punctuation">:</span> <span class="token comment">#/definitions/myDate</span>
+  <span class="token key atrule">hisDate</span><span class="token punctuation">:</span>
+    <span class="token key atrule">$ref</span><span class="token punctuation">:</span> <span class="token comment">#/definitions/herDate</span>
+</code></pre>
+<p>Rendered as (requires go1.9+):</p>
+<pre class="language-"><code class="lang-go"><span class="token keyword">type</span> HerDate <span class="token operator">=</span> MyDate
+</code></pre>
+<pre class="language-"><code class="lang-go"><span class="token keyword">type</span> HisDate <span class="token operator">=</span> HerDate
 </code></pre>
 <h3 id="extensible-types"><a name="extensible-types" class="plugin-anchor" href="#extensible-types"><i class="fa fa-link" aria-hidden="true"></i></a>Extensible types</h3>
 <h5 id="objects-and-additional-properties"><a name="objects-and-additional-properties" class="plugin-anchor" href="#objects-and-additional-properties"><i class="fa fa-link" aria-hidden="true"></i></a>Objects and additional properties</h5>
@@ -1497,18 +1517,18 @@ It may define other properties than the discriminator. Like <code>name</code> in
     <span class="token punctuation">-</span> petType
 </code></pre>
 <p>A base type is rendered as an interface, with getter/setter funcs on all attributes.</p>
-<pre class="language-"><code class="lang-go"><span class="token comment" spellcheck="true">// Pet pet</span>
-<span class="token comment" spellcheck="true">// swagger:discriminator Pet petType</span>
+<pre class="language-"><code class="lang-go"><span class="token comment">// Pet pet</span>
+<span class="token comment">// swagger:discriminator Pet petType</span>
 <span class="token keyword">type</span> Pet <span class="token keyword">interface</span> <span class="token punctuation">{</span>
     runtime<span class="token punctuation">.</span>Validatable
 
-    <span class="token comment" spellcheck="true">// name</span>
-    <span class="token comment" spellcheck="true">// Required: true</span>
+    <span class="token comment">// name</span>
+    <span class="token comment">// Required: true</span>
     <span class="token function">Name</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">*</span><span class="token builtin">string</span>
     <span class="token function">SetName</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token builtin">string</span><span class="token punctuation">)</span>
 
-    <span class="token comment" spellcheck="true">// pet type</span>
-    <span class="token comment" spellcheck="true">// Required: true</span>
+    <span class="token comment">// pet type</span>
+    <span class="token comment">// Required: true</span>
     <span class="token function">PetType</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">string</span>
     <span class="token function">SetPetType</span><span class="token punctuation">(</span><span class="token builtin">string</span><span class="token punctuation">)</span>
 <span class="token punctuation">}</span>
@@ -1525,7 +1545,7 @@ to be a <code>Pet</code>.</p>
     <span class="token key atrule">type</span><span class="token punctuation">:</span> object
     <span class="token key atrule">description</span><span class="token punctuation">:</span> A representation of a dog
     <span class="token key atrule">allOf</span><span class="token punctuation">:</span>
-    <span class="token punctuation">-</span> <span class="token key atrule">$ref</span><span class="token punctuation">:</span> &apos;<span class="token comment" spellcheck="true">#/definitions/Pet&apos;</span>
+    <span class="token punctuation">-</span> <span class="token key atrule">$ref</span><span class="token punctuation">:</span> <span class="token string">&apos;#/definitions/Pet&apos;</span>
     <span class="token punctuation">-</span> <span class="token key atrule">properties</span><span class="token punctuation">:</span>
         <span class="token key atrule">packSize</span><span class="token punctuation">:</span>
           <span class="token key atrule">type</span><span class="token punctuation">:</span> integer
@@ -1537,33 +1557,33 @@ to be a <code>Pet</code>.</p>
       <span class="token punctuation">-</span> packSize
 </code></pre>
 <p>Yields:</p>
-<pre class="language-"><code class="lang-go"><span class="token comment" spellcheck="true">// Dog A representation of a dog</span>
-<span class="token comment" spellcheck="true">// swagger:model Dog</span>
+<pre class="language-"><code class="lang-go"><span class="token comment">// Dog A representation of a dog</span>
+<span class="token comment">// swagger:model Dog</span>
 <span class="token keyword">type</span> Dog <span class="token keyword">struct</span> <span class="token punctuation">{</span>
     nameField <span class="token operator">*</span><span class="token builtin">string</span>
 
-    <span class="token comment" spellcheck="true">// the size of the pack the dog is from</span>
-    <span class="token comment" spellcheck="true">// Required: true</span>
-    <span class="token comment" spellcheck="true">// Minimum: 0</span>
+    <span class="token comment">// the size of the pack the dog is from</span>
+    <span class="token comment">// Required: true</span>
+    <span class="token comment">// Minimum: 0</span>
     PackSize <span class="token operator">*</span><span class="token builtin">int32</span> <span class="token string">`json:&quot;packSize&quot;`</span>
 <span class="token punctuation">}</span>
 
-<span class="token comment" spellcheck="true">// Name gets the name of this subtype</span>
+<span class="token comment">// Name gets the name of this subtype</span>
 <span class="token keyword">func</span> <span class="token punctuation">(</span>m <span class="token operator">*</span>Dog<span class="token punctuation">)</span> <span class="token function">Name</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">*</span><span class="token builtin">string</span> <span class="token punctuation">{</span>
     <span class="token keyword">return</span> m<span class="token punctuation">.</span>nameField
 <span class="token punctuation">}</span>
 
-<span class="token comment" spellcheck="true">// SetName sets the name of this subtype</span>
+<span class="token comment">// SetName sets the name of this subtype</span>
 <span class="token keyword">func</span> <span class="token punctuation">(</span>m <span class="token operator">*</span>Dog<span class="token punctuation">)</span> <span class="token function">SetName</span><span class="token punctuation">(</span>val <span class="token operator">*</span><span class="token builtin">string</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
     m<span class="token punctuation">.</span>nameField <span class="token operator">=</span> val
 <span class="token punctuation">}</span>
 
-<span class="token comment" spellcheck="true">// PetType gets the pet type of this subtype</span>
+<span class="token comment">// PetType gets the pet type of this subtype</span>
 <span class="token keyword">func</span> <span class="token punctuation">(</span>m <span class="token operator">*</span>Dog<span class="token punctuation">)</span> <span class="token function">PetType</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">string</span> <span class="token punctuation">{</span>
     <span class="token keyword">return</span> <span class="token string">&quot;Dog&quot;</span>
 <span class="token punctuation">}</span>
 
-<span class="token comment" spellcheck="true">// SetPetType sets the pet type of this subtype</span>
+<span class="token comment">// SetPetType sets the pet type of this subtype</span>
 <span class="token keyword">func</span> <span class="token punctuation">(</span>m <span class="token operator">*</span>Dog<span class="token punctuation">)</span> <span class="token function">SetPetType</span><span class="token punctuation">(</span>val <span class="token builtin">string</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
 
 <span class="token punctuation">}</span>
@@ -1580,7 +1600,7 @@ Do not expand specs with polymorphic types for code generation.</p>
     <span class="token key atrule">type</span><span class="token punctuation">:</span> object
     <span class="token key atrule">description</span><span class="token punctuation">:</span> A representation of a cat
     <span class="token key atrule">allOf</span><span class="token punctuation">:</span>
-    <span class="token punctuation">-</span> <span class="token key atrule">$ref</span><span class="token punctuation">:</span> &apos;<span class="token comment" spellcheck="true">#/definitions/Pet&apos;</span>
+    <span class="token punctuation">-</span> <span class="token key atrule">$ref</span><span class="token punctuation">:</span> <span class="token string">&apos;#/definitions/Pet&apos;</span>
     <span class="token punctuation">-</span> <span class="token key atrule">properties</span><span class="token punctuation">:</span>
         <span class="token key atrule">huntingSkill</span><span class="token punctuation">:</span>
           <span class="token key atrule">type</span><span class="token punctuation">:</span> string
@@ -1594,33 +1614,33 @@ Do not expand specs with polymorphic types for code generation.</p>
       <span class="token key atrule">required</span><span class="token punctuation">:</span>
       <span class="token punctuation">-</span> huntingSkill
 </code></pre>
-<pre class="language-"><code class="lang-go"><span class="token comment" spellcheck="true">// Cat A representation of a cat</span>
-<span class="token comment" spellcheck="true">// swagger:model cat</span>
+<pre class="language-"><code class="lang-go"><span class="token comment">// Cat A representation of a cat</span>
+<span class="token comment">// swagger:model cat</span>
 <span class="token keyword">type</span> Cat <span class="token keyword">struct</span> <span class="token punctuation">{</span>
     nameField <span class="token operator">*</span><span class="token builtin">string</span>
 
-    <span class="token comment" spellcheck="true">// The measured skill for hunting</span>
-    <span class="token comment" spellcheck="true">// Required: true</span>
-    <span class="token comment" spellcheck="true">// Enum: [clueless lazy adventurous aggressive]</span>
+    <span class="token comment">// The measured skill for hunting</span>
+    <span class="token comment">// Required: true</span>
+    <span class="token comment">// Enum: [clueless lazy adventurous aggressive]</span>
     HuntingSkill <span class="token operator">*</span><span class="token builtin">string</span> <span class="token string">`json:&quot;huntingSkill&quot;`</span>
 <span class="token punctuation">}</span>
 
-<span class="token comment" spellcheck="true">// Name gets the name of this subtype</span>
+<span class="token comment">// Name gets the name of this subtype</span>
 <span class="token keyword">func</span> <span class="token punctuation">(</span>m <span class="token operator">*</span>Cat<span class="token punctuation">)</span> <span class="token function">Name</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">*</span><span class="token builtin">string</span> <span class="token punctuation">{</span>
     <span class="token keyword">return</span> m<span class="token punctuation">.</span>nameField
 <span class="token punctuation">}</span>
 
-<span class="token comment" spellcheck="true">// SetName sets the name of this subtype</span>
+<span class="token comment">// SetName sets the name of this subtype</span>
 <span class="token keyword">func</span> <span class="token punctuation">(</span>m <span class="token operator">*</span>Cat<span class="token punctuation">)</span> <span class="token function">SetName</span><span class="token punctuation">(</span>val <span class="token operator">*</span><span class="token builtin">string</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
     m<span class="token punctuation">.</span>nameField <span class="token operator">=</span> val
 <span class="token punctuation">}</span>
 
-<span class="token comment" spellcheck="true">// PetType gets the pet type of this subtype</span>
+<span class="token comment">// PetType gets the pet type of this subtype</span>
 <span class="token keyword">func</span> <span class="token punctuation">(</span>m <span class="token operator">*</span>Cat<span class="token punctuation">)</span> <span class="token function">PetType</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">string</span> <span class="token punctuation">{</span>
     <span class="token keyword">return</span> <span class="token string">&quot;cat&quot;</span>
 <span class="token punctuation">}</span>
 
-<span class="token comment" spellcheck="true">// SetPetType sets the pet type of this subtype</span>
+<span class="token comment">// SetPetType sets the pet type of this subtype</span>
 <span class="token keyword">func</span> <span class="token punctuation">(</span>m <span class="token operator">*</span>Cat<span class="token punctuation">)</span> <span class="token function">SetPetType</span><span class="token punctuation">(</span>val <span class="token builtin">string</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
 
 <span class="token punctuation">}</span>
@@ -1638,28 +1658,28 @@ there are special provisions taken to generate new types composing base types.</
       <span class="token key atrule">id</span><span class="token punctuation">:</span>
         <span class="token key atrule">type</span><span class="token punctuation">:</span> integer
         <span class="token key atrule">format</span><span class="token punctuation">:</span> int64
-      <span class="token key atrule">pets</span><span class="token punctuation">:</span>          <span class="token comment" spellcheck="true"># &lt;-- this may contain Cats and Dogs</span>
+      <span class="token key atrule">pets</span><span class="token punctuation">:</span>          <span class="token comment"># &lt;-- this may contain Cats and Dogs</span>
         <span class="token key atrule">type</span><span class="token punctuation">:</span> array
         <span class="token key atrule">items</span><span class="token punctuation">:</span>
-          <span class="token key atrule">$ref</span><span class="token punctuation">:</span> &quot;<span class="token comment" spellcheck="true">#/definitions/Pet&quot;</span>
+          <span class="token key atrule">$ref</span><span class="token punctuation">:</span> <span class="token string">&quot;#/definitions/Pet&quot;</span>
 </code></pre>
 <p>Yields:</p>
-<pre class="language-"><code class="lang-go"><span class="token comment" spellcheck="true">// Kennel kennel</span>
-<span class="token comment" spellcheck="true">// swagger:model Kennel</span>
+<pre class="language-"><code class="lang-go"><span class="token comment">// Kennel kennel</span>
+<span class="token comment">// swagger:model Kennel</span>
 <span class="token keyword">type</span> Kennel <span class="token keyword">struct</span> <span class="token punctuation">{</span>
 
-    <span class="token comment" spellcheck="true">// id</span>
+    <span class="token comment">// id</span>
     ID <span class="token builtin">int64</span> <span class="token string">`json:&quot;id,omitempty&quot;`</span>
 
     petsField <span class="token punctuation">[</span><span class="token punctuation">]</span>Pet
 <span class="token punctuation">}</span>
 
-<span class="token comment" spellcheck="true">// Pets gets the pets of this base type</span>
+<span class="token comment">// Pets gets the pets of this base type</span>
 <span class="token keyword">func</span> <span class="token punctuation">(</span>m <span class="token operator">*</span>Kennel<span class="token punctuation">)</span> <span class="token function">Pets</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>Pet <span class="token punctuation">{</span>
     <span class="token keyword">return</span> m<span class="token punctuation">.</span>petsField
 <span class="token punctuation">}</span>
 
-<span class="token comment" spellcheck="true">// SetPets sets the pets of this base type</span>
+<span class="token comment">// SetPets sets the pets of this base type</span>
 <span class="token keyword">func</span> <span class="token punctuation">(</span>m <span class="token operator">*</span>Kennel<span class="token punctuation">)</span> <span class="token function">SetPets</span><span class="token punctuation">(</span>val <span class="token punctuation">[</span><span class="token punctuation">]</span>Pet<span class="token punctuation">)</span> <span class="token punctuation">{</span>
     m<span class="token punctuation">.</span>petsField <span class="token operator">=</span> val
 <span class="token punctuation">}</span>
@@ -1674,10 +1694,10 @@ feel free to comment and express your views <a href="https://github.com/go-swagg
 <p>Unmarshalling a base type is not carried through the standard MarshalJSON()/UnmarshalJSON() pair, but with
 factories created for each base type.</p>
 <p>Example:</p>
-<pre class="language-"><code class="lang-go"><span class="token comment" spellcheck="true">// UnmarshalPet unmarshals polymorphic Pet</span>
+<pre class="language-"><code class="lang-go"><span class="token comment">// UnmarshalPet unmarshals polymorphic Pet</span>
 <span class="token keyword">func</span> <span class="token function">UnmarshalPet</span><span class="token punctuation">(</span>reader io<span class="token punctuation">.</span>Reader<span class="token punctuation">,</span> consumer runtime<span class="token punctuation">.</span>Consumer<span class="token punctuation">)</span> <span class="token punctuation">(</span>Pet<span class="token punctuation">,</span> <span class="token builtin">error</span><span class="token punctuation">)</span>
 
-<span class="token comment" spellcheck="true">// UnmarshalPetSlice unmarshals polymorphic slices of Pet</span>
+<span class="token comment">// UnmarshalPetSlice unmarshals polymorphic slices of Pet</span>
 <span class="token keyword">func</span> <span class="token function">UnmarshalPetSlice</span><span class="token punctuation">(</span>reader io<span class="token punctuation">.</span>Reader<span class="token punctuation">,</span> consumer runtime<span class="token punctuation">.</span>Consumer<span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">]</span>Pet<span class="token punctuation">,</span> <span class="token builtin">error</span><span class="token punctuation">)</span>
 </code></pre>
 <p>Note that the marshalling of a base type into JSON is processed naturally, so there is no need for a special function.</p>
@@ -1758,7 +1778,7 @@ TODO
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Schema generation rules","level":"1.4.5.4.2.1","depth":5,"next":{"title":"Generate spec from source","level":"1.4.6","depth":2,"ref":"","articles":[{"title":"Spec Usage","level":"1.4.6.1","depth":3,"path":"generate/spec.md","ref":"generate/spec.md","articles":[]},{"title":"Spec generation rules","level":"1.4.6.2","depth":3,"path":"use/spec.md","ref":"use/spec.md","articles":[{"title":"swagger:meta","level":"1.4.6.2.1","depth":4,"path":"use/spec/meta.md","ref":"use/spec/meta.md","articles":[]},{"title":"swagger:route","level":"1.4.6.2.2","depth":4,"path":"use/spec/route.md","ref":"use/spec/route.md","articles":[]},{"title":"swagger:params","level":"1.4.6.2.3","depth":4,"path":"use/spec/params.md","ref":"use/spec/params.md","articles":[]},{"title":"swagger:operation","level":"1.4.6.2.4","depth":4,"path":"use/spec/operation.md","ref":"use/spec/operation.md","articles":[]},{"title":"swagger:response","level":"1.4.6.2.5","depth":4,"path":"use/spec/response.md","ref":"use/spec/response.md","articles":[]},{"title":"swagger:model","level":"1.4.6.2.6","depth":4,"path":"use/spec/model.md","ref":"use/spec/model.md","articles":[]},{"title":"swagger:allOf","level":"1.4.6.2.7","depth":4,"path":"use/spec/allOf.md","ref":"use/spec/allOf.md","articles":[]},{"title":"swagger:strfmt","level":"1.4.6.2.8","depth":4,"path":"use/spec/strfmt.md","ref":"use/spec/strfmt.md","articles":[]},{"title":"swagger:discriminated","level":"1.4.6.2.9","depth":4,"path":"use/spec/discriminated.md","ref":"use/spec/discriminated.md","articles":[]},{"title":"swagger:ignore","level":"1.4.6.2.10","depth":4,"path":"use/spec/ignore.md","ref":"use/spec/ignore.md","articles":[]}]}]},"previous":{"title":"How to use models","level":"1.4.5.4.2","depth":4,"path":"use/model.md","ref":"use/model.md","articles":[{"title":"Schema generation rules","level":"1.4.5.4.2.1","depth":5,"path":"use/models/schemas.md","ref":"use/models/schemas.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"prism":{},"anchors":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"use/models/schemas.md","mtime":"2018-07-12T15:53:29.391Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-12-23T01:39:45.647Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Schema generation rules","level":"1.4.5.4.2.1","depth":5,"next":{"title":"Generate spec from source","level":"1.4.6","depth":2,"ref":"","articles":[{"title":"Spec Usage","level":"1.4.6.1","depth":3,"path":"generate/spec.md","ref":"generate/spec.md","articles":[]},{"title":"Spec generation rules","level":"1.4.6.2","depth":3,"path":"use/spec.md","ref":"use/spec.md","articles":[{"title":"swagger:meta","level":"1.4.6.2.1","depth":4,"path":"use/spec/meta.md","ref":"use/spec/meta.md","articles":[]},{"title":"swagger:route","level":"1.4.6.2.2","depth":4,"path":"use/spec/route.md","ref":"use/spec/route.md","articles":[]},{"title":"swagger:params","level":"1.4.6.2.3","depth":4,"path":"use/spec/params.md","ref":"use/spec/params.md","articles":[]},{"title":"swagger:operation","level":"1.4.6.2.4","depth":4,"path":"use/spec/operation.md","ref":"use/spec/operation.md","articles":[]},{"title":"swagger:response","level":"1.4.6.2.5","depth":4,"path":"use/spec/response.md","ref":"use/spec/response.md","articles":[]},{"title":"swagger:model","level":"1.4.6.2.6","depth":4,"path":"use/spec/model.md","ref":"use/spec/model.md","articles":[]},{"title":"swagger:allOf","level":"1.4.6.2.7","depth":4,"path":"use/spec/allOf.md","ref":"use/spec/allOf.md","articles":[]},{"title":"swagger:strfmt","level":"1.4.6.2.8","depth":4,"path":"use/spec/strfmt.md","ref":"use/spec/strfmt.md","articles":[]},{"title":"swagger:discriminated","level":"1.4.6.2.9","depth":4,"path":"use/spec/discriminated.md","ref":"use/spec/discriminated.md","articles":[]},{"title":"swagger:ignore","level":"1.4.6.2.10","depth":4,"path":"use/spec/ignore.md","ref":"use/spec/ignore.md","articles":[]}]}]},"previous":{"title":"How to use models","level":"1.4.5.4.2","depth":4,"path":"use/model.md","ref":"use/model.md","articles":[{"title":"Schema generation rules","level":"1.4.5.4.2.1","depth":5,"path":"use/models/schemas.md","ref":"use/models/schemas.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"prism":{},"anchors":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"use/models/schemas.md","mtime":"2019-08-06T15:32:52.630Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-08-19T02:12:46.769Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

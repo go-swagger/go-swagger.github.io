@@ -338,12 +338,12 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.4.4.1" data-path="../../usage/flatten.html">
+        <li class="chapter " data-level="1.4.4.1" data-path="../../usage/diff.html">
             
-                <a href="../../usage/flatten.html">
+                <a href="../../usage/diff.html">
             
                     
-                    Flatten
+                    Diff
             
                 </a>
             
@@ -364,7 +364,20 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.4.3" data-path="../../usage/mixin.html">
+        <li class="chapter " data-level="1.4.4.3" data-path="../../usage/flatten.html">
+            
+                <a href="../../usage/flatten.html">
+            
+                    
+                    Flatten
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4.4" data-path="../../usage/mixin.html">
             
                 <a href="../../usage/mixin.html">
             
@@ -1028,6 +1041,10 @@ The refs are tracked separately so that they can be renamed later on.</p>
 <td><strong>Example</strong></td>
 <td>an example value, parsed as the field&apos;s type<br>(objects and slices are parsed as JSON)</td>
 </tr>
+<tr>
+<td><strong>Extensions</strong></td>
+<td>list of extensions. The field name MUST begin with x-, for example, x-internal-id. The value can be null, a primitive, an array or an object.</td>
+</tr>
 </tbody>
 </table>
 <p>For slice properties there are also items to be defined. This might be a nested collection, for indicating nesting
@@ -1079,33 +1096,44 @@ level the value is a 0-based index, so items.minLength is the same as items.0.mi
 </tbody>
 </table>
 <h5 id="example"><a name="example" class="plugin-anchor" href="#example"><i class="fa fa-link" aria-hidden="true"></i></a>Example:</h5>
-<pre class="language-"><code class="lang-go"><span class="token comment" spellcheck="true">// User represents the user for this application</span>
-<span class="token comment" spellcheck="true">//</span>
-<span class="token comment" spellcheck="true">// A user is the security principal for this application.</span>
-<span class="token comment" spellcheck="true">// It&apos;s also used as one of main axes for reporting.</span>
-<span class="token comment" spellcheck="true">//</span>
-<span class="token comment" spellcheck="true">// A user can have friends with whom they can share what they like.</span>
-<span class="token comment" spellcheck="true">//</span>
-<span class="token comment" spellcheck="true">// swagger:model</span>
+<pre class="language-"><code class="lang-go"><span class="token comment">// User represents the user for this application</span>
+<span class="token comment">//</span>
+<span class="token comment">// A user is the security principal for this application.</span>
+<span class="token comment">// It&apos;s also used as one of main axes for reporting.</span>
+<span class="token comment">//</span>
+<span class="token comment">// A user can have friends with whom they can share what they like.</span>
+<span class="token comment">//</span>
+<span class="token comment">// swagger:model</span>
 <span class="token keyword">type</span> User <span class="token keyword">struct</span> <span class="token punctuation">{</span>
-    <span class="token comment" spellcheck="true">// the id for this user</span>
-    <span class="token comment" spellcheck="true">//</span>
-    <span class="token comment" spellcheck="true">// required: true</span>
-    <span class="token comment" spellcheck="true">// min: 1</span>
+    <span class="token comment">// the id for this user</span>
+    <span class="token comment">//</span>
+    <span class="token comment">// required: true</span>
+    <span class="token comment">// min: 1</span>
     ID <span class="token builtin">int64</span> <span class="token string">`json:&quot;id&quot;`</span>
 
-    <span class="token comment" spellcheck="true">// the name for this user</span>
-    <span class="token comment" spellcheck="true">// required: true</span>
-    <span class="token comment" spellcheck="true">// min length: 3</span>
+    <span class="token comment">// the name for this user</span>
+    <span class="token comment">// required: true</span>
+    <span class="token comment">// min length: 3</span>
     Name <span class="token builtin">string</span> <span class="token string">`json:&quot;name&quot;`</span>
 
-    <span class="token comment" spellcheck="true">// the email address for this user</span>
-    <span class="token comment" spellcheck="true">//</span>
-    <span class="token comment" spellcheck="true">// required: true</span>
-    <span class="token comment" spellcheck="true">// example: user@provider.net</span>
+    <span class="token comment">// the email address for this user</span>
+    <span class="token comment">//</span>
+    <span class="token comment">// required: true</span>
+    <span class="token comment">// example: user@provider.net</span>
     Email strfmt<span class="token punctuation">.</span>Email <span class="token string">`json:&quot;login&quot;`</span>
 
-    <span class="token comment" spellcheck="true">// the friends for this user</span>
+    <span class="token comment">// the friends for this user</span>
+    <span class="token comment">//</span>
+    <span class="token comment">// Extensions:</span>
+    <span class="token comment">// ---</span>
+    <span class="token comment">// x-property-value: value</span>
+    <span class="token comment">// x-property-array:</span>
+    <span class="token comment">//   - value1</span>
+    <span class="token comment">//   - value2</span>
+    <span class="token comment">// x-property-array-obj:</span>
+    <span class="token comment">//   - name: obj</span>
+    <span class="token comment">//     value: field</span>
+    <span class="token comment">// ---</span>
     Friends <span class="token punctuation">[</span><span class="token punctuation">]</span>User <span class="token string">`json:&quot;friends&quot;`</span>
 <span class="token punctuation">}</span>
 </code></pre>
@@ -1140,7 +1168,14 @@ level the value is a 0-based index, so items.minLength is the same as items.0.mi
         <span class="token key atrule">description</span><span class="token punctuation">:</span> the friends for this user
         <span class="token key atrule">type</span><span class="token punctuation">:</span> array
         <span class="token key atrule">items</span><span class="token punctuation">:</span>
-          <span class="token key atrule">$ref</span><span class="token punctuation">:</span> &quot;<span class="token comment" spellcheck="true">#/definitions/User&quot;</span>
+          <span class="token key atrule">$ref</span><span class="token punctuation">:</span> <span class="token string">&quot;#/definitions/User&quot;</span>
+        <span class="token key atrule">x-property-value</span><span class="token punctuation">:</span> value
+        <span class="token key atrule">x-property-array</span><span class="token punctuation">:</span>
+          <span class="token punctuation">-</span> value1
+          <span class="token punctuation">-</span> value2
+        <span class="token key atrule">x-property-array-obj</span><span class="token punctuation">:</span>
+          <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> obj
+            <span class="token key atrule">value</span><span class="token punctuation">:</span> field
 </code></pre>
 
                                 
@@ -1185,7 +1220,7 @@ level the value is a 0-based index, so items.minLength is the same as items.0.mi
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"swagger:model","level":"1.4.6.2.6","depth":4,"next":{"title":"swagger:allOf","level":"1.4.6.2.7","depth":4,"path":"use/spec/allOf.md","ref":"use/spec/allOf.md","articles":[]},"previous":{"title":"swagger:response","level":"1.4.6.2.5","depth":4,"path":"use/spec/response.md","ref":"use/spec/response.md","articles":[]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"prism":{},"anchors":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"use/spec/model.md","mtime":"2018-12-22T19:17:40.071Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-12-23T01:39:45.647Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"swagger:model","level":"1.4.6.2.6","depth":4,"next":{"title":"swagger:allOf","level":"1.4.6.2.7","depth":4,"path":"use/spec/allOf.md","ref":"use/spec/allOf.md","articles":[]},"previous":{"title":"swagger:response","level":"1.4.6.2.5","depth":4,"path":"use/spec/response.md","ref":"use/spec/response.md","articles":[]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"prism":{},"anchors":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"use/spec/model.md","mtime":"2019-08-06T15:32:52.631Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-08-19T02:12:46.769Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

@@ -336,12 +336,12 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.4.4.1" data-path="../usage/flatten.html">
+        <li class="chapter " data-level="1.4.4.1" data-path="../usage/diff.html">
             
-                <a href="../usage/flatten.html">
+                <a href="../usage/diff.html">
             
                     
-                    Flatten
+                    Diff
             
                 </a>
             
@@ -362,7 +362,20 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.4.3" data-path="../usage/mixin.html">
+        <li class="chapter " data-level="1.4.4.3" data-path="../usage/flatten.html">
+            
+                <a href="../usage/flatten.html">
+            
+                    
+                    Flatten
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4.4" data-path="../usage/mixin.html">
             
                 <a href="../usage/mixin.html">
             
@@ -974,7 +987,7 @@ generate all the files for a server application
 
 Application Options:
   -q, --quiet                                                                     silence logs
-  -o, --output=LOG-FILE                                                           redirect logs to file
+      --log-output=LOG-FILE                                                       redirect logs to file
 
 Help Options:
   -h, --help                                                                      Show this help message
@@ -986,6 +999,7 @@ Help Options:
       -s, --server-package=                                                       the package to save the server specific code (default: restapi)
       -c, --client-package=                                                       the package to save the client specific code (default: client)
       -t, --target=                                                               the base directory for generating the files (default: ./)
+          --template=[stratoscale]                                                Load contributed templates
       -T, --template-dir=                                                         alternative template override directory
       -C, --config-file=                                                          configuration file to use for overriding template options
       -r, --copyright-file=                                                       copyright file used to add copyright header
@@ -1009,6 +1023,9 @@ Help Options:
           --flag-strategy=[go-flags|pflag]                                        the strategy to provide flags for the server (default: go-flags)
           --compatibility-mode=[modern|intermediate]                              the compatibility mode for the tls server (default: modern)
           --skip-validation                                                       skips validation of spec prior to generation
+          --regenerate-configureapi                                               Force regeneration of configureapi.go
+          --keep-spec-order                                                       Keep schema properties order identical to spec file
+          --strict-additional-properties                                          disallow extra properties when additionalProperties is set to false
 </code></pre><h3 id="build-a-server"><a name="build-a-server" class="plugin-anchor" href="#build-a-server"><i class="fa fa-link" aria-hidden="true"></i></a>Build a server</h3>
 <p>The server application gets generated with all the handlers stubbed out with a not implemented handler. That means that you can start the API server immediately after generating it. It will respond to all valid requests with 501 Not Implemented. When a request is invalid it will most likely respond with an appropriate 4xx response.</p>
 <p>The generated server allows for a number of command line parameters to customize it.</p>
@@ -1017,7 +1034,7 @@ Help Options:
 --tls-host=        the IP to listen on for tls, when not specified it&apos;s the same as --host [$TLS_HOST]
 --tls-port=        the port to listen on for secure connections, defaults to a random value [$TLS_PORT]
 --tls-certificate= the certificate to use for secure connections [$TLS_CERTIFICATE]
---tls-key=         the private key to use for secure conections [$TLS_PRIVATE_KEY]
+--tls-key=         the private key to use for secure connections [$TLS_PRIVATE_KEY]
 </code></pre><p>The server takes care of a number of things when a request arrives:</p>
 <ul>
 <li>routing</li>
@@ -1039,7 +1056,7 @@ Help Options:
   <span class="token keyword">return</span> http<span class="token punctuation">.</span><span class="token function">HandlerFunc</span><span class="token punctuation">(</span><span class="token keyword">func</span><span class="token punctuation">(</span>rw http<span class="token punctuation">.</span>ResponseWriter<span class="token punctuation">,</span> r <span class="token operator">*</span>http<span class="token punctuation">.</span>Request<span class="token punctuation">)</span> <span class="token punctuation">{</span>
     <span class="token keyword">defer</span> context<span class="token punctuation">.</span><span class="token function">Clear</span><span class="token punctuation">(</span>r<span class="token punctuation">)</span>
 
-    <span class="token comment" spellcheck="true">// use context to lookup routes</span>
+    <span class="token comment">// use context to lookup routes</span>
     <span class="token keyword">if</span> matched<span class="token punctuation">,</span> ok <span class="token operator">:=</span> ctx<span class="token punctuation">.</span><span class="token function">RouteInfo</span><span class="token punctuation">(</span>r<span class="token punctuation">)</span><span class="token punctuation">;</span> ok <span class="token punctuation">{</span>
 
       <span class="token keyword">if</span> <span class="token function">len</span><span class="token punctuation">(</span>matched<span class="token punctuation">.</span>Authenticators<span class="token punctuation">)</span> <span class="token operator">&gt;</span> <span class="token number">0</span> <span class="token punctuation">{</span>
@@ -1065,7 +1082,7 @@ Help Options:
       <span class="token keyword">return</span>
     <span class="token punctuation">}</span>
 
-    <span class="token comment" spellcheck="true">// Not found, check if it exists in the other methods first</span>
+    <span class="token comment">// Not found, check if it exists in the other methods first</span>
     <span class="token keyword">if</span> others <span class="token operator">:=</span> ctx<span class="token punctuation">.</span><span class="token function">AllowedMethods</span><span class="token punctuation">(</span>r<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token function">len</span><span class="token punctuation">(</span>others<span class="token punctuation">)</span> <span class="token operator">&gt;</span> <span class="token number">0</span> <span class="token punctuation">{</span>
       ctx<span class="token punctuation">.</span><span class="token function">Respond</span><span class="token punctuation">(</span>rw<span class="token punctuation">,</span> r<span class="token punctuation">,</span> ctx<span class="token punctuation">.</span>spec<span class="token punctuation">.</span><span class="token function">RequiredProduces</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token boolean">nil</span><span class="token punctuation">,</span> errors<span class="token punctuation">.</span><span class="token function">MethodNotAllowed</span><span class="token punctuation">(</span>r<span class="token punctuation">.</span>Method<span class="token punctuation">,</span> others<span class="token punctuation">)</span><span class="token punctuation">)</span>
       <span class="token keyword">return</span>
@@ -1087,10 +1104,10 @@ Help Options:
     <span class="token string">&quot;github.com/go-openapi/examples/todo-list/restapi/operations/todos&quot;</span>
 <span class="token punctuation">)</span>
 
-<span class="token comment" spellcheck="true">// This file is safe to edit. Once it exists it will not be overwritten</span>
+<span class="token comment">// This file is safe to edit. Once it exists it will not be overwritten</span>
 
 <span class="token keyword">func</span> <span class="token function">configureAPI</span><span class="token punctuation">(</span>api <span class="token operator">*</span>operations<span class="token punctuation">.</span>ToDoListAPI<span class="token punctuation">)</span> http<span class="token punctuation">.</span>Handler <span class="token punctuation">{</span>
-    <span class="token comment" spellcheck="true">// configure the api here</span>
+    <span class="token comment">// configure the api here</span>
     api<span class="token punctuation">.</span>JSONConsumer <span class="token operator">=</span> runtime<span class="token punctuation">.</span><span class="token function">JSONConsumer</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
 
     api<span class="token punctuation">.</span>JSONProducer <span class="token operator">=</span> runtime<span class="token punctuation">.</span><span class="token function">JSONProducer</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
@@ -1118,33 +1135,33 @@ Help Options:
 <p>When you look at the code for the configureAPI method then you&apos;ll notice that the api object has properties for consumers.
 A consumer is an object that can marshal things from a wireformat to an object.  Consumers and their counterpart producers who write objects get their names generated from the consumes and produces properties on a swagger specification.</p>
 <p>The interface definitions for consumers and producers look like this:</p>
-<pre class="language-"><code class="lang-go"><span class="token comment" spellcheck="true">// ConsumerFunc represents a function that can be used as a consumer</span>
+<pre class="language-"><code class="lang-go"><span class="token comment">// ConsumerFunc represents a function that can be used as a consumer</span>
 <span class="token keyword">type</span> ConsumerFunc <span class="token keyword">func</span><span class="token punctuation">(</span>io<span class="token punctuation">.</span>Reader<span class="token punctuation">,</span> <span class="token keyword">interface</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token builtin">error</span>
 
-<span class="token comment" spellcheck="true">// Consume consumes the reader into the data parameter</span>
+<span class="token comment">// Consume consumes the reader into the data parameter</span>
 <span class="token keyword">func</span> <span class="token punctuation">(</span>fn ConsumerFunc<span class="token punctuation">)</span> <span class="token function">Consume</span><span class="token punctuation">(</span>reader io<span class="token punctuation">.</span>Reader<span class="token punctuation">,</span> data <span class="token keyword">interface</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token builtin">error</span> <span class="token punctuation">{</span>
     <span class="token keyword">return</span> <span class="token function">fn</span><span class="token punctuation">(</span>reader<span class="token punctuation">,</span> data<span class="token punctuation">)</span>
 <span class="token punctuation">}</span>
 
-<span class="token comment" spellcheck="true">// Consumer implementations know how to bind the values on the provided interface to</span>
-<span class="token comment" spellcheck="true">// data provided by the request body</span>
+<span class="token comment">// Consumer implementations know how to bind the values on the provided interface to</span>
+<span class="token comment">// data provided by the request body</span>
 <span class="token keyword">type</span> Consumer <span class="token keyword">interface</span> <span class="token punctuation">{</span>
-    <span class="token comment" spellcheck="true">// Consume performs the binding of request values</span>
+    <span class="token comment">// Consume performs the binding of request values</span>
     <span class="token function">Consume</span><span class="token punctuation">(</span>io<span class="token punctuation">.</span>Reader<span class="token punctuation">,</span> <span class="token keyword">interface</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token builtin">error</span>
 <span class="token punctuation">}</span>
 
-<span class="token comment" spellcheck="true">// ProducerFunc represents a function that can be used as a producer</span>
+<span class="token comment">// ProducerFunc represents a function that can be used as a producer</span>
 <span class="token keyword">type</span> ProducerFunc <span class="token keyword">func</span><span class="token punctuation">(</span>io<span class="token punctuation">.</span>Writer<span class="token punctuation">,</span> <span class="token keyword">interface</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token builtin">error</span>
 
-<span class="token comment" spellcheck="true">// Produce produces the response for the provided data</span>
+<span class="token comment">// Produce produces the response for the provided data</span>
 <span class="token keyword">func</span> <span class="token punctuation">(</span>f ProducerFunc<span class="token punctuation">)</span> <span class="token function">Produce</span><span class="token punctuation">(</span>writer io<span class="token punctuation">.</span>Writer<span class="token punctuation">,</span> data <span class="token keyword">interface</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token builtin">error</span> <span class="token punctuation">{</span>
     <span class="token keyword">return</span> <span class="token function">f</span><span class="token punctuation">(</span>writer<span class="token punctuation">,</span> data<span class="token punctuation">)</span>
 <span class="token punctuation">}</span>
 
-<span class="token comment" spellcheck="true">// Producer implementations know how to turn the provided interface into a valid</span>
-<span class="token comment" spellcheck="true">// HTTP response</span>
+<span class="token comment">// Producer implementations know how to turn the provided interface into a valid</span>
+<span class="token comment">// HTTP response</span>
 <span class="token keyword">type</span> Producer <span class="token keyword">interface</span> <span class="token punctuation">{</span>
-    <span class="token comment" spellcheck="true">// Produce writes to the http response</span>
+    <span class="token comment">// Produce writes to the http response</span>
     <span class="token function">Produce</span><span class="token punctuation">(</span>io<span class="token punctuation">.</span>Writer<span class="token punctuation">,</span> <span class="token keyword">interface</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token builtin">error</span>
 <span class="token punctuation">}</span>
 </code></pre>
@@ -1152,44 +1169,44 @@ A consumer is an object that can marshal things from a wireformat to an object. 
 <p>Go swagger automatically provides consumers and producers for known media types. To register a new mapping for a media
 type or to override an existing mapping, call the corresponding API functions in your configure_xxx.go file:</p>
 <pre class="language-"><code class="lang-go"><span class="token keyword">func</span> <span class="token function">configureAPI</span><span class="token punctuation">(</span>api <span class="token operator">*</span>operations<span class="token punctuation">.</span>ToDoListAPI<span class="token punctuation">)</span> http<span class="token punctuation">.</span>Handler <span class="token punctuation">{</span>
-    <span class="token comment" spellcheck="true">// other setup code here...</span>
+    <span class="token comment">// other setup code here...</span>
 
     api<span class="token punctuation">.</span><span class="token function">RegisterConsumer</span><span class="token punctuation">(</span><span class="token string">&quot;application/pkcs10&quot;</span><span class="token punctuation">,</span> myCustomConsumer<span class="token punctuation">)</span>
     api<span class="token punctuation">.</span><span class="token function">RegisterProducer</span><span class="token punctuation">(</span><span class="token string">&quot;application/pkcs10&quot;</span><span class="token punctuation">,</span> myCustomProducer<span class="token punctuation">)</span>
 <span class="token punctuation">}</span>
 </code></pre>
 <p>The next thing that happens in the configureAPI method is setting up the authentication with a stub handler in this case. This particular swagger specification supports token based authentication and as such it wants you to configure a token auth handler.  Any error for an authentication handler is assumed to be an invalid authentication and will return the 401 status code.</p>
-<pre class="language-"><code class="lang-go"><span class="token comment" spellcheck="true">// UserPassAuthentication authentication function</span>
+<pre class="language-"><code class="lang-go"><span class="token comment">// UserPassAuthentication authentication function</span>
 <span class="token keyword">type</span> UserPassAuthentication <span class="token keyword">func</span><span class="token punctuation">(</span><span class="token builtin">string</span><span class="token punctuation">,</span> <span class="token builtin">string</span><span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token keyword">interface</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token builtin">error</span><span class="token punctuation">)</span>
 
-<span class="token comment" spellcheck="true">// TokenAuthentication authentication function</span>
+<span class="token comment">// TokenAuthentication authentication function</span>
 <span class="token keyword">type</span> TokenAuthentication <span class="token keyword">func</span><span class="token punctuation">(</span><span class="token builtin">string</span><span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token keyword">interface</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token builtin">error</span><span class="token punctuation">)</span>
 
-<span class="token comment" spellcheck="true">// AuthenticatorFunc turns a function into an authenticator</span>
+<span class="token comment">// AuthenticatorFunc turns a function into an authenticator</span>
 <span class="token keyword">type</span> AuthenticatorFunc <span class="token keyword">func</span><span class="token punctuation">(</span><span class="token keyword">interface</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token builtin">bool</span><span class="token punctuation">,</span> <span class="token keyword">interface</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token builtin">error</span><span class="token punctuation">)</span>
 
-<span class="token comment" spellcheck="true">// Authenticate authenticates the request with the provided data</span>
+<span class="token comment">// Authenticate authenticates the request with the provided data</span>
 <span class="token keyword">func</span> <span class="token punctuation">(</span>f AuthenticatorFunc<span class="token punctuation">)</span> <span class="token function">Authenticate</span><span class="token punctuation">(</span>params <span class="token keyword">interface</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token builtin">bool</span><span class="token punctuation">,</span> <span class="token keyword">interface</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token builtin">error</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
     <span class="token keyword">return</span> <span class="token function">f</span><span class="token punctuation">(</span>params<span class="token punctuation">)</span>
 <span class="token punctuation">}</span>
 
-<span class="token comment" spellcheck="true">// Authenticator represents an authentication strategy</span>
-<span class="token comment" spellcheck="true">// implementations of Authenticator know how to authenticate the</span>
-<span class="token comment" spellcheck="true">// request data and translate that into a valid principal object or an error</span>
+<span class="token comment">// Authenticator represents an authentication strategy</span>
+<span class="token comment">// implementations of Authenticator know how to authenticate the</span>
+<span class="token comment">// request data and translate that into a valid principal object or an error</span>
 <span class="token keyword">type</span> Authenticator <span class="token keyword">interface</span> <span class="token punctuation">{</span>
     <span class="token function">Authenticate</span><span class="token punctuation">(</span><span class="token keyword">interface</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token builtin">bool</span><span class="token punctuation">,</span> <span class="token keyword">interface</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token builtin">error</span><span class="token punctuation">)</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<p>So we finally get to configuring our route handlers. For each operation there exists an interface so that implementations have some freedom to provide alternative implentations. For example mocks in certain tests, automatic stubbing handlers, not implemented handlers. Let&apos;s look at the addOne handler in a bit more detail.</p>
-<pre class="language-"><code class="lang-go"><span class="token comment" spellcheck="true">// AddOneHandlerFunc turns a function with the right signature into a add one handler</span>
+<p>So we finally get to configuring our route handlers. For each operation there exists an interface so that implementations have some freedom to provide alternative implementations. For example mocks in certain tests, automatic stubbing handlers, not implemented handlers. Let&apos;s look at the addOne handler in a bit more detail.</p>
+<pre class="language-"><code class="lang-go"><span class="token comment">// AddOneHandlerFunc turns a function with the right signature into a add one handler</span>
 <span class="token keyword">type</span> AddOneHandlerFunc <span class="token keyword">func</span><span class="token punctuation">(</span>AddOneParams<span class="token punctuation">,</span> <span class="token keyword">interface</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span> middleware<span class="token punctuation">.</span>Responder
 
-<span class="token comment" spellcheck="true">// Handle executing the request and returning a response</span>
+<span class="token comment">// Handle executing the request and returning a response</span>
 <span class="token keyword">func</span> <span class="token punctuation">(</span>fn AddOneHandlerFunc<span class="token punctuation">)</span> <span class="token function">Handle</span><span class="token punctuation">(</span>params AddOneParams<span class="token punctuation">,</span> principal <span class="token keyword">interface</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span> middleware<span class="token punctuation">.</span>Responder <span class="token punctuation">{</span>
     <span class="token keyword">return</span> <span class="token function">fn</span><span class="token punctuation">(</span>params<span class="token punctuation">,</span> principal<span class="token punctuation">)</span>
 <span class="token punctuation">}</span>
 
-<span class="token comment" spellcheck="true">// AddOneHandler interface for that can handle valid add one params</span>
+<span class="token comment">// AddOneHandler interface for that can handle valid add one params</span>
 <span class="token keyword">type</span> AddOneHandler <span class="token keyword">interface</span> <span class="token punctuation">{</span>
     <span class="token function">Handle</span><span class="token punctuation">(</span>AddOneParams<span class="token punctuation">,</span> <span class="token keyword">interface</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span> middleware<span class="token punctuation">.</span>Responder
 <span class="token punctuation">}</span>
@@ -1197,12 +1214,12 @@ type or to override an existing mapping, call the corresponding API functions in
 <p>Because the <code>addOne</code> operation requires authentication, this interface definition requires 2 arguments. The first argument is about the request parameters and the second parameter is the security principal for the request.  In this case it is of type <code>interface{}</code>, typically that is a type like Account, User, Session, ...</p>
 <p>It is your job to provide such a handler. Go swagger guarantees that by the time the request processing ends up at the handler, the parameters and security principal have been bound and validated.  So you can safely proceed with saving the request body to some persistence medium perhaps.</p>
 <p>There is a context that gets created where the handlers get wired up into a <code>http.Handler</code>. For the add one this looks like this:</p>
-<pre class="language-"><code class="lang-go"><span class="token comment" spellcheck="true">// NewAddOne creates a new http.Handler for the add one operation</span>
+<pre class="language-"><code class="lang-go"><span class="token comment">// NewAddOne creates a new http.Handler for the add one operation</span>
 <span class="token keyword">func</span> <span class="token function">NewAddOne</span><span class="token punctuation">(</span>ctx <span class="token operator">*</span>middleware<span class="token punctuation">.</span>Context<span class="token punctuation">,</span> handler AddOneHandler<span class="token punctuation">)</span> <span class="token operator">*</span>AddOne <span class="token punctuation">{</span>
     <span class="token keyword">return</span> <span class="token operator">&amp;</span>AddOne<span class="token punctuation">{</span>Context<span class="token punctuation">:</span> ctx<span class="token punctuation">,</span> Handler<span class="token punctuation">:</span> handler<span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 
-<span class="token comment" spellcheck="true">/*AddOne swagger:route POST / todos addOne
+<span class="token comment">/*AddOne swagger:route POST / todos addOne
 
 AddOne add one API
 
@@ -1226,37 +1243,37 @@ AddOne add one API
         principal <span class="token operator">=</span> uprinc
     <span class="token punctuation">}</span>
 
-    <span class="token keyword">if</span> err <span class="token operator">:=</span> o<span class="token punctuation">.</span>Context<span class="token punctuation">.</span><span class="token function">BindValidRequest</span><span class="token punctuation">(</span>r<span class="token punctuation">,</span> route<span class="token punctuation">,</span> <span class="token operator">&amp;</span>o<span class="token punctuation">.</span>Params<span class="token punctuation">)</span><span class="token punctuation">;</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">{</span> <span class="token comment" spellcheck="true">// bind params</span>
+    <span class="token keyword">if</span> err <span class="token operator">:=</span> o<span class="token punctuation">.</span>Context<span class="token punctuation">.</span><span class="token function">BindValidRequest</span><span class="token punctuation">(</span>r<span class="token punctuation">,</span> route<span class="token punctuation">,</span> <span class="token operator">&amp;</span>o<span class="token punctuation">.</span>Params<span class="token punctuation">)</span><span class="token punctuation">;</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">{</span> <span class="token comment">// bind params</span>
         o<span class="token punctuation">.</span>Context<span class="token punctuation">.</span><span class="token function">Respond</span><span class="token punctuation">(</span>rw<span class="token punctuation">,</span> r<span class="token punctuation">,</span> route<span class="token punctuation">.</span>Produces<span class="token punctuation">,</span> route<span class="token punctuation">,</span> err<span class="token punctuation">)</span>
         <span class="token keyword">return</span>
     <span class="token punctuation">}</span>
 
-    res <span class="token operator">:=</span> o<span class="token punctuation">.</span>Handler<span class="token punctuation">.</span><span class="token function">Handle</span><span class="token punctuation">(</span>o<span class="token punctuation">.</span>Params<span class="token punctuation">,</span> principal<span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// actually handle the request</span>
+    res <span class="token operator">:=</span> o<span class="token punctuation">.</span>Handler<span class="token punctuation">.</span><span class="token function">Handle</span><span class="token punctuation">(</span>o<span class="token punctuation">.</span>Params<span class="token punctuation">,</span> principal<span class="token punctuation">)</span> <span class="token comment">// actually handle the request</span>
 
     o<span class="token punctuation">.</span>Context<span class="token punctuation">.</span><span class="token function">Respond</span><span class="token punctuation">(</span>rw<span class="token punctuation">,</span> r<span class="token punctuation">,</span> route<span class="token punctuation">.</span>Produces<span class="token punctuation">,</span> route<span class="token punctuation">,</span> res<span class="token punctuation">)</span>
 
 <span class="token punctuation">}</span>
 </code></pre>
 <p>The <code>http.Handler</code> implementation takes care of authentication, binding, user code execution and generating a response. For authentication this request would end up in the <code>TokenAuthentication</code> handler that was put on the api context object earlier.  When a request is authenticated it gets bound. This operation eventually requires an object that is an implementation of <code>RequestBinder</code>.  The <code>AddOneParams</code> are such an implementation:</p>
-<pre class="language-"><code class="lang-go"><span class="token comment" spellcheck="true">// RequestBinder is an interface for types to implement</span>
-<span class="token comment" spellcheck="true">// when they want to be able to bind from a request</span>
+<pre class="language-"><code class="lang-go"><span class="token comment">// RequestBinder is an interface for types to implement</span>
+<span class="token comment">// when they want to be able to bind from a request</span>
 <span class="token keyword">type</span> RequestBinder <span class="token keyword">interface</span> <span class="token punctuation">{</span>
     <span class="token function">BindRequest</span><span class="token punctuation">(</span><span class="token operator">*</span>http<span class="token punctuation">.</span>Request<span class="token punctuation">,</span> <span class="token operator">*</span>MatchedRoute<span class="token punctuation">)</span> <span class="token builtin">error</span>
 <span class="token punctuation">}</span>
 
-<span class="token comment" spellcheck="true">// AddOneParams contains all the bound params for the add one operation</span>
-<span class="token comment" spellcheck="true">// typically these are obtained from a http.Request</span>
-<span class="token comment" spellcheck="true">//</span>
-<span class="token comment" spellcheck="true">// swagger:parameters addOne</span>
+<span class="token comment">// AddOneParams contains all the bound params for the add one operation</span>
+<span class="token comment">// typically these are obtained from a http.Request</span>
+<span class="token comment">//</span>
+<span class="token comment">// swagger:parameters addOne</span>
 <span class="token keyword">type</span> AddOneParams <span class="token keyword">struct</span> <span class="token punctuation">{</span>
-    <span class="token comment" spellcheck="true">/*
+    <span class="token comment">/*
       In: body
     */</span>
     Body <span class="token operator">*</span>models<span class="token punctuation">.</span>Item
 <span class="token punctuation">}</span>
 
-<span class="token comment" spellcheck="true">// BindRequest both binds and validates a request, it assumes that complex things implement a Validatable(strfmt.Registry) error interface</span>
-<span class="token comment" spellcheck="true">// for simple values it will use straight method calls</span>
+<span class="token comment">// BindRequest both binds and validates a request, it assumes that complex things implement a Validatable(strfmt.Registry) error interface</span>
+<span class="token comment">// for simple values it will use straight method calls</span>
 <span class="token keyword">func</span> <span class="token punctuation">(</span>o <span class="token operator">*</span>AddOneParams<span class="token punctuation">)</span> <span class="token function">BindRequest</span><span class="token punctuation">(</span>r <span class="token operator">*</span>http<span class="token punctuation">.</span>Request<span class="token punctuation">,</span> route <span class="token operator">*</span>middleware<span class="token punctuation">.</span>MatchedRoute<span class="token punctuation">)</span> <span class="token builtin">error</span> <span class="token punctuation">{</span>
     <span class="token keyword">var</span> res <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">error</span>
 
@@ -1281,50 +1298,50 @@ AddOne add one API
 </code></pre>
 <p>In this example there is only a body parameter, so we make use of the selected consumer to read the request body and turn it into an instance of models.Item. When the body parameter is bound, it gets validated and when validation passes no error is returned and the body property is set.  After a request is bound and validated the parameters and security principal are passed to the request handler. For this configuration that would return a 501 responder.</p>
 <p>Go swagger uses responders which are an interface implementation for things that can write to a response. For the generated server there are status code response and a default response object generated for every entry in the spec. For the <code>addOne</code> operation that are 2 objects one for the success case (201) and one for an error (default).</p>
-<pre class="language-"><code class="lang-go"><span class="token comment" spellcheck="true">// Responder is an interface for types to implement</span>
-<span class="token comment" spellcheck="true">// when they want to be considered for writing HTTP responses</span>
+<pre class="language-"><code class="lang-go"><span class="token comment">// Responder is an interface for types to implement</span>
+<span class="token comment">// when they want to be considered for writing HTTP responses</span>
 <span class="token keyword">type</span> Responder <span class="token keyword">interface</span> <span class="token punctuation">{</span>
     <span class="token function">WriteResponse</span><span class="token punctuation">(</span>http<span class="token punctuation">.</span>ResponseWriter<span class="token punctuation">,</span> runtime<span class="token punctuation">.</span>Producer<span class="token punctuation">)</span>
 <span class="token punctuation">}</span>
 
-<span class="token comment" spellcheck="true">/*AddOneCreated Created
+<span class="token comment">/*AddOneCreated Created
 
 swagger:response addOneCreated
 */</span>
 <span class="token keyword">type</span> AddOneCreated <span class="token keyword">struct</span> <span class="token punctuation">{</span>
 
-    <span class="token comment" spellcheck="true">// In: body</span>
+    <span class="token comment">// In: body</span>
     Payload <span class="token operator">*</span>models<span class="token punctuation">.</span>Item <span class="token string">`json:&quot;body,omitempty&quot;`</span>
 <span class="token punctuation">}</span>
 
-<span class="token comment" spellcheck="true">// WriteResponse to the client</span>
+<span class="token comment">// WriteResponse to the client</span>
 <span class="token keyword">func</span> <span class="token punctuation">(</span>o <span class="token operator">*</span>AddOneCreated<span class="token punctuation">)</span> <span class="token function">WriteResponse</span><span class="token punctuation">(</span>rw http<span class="token punctuation">.</span>ResponseWriter<span class="token punctuation">,</span> producer runtime<span class="token punctuation">.</span>Producer<span class="token punctuation">)</span> <span class="token punctuation">{</span>
 
     rw<span class="token punctuation">.</span><span class="token function">WriteHeader</span><span class="token punctuation">(</span><span class="token number">201</span><span class="token punctuation">)</span>
     <span class="token keyword">if</span> o<span class="token punctuation">.</span>Payload <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">{</span>
         <span class="token keyword">if</span> err <span class="token operator">:=</span> producer<span class="token punctuation">.</span><span class="token function">Produce</span><span class="token punctuation">(</span>rw<span class="token punctuation">,</span> o<span class="token punctuation">.</span>Payload<span class="token punctuation">)</span><span class="token punctuation">;</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">{</span>
-            <span class="token function">panic</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// let the recovery middleware deal with this</span>
+            <span class="token function">panic</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span> <span class="token comment">// let the recovery middleware deal with this</span>
         <span class="token punctuation">}</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 
-<span class="token comment" spellcheck="true">/*AddOneDefault error
+<span class="token comment">/*AddOneDefault error
 
 swagger:response addOneDefault
 */</span>
 <span class="token keyword">type</span> AddOneDefault <span class="token keyword">struct</span> <span class="token punctuation">{</span>
 
-    <span class="token comment" spellcheck="true">// In: body</span>
+    <span class="token comment">// In: body</span>
     Payload <span class="token operator">*</span>models<span class="token punctuation">.</span>Error <span class="token string">`json:&quot;body,omitempty&quot;`</span>
 <span class="token punctuation">}</span>
 
-<span class="token comment" spellcheck="true">// WriteResponse to the client</span>
+<span class="token comment">// WriteResponse to the client</span>
 <span class="token keyword">func</span> <span class="token punctuation">(</span>o <span class="token operator">*</span>AddOneDefault<span class="token punctuation">)</span> <span class="token function">WriteResponse</span><span class="token punctuation">(</span>rw http<span class="token punctuation">.</span>ResponseWriter<span class="token punctuation">,</span> producer runtime<span class="token punctuation">.</span>Producer<span class="token punctuation">)</span> <span class="token punctuation">{</span>
 
     rw<span class="token punctuation">.</span><span class="token function">WriteHeader</span><span class="token punctuation">(</span><span class="token number">500</span><span class="token punctuation">)</span>
     <span class="token keyword">if</span> o<span class="token punctuation">.</span>Payload <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">{</span>
         <span class="token keyword">if</span> err <span class="token operator">:=</span> producer<span class="token punctuation">.</span><span class="token function">Produce</span><span class="token punctuation">(</span>rw<span class="token punctuation">,</span> o<span class="token punctuation">.</span>Payload<span class="token punctuation">)</span><span class="token punctuation">;</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">{</span>
-            <span class="token function">panic</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// let the recovery middleware deal with this</span>
+            <span class="token function">panic</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span> <span class="token comment">// let the recovery middleware deal with this</span>
         <span class="token punctuation">}</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
@@ -1378,7 +1395,7 @@ swagger:response addOneDefault
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Server Usage","level":"1.4.5.3.1","depth":4,"next":{"title":"How to use the server","level":"1.4.5.3.2","depth":4,"path":"use/server.md","ref":"use/server.md","articles":[]},"previous":{"title":"API Server","level":"1.4.5.3","depth":3,"ref":"","articles":[{"title":"Server Usage","level":"1.4.5.3.1","depth":4,"path":"generate/server.md","ref":"generate/server.md","articles":[]},{"title":"How to use the server","level":"1.4.5.3.2","depth":4,"path":"use/server.md","ref":"use/server.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"prism":{},"anchors":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"generate/server.md","mtime":"2018-07-10T06:26:50.898Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-12-23T01:39:45.647Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Server Usage","level":"1.4.5.3.1","depth":4,"next":{"title":"How to use the server","level":"1.4.5.3.2","depth":4,"path":"use/server.md","ref":"use/server.md","articles":[]},"previous":{"title":"API Server","level":"1.4.5.3","depth":3,"ref":"","articles":[{"title":"Server Usage","level":"1.4.5.3.1","depth":4,"path":"generate/server.md","ref":"generate/server.md","articles":[]},{"title":"How to use the server","level":"1.4.5.3.2","depth":4,"path":"use/server.md","ref":"use/server.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"prism":{},"anchors":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"generate/server.md","mtime":"2019-08-17T16:02:07.990Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-08-19T02:12:46.769Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

@@ -338,12 +338,12 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.4.4.1" data-path="../../usage/flatten.html">
+        <li class="chapter " data-level="1.4.4.1" data-path="../../usage/diff.html">
             
-                <a href="../../usage/flatten.html">
+                <a href="../../usage/diff.html">
             
                     
-                    Flatten
+                    Diff
             
                 </a>
             
@@ -364,7 +364,20 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.4.3" data-path="../../usage/mixin.html">
+        <li class="chapter " data-level="1.4.4.3" data-path="../../usage/flatten.html">
+            
+                <a href="../../usage/flatten.html">
+            
+                    
+                    Flatten
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4.4" data-path="../../usage/mixin.html">
             
                 <a href="../../usage/mixin.html">
             
@@ -980,46 +993,46 @@ as it won&apos;t parse correctly otherwise.</p>
 YAML spec, you will override the <em>summary</em>, <em>descriptions</em>, <em>tags</em> or <em>operationId</em>, specified as part of the regular swagger syntax above.</p>
 <p>Also note that you need to start your YAML spec with a triple dash <code>---</code>.</p>
 <h5 id="example"><a name="example" class="plugin-anchor" href="#example"><i class="fa fa-link" aria-hidden="true"></i></a>Example:</h5>
-<pre class="language-"><code class="lang-go"><span class="token comment" spellcheck="true">// ServeAPI serves the API for this record store</span>
+<pre class="language-"><code class="lang-go"><span class="token comment">// ServeAPI serves the API for this record store</span>
 <span class="token keyword">func</span> <span class="token function">ServeAPI</span><span class="token punctuation">(</span>host<span class="token punctuation">,</span> basePath <span class="token builtin">string</span><span class="token punctuation">,</span> schemes <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">string</span><span class="token punctuation">)</span> <span class="token punctuation">(</span>err <span class="token builtin">error</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token comment" spellcheck="true">// swagger:operation GET /pets getPet</span>
-    <span class="token comment" spellcheck="true">//</span>
-    <span class="token comment" spellcheck="true">// Returns all pets from the system that the user has access to</span>
-    <span class="token comment" spellcheck="true">//</span>
-    <span class="token comment" spellcheck="true">// Could be any pet</span>
-    <span class="token comment" spellcheck="true">//</span>
-    <span class="token comment" spellcheck="true">// ---</span>
-    <span class="token comment" spellcheck="true">// produces:</span>
-    <span class="token comment" spellcheck="true">// - application/json</span>
-    <span class="token comment" spellcheck="true">// - application/xml</span>
-    <span class="token comment" spellcheck="true">// - text/xml</span>
-    <span class="token comment" spellcheck="true">// - text/html</span>
-    <span class="token comment" spellcheck="true">// parameters:</span>
-    <span class="token comment" spellcheck="true">// - name: tags</span>
-    <span class="token comment" spellcheck="true">//   in: query</span>
-    <span class="token comment" spellcheck="true">//   description: tags to filter by</span>
-    <span class="token comment" spellcheck="true">//   required: false</span>
-    <span class="token comment" spellcheck="true">//   type: array</span>
-    <span class="token comment" spellcheck="true">//   items:</span>
-    <span class="token comment" spellcheck="true">//     type: string</span>
-    <span class="token comment" spellcheck="true">//   collectionFormat: csv</span>
-    <span class="token comment" spellcheck="true">// - name: limit</span>
-    <span class="token comment" spellcheck="true">//   in: query</span>
-    <span class="token comment" spellcheck="true">//   description: maximum number of results to return</span>
-    <span class="token comment" spellcheck="true">//   required: false</span>
-    <span class="token comment" spellcheck="true">//   type: integer</span>
-    <span class="token comment" spellcheck="true">//   format: int32</span>
-    <span class="token comment" spellcheck="true">// responses:</span>
-    <span class="token comment" spellcheck="true">//   &apos;200&apos;:</span>
-    <span class="token comment" spellcheck="true">//     description: pet response</span>
-    <span class="token comment" spellcheck="true">//     schema:</span>
-    <span class="token comment" spellcheck="true">//       type: array</span>
-    <span class="token comment" spellcheck="true">//       items:</span>
-    <span class="token comment" spellcheck="true">//         &quot;$ref&quot;: &quot;#/definitions/pet&quot;</span>
-    <span class="token comment" spellcheck="true">//   default:</span>
-    <span class="token comment" spellcheck="true">//     description: unexpected error</span>
-    <span class="token comment" spellcheck="true">//     schema:</span>
-    <span class="token comment" spellcheck="true">//       &quot;$ref&quot;: &quot;#/definitions/errorModel&quot;</span>
+    <span class="token comment">// swagger:operation GET /pets getPet</span>
+    <span class="token comment">//</span>
+    <span class="token comment">// Returns all pets from the system that the user has access to</span>
+    <span class="token comment">//</span>
+    <span class="token comment">// Could be any pet</span>
+    <span class="token comment">//</span>
+    <span class="token comment">// ---</span>
+    <span class="token comment">// produces:</span>
+    <span class="token comment">// - application/json</span>
+    <span class="token comment">// - application/xml</span>
+    <span class="token comment">// - text/xml</span>
+    <span class="token comment">// - text/html</span>
+    <span class="token comment">// parameters:</span>
+    <span class="token comment">// - name: tags</span>
+    <span class="token comment">//   in: query</span>
+    <span class="token comment">//   description: tags to filter by</span>
+    <span class="token comment">//   required: false</span>
+    <span class="token comment">//   type: array</span>
+    <span class="token comment">//   items:</span>
+    <span class="token comment">//     type: string</span>
+    <span class="token comment">//   collectionFormat: csv</span>
+    <span class="token comment">// - name: limit</span>
+    <span class="token comment">//   in: query</span>
+    <span class="token comment">//   description: maximum number of results to return</span>
+    <span class="token comment">//   required: false</span>
+    <span class="token comment">//   type: integer</span>
+    <span class="token comment">//   format: int32</span>
+    <span class="token comment">// responses:</span>
+    <span class="token comment">//   &apos;200&apos;:</span>
+    <span class="token comment">//     description: pet response</span>
+    <span class="token comment">//     schema:</span>
+    <span class="token comment">//       type: array</span>
+    <span class="token comment">//       items:</span>
+    <span class="token comment">//         &quot;$ref&quot;: &quot;#/definitions/pet&quot;</span>
+    <span class="token comment">//   default:</span>
+    <span class="token comment">//     description: unexpected error</span>
+    <span class="token comment">//     schema:</span>
+    <span class="token comment">//       &quot;$ref&quot;: &quot;#/definitions/errorModel&quot;</span>
     <span class="token function">mountItem</span><span class="token punctuation">(</span><span class="token string">&quot;GET&quot;</span><span class="token punctuation">,</span> basePath<span class="token operator">+</span><span class="token string">&quot;/pets&quot;</span><span class="token punctuation">,</span> <span class="token boolean">nil</span><span class="token punctuation">)</span>
 
     <span class="token keyword">return</span>
@@ -1057,11 +1070,11 @@ YAML spec, you will override the <em>summary</em>, <em>descriptions</em>, <em>ta
           <span class="token key atrule">schema</span><span class="token punctuation">:</span>
             <span class="token key atrule">type</span><span class="token punctuation">:</span> array
             <span class="token key atrule">items</span><span class="token punctuation">:</span>
-              <span class="token key atrule">$ref</span><span class="token punctuation">:</span> &quot;<span class="token comment" spellcheck="true">#/definitions/pet&quot;</span>
+              <span class="token key atrule">$ref</span><span class="token punctuation">:</span> <span class="token string">&quot;#/definitions/pet&quot;</span>
         <span class="token key atrule">default</span><span class="token punctuation">:</span>
           <span class="token key atrule">description</span><span class="token punctuation">:</span> unexpected error
           <span class="token key atrule">schema</span><span class="token punctuation">:</span>
-            <span class="token key atrule">$ref</span><span class="token punctuation">:</span> &quot;<span class="token comment" spellcheck="true">#/definitions/errorModel&quot;</span>
+            <span class="token key atrule">$ref</span><span class="token punctuation">:</span> <span class="token string">&quot;#/definitions/errorModel&quot;</span>
 </code></pre>
 
                                 
@@ -1106,7 +1119,7 @@ YAML spec, you will override the <em>summary</em>, <em>descriptions</em>, <em>ta
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"swagger:operation","level":"1.4.6.2.4","depth":4,"next":{"title":"swagger:response","level":"1.4.6.2.5","depth":4,"path":"use/spec/response.md","ref":"use/spec/response.md","articles":[]},"previous":{"title":"swagger:params","level":"1.4.6.2.3","depth":4,"path":"use/spec/params.md","ref":"use/spec/params.md","articles":[]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"prism":{},"anchors":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"use/spec/operation.md","mtime":"2018-07-10T06:26:50.901Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-12-23T01:39:45.647Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"swagger:operation","level":"1.4.6.2.4","depth":4,"next":{"title":"swagger:response","level":"1.4.6.2.5","depth":4,"path":"use/spec/response.md","ref":"use/spec/response.md","articles":[]},"previous":{"title":"swagger:params","level":"1.4.6.2.3","depth":4,"path":"use/spec/params.md","ref":"use/spec/params.md","articles":[]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"prism":{},"anchors":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"use/spec/operation.md","mtime":"2019-08-06T15:32:52.631Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-08-19T02:12:46.769Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

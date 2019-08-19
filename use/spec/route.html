@@ -338,12 +338,12 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.4.4.1" data-path="../../usage/flatten.html">
+        <li class="chapter " data-level="1.4.4.1" data-path="../../usage/diff.html">
             
-                <a href="../../usage/flatten.html">
+                <a href="../../usage/diff.html">
             
                     
-                    Flatten
+                    Diff
             
                 </a>
             
@@ -364,7 +364,20 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.4.3" data-path="../../usage/mixin.html">
+        <li class="chapter " data-level="1.4.4.3" data-path="../../usage/flatten.html">
+            
+                <a href="../../usage/flatten.html">
+            
+                    
+                    Flatten
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4.4" data-path="../../usage/mixin.html">
             
                 <a href="../../usage/mixin.html">
             
@@ -993,6 +1006,10 @@ yourself in valid swagger syntax.</p>
 <td>a list of operation specific schemes the API accept (possible values: http, https, ws, wss) https is preferred as default when configured</td>
 </tr>
 <tr>
+<td><strong>Deprecated</strong></td>
+<td>Route marked as deprecated if this value is true</td>
+</tr>
+<tr>
 <td><strong>Security</strong></td>
 <td>a dictionary of key: []string{scopes}</td>
 </tr>
@@ -1003,34 +1020,36 @@ yourself in valid swagger syntax.</p>
 </tbody>
 </table>
 <h5 id="example"><a name="example" class="plugin-anchor" href="#example"><i class="fa fa-link" aria-hidden="true"></i></a>Example:</h5>
-<pre class="language-"><code class="lang-go"><span class="token comment" spellcheck="true">// ServeAPI serves the API for this record store</span>
+<pre class="language-"><code class="lang-go"><span class="token comment">// ServeAPI serves the API for this record store</span>
 <span class="token keyword">func</span> <span class="token function">ServeAPI</span><span class="token punctuation">(</span>host<span class="token punctuation">,</span> basePath <span class="token builtin">string</span><span class="token punctuation">,</span> schemes <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">string</span><span class="token punctuation">)</span> <span class="token builtin">error</span> <span class="token punctuation">{</span>
 
-    <span class="token comment" spellcheck="true">// swagger:route GET /pets pets users listPets</span>
-    <span class="token comment" spellcheck="true">//</span>
-    <span class="token comment" spellcheck="true">// Lists pets filtered by some parameters.</span>
-    <span class="token comment" spellcheck="true">//</span>
-    <span class="token comment" spellcheck="true">// This will show all available pets by default.</span>
-    <span class="token comment" spellcheck="true">// You can get the pets that are out of stock</span>
-    <span class="token comment" spellcheck="true">//</span>
-    <span class="token comment" spellcheck="true">//     Consumes:</span>
-    <span class="token comment" spellcheck="true">//     - application/json</span>
-    <span class="token comment" spellcheck="true">//     - application/x-protobuf</span>
-    <span class="token comment" spellcheck="true">//</span>
-    <span class="token comment" spellcheck="true">//     Produces:</span>
-    <span class="token comment" spellcheck="true">//     - application/json</span>
-    <span class="token comment" spellcheck="true">//     - application/x-protobuf</span>
-    <span class="token comment" spellcheck="true">//</span>
-    <span class="token comment" spellcheck="true">//     Schemes: http, https, ws, wss</span>
-    <span class="token comment" spellcheck="true">//</span>
-    <span class="token comment" spellcheck="true">//     Security:</span>
-    <span class="token comment" spellcheck="true">//       api_key:</span>
-    <span class="token comment" spellcheck="true">//       oauth: read, write</span>
-    <span class="token comment" spellcheck="true">//</span>
-    <span class="token comment" spellcheck="true">//     Responses:</span>
-    <span class="token comment" spellcheck="true">//       default: genericError</span>
-    <span class="token comment" spellcheck="true">//       200: someResponse</span>
-    <span class="token comment" spellcheck="true">//       422: validationError</span>
+    <span class="token comment">// swagger:route GET /pets pets users listPets</span>
+    <span class="token comment">//</span>
+    <span class="token comment">// Lists pets filtered by some parameters.</span>
+    <span class="token comment">//</span>
+    <span class="token comment">// This will show all available pets by default.</span>
+    <span class="token comment">// You can get the pets that are out of stock</span>
+    <span class="token comment">//</span>
+    <span class="token comment">//     Consumes:</span>
+    <span class="token comment">//     - application/json</span>
+    <span class="token comment">//     - application/x-protobuf</span>
+    <span class="token comment">//</span>
+    <span class="token comment">//     Produces:</span>
+    <span class="token comment">//     - application/json</span>
+    <span class="token comment">//     - application/x-protobuf</span>
+    <span class="token comment">//</span>
+    <span class="token comment">//     Schemes: http, https, ws, wss</span>
+    <span class="token comment">//</span>
+    <span class="token comment">//     Deprecated: true</span>
+    <span class="token comment">//</span>
+    <span class="token comment">//     Security:</span>
+    <span class="token comment">//       api_key:</span>
+    <span class="token comment">//       oauth: read, write</span>
+    <span class="token comment">//</span>
+    <span class="token comment">//     Responses:</span>
+    <span class="token comment">//       default: genericError</span>
+    <span class="token comment">//       200: someResponse</span>
+    <span class="token comment">//       422: validationError</span>
     <span class="token function">mountItem</span><span class="token punctuation">(</span><span class="token string">&quot;GET&quot;</span><span class="token punctuation">,</span> basePath<span class="token operator">+</span><span class="token string">&quot;/pets&quot;</span><span class="token punctuation">,</span> <span class="token boolean">nil</span><span class="token punctuation">)</span>
 <span class="token punctuation">}</span>
 </code></pre>
@@ -1040,6 +1059,7 @@ yourself in valid swagger syntax.</p>
   <span class="token key atrule">&quot;/pets&quot;</span><span class="token punctuation">:</span>
     <span class="token key atrule">get</span><span class="token punctuation">:</span>
       <span class="token key atrule">operationId</span><span class="token punctuation">:</span> listPets
+      <span class="token key atrule">deprecated</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
       <span class="token key atrule">summary</span><span class="token punctuation">:</span> Lists pets filtered by some parameters.
       <span class="token key atrule">description</span><span class="token punctuation">:</span> <span class="token string">&quot;This will show all available pets by default.\nYou can get the pets that are out of stock&quot;</span>
       <span class="token key atrule">tags</span><span class="token punctuation">:</span>
@@ -1063,11 +1083,11 @@ yourself in valid swagger syntax.</p>
         <span class="token punctuation">-</span> write
       <span class="token key atrule">responses</span><span class="token punctuation">:</span>
         <span class="token key atrule">default</span><span class="token punctuation">:</span>
-          <span class="token key atrule">$ref</span><span class="token punctuation">:</span> &quot;<span class="token comment" spellcheck="true">#/responses/genericError&quot;</span>
+          <span class="token key atrule">$ref</span><span class="token punctuation">:</span> <span class="token string">&quot;#/responses/genericError&quot;</span>
         <span class="token key atrule">200</span><span class="token punctuation">:</span>
-          <span class="token key atrule">$ref</span><span class="token punctuation">:</span> &quot;<span class="token comment" spellcheck="true">#/responses/someResponse&quot;</span>
+          <span class="token key atrule">$ref</span><span class="token punctuation">:</span> <span class="token string">&quot;#/responses/someResponse&quot;</span>
         <span class="token key atrule">422</span><span class="token punctuation">:</span>
-          <span class="token key atrule">$ref</span><span class="token punctuation">:</span> &quot;<span class="token comment" spellcheck="true">#/responses/validationError&quot;</span>
+          <span class="token key atrule">$ref</span><span class="token punctuation">:</span> <span class="token string">&quot;#/responses/validationError&quot;</span>
 </code></pre>
 
                                 
@@ -1112,7 +1132,7 @@ yourself in valid swagger syntax.</p>
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"swagger:route","level":"1.4.6.2.2","depth":4,"next":{"title":"swagger:params","level":"1.4.6.2.3","depth":4,"path":"use/spec/params.md","ref":"use/spec/params.md","articles":[]},"previous":{"title":"swagger:meta","level":"1.4.6.2.1","depth":4,"path":"use/spec/meta.md","ref":"use/spec/meta.md","articles":[]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"prism":{},"anchors":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"use/spec/route.md","mtime":"2018-07-10T06:26:50.901Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-12-23T01:39:45.647Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"swagger:route","level":"1.4.6.2.2","depth":4,"next":{"title":"swagger:params","level":"1.4.6.2.3","depth":4,"path":"use/spec/params.md","ref":"use/spec/params.md","articles":[]},"previous":{"title":"swagger:meta","level":"1.4.6.2.1","depth":4,"path":"use/spec/meta.md","ref":"use/spec/meta.md","articles":[]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"prism":{},"anchors":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"use/spec/route.md","mtime":"2019-08-17T22:22:22.896Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-08-19T02:12:46.769Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

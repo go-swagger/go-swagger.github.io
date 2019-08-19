@@ -336,12 +336,12 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.4.4.1" data-path="../usage/flatten.html">
+        <li class="chapter " data-level="1.4.4.1" data-path="../usage/diff.html">
             
-                <a href="../usage/flatten.html">
+                <a href="../usage/diff.html">
             
                     
-                    Flatten
+                    Diff
             
                 </a>
             
@@ -362,7 +362,20 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.4.3" data-path="../usage/mixin.html">
+        <li class="chapter " data-level="1.4.4.3" data-path="../usage/flatten.html">
+            
+                <a href="../usage/flatten.html">
+            
+                    
+                    Flatten
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4.4" data-path="../usage/mixin.html">
             
                 <a href="../usage/mixin.html">
             
@@ -966,19 +979,23 @@
 generate a swagger spec document from a go application
 
 Application Options:
-  -q, --quiet               silence logs
-  -o, --output=LOG-FILE     redirect logs to file
+  -q, --quiet                  silence logs
+      --log-output=LOG-FILE    redirect logs to file
 
 Help Options:
-  -h, --help                Show this help message
+  -h, --help                   Show this help message
 
 [spec command options]
-      -b, --base-path=      the base path to use (default: .)
-      -t, --tags=           build tags
-      -m, --scan-models     includes models that were annotated with &apos;swagger:model&apos;
-          --compact         when present, doesn&apos;t prettify the json
-      -o, --output=         the file to write to
-      -i, --input=          the file to use as input
+      -b, --base-path=         the base path to use (default: .)
+      -t, --tags=              build tags
+      -m, --scan-models        includes models that were annotated with &apos;swagger:model&apos;
+          --compact            when present, doesn&apos;t prettify the json
+      -o, --output=            the file to write to
+      -i, --input=             the file to use as input
+      -c, --include=           include packages matching pattern
+      -x, --exclude=           exclude packages matching pattern
+          --include-tag=       include routes having specified tags (can be specified many times)
+          --exclude-tag=       exclude routes having specified tags (can be specified many times)
 </code></pre><p>See code annotation rules <a href="../use/spec.html">here</a></p>
 
                                 
@@ -1019,7 +1036,7 @@ Help Options:
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Spec Usage","level":"1.4.6.1","depth":3,"next":{"title":"Spec generation rules","level":"1.4.6.2","depth":3,"path":"use/spec.md","ref":"use/spec.md","articles":[{"title":"swagger:meta","level":"1.4.6.2.1","depth":4,"path":"use/spec/meta.md","ref":"use/spec/meta.md","articles":[]},{"title":"swagger:route","level":"1.4.6.2.2","depth":4,"path":"use/spec/route.md","ref":"use/spec/route.md","articles":[]},{"title":"swagger:params","level":"1.4.6.2.3","depth":4,"path":"use/spec/params.md","ref":"use/spec/params.md","articles":[]},{"title":"swagger:operation","level":"1.4.6.2.4","depth":4,"path":"use/spec/operation.md","ref":"use/spec/operation.md","articles":[]},{"title":"swagger:response","level":"1.4.6.2.5","depth":4,"path":"use/spec/response.md","ref":"use/spec/response.md","articles":[]},{"title":"swagger:model","level":"1.4.6.2.6","depth":4,"path":"use/spec/model.md","ref":"use/spec/model.md","articles":[]},{"title":"swagger:allOf","level":"1.4.6.2.7","depth":4,"path":"use/spec/allOf.md","ref":"use/spec/allOf.md","articles":[]},{"title":"swagger:strfmt","level":"1.4.6.2.8","depth":4,"path":"use/spec/strfmt.md","ref":"use/spec/strfmt.md","articles":[]},{"title":"swagger:discriminated","level":"1.4.6.2.9","depth":4,"path":"use/spec/discriminated.md","ref":"use/spec/discriminated.md","articles":[]},{"title":"swagger:ignore","level":"1.4.6.2.10","depth":4,"path":"use/spec/ignore.md","ref":"use/spec/ignore.md","articles":[]}]},"previous":{"title":"Generate spec from source","level":"1.4.6","depth":2,"ref":"","articles":[{"title":"Spec Usage","level":"1.4.6.1","depth":3,"path":"generate/spec.md","ref":"generate/spec.md","articles":[]},{"title":"Spec generation rules","level":"1.4.6.2","depth":3,"path":"use/spec.md","ref":"use/spec.md","articles":[{"title":"swagger:meta","level":"1.4.6.2.1","depth":4,"path":"use/spec/meta.md","ref":"use/spec/meta.md","articles":[]},{"title":"swagger:route","level":"1.4.6.2.2","depth":4,"path":"use/spec/route.md","ref":"use/spec/route.md","articles":[]},{"title":"swagger:params","level":"1.4.6.2.3","depth":4,"path":"use/spec/params.md","ref":"use/spec/params.md","articles":[]},{"title":"swagger:operation","level":"1.4.6.2.4","depth":4,"path":"use/spec/operation.md","ref":"use/spec/operation.md","articles":[]},{"title":"swagger:response","level":"1.4.6.2.5","depth":4,"path":"use/spec/response.md","ref":"use/spec/response.md","articles":[]},{"title":"swagger:model","level":"1.4.6.2.6","depth":4,"path":"use/spec/model.md","ref":"use/spec/model.md","articles":[]},{"title":"swagger:allOf","level":"1.4.6.2.7","depth":4,"path":"use/spec/allOf.md","ref":"use/spec/allOf.md","articles":[]},{"title":"swagger:strfmt","level":"1.4.6.2.8","depth":4,"path":"use/spec/strfmt.md","ref":"use/spec/strfmt.md","articles":[]},{"title":"swagger:discriminated","level":"1.4.6.2.9","depth":4,"path":"use/spec/discriminated.md","ref":"use/spec/discriminated.md","articles":[]},{"title":"swagger:ignore","level":"1.4.6.2.10","depth":4,"path":"use/spec/ignore.md","ref":"use/spec/ignore.md","articles":[]}]}]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"prism":{},"anchors":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"generate/spec.md","mtime":"2018-07-10T06:26:50.898Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-12-23T01:39:45.647Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Spec Usage","level":"1.4.6.1","depth":3,"next":{"title":"Spec generation rules","level":"1.4.6.2","depth":3,"path":"use/spec.md","ref":"use/spec.md","articles":[{"title":"swagger:meta","level":"1.4.6.2.1","depth":4,"path":"use/spec/meta.md","ref":"use/spec/meta.md","articles":[]},{"title":"swagger:route","level":"1.4.6.2.2","depth":4,"path":"use/spec/route.md","ref":"use/spec/route.md","articles":[]},{"title":"swagger:params","level":"1.4.6.2.3","depth":4,"path":"use/spec/params.md","ref":"use/spec/params.md","articles":[]},{"title":"swagger:operation","level":"1.4.6.2.4","depth":4,"path":"use/spec/operation.md","ref":"use/spec/operation.md","articles":[]},{"title":"swagger:response","level":"1.4.6.2.5","depth":4,"path":"use/spec/response.md","ref":"use/spec/response.md","articles":[]},{"title":"swagger:model","level":"1.4.6.2.6","depth":4,"path":"use/spec/model.md","ref":"use/spec/model.md","articles":[]},{"title":"swagger:allOf","level":"1.4.6.2.7","depth":4,"path":"use/spec/allOf.md","ref":"use/spec/allOf.md","articles":[]},{"title":"swagger:strfmt","level":"1.4.6.2.8","depth":4,"path":"use/spec/strfmt.md","ref":"use/spec/strfmt.md","articles":[]},{"title":"swagger:discriminated","level":"1.4.6.2.9","depth":4,"path":"use/spec/discriminated.md","ref":"use/spec/discriminated.md","articles":[]},{"title":"swagger:ignore","level":"1.4.6.2.10","depth":4,"path":"use/spec/ignore.md","ref":"use/spec/ignore.md","articles":[]}]},"previous":{"title":"Generate spec from source","level":"1.4.6","depth":2,"ref":"","articles":[{"title":"Spec Usage","level":"1.4.6.1","depth":3,"path":"generate/spec.md","ref":"generate/spec.md","articles":[]},{"title":"Spec generation rules","level":"1.4.6.2","depth":3,"path":"use/spec.md","ref":"use/spec.md","articles":[{"title":"swagger:meta","level":"1.4.6.2.1","depth":4,"path":"use/spec/meta.md","ref":"use/spec/meta.md","articles":[]},{"title":"swagger:route","level":"1.4.6.2.2","depth":4,"path":"use/spec/route.md","ref":"use/spec/route.md","articles":[]},{"title":"swagger:params","level":"1.4.6.2.3","depth":4,"path":"use/spec/params.md","ref":"use/spec/params.md","articles":[]},{"title":"swagger:operation","level":"1.4.6.2.4","depth":4,"path":"use/spec/operation.md","ref":"use/spec/operation.md","articles":[]},{"title":"swagger:response","level":"1.4.6.2.5","depth":4,"path":"use/spec/response.md","ref":"use/spec/response.md","articles":[]},{"title":"swagger:model","level":"1.4.6.2.6","depth":4,"path":"use/spec/model.md","ref":"use/spec/model.md","articles":[]},{"title":"swagger:allOf","level":"1.4.6.2.7","depth":4,"path":"use/spec/allOf.md","ref":"use/spec/allOf.md","articles":[]},{"title":"swagger:strfmt","level":"1.4.6.2.8","depth":4,"path":"use/spec/strfmt.md","ref":"use/spec/strfmt.md","articles":[]},{"title":"swagger:discriminated","level":"1.4.6.2.9","depth":4,"path":"use/spec/discriminated.md","ref":"use/spec/discriminated.md","articles":[]},{"title":"swagger:ignore","level":"1.4.6.2.10","depth":4,"path":"use/spec/ignore.md","ref":"use/spec/ignore.md","articles":[]}]}]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"prism":{},"anchors":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"generate/spec.md","mtime":"2019-08-06T15:32:52.616Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-08-19T02:12:46.769Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

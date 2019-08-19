@@ -336,12 +336,12 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.4.4.1" data-path="../usage/flatten.html">
+        <li class="chapter " data-level="1.4.4.1" data-path="../usage/diff.html">
             
-                <a href="../usage/flatten.html">
+                <a href="../usage/diff.html">
             
                     
-                    Flatten
+                    Diff
             
                 </a>
             
@@ -362,7 +362,20 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.4.3" data-path="../usage/mixin.html">
+        <li class="chapter " data-level="1.4.4.3" data-path="../usage/flatten.html">
+            
+                <a href="../usage/flatten.html">
+            
+                    
+                    Flatten
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4.4" data-path="../usage/mixin.html">
             
                 <a href="../usage/mixin.html">
             
@@ -963,7 +976,7 @@
 <p>The toolkit supports building a swagger specification entirely with go code. It does allow you to serve a spec up quickly. This is one of the building blocks required to serve up stub APIs and to generate a test server with predictable responses, however this is not as bad as it sounds...</p>
 <!--more-->
 <p>This tutorial uses the todo list application to serve a swagger based API defined entirely in go code.
-Because we know what we want the spec to look like, first we&apos;ll just build the entire spec with the interal dsl.</p>
+Because we know what we want the spec to look like, first we&apos;ll just build the entire spec with the internal dsl.</p>
 <h2 id="loading-the-specification"><a name="loading-the-specification" class="plugin-anchor" href="#loading-the-specification"><i class="fa fa-link" aria-hidden="true"></i></a>Loading the specification</h2>
 <pre class="language-"><code class="lang-go"><span class="token keyword">package</span> main
 
@@ -1018,7 +1031,7 @@ So let&apos;s start by enabling that validation:</p>
 
     api <span class="token operator">:=</span> untyped<span class="token punctuation">.</span><span class="token function">NewAPI</span><span class="token punctuation">(</span>specDoc<span class="token punctuation">)</span>
 
-    <span class="token comment" spellcheck="true">// validate the API descriptor, to ensure we don&apos;t have any unhandled operations</span>
+    <span class="token comment">// validate the API descriptor, to ensure we don&apos;t have any unhandled operations</span>
     <span class="token keyword">if</span> err <span class="token operator">:=</span> api<span class="token punctuation">.</span><span class="token function">Validate</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">{</span>
         log<span class="token punctuation">.</span><span class="token function">Fatalln</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span>
     <span class="token punctuation">}</span>
@@ -1048,11 +1061,11 @@ exit status 1
         log<span class="token punctuation">.</span><span class="token function">Fatalln</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span>
     <span class="token punctuation">}</span>
 
-    <span class="token comment" spellcheck="true">// our spec doesn&apos;t have application/json in the consumes or produces</span>
-    <span class="token comment" spellcheck="true">// so we need to clear those settings out</span>
+    <span class="token comment">// our spec doesn&apos;t have application/json in the consumes or produces</span>
+    <span class="token comment">// so we need to clear those settings out</span>
     api <span class="token operator">:=</span> untyped<span class="token punctuation">.</span><span class="token function">NewAPI</span><span class="token punctuation">(</span>specDoc<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">WithoutJSONDefaults</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
 
-    <span class="token comment" spellcheck="true">// register serializers</span>
+    <span class="token comment">// register serializers</span>
     mediaType <span class="token operator">:=</span> <span class="token string">&quot;application/io.goswagger.examples.todo-list.v1+json&quot;</span>
     api<span class="token punctuation">.</span>DefaultConsumes <span class="token operator">=</span> mediaType
     api<span class="token punctuation">.</span>DefaultProduces <span class="token operator">=</span> mediaType
@@ -1064,17 +1077,17 @@ exit status 1
     api<span class="token punctuation">.</span><span class="token function">RegisterOperation</span><span class="token punctuation">(</span><span class="token string">&quot;PUT&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;/{id}&quot;</span><span class="token punctuation">,</span> notImplemented<span class="token punctuation">)</span>
     api<span class="token punctuation">.</span><span class="token function">RegisterOperation</span><span class="token punctuation">(</span><span class="token string">&quot;DELETE&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;/{id}&quot;</span><span class="token punctuation">,</span> notImplemented<span class="token punctuation">)</span>
 
-    <span class="token comment" spellcheck="true">// validate the API descriptor, to ensure we don&apos;t have any unhandled operations</span>
+    <span class="token comment">// validate the API descriptor, to ensure we don&apos;t have any unhandled operations</span>
     <span class="token keyword">if</span> err <span class="token operator">:=</span> api<span class="token punctuation">.</span><span class="token function">Validate</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">{</span>
         log<span class="token punctuation">.</span><span class="token function">Fatalln</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span>
     <span class="token punctuation">}</span>
 
-    <span class="token comment" spellcheck="true">// construct the application context for this server</span>
-    <span class="token comment" spellcheck="true">// use the loaded spec document and the api descriptor with the default router</span>
+    <span class="token comment">// construct the application context for this server</span>
+    <span class="token comment">// use the loaded spec document and the api descriptor with the default router</span>
     app <span class="token operator">:=</span> middleware<span class="token punctuation">.</span><span class="token function">NewContext</span><span class="token punctuation">(</span>specDoc<span class="token punctuation">,</span> api<span class="token punctuation">,</span> <span class="token boolean">nil</span><span class="token punctuation">)</span>
 
     log<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">&quot;serving&quot;</span><span class="token punctuation">,</span> specDoc<span class="token punctuation">.</span><span class="token function">Spec</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>Info<span class="token punctuation">.</span>Title<span class="token punctuation">,</span> <span class="token string">&quot;at http://localhost:8000&quot;</span><span class="token punctuation">)</span>
-    <span class="token comment" spellcheck="true">// serve the api</span>
+    <span class="token comment">// serve the api</span>
     <span class="token keyword">if</span> err <span class="token operator">:=</span> http<span class="token punctuation">.</span><span class="token function">ListenAndServe</span><span class="token punctuation">(</span><span class="token string">&quot;:8000&quot;</span><span class="token punctuation">,</span> app<span class="token punctuation">.</span><span class="token function">APIHandler</span><span class="token punctuation">(</span><span class="token boolean">nil</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">{</span>
         log<span class="token punctuation">.</span><span class="token function">Fatalln</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span>
     <span class="token punctuation">}</span>
@@ -1099,10 +1112,10 @@ We set it as defaults and register the appropriate consumer and producer functio
 </code></pre><pre class="language-"><code class="lang-http"><span class="token response-status">HTTP/1.1 <span class="token property">501 Not Implemented</span></span>
 <span class="token header-name keyword">Content-Type:</span> application/io.goswagger.examples.todo-list.v1+json
 <span class="token header-name keyword">Date:</span> Sun, 09 Oct 2016 06:36:11 GMT
-<span class="token header-name keyword">Content-Length:</span> 18
+<span class="token header-name keyword">Content-Length:</span> 18<span class="token application/json">
 
-&quot;not implemented&quot;
-</code></pre>
+<span class="token string">&quot;not implemented&quot;</span>
+</span></code></pre>
 <blockquote>
 <p>There is a lot more to be done to make this server a production ready server, but for the
 purpose of this tutorial, this is enough.</p>
@@ -1169,7 +1182,7 @@ We&apos;ll also render a list of known items. Because http APIs can get concurre
 </code></pre>
 <p><a href="https://github.com/go-swagger/go-swagger/blob/master/examples/tutorials/todo-list/dynamic-untyped/main.go" target="_blank">see source of this code</a></p>
 <p>The backend code builds a todo-list-item store that&apos;s save for concurrent access buy guarding every operation with a lock. This is all in memory so as soon as you quit the process all your changes will be reset.</p>
-<p>Because we now have an actual implemenation that we can use for testings, lets hook that up in our API:</p>
+<p>Because we now have an actual implementation that we can use for testings, lets hook that up in our API:</p>
 <pre class="language-"><code class="lang-go"><span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
     <span class="token keyword">if</span> <span class="token function">len</span><span class="token punctuation">(</span>os<span class="token punctuation">.</span>Args<span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">1</span> <span class="token punctuation">{</span>
         log<span class="token punctuation">.</span><span class="token function">Fatalln</span><span class="token punctuation">(</span><span class="token string">&quot;this command requires the swagger spec as argument&quot;</span><span class="token punctuation">)</span>
@@ -1181,35 +1194,35 @@ We&apos;ll also render a list of known items. Because http APIs can get concurre
         log<span class="token punctuation">.</span><span class="token function">Fatalln</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span>
     <span class="token punctuation">}</span>
 
-    <span class="token comment" spellcheck="true">// our spec doesn&apos;t have application/json in the consumes or produces</span>
-    <span class="token comment" spellcheck="true">// so we need to clear those settings out</span>
+    <span class="token comment">// our spec doesn&apos;t have application/json in the consumes or produces</span>
+    <span class="token comment">// so we need to clear those settings out</span>
     api <span class="token operator">:=</span> untyped<span class="token punctuation">.</span><span class="token function">NewAPI</span><span class="token punctuation">(</span>specDoc<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">WithoutJSONDefaults</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
 
-    <span class="token comment" spellcheck="true">// register serializers</span>
+    <span class="token comment">// register serializers</span>
     mediaType <span class="token operator">:=</span> <span class="token string">&quot;application/io.goswagger.examples.todo-list.v1+json&quot;</span>
     api<span class="token punctuation">.</span>DefaultConsumes <span class="token operator">=</span> mediaType
     api<span class="token punctuation">.</span>DefaultProduces <span class="token operator">=</span> mediaType
     api<span class="token punctuation">.</span><span class="token function">RegisterConsumer</span><span class="token punctuation">(</span>mediaType<span class="token punctuation">,</span> runtime<span class="token punctuation">.</span><span class="token function">JSONConsumer</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
     api<span class="token punctuation">.</span><span class="token function">RegisterProducer</span><span class="token punctuation">(</span>mediaType<span class="token punctuation">,</span> runtime<span class="token punctuation">.</span><span class="token function">JSONProducer</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
 
-    <span class="token comment" spellcheck="true">// register the operation handlers</span>
+    <span class="token comment">// register the operation handlers</span>
     api<span class="token punctuation">.</span><span class="token function">RegisterOperation</span><span class="token punctuation">(</span><span class="token string">&quot;GET&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;/&quot;</span><span class="token punctuation">,</span> findTodos<span class="token punctuation">)</span>
     api<span class="token punctuation">.</span><span class="token function">RegisterOperation</span><span class="token punctuation">(</span><span class="token string">&quot;POST&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;/&quot;</span><span class="token punctuation">,</span> addOne<span class="token punctuation">)</span>
     api<span class="token punctuation">.</span><span class="token function">RegisterOperation</span><span class="token punctuation">(</span><span class="token string">&quot;PUT&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;/{id}&quot;</span><span class="token punctuation">,</span> updateOne<span class="token punctuation">)</span>
     api<span class="token punctuation">.</span><span class="token function">RegisterOperation</span><span class="token punctuation">(</span><span class="token string">&quot;DELETE&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;/{id}&quot;</span><span class="token punctuation">,</span> destroyOne<span class="token punctuation">)</span>
 
-    <span class="token comment" spellcheck="true">// validate the API descriptor, to ensure we don&apos;t have any unhandled operations</span>
+    <span class="token comment">// validate the API descriptor, to ensure we don&apos;t have any unhandled operations</span>
     <span class="token keyword">if</span> err <span class="token operator">:=</span> api<span class="token punctuation">.</span><span class="token function">Validate</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">{</span>
         log<span class="token punctuation">.</span><span class="token function">Fatalln</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span>
     <span class="token punctuation">}</span>
 
-    <span class="token comment" spellcheck="true">// construct the application context for this server</span>
-    <span class="token comment" spellcheck="true">// use the loaded spec document and the api descriptor with the default router</span>
+    <span class="token comment">// construct the application context for this server</span>
+    <span class="token comment">// use the loaded spec document and the api descriptor with the default router</span>
     app <span class="token operator">:=</span> middleware<span class="token punctuation">.</span><span class="token function">NewContext</span><span class="token punctuation">(</span>specDoc<span class="token punctuation">,</span> api<span class="token punctuation">,</span> <span class="token boolean">nil</span><span class="token punctuation">)</span>
 
     log<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">&quot;serving&quot;</span><span class="token punctuation">,</span> specDoc<span class="token punctuation">.</span><span class="token function">Spec</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>Info<span class="token punctuation">.</span>Title<span class="token punctuation">,</span> <span class="token string">&quot;at http://localhost:8000&quot;</span><span class="token punctuation">)</span>
 
-    <span class="token comment" spellcheck="true">// serve the api with spec and UI</span>
+    <span class="token comment">// serve the api with spec and UI</span>
     <span class="token keyword">if</span> err <span class="token operator">:=</span> http<span class="token punctuation">.</span><span class="token function">ListenAndServe</span><span class="token punctuation">(</span><span class="token string">&quot;:8000&quot;</span><span class="token punctuation">,</span> app<span class="token punctuation">.</span><span class="token function">APIHandler</span><span class="token punctuation">(</span><span class="token boolean">nil</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">{</span>
         log<span class="token punctuation">.</span><span class="token function">Fatalln</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span>
     <span class="token punctuation">}</span>
@@ -1256,56 +1269,56 @@ We&apos;ll also render a list of known items. Because http APIs can get concurre
 </code></pre><pre class="language-"><code class="lang-http"><span class="token response-status">HTTP/1.1 <span class="token property">200 OK</span></span>
 <span class="token header-name keyword">Content-Type:</span> application/io.goswagger.examples.todo-list.v1+json
 <span class="token header-name keyword">Date:</span> Sun, 09 Oct 2016 15:50:39 GMT
-<span class="token header-name keyword">Content-Length:</span> 87
+<span class="token header-name keyword">Content-Length:</span> 87<span class="token application/json">
 
-[{&quot;completed&quot;:true,&quot;description&quot;:&quot;feed dog&quot;,&quot;id&quot;:1},{&quot;description&quot;:&quot;feed cat&quot;,&quot;id&quot;:2}]
-</code></pre>
+<span class="token punctuation">[</span><span class="token punctuation">{</span><span class="token string">&quot;completed&quot;</span><span class="token punctuation">:</span><span class="token boolean">true</span><span class="token punctuation">,</span><span class="token string">&quot;description&quot;</span><span class="token punctuation">:</span><span class="token string">&quot;feed dog&quot;</span><span class="token punctuation">,</span><span class="token string">&quot;id&quot;</span><span class="token punctuation">:</span><span class="token number">1</span><span class="token punctuation">}</span><span class="token punctuation">,</span><span class="token punctuation">{</span><span class="token string">&quot;description&quot;</span><span class="token punctuation">:</span><span class="token string">&quot;feed cat&quot;</span><span class="token punctuation">,</span><span class="token string">&quot;id&quot;</span><span class="token punctuation">:</span><span class="token number">2</span><span class="token punctuation">}</span><span class="token punctuation">]</span>
+</span></code></pre>
 <h4 id="create-new"><a name="create-new" class="plugin-anchor" href="#create-new"><i class="fa fa-link" aria-hidden="true"></i></a>Create new</h4>
 <p>The default curl POST request should fail because we only allow:  application/io.goswagger.examples.todo-list.v1+json</p>
 <pre class="language-"><code>curl -i localhost:8000 -d &apos;{&quot;description&quot;:&quot;item for the list&quot;}&apos;
 </code></pre><pre class="language-"><code class="lang-http"><span class="token response-status">HTTP/1.1 <span class="token property">415 Unsupported Media Type</span></span>
 <span class="token header-name keyword">Content-Type:</span> application/io.goswagger.examples.todo-list.v1+json
 <span class="token header-name keyword">Date:</span> Sun, 09 Oct 2016 15:55:43 GMT
-<span class="token header-name keyword">Content-Length:</span> 157
+<span class="token header-name keyword">Content-Length:</span> 157<span class="token application/json">
 
-{&quot;code&quot;:415,&quot;message&quot;:&quot;unsupported media type \&quot;application/x-www-form-urlencoded\&quot;, only [application/io.goswagger.examples.todo-list.v1+json] are allowed&quot;}
-</code></pre>
+<span class="token punctuation">{</span><span class="token string">&quot;code&quot;</span><span class="token punctuation">:</span><span class="token number">415</span><span class="token punctuation">,</span><span class="token string">&quot;message&quot;</span><span class="token punctuation">:</span><span class="token string">&quot;unsupported media type \&quot;application/x-www-form-urlencoded\&quot;, only [application/io.goswagger.examples.todo-list.v1+json] are allowed&quot;</span><span class="token punctuation">}</span>
+</span></code></pre>
 <p>When the content type header is sent, we have a better result:</p>
 <pre class="language-"><code>curl -i -H &apos;Content-Type: application/io.goswagger.examples.todo-list.v1+json&apos; localhost:8000 -d &apos;{&quot;description&quot;:&quot;a new item&quot;}&apos;
 </code></pre><pre class="language-"><code class="lang-http"><span class="token response-status">HTTP/1.1 <span class="token property">201 Created</span></span>
 <span class="token header-name keyword">Content-Type:</span> application/io.goswagger.examples.todo-list.v1+json
 <span class="token header-name keyword">Date:</span> Sun, 09 Oct 2016 15:56:28 GMT
-<span class="token header-name keyword">Content-Length:</span> 36
+<span class="token header-name keyword">Content-Length:</span> 36<span class="token application/json">
 
-{&quot;description&quot;:&quot;a new item&quot;,&quot;id&quot;:3}
-</code></pre>
+<span class="token punctuation">{</span><span class="token string">&quot;description&quot;</span><span class="token punctuation">:</span><span class="token string">&quot;a new item&quot;</span><span class="token punctuation">,</span><span class="token string">&quot;id&quot;</span><span class="token punctuation">:</span><span class="token number">3</span><span class="token punctuation">}</span>
+</span></code></pre>
 <h4 id="list-again"><a name="list-again" class="plugin-anchor" href="#list-again"><i class="fa fa-link" aria-hidden="true"></i></a>List again</h4>
 <pre class="language-"><code>git:(master) &#x2717; !? &#xBB; curl -i localhost:8000
 </code></pre><pre class="language-"><code class="lang-http"><span class="token response-status">HTTP/1.1 <span class="token property">200 OK</span></span>
 <span class="token header-name keyword">Content-Type:</span> application/io.goswagger.examples.todo-list.v1+json
 <span class="token header-name keyword">Date:</span> Sun, 09 Oct 2016 15:58:06 GMT
-<span class="token header-name keyword">Content-Length:</span> 123
+<span class="token header-name keyword">Content-Length:</span> 123<span class="token application/json">
 
-[{&quot;completed&quot;:true,&quot;description&quot;:&quot;feed dog&quot;,&quot;id&quot;:1},{&quot;description&quot;:&quot;feed cat&quot;,&quot;id&quot;:2},{&quot;description&quot;:&quot;a new item&quot;,&quot;id&quot;:3}]
-</code></pre>
+<span class="token punctuation">[</span><span class="token punctuation">{</span><span class="token string">&quot;completed&quot;</span><span class="token punctuation">:</span><span class="token boolean">true</span><span class="token punctuation">,</span><span class="token string">&quot;description&quot;</span><span class="token punctuation">:</span><span class="token string">&quot;feed dog&quot;</span><span class="token punctuation">,</span><span class="token string">&quot;id&quot;</span><span class="token punctuation">:</span><span class="token number">1</span><span class="token punctuation">}</span><span class="token punctuation">,</span><span class="token punctuation">{</span><span class="token string">&quot;description&quot;</span><span class="token punctuation">:</span><span class="token string">&quot;feed cat&quot;</span><span class="token punctuation">,</span><span class="token string">&quot;id&quot;</span><span class="token punctuation">:</span><span class="token number">2</span><span class="token punctuation">}</span><span class="token punctuation">,</span><span class="token punctuation">{</span><span class="token string">&quot;description&quot;</span><span class="token punctuation">:</span><span class="token string">&quot;a new item&quot;</span><span class="token punctuation">,</span><span class="token string">&quot;id&quot;</span><span class="token punctuation">:</span><span class="token number">3</span><span class="token punctuation">}</span><span class="token punctuation">]</span>
+</span></code></pre>
 <h4 id="update-an-item"><a name="update-an-item" class="plugin-anchor" href="#update-an-item"><i class="fa fa-link" aria-hidden="true"></i></a>Update an item</h4>
 <pre class="language-"><code>curl -i -XPUT -H &apos;Content-Type: application/io.goswagger.examples.todo-list.v1+json&apos; localhost:8000/3 -d &apos;{&quot;description&quot;:&quot;an updated item&quot;}&apos;
 </code></pre><pre class="language-"><code class="lang-http"><span class="token response-status">HTTP/1.1 <span class="token property">200 OK</span></span>
 <span class="token header-name keyword">Content-Type:</span> application/io.goswagger.examples.todo-list.v1+json
 <span class="token header-name keyword">Date:</span> Sun, 09 Oct 2016 15:58:42 GMT
-<span class="token header-name keyword">Content-Length:</span> 41
+<span class="token header-name keyword">Content-Length:</span> 41<span class="token application/json">
 
-{&quot;description&quot;:&quot;an updated item&quot;,&quot;id&quot;:3}
-</code></pre>
+<span class="token punctuation">{</span><span class="token string">&quot;description&quot;</span><span class="token punctuation">:</span><span class="token string">&quot;an updated item&quot;</span><span class="token punctuation">,</span><span class="token string">&quot;id&quot;</span><span class="token punctuation">:</span><span class="token number">3</span><span class="token punctuation">}</span>
+</span></code></pre>
 <h4 id="list-to-verify"><a name="list-to-verify" class="plugin-anchor" href="#list-to-verify"><i class="fa fa-link" aria-hidden="true"></i></a>List to verify</h4>
 <pre class="language-"><code>git:(master) &#x2717; !? &#xBB; curl -i localhost:8000
 </code></pre><pre class="language-"><code class="lang-http"><span class="token response-status">HTTP/1.1 <span class="token property">200 OK</span></span>
 <span class="token header-name keyword">Content-Type:</span> application/io.goswagger.examples.todo-list.v1+json
 <span class="token header-name keyword">Date:</span> Sun, 09 Oct 2016 15:58:42 GMT
-<span class="token header-name keyword">Content-Length:</span> 41
+<span class="token header-name keyword">Content-Length:</span> 41<span class="token application/json">
 
-{&quot;description&quot;:&quot;an updated item&quot;,&quot;id&quot;:3}
-</code></pre>
+<span class="token punctuation">{</span><span class="token string">&quot;description&quot;</span><span class="token punctuation">:</span><span class="token string">&quot;an updated item&quot;</span><span class="token punctuation">,</span><span class="token string">&quot;id&quot;</span><span class="token punctuation">:</span><span class="token number">3</span><span class="token punctuation">}</span>
+</span></code></pre>
 <h4 id="delete-an-item"><a name="delete-an-item" class="plugin-anchor" href="#delete-an-item"><i class="fa fa-link" aria-hidden="true"></i></a>Delete an item</h4>
 <pre class="language-"><code>curl -i -XDELETE localhost:8000/3
 </code></pre><pre class="language-"><code class="lang-http"><span class="token response-status">HTTP/1.1 <span class="token property">204 No Content</span></span>
@@ -1317,10 +1330,10 @@ We&apos;ll also render a list of known items. Because http APIs can get concurre
 </code></pre><pre class="language-"><code class="lang-http"><span class="token response-status">HTTP/1.1 <span class="token property">200 OK</span></span>
 <span class="token header-name keyword">Content-Type:</span> application/io.goswagger.examples.todo-list.v1+json
 <span class="token header-name keyword">Date:</span> Sun, 09 Oct 2016 16:02:19 GMT
-<span class="token header-name keyword">Content-Length:</span> 87
+<span class="token header-name keyword">Content-Length:</span> 87<span class="token application/json">
 
-[{&quot;completed&quot;:true,&quot;description&quot;:&quot;feed dog&quot;,&quot;id&quot;:1},{&quot;description&quot;:&quot;feed cat&quot;,&quot;id&quot;:2}]
-</code></pre>
+<span class="token punctuation">[</span><span class="token punctuation">{</span><span class="token string">&quot;completed&quot;</span><span class="token punctuation">:</span><span class="token boolean">true</span><span class="token punctuation">,</span><span class="token string">&quot;description&quot;</span><span class="token punctuation">:</span><span class="token string">&quot;feed dog&quot;</span><span class="token punctuation">,</span><span class="token string">&quot;id&quot;</span><span class="token punctuation">:</span><span class="token number">1</span><span class="token punctuation">}</span><span class="token punctuation">,</span><span class="token punctuation">{</span><span class="token string">&quot;description&quot;</span><span class="token punctuation">:</span><span class="token string">&quot;feed cat&quot;</span><span class="token punctuation">,</span><span class="token string">&quot;id&quot;</span><span class="token punctuation">:</span><span class="token number">2</span><span class="token punctuation">}</span><span class="token punctuation">]</span>
+</span></code></pre>
 <p>At the end of the curl requests the server shows these outputs:</p>
 <pre class="language-"><code>git:(master) &#x2717; !? &#xBB; go run main.go ./swagger.yml
 2016/10/09 08:50:34 loading &quot;./swagger.yml&quot; as contract for the server
@@ -1378,7 +1391,7 @@ We&apos;ll also render a list of known items. Because http APIs can get concurre
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Dynamic Server","level":"1.3.3","depth":2,"next":{"title":"Security","level":"1.3.4","depth":2,"ref":"","articles":[{"title":"Authentication","level":"1.3.4.1","depth":3,"path":"tutorial/authentication/README.md","ref":"tutorial/authentication/README.md","articles":[]},{"title":"OAuth2","level":"1.3.4.2","depth":3,"path":"tutorial/oauth2/README.md","ref":"tutorial/oauth2/README.md","articles":[]},{"title":"Composition","level":"1.3.4.3","depth":3,"path":"tutorial/composed-auth/README.md","ref":"tutorial/composed-auth/README.md","articles":[]}]},"previous":{"title":"Custom Server","level":"1.3.2","depth":2,"path":"tutorial/custom-server.md","ref":"tutorial/custom-server.md","articles":[]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"prism":{},"anchors":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"tutorial/dynamic.md","mtime":"2018-02-01T22:20:06.215Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-12-23T01:39:45.647Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Dynamic Server","level":"1.3.3","depth":2,"next":{"title":"Security","level":"1.3.4","depth":2,"ref":"","articles":[{"title":"Authentication","level":"1.3.4.1","depth":3,"path":"tutorial/authentication/README.md","ref":"tutorial/authentication/README.md","articles":[]},{"title":"OAuth2","level":"1.3.4.2","depth":3,"path":"tutorial/oauth2/README.md","ref":"tutorial/oauth2/README.md","articles":[]},{"title":"Composition","level":"1.3.4.3","depth":3,"path":"tutorial/composed-auth/README.md","ref":"tutorial/composed-auth/README.md","articles":[]}]},"previous":{"title":"Custom Server","level":"1.3.2","depth":2,"path":"tutorial/custom-server.md","ref":"tutorial/custom-server.md","articles":[]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"prism":{},"anchors":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"tutorial/dynamic.md","mtime":"2019-08-06T15:32:52.628Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-08-19T02:12:46.769Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

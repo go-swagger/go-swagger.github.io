@@ -338,12 +338,12 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.4.4.1" data-path="../usage/flatten.html">
+        <li class="chapter " data-level="1.4.4.1" data-path="../usage/diff.html">
             
-                <a href="../usage/flatten.html">
+                <a href="../usage/diff.html">
             
                     
-                    Flatten
+                    Diff
             
                 </a>
             
@@ -364,7 +364,20 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.4.3" data-path="../usage/mixin.html">
+        <li class="chapter " data-level="1.4.4.3" data-path="../usage/flatten.html">
+            
+                <a href="../usage/flatten.html">
+            
+                    
+                    Flatten
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4.4" data-path="../usage/mixin.html">
             
                 <a href="../usage/mixin.html">
             
@@ -1000,7 +1013,7 @@ for more information in case you&apos;re new to OpenAPI (Also known as Swagger).
 </code></pre>
 <p>As you can see, there is only 1 operation,
 allowing us to focus on how to create a custom server,
-without loosing track in the details of any specific implementation.</p>
+without losing track in the details of any specific implementation.</p>
 <p>Where you store the specification is not important.
 By default the <a href="https://github.com/go-swagger/go-swagger" target="_blank">swagger cli</a> expects it to be stored as <code>./swagger.yml</code>,
 but we&apos;ll store it as <code>./swagger/swagger.yml</code>, to keep our project&apos;s root folder clean and tidy.</p>
@@ -1066,25 +1079,25 @@ server<span class="token punctuation">.</span>Port <span class="token operator">
 </code></pre>
 <p>Putting that all together, we have the following main function:</p>
 <pre class="language-"><code class="lang-go"><span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token comment" spellcheck="true">// load embedded swagger file</span>
+    <span class="token comment">// load embedded swagger file</span>
     swaggerSpec<span class="token punctuation">,</span> err <span class="token operator">:=</span> loads<span class="token punctuation">.</span><span class="token function">Analyzed</span><span class="token punctuation">(</span>restapi<span class="token punctuation">.</span>SwaggerJSON<span class="token punctuation">,</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">)</span>
     <span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">{</span>
         log<span class="token punctuation">.</span><span class="token function">Fatalln</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span>
     <span class="token punctuation">}</span>
 
-    <span class="token comment" spellcheck="true">// create new service API</span>
+    <span class="token comment">// create new service API</span>
     api <span class="token operator">:=</span> operations<span class="token punctuation">.</span><span class="token function">NewGreeterAPI</span><span class="token punctuation">(</span>swaggerSpec<span class="token punctuation">)</span>
     server <span class="token operator">:=</span> restapi<span class="token punctuation">.</span><span class="token function">NewServer</span><span class="token punctuation">(</span>api<span class="token punctuation">)</span>
     <span class="token keyword">defer</span> server<span class="token punctuation">.</span><span class="token function">Shutdown</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
 
-    <span class="token comment" spellcheck="true">// parse flags</span>
+    <span class="token comment">// parse flags</span>
     flag<span class="token punctuation">.</span><span class="token function">Parse</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-    <span class="token comment" spellcheck="true">// set the port this service will be run on</span>
+    <span class="token comment">// set the port this service will be run on</span>
     server<span class="token punctuation">.</span>Port <span class="token operator">=</span> <span class="token operator">*</span>portFlag
 
-    <span class="token comment" spellcheck="true">// TODO: Set Handle</span>
+    <span class="token comment">// TODO: Set Handle</span>
 
-    <span class="token comment" spellcheck="true">// serve API</span>
+    <span class="token comment">// serve API</span>
     <span class="token keyword">if</span> err <span class="token operator">:=</span> server<span class="token punctuation">.</span><span class="token function">Serve</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">{</span>
         log<span class="token punctuation">.</span><span class="token function">Fatalln</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span>
     <span class="token punctuation">}</span>
@@ -1115,17 +1128,17 @@ Here we&apos;ll see that all our consumers, producers and handlers have sane def
 let&apos;s actually start working towards implementing our handlers.</p>
 <p>Inspecting the <code>gen/restapi/operations/get_greeting.go</code> file,
 we&apos;ll find the following snippet:</p>
-<pre class="language-"><code class="lang-go"><span class="token comment" spellcheck="true">// GetGreetingHandlerFunc turns a function with the right signature into a get greeting handler</span>
+<pre class="language-"><code class="lang-go"><span class="token comment">// GetGreetingHandlerFunc turns a function with the right signature into a get greeting handler</span>
 <span class="token keyword">type</span> GetGreetingHandlerFunc <span class="token keyword">func</span><span class="token punctuation">(</span>GetGreetingParams<span class="token punctuation">)</span> middleware<span class="token punctuation">.</span>Responder
 
-<span class="token comment" spellcheck="true">// Handle executing the request and returning a response</span>
+<span class="token comment">// Handle executing the request and returning a response</span>
 <span class="token keyword">func</span> <span class="token punctuation">(</span>fn GetGreetingHandlerFunc<span class="token punctuation">)</span> <span class="token function">Handle</span><span class="token punctuation">(</span>params GetGreetingParams<span class="token punctuation">)</span> middleware<span class="token punctuation">.</span>Responder <span class="token punctuation">{</span>
     <span class="token keyword">return</span> <span class="token function">fn</span><span class="token punctuation">(</span>params<span class="token punctuation">)</span>
 <span class="token punctuation">}</span>
 </code></pre>
 <p>Here we can read that there is a function type <code>GetGreetingHandlerFunc</code>, defined for the <code>getGreeting</code> operation which takes in one parameter of type <code>GetGreetingParams</code> and returns a <code>middleware.Responder</code>. This is the type alias our Handler has to adhere to.</p>
 <p>A bit more down we&apos;ll also encounter an interface <code>GetGreetingHandler</code>, defined for the <code>getGreeting</code> operation:</p>
-<pre class="language-"><code class="lang-go"><span class="token comment" spellcheck="true">// GetGreetingHandler interface for that can handle valid get greeting params</span>
+<pre class="language-"><code class="lang-go"><span class="token comment">// GetGreetingHandler interface for that can handle valid get greeting params</span>
 <span class="token keyword">type</span> GetGreetingHandler <span class="token keyword">interface</span> <span class="token punctuation">{</span>
     <span class="token function">Handle</span><span class="token punctuation">(</span>GetGreetingParams<span class="token punctuation">)</span> middleware<span class="token punctuation">.</span>Responder
 <span class="token punctuation">}</span>
@@ -1221,7 +1234,7 @@ same techniques as described in this tutorial.</p>
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Custom Server","level":"1.3.2","depth":2,"next":{"title":"Dynamic Server","level":"1.3.3","depth":2,"path":"tutorial/dynamic.md","ref":"tutorial/dynamic.md","articles":[]},"previous":{"title":"Simple Server","level":"1.3.1","depth":2,"path":"tutorial/todo-list.md","ref":"tutorial/todo-list.md","articles":[]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"prism":{},"anchors":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"tutorial/custom-server.md","mtime":"2018-05-29T07:28:21.737Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-12-23T01:39:45.647Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Custom Server","level":"1.3.2","depth":2,"next":{"title":"Dynamic Server","level":"1.3.3","depth":2,"path":"tutorial/dynamic.md","ref":"tutorial/dynamic.md","articles":[]},"previous":{"title":"Simple Server","level":"1.3.1","depth":2,"path":"tutorial/todo-list.md","ref":"tutorial/todo-list.md","articles":[]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"prism":{},"anchors":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"tutorial/custom-server.md","mtime":"2019-08-06T15:32:52.627Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-08-19T02:12:46.769Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

@@ -65,7 +65,7 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="../usage/flatten.html" />
+    <link rel="next" href="../usage/diff.html" />
     
     
     <link rel="prev" href="../usage/validate.html" />
@@ -338,12 +338,12 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.4.4.1" data-path="../usage/flatten.html">
+        <li class="chapter " data-level="1.4.4.1" data-path="../usage/diff.html">
             
-                <a href="../usage/flatten.html">
+                <a href="../usage/diff.html">
             
                     
-                    Flatten
+                    Diff
             
                 </a>
             
@@ -364,7 +364,20 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.4.3" data-path="../usage/mixin.html">
+        <li class="chapter " data-level="1.4.4.3" data-path="../usage/flatten.html">
+            
+                <a href="../usage/flatten.html">
+            
+                    
+                    Flatten
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4.4" data-path="../usage/mixin.html">
             
                 <a href="../usage/mixin.html">
             
@@ -970,10 +983,12 @@
 <li>full flattening: performs minimal flattening and in addition, replaces all complex constructs in schemas by named definitions</li>
 <li>mixin: merges one or more specifications into a primary spec</li>
 </ul>
+<p>In addition, it is possible to compare specs (diff) to inspect breaking changes in the API.</p>
 <h3 id="expansion"><a name="expansion" class="plugin-anchor" href="#expansion"><i class="fa fa-link" aria-hidden="true"></i></a>Expansion</h3>
 <p>Expanding a spec may prove useful to validate a schema, produce documentation or test cases. The primary intent is not code generation.</p>
 <blockquote>
-<p><strong>NOTE</strong>: Circular <code>$ref</code> are detected and remain as local <code>$ref</code></p>
+<p><strong>NOTE</strong>: Circular <code>$ref</code> are detected and remain as local <code>$ref</code>. Remote circular <code>$ref</code> remain remote 
+(favor <code>flatten</code> to regroup all remote <code>$ref</code> under one single root document).</p>
 </blockquote>
 <p>Usage:</p>
 <p><code>swagger expand {spec}</code>
@@ -1034,7 +1049,7 @@ Again, the <code>x-go-name</code> extension is the way to generate custom names 
     <span class="token key atrule">schema</span><span class="token punctuation">:</span>
       <span class="token key atrule">type</span><span class="token punctuation">:</span> array
       <span class="token key atrule">items</span><span class="token punctuation">:</span>
-        <span class="token key atrule">type</span><span class="token punctuation">:</span> object        <span class="token comment" spellcheck="true"># &lt;- inline schema for items</span>
+        <span class="token key atrule">type</span><span class="token punctuation">:</span> object        <span class="token comment"># &lt;- inline schema for items</span>
         <span class="token key atrule">properties</span><span class="token punctuation">:</span>
           <span class="token key atrule">prop1</span><span class="token punctuation">:</span>
             <span class="token key atrule">type</span><span class="token punctuation">:</span> integer
@@ -1045,7 +1060,7 @@ Again, the <code>x-go-name</code> extension is the way to generate custom names 
     <span class="token key atrule">schema</span><span class="token punctuation">:</span>
       <span class="token key atrule">type</span><span class="token punctuation">:</span> array
       <span class="token key atrule">items</span><span class="token punctuation">:</span>
-        <span class="token key atrule">$ref</span><span class="token punctuation">:</span> &apos;<span class="token comment" spellcheck="true">#/definitions/complexArrayItems&apos;</span>
+        <span class="token key atrule">$ref</span><span class="token punctuation">:</span> <span class="token string">&apos;#/definitions/complexArrayItems&apos;</span>
   <span class="token key atrule">complexArrayItems</span><span class="token punctuation">:</span>
     <span class="token key atrule">type</span><span class="token punctuation">:</span> object
     <span class="token key atrule">properties</span><span class="token punctuation">:</span>
@@ -1109,7 +1124,7 @@ If a x-go-name has been set in the original structure, new names should remain c
                 </a>
                 
                 
-                <a href="../usage/flatten.html" class="navigation navigation-next " aria-label="Next page: Flatten">
+                <a href="../usage/diff.html" class="navigation navigation-next " aria-label="Next page: Diff">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -1120,7 +1135,7 @@ If a x-go-name has been set in the original structure, new names should remain c
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Transform spec","level":"1.4.4","depth":2,"next":{"title":"Flatten","level":"1.4.4.1","depth":3,"path":"usage/flatten.md","ref":"usage/flatten.md","articles":[]},"previous":{"title":"Validate","level":"1.4.3","depth":2,"path":"usage/validate.md","ref":"usage/validate.md","articles":[]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"prism":{},"anchors":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"use/transform.md","mtime":"2018-07-10T06:26:50.901Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-12-23T01:39:45.647Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Transform spec","level":"1.4.4","depth":2,"next":{"title":"Diff","level":"1.4.4.1","depth":3,"path":"usage/diff.md","ref":"usage/diff.md","articles":[]},"previous":{"title":"Validate","level":"1.4.3","depth":2,"path":"usage/validate.md","ref":"usage/validate.md","articles":[]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"prism":{},"anchors":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"use/transform.md","mtime":"2019-08-06T15:32:52.632Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-08-19T02:12:46.769Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

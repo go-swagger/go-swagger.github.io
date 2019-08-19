@@ -336,12 +336,12 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.4.4.1" data-path="../usage/flatten.html">
+        <li class="chapter " data-level="1.4.4.1" data-path="../usage/diff.html">
             
-                <a href="../usage/flatten.html">
+                <a href="../usage/diff.html">
             
                     
-                    Flatten
+                    Diff
             
                 </a>
             
@@ -362,7 +362,20 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.4.3" data-path="../usage/mixin.html">
+        <li class="chapter " data-level="1.4.4.3" data-path="../usage/flatten.html">
+            
+                <a href="../usage/flatten.html">
+            
+                    
+                    Flatten
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4.4" data-path="../usage/mixin.html">
             
                 <a href="../usage/mixin.html">
             
@@ -1012,7 +1025,7 @@ But I think the error message should not show even I just use <code>swagger gene
 <blockquote>
 <p>The default where you put it is a default for the entire object if it is not provided at all.
 Thus it must pass validation of the object schema.
-As per swagger, defaults MUST validate their schema. This differs fro json-Schema spec.</p>
+As per swagger, defaults MUST validate their schema. This differs from json-Schema spec.</p>
 </blockquote>
 <p>Originally from issue <a href="https://github.com/go-swagger/go-swagger/issues/1552" target="_blank">#1552</a>.</p>
 <p><em>Use-Case</em>: <code>go-swagger</code> rejects default object that misses required properties.</p>
@@ -1112,7 +1125,7 @@ contains subdirectories for each of those endpoints.</p>
         <span class="token key atrule">&apos;200&apos;</span><span class="token punctuation">:</span>
           <span class="token key atrule">description</span><span class="token punctuation">:</span> <span class="token string">&apos;&apos;</span>
           <span class="token key atrule">schema</span><span class="token punctuation">:</span>
-            <span class="token key atrule">$ref</span><span class="token punctuation">:</span> &apos;<span class="token comment" spellcheck="true">#/definitions/user-output&apos;</span>
+            <span class="token key atrule">$ref</span><span class="token punctuation">:</span> <span class="token string">&apos;#/definitions/user-output&apos;</span>
   &apos;/pets/<span class="token punctuation">{</span>id<span class="token punctuation">}</span>&apos;<span class="token punctuation">:</span>
     <span class="token key atrule">parameters</span><span class="token punctuation">:</span>
       <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> id
@@ -1128,7 +1141,7 @@ contains subdirectories for each of those endpoints.</p>
         <span class="token key atrule">&apos;200&apos;</span><span class="token punctuation">:</span>
           <span class="token key atrule">description</span><span class="token punctuation">:</span> <span class="token string">&apos;&apos;</span>
           <span class="token key atrule">schema</span><span class="token punctuation">:</span>
-            <span class="token key atrule">$ref</span><span class="token punctuation">:</span> &apos;<span class="token comment" spellcheck="true">#/definitions/pet-output&apos;</span>
+            <span class="token key atrule">$ref</span><span class="token punctuation">:</span> <span class="token string">&apos;#/definitions/pet-output&apos;</span>
 </code></pre>
 <p>I am expecting a generated structure like so:</p>
 <pre class="language-"><code>&#x2514;&#x2500;&#x2500; restapi
@@ -1190,7 +1203,7 @@ therefore, it is recommended to follow common programming naming conventions.</p
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Swagger specification","level":"1.9.8","depth":2,"previous":{"title":"Documenting your API","level":"1.9.7","depth":2,"path":"faq/faq_documenting.md","ref":"faq/faq_documenting.md","articles":[]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"prism":{},"anchors":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"faq/faq_swagger.md","mtime":"2018-12-22T19:21:13.092Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-12-23T01:39:45.647Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Swagger specification","level":"1.9.8","depth":2,"previous":{"title":"Documenting your API","level":"1.9.7","depth":2,"path":"faq/faq_documenting.md","ref":"faq/faq_documenting.md","articles":[]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"prism":{},"anchors":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"faq/faq_swagger.md","mtime":"2019-08-06T15:32:52.615Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-08-19T02:12:46.769Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

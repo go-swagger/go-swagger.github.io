@@ -66,7 +66,7 @@
 
     
     
-    <link rel="prev" href="expand.html" />
+    <link rel="prev" href="flatten.html" />
     
 
     </head>
@@ -336,12 +336,12 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.4.4.1" data-path="flatten.html">
+        <li class="chapter " data-level="1.4.4.1" data-path="diff.html">
             
-                <a href="flatten.html">
+                <a href="diff.html">
             
                     
-                    Flatten
+                    Diff
             
                 </a>
             
@@ -362,7 +362,20 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.4.4.3" data-path="mixin.html">
+        <li class="chapter " data-level="1.4.4.3" data-path="flatten.html">
+            
+                <a href="flatten.html">
+            
+                    
+                    Flatten
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.4.4.4" data-path="mixin.html">
             
                 <a href="mixin.html">
             
@@ -971,13 +984,14 @@ merge additional specs into first/primary spec by copying their paths and defini
 
 Application Options:
   -q, --quiet                     silence logs
+      --log-output=LOG-FILE       redirect logs to file
 
 Help Options:
   -h, --help                      Show this help message
 
 [mixin command options]
       -c=                         expected # of rejected mixin paths, defs, etc due to existing key. Non-zero exit if does not match actual.
-          --compact               applies to JSON formated specs. When present, doesn&apos;t prettify the json
+          --compact               applies to JSON formatted specs. When present, doesn&apos;t prettify the json
       -o, --output=               the file to write to
           --format=[yaml|json]    the format for the spec document (default: json)
 </code></pre>
@@ -1007,7 +1021,7 @@ Help Options:
 
             
                 
-                <a href="expand.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: Expand">
+                <a href="flatten.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: Flatten">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
@@ -1019,7 +1033,7 @@ Help Options:
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Mixin","level":"1.4.4.3","depth":3,"next":{"title":"Generate code from spec","level":"1.4.5","depth":2,"ref":"","articles":[{"title":"Dependencies & Requirements","level":"1.4.5.1","depth":3,"path":"generate/requirements.md","ref":"generate/requirements.md","articles":[]},{"title":"API Client","level":"1.4.5.2","depth":3,"path":"generate/client.md","ref":"generate/client.md","articles":[]},{"title":"API Server","level":"1.4.5.3","depth":3,"ref":"","articles":[{"title":"Server Usage","level":"1.4.5.3.1","depth":4,"path":"generate/server.md","ref":"generate/server.md","articles":[]},{"title":"How to use the server","level":"1.4.5.3.2","depth":4,"path":"use/server.md","ref":"use/server.md","articles":[]}]},{"title":"API Model","level":"1.4.5.4","depth":3,"ref":"","articles":[{"title":"Model Usage","level":"1.4.5.4.1","depth":4,"path":"generate/model.md","ref":"generate/model.md","articles":[]},{"title":"How to use models","level":"1.4.5.4.2","depth":4,"path":"use/model.md","ref":"use/model.md","articles":[{"title":"Schema generation rules","level":"1.4.5.4.2.1","depth":5,"path":"use/models/schemas.md","ref":"use/models/schemas.md","articles":[]}]}]}]},"previous":{"title":"Expand","level":"1.4.4.2","depth":3,"path":"usage/expand.md","ref":"usage/expand.md","articles":[]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"prism":{},"anchors":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"usage/mixin.md","mtime":"2018-07-04T19:11:09.485Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-12-23T01:39:45.647Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Mixin","level":"1.4.4.4","depth":3,"next":{"title":"Generate code from spec","level":"1.4.5","depth":2,"ref":"","articles":[{"title":"Dependencies & Requirements","level":"1.4.5.1","depth":3,"path":"generate/requirements.md","ref":"generate/requirements.md","articles":[]},{"title":"API Client","level":"1.4.5.2","depth":3,"path":"generate/client.md","ref":"generate/client.md","articles":[]},{"title":"API Server","level":"1.4.5.3","depth":3,"ref":"","articles":[{"title":"Server Usage","level":"1.4.5.3.1","depth":4,"path":"generate/server.md","ref":"generate/server.md","articles":[]},{"title":"How to use the server","level":"1.4.5.3.2","depth":4,"path":"use/server.md","ref":"use/server.md","articles":[]}]},{"title":"API Model","level":"1.4.5.4","depth":3,"ref":"","articles":[{"title":"Model Usage","level":"1.4.5.4.1","depth":4,"path":"generate/model.md","ref":"generate/model.md","articles":[]},{"title":"How to use models","level":"1.4.5.4.2","depth":4,"path":"use/model.md","ref":"use/model.md","articles":[{"title":"Schema generation rules","level":"1.4.5.4.2.1","depth":5,"path":"use/models/schemas.md","ref":"use/models/schemas.md","articles":[]}]}]}]},"previous":{"title":"Flatten","level":"1.4.4.3","depth":3,"path":"usage/flatten.md","ref":"usage/flatten.md","articles":[]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"prism":{},"anchors":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"usage/mixin.md","mtime":"2019-08-06T15:32:52.629Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-08-19T02:12:46.769Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

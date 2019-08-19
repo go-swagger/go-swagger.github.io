@@ -336,12 +336,12 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.4.4.1" data-path="../usage/flatten.html">
+        <li class="chapter " data-level="1.4.4.1" data-path="../usage/diff.html">
             
-                <a href="../usage/flatten.html">
+                <a href="../usage/diff.html">
             
                     
-                    Flatten
+                    Diff
             
                 </a>
             
@@ -362,7 +362,20 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.4.3" data-path="../usage/mixin.html">
+        <li class="chapter " data-level="1.4.4.3" data-path="../usage/flatten.html">
+            
+                <a href="../usage/flatten.html">
+            
+                    
+                    Flatten
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4.4" data-path="../usage/mixin.html">
             
                 <a href="../usage/mixin.html">
             
@@ -969,7 +982,7 @@ generate all the files for a client library
 
 Application Options:
   -q, --quiet                                                                     silence logs
-  -o, --output=LOG-FILE                                                           redirect logs to file
+      --log-output=LOG-FILE                                                       redirect logs to file
 
 Help Options:
   -h, --help                                                                      Show this help message
@@ -981,6 +994,7 @@ Help Options:
       -s, --server-package=                                                       the package to save the server specific code (default: restapi)
       -c, --client-package=                                                       the package to save the client specific code (default: client)
       -t, --target=                                                               the base directory for generating the files (default: ./)
+          --template=[stratoscale]                                                Load contributed templates
       -T, --template-dir=                                                         alternative template override directory
       -C, --config-file=                                                          configuration file to use for overriding template options
       -r, --copyright-file=                                                       copyright file used to add copyright header
@@ -1019,7 +1033,7 @@ value.</p>
 
 <span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
 
-  <span class="token comment" spellcheck="true">// make the request to get all items</span>
+  <span class="token comment">// make the request to get all items</span>
   resp<span class="token punctuation">,</span> err <span class="token operator">:=</span> apiclient<span class="token punctuation">.</span>Default<span class="token punctuation">.</span>Operations<span class="token punctuation">.</span><span class="token function">All</span><span class="token punctuation">(</span>operations<span class="token punctuation">.</span>AllParams<span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
   <span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">{</span>
     log<span class="token punctuation">.</span><span class="token function">Fatal</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span>
@@ -1044,16 +1058,16 @@ To then use the client, and override the host, with a HTTP transport:</p>
 
 <span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
 
-  <span class="token comment" spellcheck="true">// create the transport</span>
+  <span class="token comment">// create the transport</span>
   transport <span class="token operator">:=</span> httptransport<span class="token punctuation">.</span><span class="token function">New</span><span class="token punctuation">(</span>os<span class="token punctuation">.</span><span class="token function">Getenv</span><span class="token punctuation">(</span><span class="token string">&quot;TODOLIST_HOST&quot;</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span> <span class="token boolean">nil</span><span class="token punctuation">)</span>
 
-  <span class="token comment" spellcheck="true">// create the API client, with the transport</span>
+  <span class="token comment">// create the API client, with the transport</span>
   client <span class="token operator">:=</span> apiclient<span class="token punctuation">.</span><span class="token function">New</span><span class="token punctuation">(</span>transport<span class="token punctuation">,</span> strfmt<span class="token punctuation">.</span>Default<span class="token punctuation">)</span>
 
-  <span class="token comment" spellcheck="true">// to override the host for the default client</span>
-  <span class="token comment" spellcheck="true">// apiclient.Default.SetTransport(transport)</span>
+  <span class="token comment">// to override the host for the default client</span>
+  <span class="token comment">// apiclient.Default.SetTransport(transport)</span>
 
-  <span class="token comment" spellcheck="true">// make the request to get all items</span>
+  <span class="token comment">// make the request to get all items</span>
   resp<span class="token punctuation">,</span> err <span class="token operator">:=</span> client<span class="token punctuation">.</span>Operations<span class="token punctuation">.</span><span class="token function">All</span><span class="token punctuation">(</span>operations<span class="token punctuation">.</span>AllParams<span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
   <span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">{</span>
     log<span class="token punctuation">.</span><span class="token function">Fatal</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span>
@@ -1082,18 +1096,18 @@ To then use the client, and override the host, with a HTTP transport:</p>
 
 <span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
 
-  <span class="token comment" spellcheck="true">// create the API client</span>
+  <span class="token comment">// create the API client</span>
   client <span class="token operator">:=</span> apiclient<span class="token punctuation">.</span><span class="token function">New</span><span class="token punctuation">(</span>httptransport<span class="token punctuation">.</span><span class="token function">New</span><span class="token punctuation">(</span><span class="token string">&quot;&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span> <span class="token boolean">nil</span><span class="token punctuation">)</span><span class="token punctuation">,</span> strfmt<span class="token punctuation">.</span>Default<span class="token punctuation">)</span>
 
-  <span class="token comment" spellcheck="true">// make the authenticated request to get all items</span>
+  <span class="token comment">// make the authenticated request to get all items</span>
   bearerTokenAuth <span class="token operator">:=</span> httptransport<span class="token punctuation">.</span><span class="token function">BearerToken</span><span class="token punctuation">(</span>os<span class="token punctuation">.</span><span class="token function">Getenv</span><span class="token punctuation">(</span><span class="token string">&quot;API_ACCESS_TOKEN&quot;</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-  <span class="token comment" spellcheck="true">// basicAuth := httptransport.BasicAuth(os.Getenv(&quot;API_USER&quot;), os.Getenv(&quot;API_PASSWORD&quot;))</span>
-  <span class="token comment" spellcheck="true">// apiKeyQueryAuth := httptransport.APIKeyAuth(&quot;apiKey&quot;, &quot;query&quot;, os.Getenv(&quot;API_KEY&quot;))</span>
-  <span class="token comment" spellcheck="true">// apiKeyHeaderAuth := httptransport.APIKeyAuth(&quot;X-API-TOKEN&quot;, &quot;header&quot;, os.Getenv(&quot;API_KEY&quot;))</span>
+  <span class="token comment">// basicAuth := httptransport.BasicAuth(os.Getenv(&quot;API_USER&quot;), os.Getenv(&quot;API_PASSWORD&quot;))</span>
+  <span class="token comment">// apiKeyQueryAuth := httptransport.APIKeyAuth(&quot;apiKey&quot;, &quot;query&quot;, os.Getenv(&quot;API_KEY&quot;))</span>
+  <span class="token comment">// apiKeyHeaderAuth := httptransport.APIKeyAuth(&quot;X-API-TOKEN&quot;, &quot;header&quot;, os.Getenv(&quot;API_KEY&quot;))</span>
   resp<span class="token punctuation">,</span> err <span class="token operator">:=</span> client<span class="token punctuation">.</span>Operations<span class="token punctuation">.</span><span class="token function">All</span><span class="token punctuation">(</span>operations<span class="token punctuation">.</span>AllParams<span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span> bearerTokenAuth<span class="token punctuation">)</span>
-  <span class="token comment" spellcheck="true">// resp, err := client.Operations.All(operations.AllParams{}, basicAuth)</span>
-  <span class="token comment" spellcheck="true">// resp, err := client.Operations.All(operations.AllParams{}, apiKeyQueryAuth)</span>
-  <span class="token comment" spellcheck="true">// resp, err := client.Operations.All(operations.AllParams{}, apiKeyHeaderAuth)</span>
+  <span class="token comment">// resp, err := client.Operations.All(operations.AllParams{}, basicAuth)</span>
+  <span class="token comment">// resp, err := client.Operations.All(operations.AllParams{}, apiKeyQueryAuth)</span>
+  <span class="token comment">// resp, err := client.Operations.All(operations.AllParams{}, apiKeyHeaderAuth)</span>
   <span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">{</span>
     log<span class="token punctuation">.</span><span class="token function">Fatal</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span>
   <span class="token punctuation">}</span>
@@ -1139,7 +1153,7 @@ To then use the client, and override the host, with a HTTP transport:</p>
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"API Client","level":"1.4.5.2","depth":3,"next":{"title":"API Server","level":"1.4.5.3","depth":3,"ref":"","articles":[{"title":"Server Usage","level":"1.4.5.3.1","depth":4,"path":"generate/server.md","ref":"generate/server.md","articles":[]},{"title":"How to use the server","level":"1.4.5.3.2","depth":4,"path":"use/server.md","ref":"use/server.md","articles":[]}]},"previous":{"title":"Dependencies & Requirements","level":"1.4.5.1","depth":3,"path":"generate/requirements.md","ref":"generate/requirements.md","articles":[]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"prism":{},"anchors":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"generate/client.md","mtime":"2018-07-10T06:26:50.898Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-12-23T01:39:45.647Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"API Client","level":"1.4.5.2","depth":3,"next":{"title":"API Server","level":"1.4.5.3","depth":3,"ref":"","articles":[{"title":"Server Usage","level":"1.4.5.3.1","depth":4,"path":"generate/server.md","ref":"generate/server.md","articles":[]},{"title":"How to use the server","level":"1.4.5.3.2","depth":4,"path":"use/server.md","ref":"use/server.md","articles":[]}]},"previous":{"title":"Dependencies & Requirements","level":"1.4.5.1","depth":3,"path":"generate/requirements.md","ref":"generate/requirements.md","articles":[]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"prism":{},"anchors":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"generate/client.md","mtime":"2019-08-06T15:32:52.615Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-08-19T02:12:46.769Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

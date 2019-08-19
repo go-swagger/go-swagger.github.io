@@ -338,12 +338,12 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.4.4.1" data-path="usage/flatten.html">
+        <li class="chapter " data-level="1.4.4.1" data-path="usage/diff.html">
             
-                <a href="usage/flatten.html">
+                <a href="usage/diff.html">
             
                     
-                    Flatten
+                    Diff
             
                 </a>
             
@@ -364,7 +364,20 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.4.3" data-path="usage/mixin.html">
+        <li class="chapter " data-level="1.4.4.3" data-path="usage/flatten.html">
+            
+                <a href="usage/flatten.html">
+            
+                    
+                    Flatten
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4.4" data-path="usage/mixin.html">
             
                 <a href="usage/mixin.html">
             
@@ -990,12 +1003,12 @@ chmod +x /usr/local/bin/swagger
 <pre class="language-"><code>wget https://bintray.com/go-swagger/goswagger-rpm/rpm -O bintray-go-swagger-goswagger-rpm.repo
 </code></pre><h3 id="installing-from-source"><a name="installing-from-source" class="plugin-anchor" href="#installing-from-source"><i class="fa fa-link" aria-hidden="true"></i></a>Installing from source</h3>
 <p>Install or update from current source master:</p>
-<pre class="language-"><code>go get -u github.com/go-swagger/go-swagger/cmd/swagger
+<pre class="language-"><code>dir=$(mktemp -d) 
+git clone https://github.com/go-swagger/go-swagger &quot;$dir&quot; 
+cd &quot;$dir&quot;
+go install ./cmd/swagger
 </code></pre><p>You are welcome to clone this repo and start contributing:</p>
-<pre class="language-"><code>cd $GOPATH/src
-mkdir -p github.com/go-swagger
-cd github.com/go-swagger
-git clone https://github.com/go-swagger/go-swagger
+<pre class="language-"><code>git clone https://github.com/go-swagger/go-swagger
 </code></pre><blockquote>
 <p><strong>NOTE</strong>: go-swagger works on *nix as well as Windows OS </p>
 </blockquote>
@@ -1042,7 +1055,7 @@ git clone https://github.com/go-swagger/go-swagger
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Installation","level":"1.1.2","depth":2,"next":{"title":"Features","level":"1.2","depth":1,"path":"features.md","ref":"features.md","articles":[]},"previous":{"title":"Approaches","level":"1.1.1","depth":2,"path":"about.md","ref":"about.md","articles":[]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"prism":{},"anchors":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"install.md","mtime":"2018-10-07T04:55:30.821Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-12-23T01:39:45.647Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Installation","level":"1.1.2","depth":2,"next":{"title":"Features","level":"1.2","depth":1,"path":"features.md","ref":"features.md","articles":[]},"previous":{"title":"Approaches","level":"1.1.1","depth":2,"path":"about.md","ref":"about.md","articles":[]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"prism":{},"anchors":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"install.md","mtime":"2019-08-06T15:32:52.617Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-08-19T02:12:46.769Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>

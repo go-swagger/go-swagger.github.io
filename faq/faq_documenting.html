@@ -338,12 +338,12 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.4.4.1" data-path="../usage/flatten.html">
+        <li class="chapter " data-level="1.4.4.1" data-path="../usage/diff.html">
             
-                <a href="../usage/flatten.html">
+                <a href="../usage/diff.html">
             
                     
-                    Flatten
+                    Diff
             
                 </a>
             
@@ -364,7 +364,20 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.4.3" data-path="../usage/mixin.html">
+        <li class="chapter " data-level="1.4.4.3" data-path="../usage/flatten.html">
+            
+                <a href="../usage/flatten.html">
+            
+                    
+                    Flatten
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4.4" data-path="../usage/mixin.html">
             
                 <a href="../usage/mixin.html">
             
@@ -1000,7 +1013,7 @@ vendored and they see all of that.</p>
 <p>Originally from issue <a href="https://github.com/go-swagger/go-swagger/issues/370" target="_blank">#370</a>.</p>
 <p>See also: How to serve Swagger UI from a preexisting web app? <a href="https://github.com/go-swagger/go-swagger/issues/1029" target="_blank">#1029</a>.</p>
 <h3 id="how-to-serve-swagger-ui-from-a-preexisting-web-app"><a name="how-to-serve-swagger-ui-from-a-preexisting-web-app" class="plugin-anchor" href="#how-to-serve-swagger-ui-from-a-preexisting-web-app"><i class="fa fa-link" aria-hidden="true"></i></a>How to serve Swagger UI from a preexisting web app?</h3>
-<p><em>Use-Case</em>: Does go-swagger provide an <code>http.HandlerFunc</code> or other easy method for serving Swagger UI from a prexisting web app? 
+<p><em>Use-Case</em>: Does go-swagger provide an <code>http.HandlerFunc</code> or other easy method for serving Swagger UI from a preexisting web app? 
 I want my web app to expose <code>/swagger-ui</code>, without using code generation, and without hosting a separate server.</p>
 <p><strong>Answer</strong>: there are a few ways you can serve a UI.</p>
 <p>Use the middleware provided in the go-openapi/runtime package: <a href="https://github.com/go-openapi/runtime/blob/master/middleware/redoc.go" target="_blank">https://github.com/go-openapi/runtime/blob/master/middleware/redoc.go</a></p>
@@ -1024,7 +1037,7 @@ func setupGlobalMiddleware(handler http.Handler) http.Handler {
 </code></pre>
 <p>And I want to add new handler to serve my own UI files. 
 In this case, is middleware only solution to serve UI files? Or can I add new handler to serve files without middleware?</p>
-<pre class="language-"><code class="lang-go"><span class="token comment" spellcheck="true">// Handler example which I want to add to swagger server</span>
+<pre class="language-"><code class="lang-go"><span class="token comment">// Handler example which I want to add to swagger server</span>
 <span class="token keyword">func</span> <span class="token function">pastaWorkspacePage</span><span class="token punctuation">(</span>w http<span class="token punctuation">.</span>ResponseWriter<span class="token punctuation">,</span> r <span class="token operator">*</span>http<span class="token punctuation">.</span>Request<span class="token punctuation">)</span> <span class="token punctuation">{</span>
     http<span class="token punctuation">.</span><span class="token function">ServeFile</span><span class="token punctuation">(</span>w<span class="token punctuation">,</span> r<span class="token punctuation">,</span> <span class="token string">&quot;./static/workspace.html&quot;</span><span class="token punctuation">)</span>
 <span class="token punctuation">}</span>
@@ -1094,7 +1107,7 @@ That page also contains a link to a good explanation on how to create net/http m
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Documenting your API","level":"1.9.7","depth":2,"next":{"title":"Swagger specification","level":"1.9.8","depth":2,"path":"faq/faq_swagger.md","ref":"faq/faq_swagger.md","articles":[]},"previous":{"title":"API testing","level":"1.9.6","depth":2,"path":"faq/faq_testing.md","ref":"faq/faq_testing.md","articles":[]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"prism":{},"anchors":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"faq/faq_documenting.md","mtime":"2018-03-26T07:48:24.615Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-12-23T01:39:45.647Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Documenting your API","level":"1.9.7","depth":2,"next":{"title":"Swagger specification","level":"1.9.8","depth":2,"path":"faq/faq_swagger.md","ref":"faq/faq_swagger.md","articles":[]},"previous":{"title":"API testing","level":"1.9.6","depth":2,"path":"faq/faq_testing.md","ref":"faq/faq_testing.md","articles":[]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"prism":{},"anchors":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"faq/faq_documenting.md","mtime":"2019-08-06T15:32:52.614Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-08-19T02:12:46.769Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
