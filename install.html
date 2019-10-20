@@ -981,11 +981,21 @@ installation, see <a href="https://goswagger.io/generate/requirements.html" targ
 <p>go-swagger releases are distributed as binaries that are built from signed tags. It is published <a href="https://github.com/go-swagger/go-swagger/tags" target="_blank">as github release</a>,
 rpm, deb and docker image.</p>
 <h3 id="docker-image-"><a name="docker-image-" class="plugin-anchor" href="#docker-image-"><i class="fa fa-link" aria-hidden="true"></i></a>Docker image <a href="https://quay.io/repository/goswagger/swagger" target="_blank"><img src="https://quay.io/repository/goswagger/swagger/status" alt="Docker Repository on Quay" title="Docker Repository on Quay"></a></h3>
+<p>First grab the image:</p>
 <pre class="language-"><code>docker pull quay.io/goswagger/swagger
-
-alias swagger=&quot;docker run --rm -it -e GOPATH=$HOME/go:/go -v $HOME:$HOME -w $(pwd) quay.io/goswagger/swagger&quot;
+</code></pre><h4 id="for-mac-and-linux-users"><a name="for-mac-and-linux-users" class="plugin-anchor" href="#for-mac-and-linux-users"><i class="fa fa-link" aria-hidden="true"></i></a>For Mac And Linux users:</h4>
+<pre class="language-"><code class="lang-bash"><span class="token builtin class-name">alias</span> <span class="token assign-left variable">swagger</span><span class="token operator">=</span><span class="token string">&quot;docker run --rm -it -e GOPATH=<span class="token environment constant">$HOME</span>/go:/go -v <span class="token environment constant">$HOME</span>:<span class="token environment constant">$HOME</span> -w <span class="token variable"><span class="token variable">$(</span><span class="token builtin class-name">pwd</span><span class="token variable">)</span></span> quay.io/goswagger/swagger&quot;</span>
 swagger version
-</code></pre><h3 id="homebrewlinuxbrew"><a name="homebrewlinuxbrew" class="plugin-anchor" href="#homebrewlinuxbrew"><i class="fa fa-link" aria-hidden="true"></i></a>Homebrew/Linuxbrew</h3>
+</code></pre>
+<h4 id="for-windows-users"><a name="for-windows-users" class="plugin-anchor" href="#for-windows-users"><i class="fa fa-link" aria-hidden="true"></i></a>For windows users:</h4>
+<pre class="language-"><code class="lang-cmd">docker run --rm -it --env GOPATH=/go -v %CD%:/go/src -w /go/src quay.io/goswagger/swagger
+</code></pre>
+<p>You can put the following in a file called <strong>swagger.bat</strong> and include it in your path environment variable to act as an alias.</p>
+<pre class="language-"><code class="lang-batch"><span class="token operator">@</span><span class="token command"><span class="token keyword">echo</span> off</span>
+<span class="token command"><span class="token keyword">echo</span>.</span>
+<span class="token command"><span class="token keyword">docker</span> run <span class="token parameter attr-name">--rm</span> -it <span class="token parameter attr-name">--env</span> GOPATH=<span class="token parameter attr-name">/go</span> <span class="token parameter attr-name">-v</span> <span class="token variable">%CD%</span>:/go<span class="token parameter attr-name">/src</span> <span class="token parameter attr-name">-w</span> /go<span class="token parameter attr-name">/src</span> quay.io/goswagger<span class="token parameter attr-name">/swagger</span> %*</span>
+</code></pre>
+<h3 id="homebrewlinuxbrew"><a name="homebrewlinuxbrew" class="plugin-anchor" href="#homebrewlinuxbrew"><i class="fa fa-link" aria-hidden="true"></i></a>Homebrew/Linuxbrew</h3>
 <pre class="language-"><code>brew tap go-swagger/go-swagger
 brew install go-swagger
 </code></pre><h3 id="static-binary"><a name="static-binary" class="plugin-anchor" href="#static-binary"><i class="fa fa-link" aria-hidden="true"></i></a>Static binary</h3>
@@ -997,7 +1007,11 @@ curl -o /usr/local/bin/swagger -L&apos;#&apos; &quot;$download_url&quot;
 chmod +x /usr/local/bin/swagger
 </code></pre><h3 id="debian-packages---"><a name="debian-packages---" class="plugin-anchor" href="#debian-packages---"><i class="fa fa-link" aria-hidden="true"></i></a>Debian packages <a href="https://bintray.com/go-swagger/goswagger-debian/swagger/_latestVersion" target="_blank"> <img src="https://api.bintray.com/packages/go-swagger/goswagger-debian/swagger/images/download.svg" alt="Download"> </a></h3>
 <p>This repo will work for any debian, the only file it contains gets copied to <code>/usr/bin</code></p>
-<pre class="language-"><code>echo &quot;deb https://dl.bintray.com/go-swagger/goswagger-debian ubuntu main&quot; | sudo tee -a /etc/apt/sources.list
+<pre class="language-"><code>sudo apt install gnupg ca-certificates
+sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 379CE192D401AB61
+echo &quot;deb https://dl.bintray.com/go-swagger/goswagger-debian ubuntu main&quot; | sudo tee /etc/apt/sources.list.d/goswagger.list
+apt update 
+apt install swagger
 </code></pre><h3 id="rpm-packages---"><a name="rpm-packages---" class="plugin-anchor" href="#rpm-packages---"><i class="fa fa-link" aria-hidden="true"></i></a>RPM packages <a href="https://bintray.com/go-swagger/goswagger-rpm/swagger/_latestVersion" target="_blank"> <img src="https://api.bintray.com/packages/go-swagger/goswagger-rpm/swagger/images/download.svg" alt="Download"> </a></h3>
 <p>This repo should work on any distro that wants rpm packages, the only file it contains gets copied to <code>/usr/bin</code></p>
 <pre class="language-"><code>wget https://bintray.com/go-swagger/goswagger-rpm/rpm -O bintray-go-swagger-goswagger-rpm.repo
@@ -1055,7 +1069,7 @@ go install ./cmd/swagger
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Installation","level":"1.1.2","depth":2,"next":{"title":"Features","level":"1.2","depth":1,"path":"features.md","ref":"features.md","articles":[]},"previous":{"title":"Approaches","level":"1.1.1","depth":2,"path":"about.md","ref":"about.md","articles":[]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"prism":{},"anchors":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"install.md","mtime":"2019-08-06T15:32:52.617Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-08-19T02:12:46.769Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Installation","level":"1.1.2","depth":2,"next":{"title":"Features","level":"1.2","depth":1,"path":"features.md","ref":"features.md","articles":[]},"previous":{"title":"Approaches","level":"1.1.1","depth":2,"path":"about.md","ref":"about.md","articles":[]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"prism":{},"anchors":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"install.md","mtime":"2019-10-20T18:17:51.485Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-10-20T18:44:18.566Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>
