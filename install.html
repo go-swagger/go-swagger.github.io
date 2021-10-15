@@ -1006,8 +1006,8 @@ chmod +x /usr/local/bin/swagger</code></pre>
 <h3 id="debian-packages---"><a name="debian-packages---" class="plugin-anchor" href="#debian-packages---"><i class="fa fa-link" aria-hidden="true"></i></a>Debian packages <a href="https://bintray.com/go-swagger/goswagger-debian/swagger/_latestVersion" target="_blank"> <img alt="Download" src="https://api.bintray.com/packages/go-swagger/goswagger-debian/swagger/images/download.svg"> </a></h3><p>This repo will work for any debian, the only file it contains gets copied to <code>/usr/bin</code></p><pre class="language-"><code>sudo apt install gnupg ca-certificates
 sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 379CE192D401AB61
 echo &quot;deb https://dl.bintray.com/go-swagger/goswagger-debian ubuntu main&quot; | sudo tee /etc/apt/sources.list.d/goswagger.list
-apt update 
-apt install swagger</code></pre>
+sudo apt update 
+sudo apt install swagger</code></pre>
 <h3 id="rpm-packages---"><a name="rpm-packages---" class="plugin-anchor" href="#rpm-packages---"><i class="fa fa-link" aria-hidden="true"></i></a>RPM packages <a href="https://bintray.com/go-swagger/goswagger-rpm/swagger/_latestVersion" target="_blank"> <img alt="Download" src="https://api.bintray.com/packages/go-swagger/goswagger-rpm/swagger/images/download.svg"> </a></h3><p>This repo should work on any distro that wants rpm packages, the only file it contains gets copied to <code>/usr/bin</code></p><pre class="language-"><code>wget https://bintray.com/go-swagger/goswagger-rpm/rpm -O bintray-go-swagger-goswagger-rpm.repo</code></pre>
 <h3 id="installing-from-source"><a name="installing-from-source" class="plugin-anchor" href="#installing-from-source"><i class="fa fa-link" aria-hidden="true"></i></a>Installing from source</h3><p>Install or update from current source master:</p><pre class="language-"><code>dir=$(mktemp -d) 
 git clone https://github.com/go-swagger/go-swagger &quot;$dir&quot; 
