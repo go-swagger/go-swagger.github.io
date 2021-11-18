@@ -2,12 +2,12 @@
 <!DOCTYPE HTML>
 <html lang="" >
     <head>
-        <title>API testing · GitBook</title>
         <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>API testing · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 3.2.0">
+        <meta name="generator" content="GitBook 3.2.3">
         
         
         
@@ -448,7 +448,20 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.7.3" >
+        <li class="chapter " data-level="1.4.7.3" data-path="../generate/cli.html">
+            
+                <a href="../generate/cli.html">
+            
+                    
+                    CLI (Command Line Tool)
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.7.4" >
             
                 <span>
             
@@ -462,7 +475,7 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.4.7.3.1" data-path="../generate/server.html">
+        <li class="chapter " data-level="1.4.7.4.1" data-path="../generate/server.html">
             
                 <a href="../generate/server.html">
             
@@ -475,7 +488,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.7.3.2" data-path="../use/server.html">
+        <li class="chapter " data-level="1.4.7.4.2" data-path="../use/server.html">
             
                 <a href="../use/server.html">
             
@@ -493,7 +506,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.7.4" >
+        <li class="chapter " data-level="1.4.7.5" >
             
                 <span>
             
@@ -507,7 +520,7 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.4.7.4.1" data-path="../generate/model.html">
+        <li class="chapter " data-level="1.4.7.5.1" data-path="../generate/model.html">
             
                 <a href="../generate/model.html">
             
@@ -520,7 +533,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.7.4.2" data-path="../use/model.html">
+        <li class="chapter " data-level="1.4.7.5.2" data-path="../use/model.html">
             
                 <a href="../use/model.html">
             
@@ -534,7 +547,7 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.4.7.4.2.1" data-path="../use/models/schemas.html">
+        <li class="chapter " data-level="1.4.7.5.2.1" data-path="../use/models/schemas.html">
             
                 <a href="../use/models/schemas.html">
             
@@ -988,11 +1001,22 @@
                                 <section class="normal markdown-section">
                                 
                                 <!-- Questions about testing -->
-
-
-<h2 id="api-testing"><a name="api-testing" class="plugin-anchor" href="#api-testing"><i class="fa fa-link" aria-hidden="true"></i></a>API testing</h2><h3 id="any-suggestions-how-to-leverage-the-generated-client-for-benchmarking-the-api"><a name="any-suggestions-how-to-leverage-the-generated-client-for-benchmarking-the-api" class="plugin-anchor" href="#any-suggestions-how-to-leverage-the-generated-client-for-benchmarking-the-api"><i class="fa fa-link" aria-hidden="true"></i></a>Any suggestions how to leverage the generated client for benchmarking the API?</h3><p><em>Use-Case</em>: I want to benchmark the throughput and latency of different API calls.</p><blockquote><p>I can think of using the go testing/benchmarking framework and hand role the API calls, or I can leverage the generated client and augment it with a benchmarking framework.</p></blockquote><p><em>What have others done?</em></p><p>At the moment, the toolkit does not generate testing tools. You may be interested in this contribution: <a href="https://github.com/go-openapi/stubs" target="_blank">https://github.com/go-openapi/stubs</a>
-(generates random JSON to fill in testcases).</p><p>We acknowledge that  API testing is an important use-case. However, it is not yet supported. Pull requests to move on forward in that direction are welcome.</p><p>Originally from issue <a href="https://github.com/go-swagger/go-swagger/issues/787" target="_blank">#787</a>.</p><h3 id="using-httptest"><a name="using-httptest" class="plugin-anchor" href="#using-httptest"><i class="fa fa-link" aria-hidden="true"></i></a>Using httptest</h3><p><em>Use-Case</em>: I would like to use httptest for testing my handlers.
-Go-swagger provides a Server, but not a configured handler.</p><p><strong>Hint</strong>: I use this hack : in a file <code>test.go</code> in the restapi folder, I steal the private <code>configureAPI</code> function. It works.</p><pre class="language-"><code class="lang-golang">package restapi
+<h2 id="api-testing"><a name="api-testing" class="plugin-anchor" href="#api-testing"><i class="fa fa-link" aria-hidden="true"></i></a>API testing</h2>
+<h3 id="any-suggestions-how-to-leverage-the-generated-client-for-benchmarking-the-api"><a name="any-suggestions-how-to-leverage-the-generated-client-for-benchmarking-the-api" class="plugin-anchor" href="#any-suggestions-how-to-leverage-the-generated-client-for-benchmarking-the-api"><i class="fa fa-link" aria-hidden="true"></i></a>Any suggestions how to leverage the generated client for benchmarking the API?</h3>
+<p><em>Use-Case</em>: I want to benchmark the throughput and latency of different API calls.</p>
+<blockquote>
+<p>I can think of using the go testing/benchmarking framework and hand role the API calls, or I can leverage the generated client and augment it with a benchmarking framework.</p>
+</blockquote>
+<p><em>What have others done?</em></p>
+<p>At the moment, the toolkit does not generate testing tools. You may be interested in this contribution: <a href="https://github.com/go-openapi/stubs" target="_blank">https://github.com/go-openapi/stubs</a>
+(generates random JSON to fill in testcases).</p>
+<p>We acknowledge that  API testing is an important use-case. However, it is not yet supported. Pull requests to move on forward in that direction are welcome.</p>
+<p>Originally from issue <a href="https://github.com/go-swagger/go-swagger/issues/787" target="_blank">#787</a>.</p>
+<h3 id="using-httptest"><a name="using-httptest" class="plugin-anchor" href="#using-httptest"><i class="fa fa-link" aria-hidden="true"></i></a>Using httptest</h3>
+<p><em>Use-Case</em>: I would like to use httptest for testing my handlers.
+Go-swagger provides a Server, but not a configured handler. </p>
+<p><strong>Hint</strong>: I use this hack : in a file <code>test.go</code> in the restapi folder, I steal the private <code>configureAPI</code> function. It works.</p>
+<pre class="language-"><code class="lang-golang">package restapi
 
 import (
     loads &quot;github.com/go-openapi/loads&quot;
@@ -1020,18 +1044,26 @@ func GetAPIHandler() (http.Handler, error) {
         return nil, err
     }
     return h, nil
-}</code></pre>
-<p>And I can use this in tests like this:</p><pre class="language-"><code class="lang-golang">handler, err := restapi.GetAPIHandler()
+}
+</code></pre>
+<p>And I can use this in tests like this:</p>
+<pre class="language-"><code class="lang-golang">handler, err := restapi.GetAPIHandler()
 if err != nil {
     t.Fatal(&quot;get api handler&quot;, err)
 }
 ts := httptest.NewServer(handler)
 defer ts.Close()
-res, err := http.Get(ts.URL + &quot;/api/v1/boxes&quot;)</code></pre>
-<p>But, hacking restapi, which use my handlers is cyclic, I can&apos;t drop my test near my handlers, and this is still a hack.</p><p><em>What is the official way to manage handler testing?</em></p><p><strong>Hint</strong>: you don&apos;t actually need httptest to test the handlers.
+res, err := http.Get(ts.URL + &quot;/api/v1/boxes&quot;)
+</code></pre>
+<p>But, hacking restapi, which use my handlers is cyclic, I can&apos;t drop my test near my handlers, and this is still a hack.</p>
+<p><em>What is the official way to manage handler testing?</em></p>
+<p><strong>Hint</strong>: you don&apos;t actually need httptest to test the handlers.
 A handler is essentially a function of parameters to result.
 The result knows how to write itself to a http.ResponseWriter, and you already know that that part works.
-So to test a handler what you require is to test just your code.</p><p>So to test the AddOne operation from the todo list this, there are 2 functions involved in the implementation.</p><p>The first function uses the data from the request to actually write the todo item to a store, this can be tested separately.</p><pre class="language-"><code class="lang-golang">func addItem(item *models.Item) error {
+So to test a handler what you require is to test just your code.</p>
+<p>So to test the AddOne operation from the todo list this, there are 2 functions involved in the implementation.</p>
+<p>The first function uses the data from the request to actually write the todo item to a store, this can be tested separately.</p>
+<pre class="language-"><code class="lang-golang">func addItem(item *models.Item) error {
     if item == nil {
         return errors.New(500, &quot;item must be present&quot;)
     }
@@ -1044,14 +1076,21 @@ So to test a handler what you require is to test just your code.</p><p>So to tes
     items[newID] = item
 
     return nil
-}</code></pre>
-<p>Then there is the actual handler:</p><pre class="language-"><code class="lang-golang">todos.AddOneHandlerFunc(func(params todos.AddOneParams) middleware.Responder {
+}
+</code></pre>
+<p>Then there is the actual handler:</p>
+<pre class="language-"><code class="lang-golang">todos.AddOneHandlerFunc(func(params todos.AddOneParams) middleware.Responder {
     if err := addItem(params.Body); err != nil {
         return todos.NewAddOneDefault(500).WithPayload(&amp;models.Error{Code: 500, Message: swag.String(err.Error())})
     }
     return todos.NewAddOneCreated().WithPayload(params.Body)
-})</code></pre>
-<p>To test this second function we don&apos;t need to use the httptest package, you can assume that that part of the code works. So all you have to test is whether or not you get the right return types for a given set of parameters.</p><p>Originally from issue <a href="https://github.com/go-swagger/go-swagger/issues/719" target="_blank">#719</a>.</p><hr><p>Back to <a href="./#all-contributed-questions">all contributions</a></p>
+})
+</code></pre>
+<p>To test this second function we don&apos;t need to use the httptest package, you can assume that that part of the code works. So all you have to test is whether or not you get the right return types for a given set of parameters.</p>
+<p>Originally from issue <a href="https://github.com/go-swagger/go-swagger/issues/719" target="_blank">#719</a>.</p>
+<hr>
+<p>Back to <a href="./#all-contributed-questions">all contributions</a></p>
+
                                 
                                 </section>
                             
@@ -1094,7 +1133,7 @@ So to test a handler what you require is to test just your code.</p><p>So to tes
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"API testing","level":"1.9.6","depth":2,"next":{"title":"Documenting your API","level":"1.9.7","depth":2,"path":"faq/faq_documenting.md","ref":"faq/faq_documenting.md","articles":[]},"previous":{"title":"Spec generation from source","level":"1.9.5","depth":2,"path":"faq/faq_spec.md","ref":"faq/faq_spec.md","articles":[]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors","livereload"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"prism":{},"livereload":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"faq/faq_testing.md","mtime":"2019-12-11T17:17:52.676Z","type":"markdown"},"gitbook":{"version":"3.2.0","time":"2021-01-19T04:09:47.021Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"API testing","level":"1.9.6","depth":2,"next":{"title":"Documenting your API","level":"1.9.7","depth":2,"path":"faq/faq_documenting.md","ref":"faq/faq_documenting.md","articles":[]},"previous":{"title":"Spec generation from source","level":"1.9.5","depth":2,"path":"faq/faq_spec.md","ref":"faq/faq_spec.md","articles":[]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"prism":{},"anchors":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"faq/faq_testing.md","mtime":"2019-12-11T17:17:52.676Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2021-11-18T06:04:50.878Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
@@ -1105,10 +1144,6 @@ So to test a handler what you require is to test just your code.</p><p>So to tes
     
         
         <script src="../gitbook/gitbook-plugin-forkmegithub/plugin.js"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-livereload/plugin.js"></script>
         
     
         

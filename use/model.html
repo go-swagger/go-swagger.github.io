@@ -2,12 +2,12 @@
 <!DOCTYPE HTML>
 <html lang="" >
     <head>
-        <title>How to use models · GitBook</title>
         <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>How to use models · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 3.2.0">
+        <meta name="generator" content="GitBook 3.2.3">
         
         
         
@@ -448,7 +448,20 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.7.3" >
+        <li class="chapter " data-level="1.4.7.3" data-path="../generate/cli.html">
+            
+                <a href="../generate/cli.html">
+            
+                    
+                    CLI (Command Line Tool)
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.7.4" >
             
                 <span>
             
@@ -462,7 +475,7 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.4.7.3.1" data-path="../generate/server.html">
+        <li class="chapter " data-level="1.4.7.4.1" data-path="../generate/server.html">
             
                 <a href="../generate/server.html">
             
@@ -475,7 +488,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.7.3.2" data-path="server.html">
+        <li class="chapter " data-level="1.4.7.4.2" data-path="server.html">
             
                 <a href="server.html">
             
@@ -493,7 +506,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.7.4" >
+        <li class="chapter " data-level="1.4.7.5" >
             
                 <span>
             
@@ -507,7 +520,7 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.4.7.4.1" data-path="../generate/model.html">
+        <li class="chapter " data-level="1.4.7.5.1" data-path="../generate/model.html">
             
                 <a href="../generate/model.html">
             
@@ -520,7 +533,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.4.7.4.2" data-path="model.html">
+        <li class="chapter active" data-level="1.4.7.5.2" data-path="model.html">
             
                 <a href="model.html">
             
@@ -534,7 +547,7 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.4.7.4.2.1" data-path="models/schemas.html">
+        <li class="chapter " data-level="1.4.7.5.2.1" data-path="models/schemas.html">
             
                 <a href="models/schemas.html">
             
@@ -987,47 +1000,46 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="generate-a-data-model-from-swagger-spec"><a name="generate-a-data-model-from-swagger-spec" class="plugin-anchor" href="#generate-a-data-model-from-swagger-spec"><i class="fa fa-link" aria-hidden="true"></i></a>Generate a data model from swagger spec</h1><p>The toolkit allows for generating go native structures to serialize and validate a swagger compliant model definition.</p><p>The generated objects follow the specified validation rules, including extended format directives for strings and numbers.</p><p>Generated models support most Swagger 2.0 features, including polymorphism.</p><p>Generated models support most JSON-schema draft4 features, including <code>AllOf</code>, <code>AdditionalProperties</code> and <code>AdditionalItems</code>.</p><h3 id="usage"><a name="usage" class="plugin-anchor" href="#usage"><i class="fa fa-link" aria-hidden="true"></i></a>Usage</h3><p><code>generate model -f {spec}</code></p><p>See the full list of available options <a href="../generate/model.html">here</a>.</p><h3 id="model-building-rules"><a name="model-building-rules" class="plugin-anchor" href="#model-building-rules"><i class="fa fa-link" aria-hidden="true"></i></a>Model building rules</h3><ul><li><p><a href="models/schemas.html#schema-generation-rules">Schema generation rules</a></p><ul><li><a href="models/schemas.html#about-schema">About schemas</a>
+                                <h1 id="generate-a-data-model-from-swagger-spec"><a name="generate-a-data-model-from-swagger-spec" class="plugin-anchor" href="#generate-a-data-model-from-swagger-spec"><i class="fa fa-link" aria-hidden="true"></i></a>Generate a data model from swagger spec</h1>
+<p>The toolkit allows for generating go native structures to serialize and validate a swagger compliant model definition.</p>
+<p>The generated objects follow the specified validation rules, including extended format directives for strings and numbers.</p>
+<p>Generated models support most Swagger 2.0 features, including polymorphism.</p>
+<p>Generated models support most JSON-schema draft4 features, including <code>AllOf</code>, <code>AdditionalProperties</code> and <code>AdditionalItems</code>.</p>
+<h3 id="usage"><a name="usage" class="plugin-anchor" href="#usage"><i class="fa fa-link" aria-hidden="true"></i></a>Usage</h3>
+<p><code>generate model -f {spec}</code></p>
+<p>See the full list of available options <a href="../generate/model.html">here</a>.</p>
+<h3 id="model-building-rules"><a name="model-building-rules" class="plugin-anchor" href="#model-building-rules"><i class="fa fa-link" aria-hidden="true"></i></a>Model building rules</h3>
+<ul>
+<li><a href="models/schemas.html#schema-generation-rules">Schema generation rules</a><ul>
+<li><a href="models/schemas.html#about-schema">About schemas</a></li>
+<li><a href="models/schemas.html#interfaces">Interfaces</a></li>
+<li><a href="models/schemas.html#mapping-patterns">Mapping patterns</a><ul>
+<li><a href="models/schemas.html#minimal-use-of-go-s-reflection">Minimal use of go&apos;s reflection</a></li>
+<li><a href="models/schemas.html#doc-strings">Doc strings</a></li>
+<li><a href="models/schemas.html#reusability">Reusability</a></li>
+</ul>
 </li>
-<li><a href="models/schemas.html#interfaces">Interfaces</a>
+<li><a href="models/schemas.html#swagger-vs-jsonschema">Swagger vs JSONSchema</a></li>
+<li><a href="models/schemas.html#go-swagger-vs-swagger">Go-swagger vs Swagger</a></li>
+<li><a href="models/schemas.html#known-limitations-with-go-swagger-models">Known limitations with go-swagger models</a></li>
+<li><a href="models/schemas.html#custom-extensions">Custom extensions</a></li>
+<li><a href="models/schemas.html#primitive-types">Primitive types</a></li>
+<li><a href="models/schemas.html#formatted-types">Formatted types</a></li>
+<li><a href="models/schemas.html#nullability">Nullability</a></li>
+<li><a href="models/schemas.html#validation">Validation</a></li>
+<li><a href="models/schemas.html#type-aliasing">Type aliasing</a></li>
+<li><a href="models/schemas.html#extensible-types">Extensible types</a><ul>
+<li><a href="models/schemas.html#additional-properties">Additional properties</a></li>
+<li><a href="models/schemas.html#tuples-and-additional-items">Tuples and additional items</a></li>
+</ul>
 </li>
-<li><p><a href="models/schemas.html#mapping-patterns">Mapping patterns</a></p><ul><li><a href="models/schemas.html#minimal-use-of-go-s-reflection">Minimal use of go&apos;s reflection</a>
+<li><a href="models/schemas.html#polymorphic-types">Polymorphic types</a></li>
+<li><a href="models/schemas.html#serialization-interfaces">Serialization interfaces</a></li>
+<li><a href="models/schemas.html#external-types">External types</a></li>
+<li><a href="models/schemas.html#customizing-struct-tags">Customizing struct tags</a></li>
+</ul>
 </li>
-<li><a href="models/schemas.html#doc-strings">Doc strings</a>
-</li>
-<li><a href="models/schemas.html#reusability">Reusability</a>
-</li></ul>
-</li>
-<li><p><a href="models/schemas.html#swagger-vs-jsonschema">Swagger vs JSONSchema</a></p></li>
-<li><a href="models/schemas.html#go-swagger-vs-swagger">Go-swagger vs Swagger</a>
-</li>
-<li><a href="models/schemas.html#known-limitations-with-go-swagger-models">Known limitations with go-swagger models</a>
-</li>
-<li><a href="models/schemas.html#custom-extensions">Custom extensions</a>
-</li>
-<li><a href="models/schemas.html#primitive-types">Primitive types</a>
-</li>
-<li><a href="models/schemas.html#formatted-types">Formatted types</a>
-</li>
-<li><a href="models/schemas.html#nullability">Nullability</a>
-</li>
-<li><a href="models/schemas.html#validation">Validation</a>
-</li>
-<li><a href="models/schemas.html#type-aliasing">Type aliasing</a>
-</li>
-<li><p><a href="models/schemas.html#extensible-types">Extensible types</a></p><ul><li><a href="models/schemas.html#additional-properties">Additional properties</a>
-</li>
-<li><a href="models/schemas.html#tuples-and-additional-items">Tuples and additional items</a>
-</li></ul>
-</li>
-<li><p><a href="models/schemas.html#polymorphic-types">Polymorphic types</a></p></li>
-<li><a href="models/schemas.html#serialization-interfaces">Serialization interfaces</a>
-</li>
-<li><a href="models/schemas.html#external-types">External types</a>
-</li>
-<li><a href="models/schemas.html#customizing-struct-tags">Customizing struct tags</a>
-</li></ul>
-</li></ul>
+</ul>
 
                                 
                                 </section>
@@ -1071,7 +1083,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"How to use models","level":"1.4.7.4.2","depth":4,"next":{"title":"Schema generation rules","level":"1.4.7.4.2.1","depth":5,"path":"use/models/schemas.md","ref":"use/models/schemas.md","articles":[]},"previous":{"title":"Model Usage","level":"1.4.7.4.1","depth":4,"path":"generate/model.md","ref":"generate/model.md","articles":[]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors","livereload"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"prism":{},"livereload":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"use/model.md","mtime":"2021-01-18T18:02:30.856Z","type":"markdown"},"gitbook":{"version":"3.2.0","time":"2021-01-19T04:09:47.021Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"How to use models","level":"1.4.7.5.2","depth":4,"next":{"title":"Schema generation rules","level":"1.4.7.5.2.1","depth":5,"path":"use/models/schemas.md","ref":"use/models/schemas.md","articles":[]},"previous":{"title":"Model Usage","level":"1.4.7.5.1","depth":4,"path":"generate/model.md","ref":"generate/model.md","articles":[]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"prism":{},"anchors":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"use/model.md","mtime":"2021-01-18T18:02:30.856Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2021-11-18T06:04:50.878Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
@@ -1082,10 +1094,6 @@
     
         
         <script src="../gitbook/gitbook-plugin-forkmegithub/plugin.js"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-livereload/plugin.js"></script>
         
     
         

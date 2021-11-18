@@ -2,12 +2,12 @@
 <!DOCTYPE HTML>
 <html lang="" >
     <head>
-        <title>Spec generation from source · GitBook</title>
         <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Spec generation from source · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 3.2.0">
+        <meta name="generator" content="GitBook 3.2.3">
         
         
         
@@ -448,7 +448,20 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.7.3" >
+        <li class="chapter " data-level="1.4.7.3" data-path="../generate/cli.html">
+            
+                <a href="../generate/cli.html">
+            
+                    
+                    CLI (Command Line Tool)
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.7.4" >
             
                 <span>
             
@@ -462,7 +475,7 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.4.7.3.1" data-path="../generate/server.html">
+        <li class="chapter " data-level="1.4.7.4.1" data-path="../generate/server.html">
             
                 <a href="../generate/server.html">
             
@@ -475,7 +488,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.7.3.2" data-path="../use/server.html">
+        <li class="chapter " data-level="1.4.7.4.2" data-path="../use/server.html">
             
                 <a href="../use/server.html">
             
@@ -493,7 +506,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.7.4" >
+        <li class="chapter " data-level="1.4.7.5" >
             
                 <span>
             
@@ -507,7 +520,7 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.4.7.4.1" data-path="../generate/model.html">
+        <li class="chapter " data-level="1.4.7.5.1" data-path="../generate/model.html">
             
                 <a href="../generate/model.html">
             
@@ -520,7 +533,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.7.4.2" data-path="../use/model.html">
+        <li class="chapter " data-level="1.4.7.5.2" data-path="../use/model.html">
             
                 <a href="../use/model.html">
             
@@ -534,7 +547,7 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.4.7.4.2.1" data-path="../use/models/schemas.html">
+        <li class="chapter " data-level="1.4.7.5.2.1" data-path="../use/models/schemas.html">
             
                 <a href="../use/models/schemas.html">
             
@@ -988,21 +1001,31 @@
                                 <section class="normal markdown-section">
                                 
                                 <!-- Questions about spec generation -->
-
-
-<h2 id="spec-generation-from-source"><a name="spec-generation-from-source" class="plugin-anchor" href="#spec-generation-from-source"><i class="fa fa-link" aria-hidden="true"></i></a>Spec generation from source</h2><h3 id="is-there-an-example-to-generate-a-swagger-spec-document-from-the-code"><a name="is-there-an-example-to-generate-a-swagger-spec-document-from-the-code" class="plugin-anchor" href="#is-there-an-example-to-generate-a-swagger-spec-document-from-the-code"><i class="fa fa-link" aria-hidden="true"></i></a>Is there an example to generate a swagger spec document from the code?</h3><p><em>Use-Case</em>: I have read the swagger.json generation and feel confused. Could you please give an example for it?</p><p><strong>Answer</strong>: this folder uses most of the annotations</p><p><a href="https://github.com/go-swagger/go-swagger/tree/master/fixtures/goparsing/petstore" target="_blank">https://github.com/go-swagger/go-swagger/tree/master/fixtures/goparsing/petstore</a></p><blockquote><p>This begs for 3 questions :</p><ul><li>Q1: Does a struct for Parameter model have to be declared in the SAME .go file where the swagger:route is declared for a router function?
-</li>
-<li>Q2: Assume that I have a route &quot;/services/{serviceName}&quot;, how would I named the field associated with the path &quot;{serviceName}&quot; above in a struct wrapper for path params?
-</li>
-<li>Q3: Is the annotations case sensitive like &quot;Required&quot; vs &quot;required&quot;?. I see mixed examples about this.
-</li></ul>
-</blockquote><p><strong>Answers</strong>:</p><ul><li>Q1: nope. It needs to be declared in the same app and it needs to be imported so that goswagger can find it by following imports starting at the main package.
-</li>
-<li>Q2: you would add all of them in the parameter struct at this moment, in the case of parameters you would add a doc comment: // in: path. Take a look at some of the generated code examples because they contain all the known annotations as well.
-</li>
-<li>Q3: not case sensitive, didn&apos;t want to have debates over casing. Whatever looks good to you in docs is what you can use.
-</li></ul>
-<p><em>One more question: Can methods in an interface be annotated?</em></p><p><strong>Answer</strong>: only when it&apos;s used in a discriminator IIRC. There is code in the scan package that treats nullary methods as properties if certain conditions are met.</p><blockquote><p>My generated spec is now working but seems to be missing a parameter &quot;description&quot; to indicate to end user of the API URL endpoint of what&apos;s its doing. Example below, I wanted the line &quot;Disable/enable a compute node EC2 machine with a given IP address&quot; to show up as some sorta of description for the parameter... Am I missing something?</p></blockquote><pre class="language-"><code class="lang-golang">// v2PutXXX disable/enable a compute node EC2 machine with a given IP address
+<h2 id="spec-generation-from-source"><a name="spec-generation-from-source" class="plugin-anchor" href="#spec-generation-from-source"><i class="fa fa-link" aria-hidden="true"></i></a>Spec generation from source</h2>
+<h3 id="is-there-an-example-to-generate-a-swagger-spec-document-from-the-code"><a name="is-there-an-example-to-generate-a-swagger-spec-document-from-the-code" class="plugin-anchor" href="#is-there-an-example-to-generate-a-swagger-spec-document-from-the-code"><i class="fa fa-link" aria-hidden="true"></i></a>Is there an example to generate a swagger spec document from the code?</h3>
+<p><em>Use-Case</em>: I have read the swagger.json generation and feel confused. Could you please give an example for it?</p>
+<p><strong>Answer</strong>: this folder uses most of the annotations</p>
+<p><a href="https://github.com/go-swagger/go-swagger/tree/master/fixtures/goparsing/petstore" target="_blank">https://github.com/go-swagger/go-swagger/tree/master/fixtures/goparsing/petstore</a></p>
+<blockquote>
+<p>This begs for 3 questions :</p>
+<ul>
+<li>Q1: Does a struct for Parameter model have to be declared in the SAME .go file where the swagger:route is declared for a router function?</li>
+<li>Q2: Assume that I have a route &quot;/services/{serviceName}&quot;, how would I named the field associated with the path &quot;{serviceName}&quot; above in a struct wrapper for path params?</li>
+<li>Q3: Is the annotations case sensitive like &quot;Required&quot; vs &quot;required&quot;?. I see mixed examples about this.</li>
+</ul>
+</blockquote>
+<p><strong>Answers</strong>:</p>
+<ul>
+<li>Q1: nope. It needs to be declared in the same app and it needs to be imported so that goswagger can find it by following imports starting at the main package.</li>
+<li>Q2: you would add all of them in the parameter struct at this moment, in the case of parameters you would add a doc comment: // in: path. Take a look at some of the generated code examples because they contain all the known annotations as well.</li>
+<li>Q3: not case sensitive, didn&apos;t want to have debates over casing. Whatever looks good to you in docs is what you can use.</li>
+</ul>
+<p><em>One more question: Can methods in an interface be annotated?</em></p>
+<p><strong>Answer</strong>: only when it&apos;s used in a discriminator IIRC. There is code in the scan package that treats nullary methods as properties if certain conditions are met.</p>
+<blockquote>
+<p>My generated spec is now working but seems to be missing a parameter &quot;description&quot; to indicate to end user of the API URL endpoint of what&apos;s its doing. Example below, I wanted the line &quot;Disable/enable a compute node EC2 machine with a given IP address&quot; to show up as some sorta of description for the parameter... Am I missing something?</p>
+</blockquote>
+<pre class="language-"><code class="lang-golang">// v2PutXXX disable/enable a compute node EC2 machine with a given IP address
 //
 // swagger:route PUT /compute/nodes/{nodeIPAddress} v2PutXXX
 //
@@ -1020,10 +1043,19 @@
 // default: errorResp
 // 200: okResp
 //
-func v2PutXXX(....)</code></pre>
+func v2PutXXX(....)
+</code></pre>
 <p><strong>Answer</strong>: you still need to add enlist a struct as parameters for the operation.
-<a href="https://goswagger.io/generate/spec/params.html" target="_blank">https://goswagger.io/generate/spec/params.html</a></p><p><em>Is there an example how to generate example values from the code?</em></p><p><strong>Answer</strong>: I don&apos;t think that is supported at the moment</p><p>Originally from issue <a href="https://github.com/go-swagger/go-swagger/issues/213" target="_blank">#213</a>.</p><h3 id="extra-function-in-example"><a name="extra-function-in-example" class="plugin-anchor" href="#extra-function-in-example"><i class="fa fa-link" aria-hidden="true"></i></a>Extra function in example?</h3><p>In file: <code>go-swagger/fixtures/goparsing/classification/operations/todo_operation.go</code>,
-<code>Func: mountItem</code> looks like extra function. Could you explain?</p><p><strong>Answer</strong>: swagger tool generates a correct specification for proposed routes without calling fake func mountItem.</p><p>The main rule is <strong>empty line between <code>swagger:routes</code></strong> like that:</p><pre class="language-"><code class="lang-golang">// ServeAPI serves the API for this record store
+<a href="https://goswagger.io/generate/spec/params.html" target="_blank">https://goswagger.io/generate/spec/params.html</a></p>
+<p><em>Is there an example how to generate example values from the code?</em></p>
+<p><strong>Answer</strong>: I don&apos;t think that is supported at the moment</p>
+<p>Originally from issue <a href="https://github.com/go-swagger/go-swagger/issues/213" target="_blank">#213</a>.</p>
+<h3 id="extra-function-in-example"><a name="extra-function-in-example" class="plugin-anchor" href="#extra-function-in-example"><i class="fa fa-link" aria-hidden="true"></i></a>Extra function in example?</h3>
+<p>In file: <code>go-swagger/fixtures/goparsing/classification/operations/todo_operation.go</code>,
+<code>Func: mountItem</code> looks like extra function. Could you explain?</p>
+<p><strong>Answer</strong>: swagger tool generates a correct specification for proposed routes without calling fake func mountItem.</p>
+<p>The main rule is <strong>empty line between <code>swagger:routes</code></strong> like that:</p>
+<pre class="language-"><code class="lang-golang">// ServeAPI serves the API for this record store
 func ServeAPI(host, basePath string, schemes []string) error {
     // swagger:route GET /pets pets users listPets
 
@@ -1037,26 +1069,50 @@ func ServeAPI(host, basePath string, schemes []string) error {
 
     // swagger:route DELETE /orders/{id} orders deleteOrder
 return nil
-}</code></pre>
-<p>Originally from issue <a href="https://github.com/go-swagger/go-swagger/issues/68" target="_blank">#68</a>.</p><h3 id="maps-as-swagger-parameters"><a name="maps-as-swagger-parameters" class="plugin-anchor" href="#maps-as-swagger-parameters"><i class="fa fa-link" aria-hidden="true"></i></a>Maps as swagger parameters</h3><p><em>Use-case</em>: I&apos;m using go-swagger to generate my Swagger docs from code, and I came across a problem with a given parameter.</p><p>When I annotate a given struct that has a <code>map[KeyType]OtherKeyType</code> with <code>swagger:parameters</code>,
-it returns <code>items doesn&apos;t support maps</code>.</p><p><strong>Answer</strong>: <strong>this is not supported</strong></p><ul><li>In non-body parameters maps are not supported in the swagger spec
-</li>
-<li>In body parameters, a JSON schema only allows maps with string keys
-</li></ul>
-<p>Originally from issue <a href="https://github.com/go-swagger/go-swagger/issues/960" target="_blank">#960</a>.</p><h3 id="how-to-define-a-swagger-response-that-produces-a-binary-file"><a name="how-to-define-a-swagger-response-that-produces-a-binary-file" class="plugin-anchor" href="#how-to-define-a-swagger-response-that-produces-a-binary-file"><i class="fa fa-link" aria-hidden="true"></i></a>How to define a swagger response that produces a binary file?</h3><p><em>Use-case</em>: annotating a go struct in order to produce a response as application/octet-stream.</p><p>Example:
-I would like to get a generated specification like:</p><pre class="language-"><code class="lang-JSON">&quot;fileResponse&quot;: {
+}
+</code></pre>
+<p>Originally from issue <a href="https://github.com/go-swagger/go-swagger/issues/68" target="_blank">#68</a>.</p>
+<h3 id="maps-as-swagger-parameters"><a name="maps-as-swagger-parameters" class="plugin-anchor" href="#maps-as-swagger-parameters"><i class="fa fa-link" aria-hidden="true"></i></a>Maps as swagger parameters</h3>
+<p><em>Use-case</em>: I&apos;m using go-swagger to generate my Swagger docs from code, and I came across a problem with a given parameter.</p>
+<p>When I annotate a given struct that has a <code>map[KeyType]OtherKeyType</code> with <code>swagger:parameters</code>,
+it returns <code>items doesn&apos;t support maps</code>.</p>
+<p><strong>Answer</strong>: <strong>this is not supported</strong></p>
+<ul>
+<li>In non-body parameters maps are not supported in the swagger spec</li>
+<li>In body parameters, a JSON schema only allows maps with string keys</li>
+</ul>
+<p>Originally from issue <a href="https://github.com/go-swagger/go-swagger/issues/960" target="_blank">#960</a>.</p>
+<h3 id="how-to-define-a-swagger-response-that-produces-a-binary-file"><a name="how-to-define-a-swagger-response-that-produces-a-binary-file" class="plugin-anchor" href="#how-to-define-a-swagger-response-that-produces-a-binary-file"><i class="fa fa-link" aria-hidden="true"></i></a>How to define a swagger response that produces a binary file?</h3>
+<p><em>Use-case</em>: annotating a go struct in order to produce a response as application/octet-stream.</p>
+<p>Example:
+I would like to get a generated specification like:</p>
+<pre class="language-"><code class="lang-JSON">&quot;fileResponse&quot;: {
   &quot;description&quot;: &quot;OK&quot;,
   &quot;schema&quot;: {
     &quot;type&quot;: &quot;file&quot;
   }
-}</code></pre>
-<blockquote><p>However, I am unable to figure out how to do this with go-swagger response struct and annotations.</p></blockquote><p><strong>Answer</strong>: you can use <code>runtime.File</code> or <code>os.File</code> in your struct:</p><pre class="language-"><code class="lang-golang">type fileResponse struct {
+}
+</code></pre>
+<blockquote>
+<p>However, I am unable to figure out how to do this with go-swagger response struct and annotations.</p>
+</blockquote>
+<p><strong>Answer</strong>: you can use <code>runtime.File</code> or <code>os.File</code> in your struct:</p>
+<pre class="language-"><code class="lang-golang">type fileResponse struct {
     // In: body
     File runtime.File
-}</code></pre>
-<p>Originally from issue <a href="https://github.com/go-swagger/go-swagger/issues/1003" target="_blank">#1003</a>.</p><h3 id="how-to-use-swagger-params"><a name="how-to-use-swagger-params" class="plugin-anchor" href="#how-to-use-swagger-params"><i class="fa fa-link" aria-hidden="true"></i></a>How to use swagger params?</h3><p><em>Use-Case</em>: I defined a route with!</p><pre class="language-"><code class="lang-golang">// swagger:route GET /services/{serviceName}/version/{version} pets listOneService</code></pre>
-<p><em>How to comment the two params(&apos;serviceName&apos; and &apos;version&apos;)?</em></p><p><strong>Answer</strong>: <code>swagger:params</code> is used to indicate which operations the properties of the operation are included in the struct.</p><p>So you&apos;d use something like these:
-<a href="https://github.com/go-swagger/go-swagger/blob/master/fixtures/goparsing/petstore/rest/handlers/orders.go#L24-L46" target="_blank">https://github.com/go-swagger/go-swagger/blob/master/fixtures/goparsing/petstore/rest/handlers/orders.go#L24-L46</a></p><p>or:</p><pre class="language-"><code class="lang-golang">// swagger:params listOneService
+}
+</code></pre>
+<p>Originally from issue <a href="https://github.com/go-swagger/go-swagger/issues/1003" target="_blank">#1003</a>.</p>
+<h3 id="how-to-use-swagger-params"><a name="how-to-use-swagger-params" class="plugin-anchor" href="#how-to-use-swagger-params"><i class="fa fa-link" aria-hidden="true"></i></a>How to use swagger params?</h3>
+<p><em>Use-Case</em>: I defined a route with!</p>
+<pre class="language-"><code class="lang-golang">// swagger:route GET /services/{serviceName}/version/{version} pets listOneService
+</code></pre>
+<p><em>How to comment the two params(&apos;serviceName&apos; and &apos;version&apos;)?</em></p>
+<p><strong>Answer</strong>: <code>swagger:params</code> is used to indicate which operations the properties of the operation are included in the struct.</p>
+<p>So you&apos;d use something like these:
+<a href="https://github.com/go-swagger/go-swagger/blob/master/fixtures/goparsing/petstore/rest/handlers/orders.go#L24-L46" target="_blank">https://github.com/go-swagger/go-swagger/blob/master/fixtures/goparsing/petstore/rest/handlers/orders.go#L24-L46</a></p>
+<p>or:</p>
+<pre class="language-"><code class="lang-golang">// swagger:params listOneService
 type ListOneParams struct {
     // ServiceName description goes here
     //
@@ -1069,9 +1125,17 @@ type ListOneParams struct {
     // in: path
     // required: true
     Version string `json:&quot;version&quot;`
-}</code></pre>
-<p>Originally from issue <a href="https://github.com/go-swagger/go-swagger/issues/668" target="_blank">#668</a>.</p><h3 id="empty-definitions"><a name="empty-definitions" class="plugin-anchor" href="#empty-definitions"><i class="fa fa-link" aria-hidden="true"></i></a>Empty definitions</h3><p><em>Use-Case</em>: I don&apos;t understand how to deal with model annotation.
-When I generate a spec from source, I get empty definitions.</p><p><strong>Answer</strong>: models are discovered through usage in parameter and/or response objects.</p><p>If the model isn&apos;t used through a parameter or response object it&apos;s not part of the API because there is no way that it goes in or out through the API.</p><p>Example:</p><p>doc.go</p><pre class="language-"><code class="lang-golang">// Schemes: http, https
+}
+</code></pre>
+<p>Originally from issue <a href="https://github.com/go-swagger/go-swagger/issues/668" target="_blank">#668</a>.</p>
+<h3 id="empty-definitions"><a name="empty-definitions" class="plugin-anchor" href="#empty-definitions"><i class="fa fa-link" aria-hidden="true"></i></a>Empty definitions</h3>
+<p><em>Use-Case</em>: I don&apos;t understand how to deal with model annotation.
+When I generate a spec from source, I get empty definitions.</p>
+<p><strong>Answer</strong>: models are discovered through usage in parameter and/or response objects.</p>
+<p>If the model isn&apos;t used through a parameter or response object it&apos;s not part of the API because there is no way that it goes in or out through the API.</p>
+<p>Example:</p>
+<p>doc.go</p>
+<pre class="language-"><code class="lang-golang">// Schemes: http, https
 // Host: localhost
 // BasePath: /v1
 // Version: 0.0.1
@@ -1088,8 +1152,10 @@ When I generate a spec from source, I get empty definitions.</p><p><strong>Answe
 //
 // swagger:meta
 package main
-...</code></pre>
-<p>user.go</p><pre class="language-"><code class="lang-golang">// Copyright 2015 go-swagger maintainers
+...
+</code></pre>
+<p>user.go</p>
+<pre class="language-"><code class="lang-golang">// Copyright 2015 go-swagger maintainers
 //
 // ...
 
@@ -1114,13 +1180,27 @@ type User struct {
     // required: true
     // min length: 3
     Name string `json:&quot;name&quot;`
-}</code></pre>
-<p>Originally from issue <a href="https://github.com/go-swagger/go-swagger/issues/561" target="_blank">#561</a>.</p><h3 id="documentation-or-tutorials-on-code-annotation"><a name="documentation-or-tutorials-on-code-annotation" class="plugin-anchor" href="#documentation-or-tutorials-on-code-annotation"><i class="fa fa-link" aria-hidden="true"></i></a>Documentation or tutorials on code annotation</h3><p><em>Use-Case</em>: documentation is scant on how to generate swagger files from annotations.
-Is it really all there in <a href="http://goswagger.io/generate/spec/?" target="_blank">http://goswagger.io/generate/spec/?</a></p><p><strong>Answer</strong>: yes, it&apos;s all in there (or directly in the repo: <a href="https://github.com/go-swagger/go-swagger/tree/master/docs/generate/spec" target="_blank">https://github.com/go-swagger/go-swagger/tree/master/docs/generate/spec</a>)</p><p><em>How about some code examples that show annotations being used?</em></p><p><strong>Answer</strong>: there is an &quot;examples&quot; folder in the repo.
-All generated code also uses all the annotations that are applicable for it.</p><p><a href="https://github.com/go-swagger/go-swagger/tree/master/examples/todo-list" target="_blank">https://github.com/go-swagger/go-swagger/tree/master/examples/todo-list</a></p><p>And also: <a href="https://github.com/go-swagger/go-swagger/tree/master/fixtures/goparsing/classification" target="_blank">https://github.com/go-swagger/go-swagger/tree/master/fixtures/goparsing/classification</a>
-(this is the code used to test parsing the annotations).</p><p>Please bear in mind that this is a project (not a product) to which a number of volunteers have
-contributed significant amounts of free time to get it to where it is today.</p><p>Improvement of documentation is always a good request.
-All help we can get is absolutely welcome.</p><p>Originally from issue <a href="https://github.com/go-swagger/go-swagger/issues/599" target="_blank">#599</a>.</p><h3 id="wrong-schema-in-response-structure"><a name="wrong-schema-in-response-structure" class="plugin-anchor" href="#wrong-schema-in-response-structure"><i class="fa fa-link" aria-hidden="true"></i></a>Wrong schema in response structure?</h3><p>I set up this response struct:</p><pre class="language-"><code class="lang-golang">// swagger:response SuccessResponse
+}
+</code></pre>
+<p>Originally from issue <a href="https://github.com/go-swagger/go-swagger/issues/561" target="_blank">#561</a>.</p>
+<h3 id="documentation-or-tutorials-on-code-annotation"><a name="documentation-or-tutorials-on-code-annotation" class="plugin-anchor" href="#documentation-or-tutorials-on-code-annotation"><i class="fa fa-link" aria-hidden="true"></i></a>Documentation or tutorials on code annotation</h3>
+<p><em>Use-Case</em>: documentation is scant on how to generate swagger files from annotations.
+Is it really all there in <a href="http://goswagger.io/generate/spec/?" target="_blank">http://goswagger.io/generate/spec/?</a></p>
+<p><strong>Answer</strong>: yes, it&apos;s all in there (or directly in the repo: <a href="https://github.com/go-swagger/go-swagger/tree/master/docs/generate/spec" target="_blank">https://github.com/go-swagger/go-swagger/tree/master/docs/generate/spec</a>)</p>
+<p><em>How about some code examples that show annotations being used?</em></p>
+<p><strong>Answer</strong>: there is an &quot;examples&quot; folder in the repo.
+All generated code also uses all the annotations that are applicable for it.</p>
+<p><a href="https://github.com/go-swagger/go-swagger/tree/master/examples/todo-list" target="_blank">https://github.com/go-swagger/go-swagger/tree/master/examples/todo-list</a></p>
+<p>And also: <a href="https://github.com/go-swagger/go-swagger/tree/master/fixtures/goparsing/classification" target="_blank">https://github.com/go-swagger/go-swagger/tree/master/fixtures/goparsing/classification</a>
+(this is the code used to test parsing the annotations).</p>
+<p>Please bear in mind that this is a project (not a product) to which a number of volunteers have
+contributed significant amounts of free time to get it to where it is today.</p>
+<p>Improvement of documentation is always a good request.
+All help we can get is absolutely welcome.</p>
+<p>Originally from issue <a href="https://github.com/go-swagger/go-swagger/issues/599" target="_blank">#599</a>.</p>
+<h3 id="wrong-schema-in-response-structure"><a name="wrong-schema-in-response-structure" class="plugin-anchor" href="#wrong-schema-in-response-structure"><i class="fa fa-link" aria-hidden="true"></i></a>Wrong schema in response structure?</h3>
+<p>I set up this response struct:</p>
+<pre class="language-"><code class="lang-golang">// swagger:response SuccessResponse
 type SuccessResponse struct {
     // In: body
     Data ResponseData `json:&quot;data&quot;`
@@ -1129,8 +1209,10 @@ type SuccessResponse struct {
 type ResponseData struct {
     Field1 string `json:&quot;field1&quot;`
     Field2 string `json:&quot;field2&quot;`
-}</code></pre>
-<p>Expected schema:</p><pre class="language-"><code class="lang-JSON">{
+}
+</code></pre>
+<p>Expected schema:</p>
+<pre class="language-"><code class="lang-JSON">{
   &quot;responses&quot;: {
     &quot;ErrorResponse&quot;: {},
     &quot;SuccessResponse&quot;: {
@@ -1140,8 +1222,10 @@ type ResponseData struct {
       }
     }
   }
-}</code></pre>
-<p>but getting instead:</p><pre class="language-"><code class="lang-JSON">{
+}
+</code></pre>
+<p>but getting instead:</p>
+<pre class="language-"><code class="lang-JSON">{
   &quot;responses&quot;: {
     &quot;ErrorResponse&quot;: {},
     &quot;SuccessResponse&quot;: {
@@ -1151,10 +1235,13 @@ type ResponseData struct {
       }
     }
   }
-}</code></pre>
+}
+</code></pre>
 <p>I know this is expected working behavior, but
-I don&apos;t want to add additional level of structs just to support pretty output.</p><p><strong>Answer</strong>: you can rename the model in the json with the swagger:model doc tag on the response
-data struct, that would get you the expected output.</p><pre class="language-"><code class="lang-golang">// swagger:response SuccessResponse
+I don&apos;t want to add additional level of structs just to support pretty output.</p>
+<p><strong>Answer</strong>: you can rename the model in the json with the swagger:model doc tag on the response
+data struct, that would get you the expected output.</p>
+<pre class="language-"><code class="lang-golang">// swagger:response SuccessResponse
 type SuccessResponse struct {
     // In: body
     Data ResponseData `json:&quot;data&quot;`
@@ -1164,8 +1251,12 @@ type SuccessResponse struct {
 type ResponseData struct {
     Field1 string `json:&quot;field1&quot;`
     Field2 string `json:&quot;field2&quot;`
-}</code></pre>
-<p>Originally from issue <a href="https://github.com/go-swagger/go-swagger/issues/407" target="_blank">#407</a>.</p><h3 id="go-swagger-not-generating-model-info-and-showing-error-on-swagger-ui"><a name="go-swagger-not-generating-model-info-and-showing-error-on-swagger-ui" class="plugin-anchor" href="#go-swagger-not-generating-model-info-and-showing-error-on-swagger-ui"><i class="fa fa-link" aria-hidden="true"></i></a>go-swagger not generating model info and showing error on swagger UI</h3><p><em>Use-Case</em>: when I&apos;m executing : <code>swagger generate spec -o ./swagger.json</code> to generate the json spec I&apos;m getting:</p><pre class="language-"><code class="lang-JSON">{
+}
+</code></pre>
+<p>Originally from issue <a href="https://github.com/go-swagger/go-swagger/issues/407" target="_blank">#407</a>.</p>
+<h3 id="go-swagger-not-generating-model-info-and-showing-error-on-swagger-ui"><a name="go-swagger-not-generating-model-info-and-showing-error-on-swagger-ui" class="plugin-anchor" href="#go-swagger-not-generating-model-info-and-showing-error-on-swagger-ui"><i class="fa fa-link" aria-hidden="true"></i></a>go-swagger not generating model info and showing error on swagger UI</h3>
+<p><em>Use-Case</em>: when I&apos;m executing : <code>swagger generate spec -o ./swagger.json</code> to generate the json spec I&apos;m getting:</p>
+<pre class="language-"><code class="lang-JSON">{
   &quot;consumes&quot;: [&quot;application/json&quot;, &quot;application/xml&quot;],
   &quot;produces&quot;: [&quot;application/json&quot;, &quot;application/xml&quot;],
   &quot;schemes&quot;: [&quot;http&quot;, &quot;https&quot;],
@@ -1218,12 +1309,17 @@ type ResponseData struct {
   }
 },
 &quot;definitions&quot;: {}
-}</code></pre>
-<p>Note that my definitions are empty, not sure why. If I paste the same json spec in <a href="http://editor.swagger.io/#/" target="_blank">http://editor.swagger.io/#/</a> It says</p><pre class="language-"><code>Error
+}
+</code></pre>
+<p>Note that my definitions are empty, not sure why. If I paste the same json spec in <a href="http://editor.swagger.io/#/" target="_blank">http://editor.swagger.io/#/</a> It says</p>
+<pre class="language-"><code>Error
 Object
 message: &quot;options.definition is required&quot;
-code: &quot;UNCAUGHT_SWAY_WORKER_ERROR&quot;</code></pre>
-<p>Any directions on what is the right way to generate swagger documentation would help</p><p><strong>Answer</strong>: can you move the <code>swagger:model</code> annotation to be the last line in the doc comments for a struct?</p><p>Alternatively, I see some definitions for responses in your specification document, but no matching <code>swagger:response</code> definitions structs.</p><pre class="language-"><code class="lang-golang">// swagger:response errorResponse
+code: &quot;UNCAUGHT_SWAY_WORKER_ERROR&quot;
+</code></pre><p>Any directions on what is the right way to generate swagger documentation would help</p>
+<p><strong>Answer</strong>: can you move the <code>swagger:model</code> annotation to be the last line in the doc comments for a struct?</p>
+<p>Alternatively, I see some definitions for responses in your specification document, but no matching <code>swagger:response</code> definitions structs.</p>
+<pre class="language-"><code class="lang-golang">// swagger:response errorResponse
 type ErrorResponse struct {
     // in: body
     Body struct {
@@ -1246,8 +1342,10 @@ type ValidationError struct {
 type SomeResponse struct {
     // in: body
     Body *User `json:&quot;body,omitempty&quot;`
-    }</code></pre>
-<p>With the <code>--scan-models</code> generating option, you should have models picked up, regardless of whether they&apos;re in use somewhere else or not.</p><!-- Would need a recap/update on that
+    }
+</code></pre>
+<p>With the <code>--scan-models</code> generating option, you should have models picked up, regardless of whether they&apos;re in use somewhere else or not.</p>
+<!-- Would need a recap/update on that
 ### Running on google app engine
 _Use-Case_: generating a spec for an app built for GoogleApp engine
 
@@ -1300,8 +1398,6 @@ The appengine includes are in there. It's working now, thanks for the insight!
 
 Originally from issue [#47](https://github.com/go-swagger/go-swagger/issues/47).
 -->
-
-
 <!-- Obsolete / Not helpfu
 ### Generating spec cannot import dependencies
 I'm unable to run the spec generator on my app. What am I doing wrong?
@@ -1350,9 +1446,9 @@ I uninstalled go-swagger from brew, installed it from source and it worked. So s
 
 Originally from issue [#400](https://github.com/go-swagger/go-swagger/issues/400).
 -->
+<hr>
+<p>Back to <a href="./#all-contributed-questions">all contributions</a></p>
 
-
-<hr><p>Back to <a href="./#all-contributed-questions">all contributions</a></p>
                                 
                                 </section>
                             
@@ -1395,7 +1491,7 @@ Originally from issue [#400](https://github.com/go-swagger/go-swagger/issues/400
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Spec generation from source","level":"1.9.5","depth":2,"next":{"title":"API testing","level":"1.9.6","depth":2,"path":"faq/faq_testing.md","ref":"faq/faq_testing.md","articles":[]},"previous":{"title":"Client generation","level":"1.9.4","depth":2,"path":"faq/faq_client.md","ref":"faq/faq_client.md","articles":[]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors","livereload"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"prism":{},"livereload":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"faq/faq_spec.md","mtime":"2019-12-11T17:17:52.676Z","type":"markdown"},"gitbook":{"version":"3.2.0","time":"2021-01-19T04:09:47.021Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Spec generation from source","level":"1.9.5","depth":2,"next":{"title":"API testing","level":"1.9.6","depth":2,"path":"faq/faq_testing.md","ref":"faq/faq_testing.md","articles":[]},"previous":{"title":"Client generation","level":"1.9.4","depth":2,"path":"faq/faq_client.md","ref":"faq/faq_client.md","articles":[]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"prism":{},"anchors":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"faq/faq_spec.md","mtime":"2019-12-11T17:17:52.676Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2021-11-18T06:04:50.878Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
@@ -1406,10 +1502,6 @@ Originally from issue [#400](https://github.com/go-swagger/go-swagger/issues/400
     
         
         <script src="../gitbook/gitbook-plugin-forkmegithub/plugin.js"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-livereload/plugin.js"></script>
         
     
         

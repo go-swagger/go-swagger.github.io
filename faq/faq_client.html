@@ -2,12 +2,12 @@
 <!DOCTYPE HTML>
 <html lang="" >
     <head>
-        <title>Client generation · GitBook</title>
         <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Client generation · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 3.2.0">
+        <meta name="generator" content="GitBook 3.2.3">
         
         
         
@@ -448,7 +448,20 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.7.3" >
+        <li class="chapter " data-level="1.4.7.3" data-path="../generate/cli.html">
+            
+                <a href="../generate/cli.html">
+            
+                    
+                    CLI (Command Line Tool)
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.7.4" >
             
                 <span>
             
@@ -462,7 +475,7 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.4.7.3.1" data-path="../generate/server.html">
+        <li class="chapter " data-level="1.4.7.4.1" data-path="../generate/server.html">
             
                 <a href="../generate/server.html">
             
@@ -475,7 +488,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.7.3.2" data-path="../use/server.html">
+        <li class="chapter " data-level="1.4.7.4.2" data-path="../use/server.html">
             
                 <a href="../use/server.html">
             
@@ -493,7 +506,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.7.4" >
+        <li class="chapter " data-level="1.4.7.5" >
             
                 <span>
             
@@ -507,7 +520,7 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.4.7.4.1" data-path="../generate/model.html">
+        <li class="chapter " data-level="1.4.7.5.1" data-path="../generate/model.html">
             
                 <a href="../generate/model.html">
             
@@ -520,7 +533,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.7.4.2" data-path="../use/model.html">
+        <li class="chapter " data-level="1.4.7.5.2" data-path="../use/model.html">
             
                 <a href="../use/model.html">
             
@@ -534,7 +547,7 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.4.7.4.2.1" data-path="../use/models/schemas.html">
+        <li class="chapter " data-level="1.4.7.5.2.1" data-path="../use/models/schemas.html">
             
                 <a href="../use/models/schemas.html">
             
@@ -988,42 +1001,60 @@
                                 <section class="normal markdown-section">
                                 
                                 <!-- Questions about client generation -->
-
-
-<h2 id="client-generation"><a name="client-generation" class="plugin-anchor" href="#client-generation"><i class="fa fa-link" aria-hidden="true"></i></a>Client generation</h2><h3 id="example-for-dynamic-client"><a name="example-for-dynamic-client" class="plugin-anchor" href="#example-for-dynamic-client"><i class="fa fa-link" aria-hidden="true"></i></a>Example for dynamic client?</h3><p><em>Use-case</em>: I have the swagger spec file for an existing 3rd party REST service for their application.
+<h2 id="client-generation"><a name="client-generation" class="plugin-anchor" href="#client-generation"><i class="fa fa-link" aria-hidden="true"></i></a>Client generation</h2>
+<h3 id="example-for-dynamic-client"><a name="example-for-dynamic-client" class="plugin-anchor" href="#example-for-dynamic-client"><i class="fa fa-link" aria-hidden="true"></i></a>Example for dynamic client?</h3>
+<p><em>Use-case</em>: I have the swagger spec file for an existing 3rd party REST service for their application.
 A dynamic client would allow me to load the swagger spec file and provide the ability to formulate requests and parse responses
-based on the loaded spec file.</p><p>For e.g. there are REST client packages for go, like go-resty, that provide a nice interface
-to interact with a REST server, but go-resty doesn&apos;t understand swagger specs.</p><ul><li><em>Just like the untyped dynamic server example in go-swagger, is there an example for a dynamic client?</em>
-</li>
-<li><em>Can a REST client be created at runtime by loading a swagger spec file, without going through a code generation and compilation?</em>
-</li>
+based on the loaded spec file.</p>
+<p>For e.g. there are REST client packages for go, like go-resty, that provide a nice interface
+to interact with a REST server, but go-resty doesn&apos;t understand swagger specs.</p>
+<ul>
+<li><em>Just like the untyped dynamic server example in go-swagger, is there an example for a dynamic client?</em></li>
+<li><em>Can a REST client be created at runtime by loading a swagger spec file, without going through a code generation and compilation?</em></li>
 <li><em>Can I get the REST client functionality without first generating a client using go-swagger and then</em>
-compiling it back into the code.
-</li>
-<li><em>Can this be done dynamically like the dynamic server example?</em>
-</li></ul>
-<p><strong>Answer</strong>: <strong>you can&apos;t currently</strong>.</p><p>You&apos;d have to do by hand everything the code generator does for you. Every time the API changes, you would have to do this again.
-The use case for the server side is covered but not the client side.</p><p>That being said, you might find this test useful as an example:
-<a href="https://github.com/go-openapi/runtime/blob/master/client/runtime_test.go#L144-L188" target="_blank">runtime test</a></p><p>Originally from issue <a href="https://github.com/go-swagger/go-swagger/issues/996" target="_blank">#996</a>.</p><h3 id="can-we-set-a-user-agent-header"><a name="can-we-set-a-user-agent-header" class="plugin-anchor" href="#can-we-set-a-user-agent-header"><i class="fa fa-link" aria-hidden="true"></i></a>Can we set a User-Agent header?</h3><p><em>Use-Case</em>: we would like to be able to set an arbitrary user-agent header either at client generation time or at compile time.</p><p><em>Is it possible to do this?</em></p><blockquote><p>The Swagger specification is irrelevant in this case because we are using the same specification to generate many clients.</p></blockquote><p><strong>Answer</strong>: here is the outline of how to achieve that.</p><ul><li>You can use a custom transport which allows you to set the user agent.
-<a href="https://github.com/go-openapi/runtime/blob/master/client/runtime.go#L132" target="_blank">https://github.com/go-openapi/runtime/blob/master/client/runtime.go#L132</a>
-</li>
+compiling it back into the code.</li>
+<li><em>Can this be done dynamically like the dynamic server example?</em></li>
+</ul>
+<p><strong>Answer</strong>: <strong>you can&apos;t currently</strong>.</p>
+<p>You&apos;d have to do by hand everything the code generator does for you. Every time the API changes, you would have to do this again.
+The use case for the server side is covered but not the client side.</p>
+<p>That being said, you might find this test useful as an example:
+<a href="https://github.com/go-openapi/runtime/blob/master/client/runtime_test.go#L144-L188" target="_blank">runtime test</a></p>
+<p>Originally from issue <a href="https://github.com/go-swagger/go-swagger/issues/996" target="_blank">#996</a>.</p>
+<h3 id="can-we-set-a-user-agent-header"><a name="can-we-set-a-user-agent-header" class="plugin-anchor" href="#can-we-set-a-user-agent-header"><i class="fa fa-link" aria-hidden="true"></i></a>Can we set a User-Agent header?</h3>
+<p><em>Use-Case</em>: we would like to be able to set an arbitrary user-agent header either at client generation time or at compile time.</p>
+<p><em>Is it possible to do this?</em></p>
+<blockquote>
+<p>The Swagger specification is irrelevant in this case because we are using the same specification to generate many clients.</p>
+</blockquote>
+<p><strong>Answer</strong>: here is the outline of how to achieve that.</p>
+<ul>
+<li>You can use a custom transport which allows you to set the user agent.
+<a href="https://github.com/go-openapi/runtime/blob/master/client/runtime.go#L132" target="_blank">https://github.com/go-openapi/runtime/blob/master/client/runtime.go#L132</a></li>
 <li>Then you can configure it with this constructor method
-<a href="https://github.com/go-swagger/go-swagger/blob/master/examples/todo-list/client/todo_list_client.go#L52" target="_blank">https://github.com/go-swagger/go-swagger/blob/master/examples/todo-list/client/todo_list_client.go#L52</a>
-</li>
+<a href="https://github.com/go-swagger/go-swagger/blob/master/examples/todo-list/client/todo_list_client.go#L52" target="_blank">https://github.com/go-swagger/go-swagger/blob/master/examples/todo-list/client/todo_list_client.go#L52</a></li>
 <li>You can also configure that runtime with a <code>stdlib http.Client</code>
-<a href="https://github.com/go-openapi/runtime/blob/master/client/runtime.go#L167" target="_blank">https://github.com/go-openapi/runtime/blob/master/client/runtime.go#L167</a>
-</li>
+<a href="https://github.com/go-openapi/runtime/blob/master/client/runtime.go#L167" target="_blank">https://github.com/go-openapi/runtime/blob/master/client/runtime.go#L167</a></li>
 <li>You can extend intercept a http request with the <code>http.RoundTripper interface</code>. <a href="https://godoc.org/net/http#RoundTripper" target="_blank">https://godoc.org/net/http#RoundTripper</a>
-which you can set here: <a href="https://github.com/go-openapi/runtime/blob/master/client/runtime.go#L116" target="_blank">https://github.com/go-openapi/runtime/blob/master/client/runtime.go#L116</a>
-</li>
-<li>so for the client here:
-</li></ul>
+which you can set here: <a href="https://github.com/go-openapi/runtime/blob/master/client/runtime.go#L116" target="_blank">https://github.com/go-openapi/runtime/blob/master/client/runtime.go#L116</a></li>
+<li>so for the client here:</li>
+</ul>
 <pre class="language-"><code class="lang-golang">var myRoundTripper http.RoundTripper = createRoundTripper()
 transport := httptransport.New(cfg.Host, cfg.BasePath, cfg.Schemes)
 transport.Transport = myRoundTripper
-todoListClient := New(transport, nil)</code></pre>
+todoListClient := New(transport, nil)
+</code></pre>
 <p><em>Other use-Case</em>: can the same pattern of using an <code>http.RoundTripper</code> be used to implement the AWS Signature v4 which requires
-reading and modifying the <code>*http.Request</code> before its sent?</p><p><strong>Answer</strong>: <strong>yes it can</strong>.</p><blockquote><p>The roundtripper is the last thing executed before sending the request on the wire.</p></blockquote><p>See also issue <a href="https://github.com/go-swagger/go-swagger/issues/935" target="_blank">#935</a>.</p><p>Originally from issue <a href="https://github.com/go-swagger/go-swagger/issues/911" target="_blank">#911</a>.</p><hr><p>Back to <a href="./#all-contributed-questions">all contributions</a></p>
+reading and modifying the <code>*http.Request</code> before its sent?</p>
+<p><strong>Answer</strong>: <strong>yes it can</strong>.</p>
+<blockquote>
+<p>The roundtripper is the last thing executed before sending the request on the wire.</p>
+</blockquote>
+<p>See also issue <a href="https://github.com/go-swagger/go-swagger/issues/935" target="_blank">#935</a>.</p>
+<p>Originally from issue <a href="https://github.com/go-swagger/go-swagger/issues/911" target="_blank">#911</a>.</p>
+<hr>
+<p>Back to <a href="./#all-contributed-questions">all contributions</a></p>
+
                                 
                                 </section>
                             
@@ -1066,7 +1097,7 @@ reading and modifying the <code>*http.Request</code> before its sent?</p><p><str
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Client generation","level":"1.9.4","depth":2,"next":{"title":"Spec generation from source","level":"1.9.5","depth":2,"path":"faq/faq_spec.md","ref":"faq/faq_spec.md","articles":[]},"previous":{"title":"Server generation & customization","level":"1.9.3","depth":2,"path":"faq/faq_server.md","ref":"faq/faq_server.md","articles":[]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors","livereload"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"prism":{},"livereload":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"faq/faq_client.md","mtime":"2019-12-11T17:17:52.676Z","type":"markdown"},"gitbook":{"version":"3.2.0","time":"2021-01-19T04:09:47.021Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Client generation","level":"1.9.4","depth":2,"next":{"title":"Spec generation from source","level":"1.9.5","depth":2,"path":"faq/faq_spec.md","ref":"faq/faq_spec.md","articles":[]},"previous":{"title":"Server generation & customization","level":"1.9.3","depth":2,"path":"faq/faq_server.md","ref":"faq/faq_server.md","articles":[]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"prism":{},"anchors":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"faq/faq_client.md","mtime":"2019-12-11T17:17:52.676Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2021-11-18T06:04:50.878Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
@@ -1077,10 +1108,6 @@ reading and modifying the <code>*http.Request</code> before its sent?</p><p><str
     
         
         <script src="../gitbook/gitbook-plugin-forkmegithub/plugin.js"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-livereload/plugin.js"></script>
         
     
         

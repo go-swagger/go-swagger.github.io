@@ -2,12 +2,12 @@
 <!DOCTYPE HTML>
 <html lang="" >
     <head>
-        <title>Transform spec · GitBook</title>
         <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Transform spec · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 3.2.0">
+        <meta name="generator" content="GitBook 3.2.3">
         
         
         
@@ -448,7 +448,20 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.7.3" >
+        <li class="chapter " data-level="1.4.7.3" data-path="../generate/cli.html">
+            
+                <a href="../generate/cli.html">
+            
+                    
+                    CLI (Command Line Tool)
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.7.4" >
             
                 <span>
             
@@ -462,7 +475,7 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.4.7.3.1" data-path="../generate/server.html">
+        <li class="chapter " data-level="1.4.7.4.1" data-path="../generate/server.html">
             
                 <a href="../generate/server.html">
             
@@ -475,7 +488,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.7.3.2" data-path="server.html">
+        <li class="chapter " data-level="1.4.7.4.2" data-path="server.html">
             
                 <a href="server.html">
             
@@ -493,7 +506,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.7.4" >
+        <li class="chapter " data-level="1.4.7.5" >
             
                 <span>
             
@@ -507,7 +520,7 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.4.7.4.1" data-path="../generate/model.html">
+        <li class="chapter " data-level="1.4.7.5.1" data-path="../generate/model.html">
             
                 <a href="../generate/model.html">
             
@@ -520,7 +533,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.7.4.2" data-path="model.html">
+        <li class="chapter " data-level="1.4.7.5.2" data-path="model.html">
             
                 <a href="model.html">
             
@@ -534,7 +547,7 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.4.7.4.2.1" data-path="models/schemas.html">
+        <li class="chapter " data-level="1.4.7.5.2.1" data-path="models/schemas.html">
             
                 <a href="models/schemas.html">
             
@@ -987,35 +1000,77 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="transforming-specifications"><a name="transforming-specifications" class="plugin-anchor" href="#transforming-specifications"><i class="fa fa-link" aria-hidden="true"></i></a>Transforming specifications</h1><p>The <code>swagger</code> toolkit allows some transformation to be carried out with a specification.</p><p>Currently it is possible to apply the following transforms:</p><ul><li>expansion: this expands all <code>$ref</code>&apos;s in a spec
-</li>
-<li>minimal flattening: carries on minimal transformation to a spec to be workable for the swagger codegen
-</li>
-<li>full flattening: performs minimal flattening and in addition, replaces all complex constructs in schemas by named definitions
-</li>
-<li>mixin: merges one or more specifications into a primary spec
-</li></ul>
-<p>In addition, it is possible to compare specs (diff) to inspect breaking changes in the API.</p><h3 id="expansion"><a name="expansion" class="plugin-anchor" href="#expansion"><i class="fa fa-link" aria-hidden="true"></i></a>Expansion</h3><p>Expanding a spec may prove useful to validate a schema, produce documentation or test cases. The primary intent is not code generation.</p><blockquote><p><strong>NOTE</strong>: Circular <code>$ref</code> are detected and remain as local <code>$ref</code>. Remote circular <code>$ref</code> remain remote 
-(favor <code>flatten</code> to regroup all remote <code>$ref</code> under one single root document).</p></blockquote><p>Usage:</p><p><code>swagger expand {spec}</code>
-or</p><p><code>swagger flatten --with-expand</code> {spec}`</p><p>Full list of available options <a href="../usage/expand.html">for expand</a> and <a href="../usage/flatten.html">for flatten</a>.</p><p>or with codegen commands:</p><p><code>swagger generate [model|server|client|operation|...] --spec={spec} --with-expand</code></p><blockquote><p><strong>NOTE</strong>: codegen may fail in some situations with spec expansion:</p><ul><li>polymorphism: the original intent of the <code>$ref</code> pointing to a discriminated type (i.e. <em>extends type...</em>) is lost with expansion
-</li>
-<li>duplicate names: expansion of <code>$ref</code> intended for type reuse may produce duplicate type identifiers
-</li>
-<li>too many generated files: expansion of large specs may lead to many independent anonymous structures
-</li></ul>
-</blockquote><h3 id="minimal-flattening"><a name="minimal-flattening" class="plugin-anchor" href="#minimal-flattening"><i class="fa fa-link" aria-hidden="true"></i></a>Minimal flattening</h3><p>This transform makes complex JSON <code>$ref</code> amenable to analysis and code generation.</p><p>Minimal flattening attempts to minimally distort the original specification intent, while ensuring workable codegen.</p><p>Minimal flattening does:</p><ul><li>bundle all external <code>$ref</code>s into the local document
-</li>
-<li>resolve JSON pointers to anonymous places in the document (e.g. <code>&quot;$ref&quot;: &quot;#/definitions/thisModel/properties/codeName&quot;</code>)
-</li>
-<li>resolve <code>$ref</code>s in swagger-specific sections: <code>parameters</code> and <code>responses</code>, so the only remaining <code>$ref</code>s are located in schemas
-</li></ul>
-<p>All <code>$ref</code>s in the resulting spec are thus only found in schema, with the <em>canonical</em> form: <code>&quot;$ref&quot;: &quot;#/definitions/modelName&quot;</code>.</p><p>Usage:</p><p><code>swagger flatten {spec}</code></p><p>or more explicitly:</p><p><code>swagger flatten --with-flatten=minimal {spec}</code></p><p>This is the default option for codegen commands:</p><p><code>swagger generate [model|server|client|operation|...] --spec={spec}</code></p><blockquote><p><strong>NOTE</strong>: <code>$ref</code> bundling / pointer resolving may in some cases produce duplicate names.
+                                <h1 id="transforming-specifications"><a name="transforming-specifications" class="plugin-anchor" href="#transforming-specifications"><i class="fa fa-link" aria-hidden="true"></i></a>Transforming specifications</h1>
+<p>The <code>swagger</code> toolkit allows some transformation to be carried out with a specification.</p>
+<p>Currently it is possible to apply the following transforms:</p>
+<ul>
+<li>expansion: this expands all <code>$ref</code>&apos;s in a spec</li>
+<li>minimal flattening: carries on minimal transformation to a spec to be workable for the swagger codegen</li>
+<li>full flattening: performs minimal flattening and in addition, replaces all complex constructs in schemas by named definitions</li>
+<li>mixin: merges one or more specifications into a primary spec</li>
+</ul>
+<p>In addition, it is possible to compare specs (diff) to inspect breaking changes in the API.</p>
+<h3 id="expansion"><a name="expansion" class="plugin-anchor" href="#expansion"><i class="fa fa-link" aria-hidden="true"></i></a>Expansion</h3>
+<p>Expanding a spec may prove useful to validate a schema, produce documentation or test cases. The primary intent is not code generation.</p>
+<blockquote>
+<p><strong>NOTE</strong>: Circular <code>$ref</code> are detected and remain as local <code>$ref</code>. Remote circular <code>$ref</code> remain remote 
+(favor <code>flatten</code> to regroup all remote <code>$ref</code> under one single root document).</p>
+</blockquote>
+<p>Usage:</p>
+<p><code>swagger expand {spec}</code>
+or</p>
+<p><code>swagger flatten --with-expand</code> {spec}`</p>
+<p>Full list of available options <a href="../usage/expand.html">for expand</a> and <a href="../usage/flatten.html">for flatten</a>.</p>
+<p>or with codegen commands:</p>
+<p><code>swagger generate [model|server|client|operation|...] --spec={spec} --with-expand</code></p>
+<blockquote>
+<p><strong>NOTE</strong>: codegen may fail in some situations with spec expansion:</p>
+<ul>
+<li>polymorphism: the original intent of the <code>$ref</code> pointing to a discriminated type (i.e. <em>extends type...</em>) is lost with expansion</li>
+<li>duplicate names: expansion of <code>$ref</code> intended for type reuse may produce duplicate type identifiers</li>
+<li>too many generated files: expansion of large specs may lead to many independent anonymous structures</li>
+</ul>
+</blockquote>
+<h3 id="minimal-flattening"><a name="minimal-flattening" class="plugin-anchor" href="#minimal-flattening"><i class="fa fa-link" aria-hidden="true"></i></a>Minimal flattening</h3>
+<p>This transform makes complex JSON <code>$ref</code> amenable to analysis and code generation.</p>
+<p>Minimal flattening attempts to minimally distort the original specification intent, while ensuring workable codegen.</p>
+<p>Minimal flattening does:</p>
+<ul>
+<li>bundle all external <code>$ref</code>s into the local document</li>
+<li>resolve JSON pointers to anonymous places in the document (e.g. <code>&quot;$ref&quot;: &quot;#/definitions/thisModel/properties/codeName&quot;</code>)</li>
+<li>resolve <code>$ref</code>s in swagger-specific sections: <code>parameters</code> and <code>responses</code>, so the only remaining <code>$ref</code>s are located in schemas</li>
+</ul>
+<p>All <code>$ref</code>s in the resulting spec are thus only found in schema, with the <em>canonical</em> form: <code>&quot;$ref&quot;: &quot;#/definitions/modelName&quot;</code>.</p>
+<p>Usage:</p>
+<p><code>swagger flatten {spec}</code></p>
+<p>or more explicitly:</p>
+<p><code>swagger flatten --with-flatten=minimal {spec}</code></p>
+<p>This is the default option for codegen commands:</p>
+<p><code>swagger generate [model|server|client|operation|...] --spec={spec}</code></p>
+<blockquote>
+<p><strong>NOTE</strong>: <code>$ref</code> bundling / pointer resolving may in some cases produce duplicate names.
 The flattener tries to resolve duplicates whenever possible (such as when a child identifier duplicates its parent).
 When such resolution is not possible, an &quot;OAIGen&quot; suffix is added to the definition name (a warning is issued).
-You may use the <code>x-go-name</code> extension here to set a more suitable name for the generated type.</p></blockquote><h3 id="full-flattening"><a name="full-flattening" class="plugin-anchor" href="#full-flattening"><i class="fa fa-link" aria-hidden="true"></i></a>Full flattening</h3><p>Full flattening is useful to factorize data model objects into simpler structures.</p><blockquote><p>Complex structures (i.e. objects with properties or schemas with an <code>allOf</code> composition) are moved to standalone definitions.
-Arrays and map constructs (e.g. AdditionalProperties) are not considered complex.</p></blockquote><p>Usage:</p><p><code>swagger flatten --with-flatten=full {spec}</code></p><p>Or with codegen commands:</p><p><code>swagger generate [model|server|client|operation|...] --spec={spec} --with-flatten=full</code></p><blockquote><p><strong>NOTE</strong>: this used to be the default for codegen commands with releases 0.13 and 0.14. 
-This behavior has been reverted with release 0.15.</p></blockquote><p>You may not like the automatic names chosen for the new structures (e.g. <code>myModelAllOf3</code>, <code>myModelAdditionalPropertiesAdditionalProperties</code> ...).
-Again, the <code>x-go-name</code> extension is the way to generate custom names that are easier to use in your API code.</p><p>Ex:</p><pre class="language-"><code class="lang-yaml"><span class="token key atrule">definitions</span><span class="token punctuation">:</span>
+You may use the <code>x-go-name</code> extension here to set a more suitable name for the generated type.</p>
+</blockquote>
+<h3 id="full-flattening"><a name="full-flattening" class="plugin-anchor" href="#full-flattening"><i class="fa fa-link" aria-hidden="true"></i></a>Full flattening</h3>
+<p>Full flattening is useful to factorize data model objects into simpler structures.</p>
+<blockquote>
+<p>Complex structures (i.e. objects with properties or schemas with an <code>allOf</code> composition) are moved to standalone definitions.
+Arrays and map constructs (e.g. AdditionalProperties) are not considered complex.</p>
+</blockquote>
+<p>Usage:</p>
+<p><code>swagger flatten --with-flatten=full {spec}</code></p>
+<p>Or with codegen commands:</p>
+<p><code>swagger generate [model|server|client|operation|...] --spec={spec} --with-flatten=full</code></p>
+<blockquote>
+<p><strong>NOTE</strong>: this used to be the default for codegen commands with releases 0.13 and 0.14. 
+This behavior has been reverted with release 0.15.</p>
+</blockquote>
+<p>You may not like the automatic names chosen for the new structures (e.g. <code>myModelAllOf3</code>, <code>myModelAdditionalPropertiesAdditionalProperties</code> ...).
+Again, the <code>x-go-name</code> extension is the way to generate custom names that are easier to use in your API code.</p>
+<p>Ex:</p>
+<pre class="language-"><code class="lang-yaml"><span class="token key atrule">definitions</span><span class="token punctuation">:</span>
   <span class="token key atrule">complexArray</span><span class="token punctuation">:</span>
     <span class="token key atrule">schema</span><span class="token punctuation">:</span>
       <span class="token key atrule">type</span><span class="token punctuation">:</span> array
@@ -1023,8 +1078,10 @@ Again, the <code>x-go-name</code> extension is the way to generate custom names 
         <span class="token key atrule">type</span><span class="token punctuation">:</span> object        <span class="token comment"># &lt;- inline schema for items</span>
         <span class="token key atrule">properties</span><span class="token punctuation">:</span>
           <span class="token key atrule">prop1</span><span class="token punctuation">:</span>
-            <span class="token key atrule">type</span><span class="token punctuation">:</span> integer</code></pre>
-<p>Is factorized as:</p><pre class="language-"><code class="lang-yaml"><span class="token key atrule">definitions</span><span class="token punctuation">:</span>
+            <span class="token key atrule">type</span><span class="token punctuation">:</span> integer
+</code></pre>
+<p>Is factorized as:</p>
+<pre class="language-"><code class="lang-yaml"><span class="token key atrule">definitions</span><span class="token punctuation">:</span>
   <span class="token key atrule">complexArray</span><span class="token punctuation">:</span>
     <span class="token key atrule">schema</span><span class="token punctuation">:</span>
       <span class="token key atrule">type</span><span class="token punctuation">:</span> array
@@ -1034,20 +1091,33 @@ Again, the <code>x-go-name</code> extension is the way to generate custom names 
     <span class="token key atrule">type</span><span class="token punctuation">:</span> object
     <span class="token key atrule">properties</span><span class="token punctuation">:</span>
       <span class="token key atrule">prop1</span><span class="token punctuation">:</span>
-        <span class="token key atrule">type</span><span class="token punctuation">:</span> integer</code></pre>
-<h3 id="other-flattening-options"><a name="other-flattening-options" class="plugin-anchor" href="#other-flattening-options"><i class="fa fa-link" aria-hidden="true"></i></a>Other flattening options</h3><p>The <code>--with-flatten</code> option supports the following additional arguments:</p><ul><li><code>verbose</code>, <code>noverbose</code>: allows/mute warnings about the transformation
-</li>
-<li><code>remove-unused</code>: removes unused definitions after expansion or flattening
-</li></ul>
-<blockquote><p><strong>NOTE</strong>: you may specify multiple options like this:</p><p><code>swagger flatten {spec} --with-flatten=remove-unused --with-flatten=full</code></p></blockquote><h3 id="mixin"><a name="mixin" class="plugin-anchor" href="#mixin"><i class="fa fa-link" aria-hidden="true"></i></a>Mixin</h3><p>Usage:</p><p><code>swagger mixin {primary spec} [{spec to merge}...]</code></p><p>Full list of available options <a href="../usage/mixin.html">here</a>.</p><h3 id="roadmap"><a name="roadmap" class="plugin-anchor" href="#roadmap"><i class="fa fa-link" aria-hidden="true"></i></a>Roadmap</h3><p>This set of features is essentially provided by the <code>github.com/go-openapi/analysis</code> package.
-Feel free to contribute new features to this repo.</p><p>Currently, here is a todo list of improvements planned to the spec preprocessing feature:</p><ul><li>in full flatten mode, more options to control how allOf are handled
-</li>
+        <span class="token key atrule">type</span><span class="token punctuation">:</span> integer
+</code></pre>
+<h3 id="other-flattening-options"><a name="other-flattening-options" class="plugin-anchor" href="#other-flattening-options"><i class="fa fa-link" aria-hidden="true"></i></a>Other flattening options</h3>
+<p>The <code>--with-flatten</code> option supports the following additional arguments:</p>
+<ul>
+<li><code>verbose</code>, <code>noverbose</code>: allows/mute warnings about the transformation</li>
+<li><code>remove-unused</code>: removes unused definitions after expansion or flattening</li>
+</ul>
+<blockquote>
+<p><strong>NOTE</strong>: you may specify multiple options like this:</p>
+<p><code>swagger flatten {spec} --with-flatten=remove-unused --with-flatten=full</code></p>
+</blockquote>
+<h3 id="mixin"><a name="mixin" class="plugin-anchor" href="#mixin"><i class="fa fa-link" aria-hidden="true"></i></a>Mixin</h3>
+<p>Usage:</p>
+<p><code>swagger mixin {primary spec} [{spec to merge}...]</code></p>
+<p>Full list of available options <a href="../usage/mixin.html">here</a>.</p>
+<h3 id="roadmap"><a name="roadmap" class="plugin-anchor" href="#roadmap"><i class="fa fa-link" aria-hidden="true"></i></a>Roadmap</h3>
+<p>This set of features is essentially provided by the <code>github.com/go-openapi/analysis</code> package.
+Feel free to contribute new features to this repo.</p>
+<p>Currently, here is a todo list of improvements planned to the spec preprocessing feature:</p>
+<ul>
+<li>in full flatten mode, more options to control how allOf are handled</li>
 <li>in full flatten mode propagating <code>x-go-name</code> (as prefix) to newly created definitions. 
 As creating new definitions introduces some naming conventions.
-If a x-go-name has been set in the original structure, new names should remain consistent with their container...
-</li>
-<li>struct name analysis and better prediction/resolution of duplicate identifiers
-</li></ul>
+If a x-go-name has been set in the original structure, new names should remain consistent with their container...</li>
+<li>struct name analysis and better prediction/resolution of duplicate identifiers</li>
+</ul>
 
                                 
                                 </section>
@@ -1091,7 +1161,7 @@ If a x-go-name has been set in the original structure, new names should remain c
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Transform spec","level":"1.4.5","depth":2,"next":{"title":"Expand","level":"1.4.5.1","depth":3,"path":"usage/expand.md","ref":"usage/expand.md","articles":[]},"previous":{"title":"Diff","level":"1.4.4","depth":2,"path":"usage/diff.md","ref":"usage/diff.md","articles":[]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors","livereload"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"prism":{},"livereload":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"use/transform.md","mtime":"2019-12-11T17:17:52.690Z","type":"markdown"},"gitbook":{"version":"3.2.0","time":"2021-01-19T04:09:47.021Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Transform spec","level":"1.4.5","depth":2,"next":{"title":"Expand","level":"1.4.5.1","depth":3,"path":"usage/expand.md","ref":"usage/expand.md","articles":[]},"previous":{"title":"Diff","level":"1.4.4","depth":2,"path":"usage/diff.md","ref":"usage/diff.md","articles":[]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"prism":{},"anchors":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"use/transform.md","mtime":"2019-12-11T17:17:52.690Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2021-11-18T06:04:50.878Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
@@ -1102,10 +1172,6 @@ If a x-go-name has been set in the original structure, new names should remain c
     
         
         <script src="../gitbook/gitbook-plugin-forkmegithub/plugin.js"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-livereload/plugin.js"></script>
         
     
         

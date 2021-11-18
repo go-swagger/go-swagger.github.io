@@ -2,12 +2,12 @@
 <!DOCTYPE HTML>
 <html lang="" >
     <head>
-        <title>Dependencies & Requirements · GitBook</title>
         <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Dependencies & Requirements · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 3.2.0">
+        <meta name="generator" content="GitBook 3.2.3">
         
         
         
@@ -446,7 +446,20 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.7.3" >
+        <li class="chapter " data-level="1.4.7.3" data-path="cli.html">
+            
+                <a href="cli.html">
+            
+                    
+                    CLI (Command Line Tool)
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.7.4" >
             
                 <span>
             
@@ -460,7 +473,7 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.4.7.3.1" data-path="server.html">
+        <li class="chapter " data-level="1.4.7.4.1" data-path="server.html">
             
                 <a href="server.html">
             
@@ -473,7 +486,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.7.3.2" data-path="../use/server.html">
+        <li class="chapter " data-level="1.4.7.4.2" data-path="../use/server.html">
             
                 <a href="../use/server.html">
             
@@ -491,7 +504,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.7.4" >
+        <li class="chapter " data-level="1.4.7.5" >
             
                 <span>
             
@@ -505,7 +518,7 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.4.7.4.1" data-path="model.html">
+        <li class="chapter " data-level="1.4.7.5.1" data-path="model.html">
             
                 <a href="model.html">
             
@@ -518,7 +531,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.7.4.2" data-path="../use/model.html">
+        <li class="chapter " data-level="1.4.7.5.2" data-path="../use/model.html">
             
                 <a href="../use/model.html">
             
@@ -532,7 +545,7 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.4.7.4.2.1" data-path="../use/models/schemas.html">
+        <li class="chapter " data-level="1.4.7.5.2.1" data-path="../use/models/schemas.html">
             
                 <a href="../use/models/schemas.html">
             
@@ -985,49 +998,67 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="requirements-to-build-generated-code"><a name="requirements-to-build-generated-code" class="plugin-anchor" href="#requirements-to-build-generated-code"><i class="fa fa-link" aria-hidden="true"></i></a>Requirements to build generated code</h1><h3 id="first-time-with-golang"><a name="first-time-with-golang" class="plugin-anchor" href="#first-time-with-golang"><i class="fa fa-link" aria-hidden="true"></i></a>First time with golang?</h3><p>Golang is a powerful and enticing language, but it may sometimes confuse first timers.</p><p>Before engaging further with <code>go-swagger</code>, please take a while to get comfortable with golang basics 
-and conventions. That will save yourself much time and frustration.</p><h3 id="standard-golang-environment"><a name="standard-golang-environment" class="plugin-anchor" href="#standard-golang-environment"><i class="fa fa-link" aria-hidden="true"></i></a>Standard golang environment</h3><ul><li>version: we support the two latest versions of the go compiler
-</li>
-<li><code>GOPATH</code> environment variable set: all sources reside under <code>$GOPATH/src</code>
-</li>
+                                <h1 id="requirements-to-build-generated-code"><a name="requirements-to-build-generated-code" class="plugin-anchor" href="#requirements-to-build-generated-code"><i class="fa fa-link" aria-hidden="true"></i></a>Requirements to build generated code</h1>
+<h3 id="first-time-with-golang"><a name="first-time-with-golang" class="plugin-anchor" href="#first-time-with-golang"><i class="fa fa-link" aria-hidden="true"></i></a>First time with golang?</h3>
+<p>Golang is a powerful and enticing language, but it may sometimes confuse first timers.</p>
+<p>Before engaging further with <code>go-swagger</code>, please take a while to get comfortable with golang basics 
+and conventions. That will save yourself much time and frustration.</p>
+<h3 id="standard-golang-environment"><a name="standard-golang-environment" class="plugin-anchor" href="#standard-golang-environment"><i class="fa fa-link" aria-hidden="true"></i></a>Standard golang environment</h3>
+<ul>
+<li>version: we support the two latest versions of the go compiler</li>
+<li><code>GOPATH</code> environment variable set: all sources reside under <code>$GOPATH/src</code></li>
 <li>it is recommended, but not mandatory, to use the <code>dep</code> tool to manage dependencies
-(see <a href="https://golang.github.io/dep/docs/introduction.html" target="_blank">here</a>)
-</li></ul>
-<p>The target directory for your generated code <em>must</em> be under GOPATH/src.</p><h2 id="getting-dependencies"><a name="getting-dependencies" class="plugin-anchor" href="#getting-dependencies"><i class="fa fa-link" aria-hidden="true"></i></a>Getting dependencies</h2><p>Before generating code, you should make sure your target is going to properly resolve dependencies.</p><blockquote><p><strong>NOTE</strong>: generation makes use of the <code>goimports</code> tool and dependencies must be matched at code generation time.</p></blockquote><p>If your target is located under the <code>go-swagger</code> install directory (when installed from source), dependencies are directly
-provided by the <code>vendor</code> directory that ships with <code>go-swagger</code>.</p><p>The following required dependencies may be fetched by using <code>go get</code>:</p><ul><li><a href="https://www.github.com/go-openapi/errors" target="_blank"><code>github.com/go-openapi/errors</code></a>
-</li>
-<li><a href="https://www.github.com/go-openapi/loads" target="_blank"><code>github.com/go-openapi/loads</code></a>
-</li>
-<li><a href="https://www.github.com/go-openapi/runtime" target="_blank"><code>github.com/go-openapi/runtime</code></a>
-</li>
-<li><a href="https://www.github.com/go-openapi/spec" target="_blank"><code>github.com/go-openapi/spec</code></a>
-</li>
-<li><a href="https://www.github.com/go-openapi/strfmt" target="_blank"><code>github.com/go-openapi/strfmt</code></a>
-</li>
-<li><a href="https://www.github.com/go-openapi/swag" target="_blank"><code>github.com/go-openapi/swag</code></a>
-</li>
-<li><a href="https://www.github.com/go-openapi/validate" target="_blank"><code>github.com/go-openapi/validate</code></a>
-</li></ul>
+(see <a href="https://golang.github.io/dep/docs/introduction.html" target="_blank">here</a>)</li>
+</ul>
+<p>The target directory for your generated code <em>must</em> be under GOPATH/src.</p>
+<h2 id="getting-dependencies"><a name="getting-dependencies" class="plugin-anchor" href="#getting-dependencies"><i class="fa fa-link" aria-hidden="true"></i></a>Getting dependencies</h2>
+<p>Before generating code, you should make sure your target is going to properly resolve dependencies.</p>
+<blockquote>
+<p><strong>NOTE</strong>: generation makes use of the <code>goimports</code> tool and dependencies must be matched at code generation time.</p>
+</blockquote>
+<p>If your target is located under the <code>go-swagger</code> install directory (when installed from source), dependencies are directly
+provided by the <code>vendor</code> directory that ships with <code>go-swagger</code>.</p>
+<p>The following required dependencies may be fetched by using <code>go get</code>:</p>
+<ul>
+<li><a href="https://www.github.com/go-openapi/errors" target="_blank"><code>github.com/go-openapi/errors</code></a></li>
+<li><a href="https://www.github.com/go-openapi/loads" target="_blank"><code>github.com/go-openapi/loads</code></a></li>
+<li><a href="https://www.github.com/go-openapi/runtime" target="_blank"><code>github.com/go-openapi/runtime</code></a></li>
+<li><a href="https://www.github.com/go-openapi/spec" target="_blank"><code>github.com/go-openapi/spec</code></a></li>
+<li><a href="https://www.github.com/go-openapi/strfmt" target="_blank"><code>github.com/go-openapi/strfmt</code></a></li>
+<li><a href="https://www.github.com/go-openapi/swag" target="_blank"><code>github.com/go-openapi/swag</code></a></li>
+<li><a href="https://www.github.com/go-openapi/validate" target="_blank"><code>github.com/go-openapi/validate</code></a></li>
+</ul>
 <p>You may also build a vendor directory in your planned target: a way to achieve that is to copy there an example from the
 <code>go-swagger/examples</code> repository then run <code>dep</code> - see <a href="https://github.com/golang/dep" target="_blank">how to use dep here</a>.
 This will produce <code>Gopkg.toml</code> and <code>Gopkg.lock</code> files and construct a vendor directory with all required dependencies
 (the ones above and all transitive dependencies). Another way is to proceed in two steps, first with <code>go get</code>, then generate code, 
-then build the vendor tree with <code>dep</code>.</p><blockquote><p><strong>NOTE</strong> : the code generation process ends with a message indicating the packages required for your generated code.</p></blockquote><h3 id="what-are-the-dependencies-required-by-the-generated-server"><a name="what-are-the-dependencies-required-by-the-generated-server" class="plugin-anchor" href="#what-are-the-dependencies-required-by-the-generated-server"><i class="fa fa-link" aria-hidden="true"></i></a>What are the dependencies required by the generated server?</h3><p>Additional packages required by the (default) generated server
-depend on your generation options, a command line flags handling package:</p><ul><li><a href="https://www.github.com/jessevdk/go-flags" target="_blank"><code>github.com/jessevdk/go-flags</code></a>, or
-</li>
-<li><a href="https://www.github.com/spf13/pflags" target="_blank"><code>github.com/spf13/pflags</code></a>
-</li></ul>
-<h3 id="what-are-the-dependencies-required-by-the-generated-client"><a name="what-are-the-dependencies-required-by-the-generated-client" class="plugin-anchor" href="#what-are-the-dependencies-required-by-the-generated-client"><i class="fa fa-link" aria-hidden="true"></i></a>What are the dependencies required by the generated client?</h3><p>Same as above, plus:</p><ul><li><code>golang.org/x/net/context</code>
-</li></ul>
-<h3 id="what-are-the-dependencies-required-by-the-generated-models"><a name="what-are-the-dependencies-required-by-the-generated-models" class="plugin-anchor" href="#what-are-the-dependencies-required-by-the-generated-models"><i class="fa fa-link" aria-hidden="true"></i></a>What are the dependencies required by the generated models?</h3><p>The generated models package depends only on:</p><ul><li><a href="https://www.github.com/go-openapi/errors" target="_blank"><code>github.com/go-openapi/errors</code></a>
-</li>
-<li><a href="https://www.github.com/go-openapi/strfmt" target="_blank"><code>github.com/go-openapi/strfmt</code></a>
-</li>
-<li><a href="https://www.github.com/go-openapi/swag" target="_blank"><code>github.com/go-openapi/swag</code></a>
-</li>
-<li><a href="https://www.github.com/go-openapi/validate" target="_blank"><code>github.com/go-openapi/validate</code></a>
-</li></ul>
-<h3 id="how-about-generating-specs"><a name="how-about-generating-specs" class="plugin-anchor" href="#how-about-generating-specs"><i class="fa fa-link" aria-hidden="true"></i></a>How about generating specs?</h3><p>The code that is scanned for spec generation <em>must</em> resolve all its dependencies (i.e. must build).</p>
+then build the vendor tree with <code>dep</code>.</p>
+<blockquote>
+<p><strong>NOTE</strong> : the code generation process ends with a message indicating the packages required for your generated code.</p>
+</blockquote>
+<h3 id="what-are-the-dependencies-required-by-the-generated-server"><a name="what-are-the-dependencies-required-by-the-generated-server" class="plugin-anchor" href="#what-are-the-dependencies-required-by-the-generated-server"><i class="fa fa-link" aria-hidden="true"></i></a>What are the dependencies required by the generated server?</h3>
+<p>Additional packages required by the (default) generated server
+depend on your generation options, a command line flags handling package:</p>
+<ul>
+<li><a href="https://www.github.com/jessevdk/go-flags" target="_blank"><code>github.com/jessevdk/go-flags</code></a>, or</li>
+<li><a href="https://www.github.com/spf13/pflags" target="_blank"><code>github.com/spf13/pflags</code></a></li>
+</ul>
+<h3 id="what-are-the-dependencies-required-by-the-generated-client"><a name="what-are-the-dependencies-required-by-the-generated-client" class="plugin-anchor" href="#what-are-the-dependencies-required-by-the-generated-client"><i class="fa fa-link" aria-hidden="true"></i></a>What are the dependencies required by the generated client?</h3>
+<p>Same as above, plus:</p>
+<ul>
+<li><code>golang.org/x/net/context</code></li>
+</ul>
+<h3 id="what-are-the-dependencies-required-by-the-generated-models"><a name="what-are-the-dependencies-required-by-the-generated-models" class="plugin-anchor" href="#what-are-the-dependencies-required-by-the-generated-models"><i class="fa fa-link" aria-hidden="true"></i></a>What are the dependencies required by the generated models?</h3>
+<p>The generated models package depends only on:</p>
+<ul>
+<li><a href="https://www.github.com/go-openapi/errors" target="_blank"><code>github.com/go-openapi/errors</code></a></li>
+<li><a href="https://www.github.com/go-openapi/strfmt" target="_blank"><code>github.com/go-openapi/strfmt</code></a></li>
+<li><a href="https://www.github.com/go-openapi/swag" target="_blank"><code>github.com/go-openapi/swag</code></a></li>
+<li><a href="https://www.github.com/go-openapi/validate" target="_blank"><code>github.com/go-openapi/validate</code></a></li>
+</ul>
+<h3 id="how-about-generating-specs"><a name="how-about-generating-specs" class="plugin-anchor" href="#how-about-generating-specs"><i class="fa fa-link" aria-hidden="true"></i></a>How about generating specs?</h3>
+<p>The code that is scanned for spec generation <em>must</em> resolve all its dependencies (i.e. must build).</p>
+
                                 
                                 </section>
                             
@@ -1066,7 +1097,7 @@ depend on your generation options, a command line flags handling package:</p><ul
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Dependencies & Requirements","level":"1.4.7.1","depth":3,"next":{"title":"API Client","level":"1.4.7.2","depth":3,"path":"generate/client.md","ref":"generate/client.md","articles":[]},"previous":{"title":"Generate code from spec","level":"1.4.7","depth":2,"ref":"","articles":[{"title":"Dependencies & Requirements","level":"1.4.7.1","depth":3,"path":"generate/requirements.md","ref":"generate/requirements.md","articles":[]},{"title":"API Client","level":"1.4.7.2","depth":3,"path":"generate/client.md","ref":"generate/client.md","articles":[]},{"title":"API Server","level":"1.4.7.3","depth":3,"ref":"","articles":[{"title":"Server Usage","level":"1.4.7.3.1","depth":4,"path":"generate/server.md","ref":"generate/server.md","articles":[]},{"title":"How to use the server","level":"1.4.7.3.2","depth":4,"path":"use/server.md","ref":"use/server.md","articles":[]}]},{"title":"API Model","level":"1.4.7.4","depth":3,"ref":"","articles":[{"title":"Model Usage","level":"1.4.7.4.1","depth":4,"path":"generate/model.md","ref":"generate/model.md","articles":[]},{"title":"How to use models","level":"1.4.7.4.2","depth":4,"path":"use/model.md","ref":"use/model.md","articles":[{"title":"Schema generation rules","level":"1.4.7.4.2.1","depth":5,"path":"use/models/schemas.md","ref":"use/models/schemas.md","articles":[]}]}]}]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors","livereload"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"prism":{},"livereload":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"generate/requirements.md","mtime":"2019-12-11T17:17:52.676Z","type":"markdown"},"gitbook":{"version":"3.2.0","time":"2021-01-19T04:09:47.021Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Dependencies & Requirements","level":"1.4.7.1","depth":3,"next":{"title":"API Client","level":"1.4.7.2","depth":3,"path":"generate/client.md","ref":"generate/client.md","articles":[]},"previous":{"title":"Generate code from spec","level":"1.4.7","depth":2,"ref":"","articles":[{"title":"Dependencies & Requirements","level":"1.4.7.1","depth":3,"path":"generate/requirements.md","ref":"generate/requirements.md","articles":[]},{"title":"API Client","level":"1.4.7.2","depth":3,"path":"generate/client.md","ref":"generate/client.md","articles":[]},{"title":"CLI (Command Line Tool)","level":"1.4.7.3","depth":3,"path":"generate/cli.md","ref":"generate/cli.md","articles":[]},{"title":"API Server","level":"1.4.7.4","depth":3,"ref":"","articles":[{"title":"Server Usage","level":"1.4.7.4.1","depth":4,"path":"generate/server.md","ref":"generate/server.md","articles":[]},{"title":"How to use the server","level":"1.4.7.4.2","depth":4,"path":"use/server.md","ref":"use/server.md","articles":[]}]},{"title":"API Model","level":"1.4.7.5","depth":3,"ref":"","articles":[{"title":"Model Usage","level":"1.4.7.5.1","depth":4,"path":"generate/model.md","ref":"generate/model.md","articles":[]},{"title":"How to use models","level":"1.4.7.5.2","depth":4,"path":"use/model.md","ref":"use/model.md","articles":[{"title":"Schema generation rules","level":"1.4.7.5.2.1","depth":5,"path":"use/models/schemas.md","ref":"use/models/schemas.md","articles":[]}]}]}]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"prism":{},"anchors":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"generate/requirements.md","mtime":"2019-12-11T17:17:52.676Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2021-11-18T06:04:50.878Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
@@ -1077,10 +1108,6 @@ depend on your generation options, a command line flags handling package:</p><ul
     
         
         <script src="../gitbook/gitbook-plugin-forkmegithub/plugin.js"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-livereload/plugin.js"></script>
         
     
         

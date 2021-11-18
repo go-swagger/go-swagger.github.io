@@ -2,12 +2,12 @@
 <!DOCTYPE HTML>
 <html lang="" >
     <head>
-        <title>Features · GitBook</title>
         <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Features · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 3.2.0">
+        <meta name="generator" content="GitBook 3.2.3">
         
         
         
@@ -446,7 +446,20 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.7.3" >
+        <li class="chapter " data-level="1.4.7.3" data-path="generate/cli.html">
+            
+                <a href="generate/cli.html">
+            
+                    
+                    CLI (Command Line Tool)
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.7.4" >
             
                 <span>
             
@@ -460,7 +473,7 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.4.7.3.1" data-path="generate/server.html">
+        <li class="chapter " data-level="1.4.7.4.1" data-path="generate/server.html">
             
                 <a href="generate/server.html">
             
@@ -473,7 +486,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.7.3.2" data-path="use/server.html">
+        <li class="chapter " data-level="1.4.7.4.2" data-path="use/server.html">
             
                 <a href="use/server.html">
             
@@ -491,7 +504,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.7.4" >
+        <li class="chapter " data-level="1.4.7.5" >
             
                 <span>
             
@@ -505,7 +518,7 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.4.7.4.1" data-path="generate/model.html">
+        <li class="chapter " data-level="1.4.7.5.1" data-path="generate/model.html">
             
                 <a href="generate/model.html">
             
@@ -518,7 +531,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.7.4.2" data-path="use/model.html">
+        <li class="chapter " data-level="1.4.7.5.2" data-path="use/model.html">
             
                 <a href="use/model.html">
             
@@ -532,7 +545,7 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.4.7.4.2.1" data-path="use/models/schemas.html">
+        <li class="chapter " data-level="1.4.7.5.2.1" data-path="use/models/schemas.html">
             
                 <a href="use/models/schemas.html">
             
@@ -985,112 +998,90 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h2 id="full-features-list"><a name="full-features-list" class="plugin-anchor" href="#full-features-list"><i class="fa fa-link" aria-hidden="true"></i></a>Full features list</h2><ul><li>[x] An object model that serializes to swagger yaml or json (see: <a href="https://github.com/go-openapi/spec" target="_blank">spec package</a>)
+                                <h2 id="full-features-list"><a name="full-features-list" class="plugin-anchor" href="#full-features-list"><i class="fa fa-link" aria-hidden="true"></i></a>Full features list</h2>
+<ul>
+<li>[x] An object model that serializes to swagger yaml or json (see: <a href="https://github.com/go-openapi/spec" target="_blank">spec package</a>)</li>
+<li>[x] A tool to work with swagger<ul>
+<li>[x] Serve swagger UI for any swagger spec file</li>
+<li>[x] Flexible code generation, with customizable templates (package generator)</li>
+<li>[x] Generate API based on swagger spec</li>
+<li>[x] Generate go client from a swagger spec</li>
+<li>[x] Generate CLI (command line tool) client from a swagger spec</li>
+<li>[x] Support swagger polymorphism (discriminator with allOf composition)</li>
+<li>[x] Validate a swagger spec document, with extra rules outlined <a href="usage/validate.html">here</a></li>
+<li>[x] Validate JSON data against jsonschema (Draft 4), with full $ref support (see: <a href="https://github.com/go-openapi/validate" target="_blank">validate package</a>)<ul>
+<li>passes current json schema test suite</li>
+</ul>
 </li>
-<li><p>[x] A tool to work with swagger</p><ul><li>[x] Serve swagger UI for any swagger spec file
+<li>[x] Generate spec document based on annotated code (package scan)<ul>
+<li>generate meta data (top level swagger properties) from package docs</li>
+<li>generate definition entries for models</li>
+<li>support composed structs out of several embeds</li>
+<li>support allOf for composed structs</li>
+<li>generate path entries for routes</li>
+<li>generate responses from structs</li>
+<li>support composed structs out of several embeds</li>
+<li>generate parameters from structs</li>
+<li>support composed structs out of several embeds</li>
+</ul>
 </li>
-<li>[x] Flexible code generation, with customizable templates (package generator)
+</ul>
 </li>
-<li>[x] Generate API based on swagger spec
+<li>[x] Middlewares (see: <a href="https://github.com/go-openapi/runtime" target="_blank">runtime package</a>)<ul>
+<li>[x] serve spec</li>
+<li>[x] routing</li>
+<li>[x] validation</li>
+<li>[x] additional validation through an interface</li>
+<li>[x] authorization, with auth composition (AND|OR authorization schemes)<ul>
+<li>basic auth</li>
+<li>api key auth</li>
+<li>oauth2 bearer auth</li>
+</ul>
 </li>
-<li>[x] Generate go client from a swagger spec
+<li>[x] swagger docs UI (docUI and redoc flavors)</li>
+</ul>
 </li>
-<li>[x] Support swagger polymorphism (discriminator with allOf composition)
+<li>[x] Typed JSON Schema implementation<ul>
+<li>[x] JSON Pointer that knows about structs</li>
+<li>[x] JSON Reference that knows about structs</li>
+<li>[x] Supports most JSON schema features<sup><a href="#footnote1">1</a></sup></li>
+</ul>
 </li>
-<li>[x] Validate a swagger spec document, with extra rules outlined <a href="usage/validate.html">here</a>
+<li>[x] extended string and numeric formats (see: <a href="https://github.com/go-openapi/strfmt" target="_blank">strfmt package</a>)<ul>
+<li>[x] JSON-schema draft 4 formats<ul>
+<li>date-time</li>
+<li>email</li>
+<li>hostname</li>
+<li>ipv4</li>
+<li>ipv6</li>
+<li>uri</li>
+</ul>
 </li>
-<li><p>[x] Validate JSON data against jsonschema (Draft 4), with full $ref support (see: <a href="https://github.com/go-openapi/validate" target="_blank">validate package</a>)</p><ul><li>passes current json schema test suite
-</li></ul>
+<li>[x] swagger 2.0 format extensions<ul>
+<li>binary</li>
+<li>byte (e.g. base64 encoded string)</li>
+<li>date (e.g. &quot;1970-01-01&quot;)</li>
+<li>password</li>
+</ul>
 </li>
-<li><p>[x] Generate spec document based on annotated code (package scan)</p><ul><li>generate meta data (top level swagger properties) from package docs
+<li>[x] go-openapi custom format extensions<ul>
+<li>bsonobjectid (BSON objectID)</li>
+<li>creditcard</li>
+<li>duration (e.g. &quot;3 weeks&quot;, &quot;1ms&quot;)</li>
+<li>hexcolor (e.g. &quot;#FFFFFF&quot;)</li>
+<li>isbn, isbn10, isbn13</li>
+<li>mac (e.g &quot;01:02:03:04:05:06&quot;)</li>
+<li>rgbcolor (e.g. &quot;rgb(100,100,100)&quot;)</li>
+<li>ssn</li>
+<li>uuid, uuid3, uuid4, uuid5</li>
+</ul>
 </li>
-<li>generate definition entries for models
+</ul>
 </li>
-<li>support composed structs out of several embeds
-</li>
-<li>support allOf for composed structs
-</li>
-<li>generate path entries for routes
-</li>
-<li>generate responses from structs
-</li>
-<li>support composed structs out of several embeds
-</li>
-<li>generate parameters from structs
-</li>
-<li>support composed structs out of several embeds
-</li></ul>
-</li></ul>
-</li></ul>
-<ul><li><p>[x] Middlewares (see: <a href="https://github.com/go-openapi/runtime" target="_blank">runtime package</a>)</p><ul><li>[x] serve spec
-</li>
-<li>[x] routing
-</li>
-<li>[x] validation
-</li>
-<li>[x] additional validation through an interface
-</li>
-<li><p>[x] authorization, with auth composition (AND|OR authorization schemes)</p><ul><li>basic auth
-</li>
-<li>api key auth
-</li>
-<li>oauth2 bearer auth
-</li></ul>
-</li>
-<li><p>[x] swagger docs UI (docUI and redoc flavors)</p></li></ul>
-</li>
-<li><p>[x] Typed JSON Schema implementation</p><ul><li>[x] JSON Pointer that knows about structs
-</li>
-<li>[x] JSON Reference that knows about structs
-</li>
-<li>[x] Supports most JSON schema features<sup><a href="#footnote1">1</a></sup>
-</li></ul>
-</li>
-<li><p>[x] extended string and numeric formats (see: <a href="https://github.com/go-openapi/strfmt" target="_blank">strfmt package</a>)</p><ul><li><p>[x] JSON-schema draft 4 formats</p><ul><li>date-time
-</li>
-<li>email
-</li>
-<li>hostname
-</li>
-<li>ipv4
-</li>
-<li>ipv6
-</li>
-<li>uri
-</li></ul>
-</li>
-<li><p>[x] swagger 2.0 format extensions</p><ul><li>binary
-</li>
-<li>byte (e.g. base64 encoded string)
-</li>
-<li>date (e.g. &quot;1970-01-01&quot;)
-</li>
-<li>password
-</li></ul>
-</li>
-<li><p>[x] go-openapi custom format extensions</p><ul><li>bsonobjectid (BSON objectID)
-</li>
-<li>creditcard
-</li>
-<li>duration (e.g. &quot;3 weeks&quot;, &quot;1ms&quot;)
-</li>
-<li>hexcolor (e.g. &quot;#FFFFFF&quot;)
-</li>
-<li>isbn, isbn10, isbn13
-</li>
-<li>mac (e.g &quot;01:02:03:04:05:06&quot;)
-</li>
-<li>rgbcolor (e.g. &quot;rgb(100,100,100)&quot;)
-</li>
-<li>ssn
-</li>
-<li>uuid, uuid3, uuid4, uuid5
-</li></ul>
-</li></ul>
-</li></ul>
-<ul><li>[x] Plays nice with golint, go vet etc.
-</li></ul>
+<li>[x] Plays nice with golint, go vet etc.</li>
+</ul>
 <p><a name="footnote1">1</a>: currently adds extra support for <code>additionalItems</code>(not part of swagger), but not <code>anyOf</code>, <code>oneOf</code> and <code>not</code>.</p>
+
                                 
                                 </section>
                             
@@ -1129,7 +1120,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Features","level":"1.2","depth":1,"next":{"title":"Tutorials","level":"1.3","depth":1,"ref":"","articles":[{"title":"Simple Server","level":"1.3.1","depth":2,"path":"tutorial/todo-list.md","ref":"tutorial/todo-list.md","articles":[]},{"title":"Custom Server","level":"1.3.2","depth":2,"path":"tutorial/custom-server.md","ref":"tutorial/custom-server.md","articles":[]},{"title":"Dynamic Server","level":"1.3.3","depth":2,"path":"tutorial/dynamic.md","ref":"tutorial/dynamic.md","articles":[]},{"title":"Security","level":"1.3.4","depth":2,"ref":"","articles":[{"title":"Authentication","level":"1.3.4.1","depth":3,"path":"tutorial/authentication/README.md","ref":"tutorial/authentication/README.md","articles":[]},{"title":"OAuth2","level":"1.3.4.2","depth":3,"path":"tutorial/oauth2/README.md","ref":"tutorial/oauth2/README.md","articles":[]},{"title":"Composition","level":"1.3.4.3","depth":3,"path":"tutorial/composed-auth/README.md","ref":"tutorial/composed-auth/README.md","articles":[]}]}]},"previous":{"title":"Installation","level":"1.1.2","depth":2,"path":"install.md","ref":"install.md","articles":[]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors","livereload"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"prism":{},"livereload":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"features.md","mtime":"2019-12-11T17:17:52.676Z","type":"markdown"},"gitbook":{"version":"3.2.0","time":"2021-01-19T04:09:47.021Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Features","level":"1.2","depth":1,"next":{"title":"Tutorials","level":"1.3","depth":1,"ref":"","articles":[{"title":"Simple Server","level":"1.3.1","depth":2,"path":"tutorial/todo-list.md","ref":"tutorial/todo-list.md","articles":[]},{"title":"Custom Server","level":"1.3.2","depth":2,"path":"tutorial/custom-server.md","ref":"tutorial/custom-server.md","articles":[]},{"title":"Dynamic Server","level":"1.3.3","depth":2,"path":"tutorial/dynamic.md","ref":"tutorial/dynamic.md","articles":[]},{"title":"Security","level":"1.3.4","depth":2,"ref":"","articles":[{"title":"Authentication","level":"1.3.4.1","depth":3,"path":"tutorial/authentication/README.md","ref":"tutorial/authentication/README.md","articles":[]},{"title":"OAuth2","level":"1.3.4.2","depth":3,"path":"tutorial/oauth2/README.md","ref":"tutorial/oauth2/README.md","articles":[]},{"title":"Composition","level":"1.3.4.3","depth":3,"path":"tutorial/composed-auth/README.md","ref":"tutorial/composed-auth/README.md","articles":[]}]}]},"previous":{"title":"Installation","level":"1.1.2","depth":2,"path":"install.md","ref":"install.md","articles":[]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"prism":{},"anchors":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"features.md","mtime":"2021-04-19T00:47:02.497Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2021-11-18T06:04:50.878Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>
@@ -1140,10 +1131,6 @@
     
         
         <script src="gitbook/gitbook-plugin-forkmegithub/plugin.js"></script>
-        
-    
-        
-        <script src="gitbook/gitbook-plugin-livereload/plugin.js"></script>
         
     
         

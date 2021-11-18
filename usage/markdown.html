@@ -2,12 +2,12 @@
 <!DOCTYPE HTML>
 <html lang="" >
     <head>
-        <title>Generate markdown · GitBook</title>
         <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Generate markdown · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 3.2.0">
+        <meta name="generator" content="GitBook 3.2.3">
         
         
         
@@ -446,7 +446,20 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.7.3" >
+        <li class="chapter " data-level="1.4.7.3" data-path="../generate/cli.html">
+            
+                <a href="../generate/cli.html">
+            
+                    
+                    CLI (Command Line Tool)
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.7.4" >
             
                 <span>
             
@@ -460,7 +473,7 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.4.7.3.1" data-path="../generate/server.html">
+        <li class="chapter " data-level="1.4.7.4.1" data-path="../generate/server.html">
             
                 <a href="../generate/server.html">
             
@@ -473,7 +486,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.7.3.2" data-path="../use/server.html">
+        <li class="chapter " data-level="1.4.7.4.2" data-path="../use/server.html">
             
                 <a href="../use/server.html">
             
@@ -491,7 +504,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.7.4" >
+        <li class="chapter " data-level="1.4.7.5" >
             
                 <span>
             
@@ -505,7 +518,7 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.4.7.4.1" data-path="../generate/model.html">
+        <li class="chapter " data-level="1.4.7.5.1" data-path="../generate/model.html">
             
                 <a href="../generate/model.html">
             
@@ -518,7 +531,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.7.4.2" data-path="../use/model.html">
+        <li class="chapter " data-level="1.4.7.5.2" data-path="../use/model.html">
             
                 <a href="../use/model.html">
             
@@ -532,7 +545,7 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.4.7.4.2.1" data-path="../use/models/schemas.html">
+        <li class="chapter " data-level="1.4.7.5.2.1" data-path="../use/models/schemas.html">
             
                 <a href="../use/models/schemas.html">
             
@@ -985,12 +998,20 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="generate-markdown"><a name="generate-markdown" class="plugin-anchor" href="#generate-markdown"><i class="fa fa-link" aria-hidden="true"></i></a>Generate markdown</h1><p>This is a command to generate a markdown document from a swagger spec.</p><p>The generated doc is no substitute for advanced swagger documentation tools such as redoc:
-it provides a simple documentation for your API.</p><p>The spec is canonicalized just like for code generation: the generated markdown represents
-operations and models just like your generated code sees them.</p><p>The spec is flattened to be rendered as a self-contained document and all complex inlined models are
-defined as standalone models (documented as &quot;inlined schemas&quot;).</p><p>Known limitations:</p><ul><li>validations are not rendered, for the sake of brevity
-</li></ul>
-<h3 id="usage"><a name="usage" class="plugin-anchor" href="#usage"><i class="fa fa-link" aria-hidden="true"></i></a>Usage</h3><pre class="language-"><code>Usage:
+                                <h1 id="generate-markdown"><a name="generate-markdown" class="plugin-anchor" href="#generate-markdown"><i class="fa fa-link" aria-hidden="true"></i></a>Generate markdown</h1>
+<p>This is a command to generate a markdown document from a swagger spec.</p>
+<p>The generated doc is no substitute for advanced swagger documentation tools such as redoc:
+it provides a simple documentation for your API.</p>
+<p>The spec is canonicalized just like for code generation: the generated markdown represents
+operations and models just like your generated code sees them.</p>
+<p>The spec is flattened to be rendered as a self-contained document and all complex inlined models are
+defined as standalone models (documented as &quot;inlined schemas&quot;).</p>
+<p>Known limitations:</p>
+<ul>
+<li>validations are not rendered, for the sake of brevity</li>
+</ul>
+<h3 id="usage"><a name="usage" class="plugin-anchor" href="#usage"><i class="fa fa-link" aria-hidden="true"></i></a>Usage</h3>
+<pre class="language-"><code>Usage:
   swagger [OPTIONS] generate markdown [markdown-OPTIONS]
 
 generate a markdown representation from the swagger spec
@@ -1036,8 +1057,8 @@ Help Options:
           --tags=                                                                 the tags to include, if not specified defaults to all
       -a, --api-package=                                                          the package to save the operations (default: operations)
           --with-enum-ci                                                          allow case-insensitive enumerations
-          --skip-tag-packages                                                     skips the generation of tag-based operation packages, resulting in a flat generation</code></pre>
-
+          --skip-tag-packages                                                     skips the generation of tag-based operation packages, resulting in a flat generation
+</code></pre>
                                 
                                 </section>
                             
@@ -1076,7 +1097,7 @@ Help Options:
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Generate markdown","level":"1.4.6","depth":2,"next":{"title":"Generate code from spec","level":"1.4.7","depth":2,"ref":"","articles":[{"title":"Dependencies & Requirements","level":"1.4.7.1","depth":3,"path":"generate/requirements.md","ref":"generate/requirements.md","articles":[]},{"title":"API Client","level":"1.4.7.2","depth":3,"path":"generate/client.md","ref":"generate/client.md","articles":[]},{"title":"API Server","level":"1.4.7.3","depth":3,"ref":"","articles":[{"title":"Server Usage","level":"1.4.7.3.1","depth":4,"path":"generate/server.md","ref":"generate/server.md","articles":[]},{"title":"How to use the server","level":"1.4.7.3.2","depth":4,"path":"use/server.md","ref":"use/server.md","articles":[]}]},{"title":"API Model","level":"1.4.7.4","depth":3,"ref":"","articles":[{"title":"Model Usage","level":"1.4.7.4.1","depth":4,"path":"generate/model.md","ref":"generate/model.md","articles":[]},{"title":"How to use models","level":"1.4.7.4.2","depth":4,"path":"use/model.md","ref":"use/model.md","articles":[{"title":"Schema generation rules","level":"1.4.7.4.2.1","depth":5,"path":"use/models/schemas.md","ref":"use/models/schemas.md","articles":[]}]}]}]},"previous":{"title":"Mixin","level":"1.4.5.3","depth":3,"path":"usage/mixin.md","ref":"usage/mixin.md","articles":[]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors","livereload"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"prism":{},"livereload":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"usage/markdown.md","mtime":"2021-01-18T18:02:30.856Z","type":"markdown"},"gitbook":{"version":"3.2.0","time":"2021-01-19T04:09:47.021Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Generate markdown","level":"1.4.6","depth":2,"next":{"title":"Generate code from spec","level":"1.4.7","depth":2,"ref":"","articles":[{"title":"Dependencies & Requirements","level":"1.4.7.1","depth":3,"path":"generate/requirements.md","ref":"generate/requirements.md","articles":[]},{"title":"API Client","level":"1.4.7.2","depth":3,"path":"generate/client.md","ref":"generate/client.md","articles":[]},{"title":"CLI (Command Line Tool)","level":"1.4.7.3","depth":3,"path":"generate/cli.md","ref":"generate/cli.md","articles":[]},{"title":"API Server","level":"1.4.7.4","depth":3,"ref":"","articles":[{"title":"Server Usage","level":"1.4.7.4.1","depth":4,"path":"generate/server.md","ref":"generate/server.md","articles":[]},{"title":"How to use the server","level":"1.4.7.4.2","depth":4,"path":"use/server.md","ref":"use/server.md","articles":[]}]},{"title":"API Model","level":"1.4.7.5","depth":3,"ref":"","articles":[{"title":"Model Usage","level":"1.4.7.5.1","depth":4,"path":"generate/model.md","ref":"generate/model.md","articles":[]},{"title":"How to use models","level":"1.4.7.5.2","depth":4,"path":"use/model.md","ref":"use/model.md","articles":[{"title":"Schema generation rules","level":"1.4.7.5.2.1","depth":5,"path":"use/models/schemas.md","ref":"use/models/schemas.md","articles":[]}]}]}]},"previous":{"title":"Mixin","level":"1.4.5.3","depth":3,"path":"usage/mixin.md","ref":"usage/mixin.md","articles":[]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"prism":{},"anchors":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"usage/markdown.md","mtime":"2021-01-18T18:02:30.856Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2021-11-18T06:04:50.878Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
@@ -1087,10 +1108,6 @@ Help Options:
     
         
         <script src="../gitbook/gitbook-plugin-forkmegithub/plugin.js"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-livereload/plugin.js"></script>
         
     
         

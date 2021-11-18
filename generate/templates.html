@@ -2,12 +2,12 @@
 <!DOCTYPE HTML>
 <html lang="" >
     <head>
-        <title>Custom templates · GitBook</title>
         <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Custom templates · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 3.2.0">
+        <meta name="generator" content="GitBook 3.2.3">
         
         
         
@@ -448,7 +448,20 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.7.3" >
+        <li class="chapter " data-level="1.4.7.3" data-path="cli.html">
+            
+                <a href="cli.html">
+            
+                    
+                    CLI (Command Line Tool)
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.7.4" >
             
                 <span>
             
@@ -462,7 +475,7 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.4.7.3.1" data-path="server.html">
+        <li class="chapter " data-level="1.4.7.4.1" data-path="server.html">
             
                 <a href="server.html">
             
@@ -475,7 +488,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.7.3.2" data-path="../use/server.html">
+        <li class="chapter " data-level="1.4.7.4.2" data-path="../use/server.html">
             
                 <a href="../use/server.html">
             
@@ -493,7 +506,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.7.4" >
+        <li class="chapter " data-level="1.4.7.5" >
             
                 <span>
             
@@ -507,7 +520,7 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.4.7.4.1" data-path="model.html">
+        <li class="chapter " data-level="1.4.7.5.1" data-path="model.html">
             
                 <a href="model.html">
             
@@ -520,7 +533,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.7.4.2" data-path="../use/model.html">
+        <li class="chapter " data-level="1.4.7.5.2" data-path="../use/model.html">
             
                 <a href="../use/model.html">
             
@@ -534,7 +547,7 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.4.7.4.2.1" data-path="../use/models/schemas.html">
+        <li class="chapter " data-level="1.4.7.5.2.1" data-path="../use/models/schemas.html">
             
                 <a href="../use/models/schemas.html">
             
@@ -987,43 +1000,103 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="use-custom-templates"><a name="use-custom-templates" class="plugin-anchor" href="#use-custom-templates"><i class="fa fa-link" aria-hidden="true"></i></a>Use custom templates</h1><p>When generating a server or client you can specify a directory to load custom templates from 
+                                <h1 id="use-custom-templates"><a name="use-custom-templates" class="plugin-anchor" href="#use-custom-templates"><i class="fa fa-link" aria-hidden="true"></i></a>Use custom templates</h1>
+<p>When generating a server or client you can specify a directory to load custom templates from 
 with <code>--template-dir</code>. It will recursively read all the <code>.gotmpl</code> files in the directory and 
-load them as templates.</p><!--more-->
-
-
+load them as templates.</p>
+<!--more-->
 <p>Each file will be loaded and define a template named the same as the file without the suffix. If 
 the file is in a subdirectory the directory name will be included in the template name and the
-first character of the next path segment will be uppercased. e.g.</p><ul><li>template.gotmpl -&gt; template
-</li>
-<li>server/test.gotmpl -&gt; serverTest
-</li></ul>
+first character of the next path segment will be uppercased. e.g. </p>
+<ul>
+<li>template.gotmpl -&gt; template</li>
+<li>server/test.gotmpl -&gt; serverTest</li>
+</ul>
 <p>You can override the following templates. Check go-swagger/generator/templates for the default
-definitions.</p><h1 id="available-templates"><a name="available-templates" class="plugin-anchor" href="#available-templates"><i class="fa fa-link" aria-hidden="true"></i></a>Available Templates</h1><h1 id="client-templates"><a name="client-templates" class="plugin-anchor" href="#client-templates"><i class="fa fa-link" aria-hidden="true"></i></a>Client Templates</h1><h2 id="clientfacade"><a name="clientfacade" class="plugin-anchor" href="#clientfacade"><i class="fa fa-link" aria-hidden="true"></i></a>clientFacade</h2><p>Defined in <code>client/facade.gotmpl</code></p><hr><h2 id="clientparameter"><a name="clientparameter" class="plugin-anchor" href="#clientparameter"><i class="fa fa-link" aria-hidden="true"></i></a>clientParameter</h2><p>Defined in <code>client/parameter.gotmpl</code></p><hr><h2 id="clientresponse"><a name="clientresponse" class="plugin-anchor" href="#clientresponse"><i class="fa fa-link" aria-hidden="true"></i></a>clientResponse</h2><p>Defined in <code>client/response.gotmpl</code></p><h4 id="requires"><a name="requires" class="plugin-anchor" href="#requires"><i class="fa fa-link" aria-hidden="true"></i></a>requires</h4><ul><li>clientresponse
-</li>
-<li>schema
-</li>
-<li>docstring
-</li></ul>
-<hr><h2 id="clientresponse"><a name="clientresponse" class="plugin-anchor" href="#clientresponse"><i class="fa fa-link" aria-hidden="true"></i></a>clientresponse</h2><p>Defined in <code>client/response.gotmpl</code></p><hr><h2 id="clientclient"><a name="clientclient" class="plugin-anchor" href="#clientclient"><i class="fa fa-link" aria-hidden="true"></i></a>clientClient</h2><p>Defined in <code>client/client.gotmpl</code></p><h1 id="server-templates"><a name="server-templates" class="plugin-anchor" href="#server-templates"><i class="fa fa-link" aria-hidden="true"></i></a>Server Templates</h1><h2 id="serverparameter"><a name="serverparameter" class="plugin-anchor" href="#serverparameter"><i class="fa fa-link" aria-hidden="true"></i></a>serverParameter</h2><p>Defined in <code>server/parameter.gotmpl</code></p><h4 id="requires"><a name="requires" class="plugin-anchor" href="#requires"><i class="fa fa-link" aria-hidden="true"></i></a>requires</h4><ul><li>propertyparamvalidator
-</li>
-<li>sliceparambinder
-</li></ul>
-<hr><h2 id="sliceparamvalidator"><a name="sliceparamvalidator" class="plugin-anchor" href="#sliceparamvalidator"><i class="fa fa-link" aria-hidden="true"></i></a>sliceparamvalidator</h2><p>Defined in <code>server/parameter.gotmpl</code></p><hr><h2 id="serverresponses"><a name="serverresponses" class="plugin-anchor" href="#serverresponses"><i class="fa fa-link" aria-hidden="true"></i></a>serverResponses</h2><p>Defined in <code>server/responses.gotmpl</code></p><h4 id="requires"><a name="requires" class="plugin-anchor" href="#requires"><i class="fa fa-link" aria-hidden="true"></i></a>requires</h4><ul><li>serverresponse
-</li></ul>
-<hr><h2 id="sliceparambinder"><a name="sliceparambinder" class="plugin-anchor" href="#sliceparambinder"><i class="fa fa-link" aria-hidden="true"></i></a>sliceparambinder</h2><p>Defined in <code>server/parameter.gotmpl</code></p><h4 id="requires"><a name="requires" class="plugin-anchor" href="#requires"><i class="fa fa-link" aria-hidden="true"></i></a>requires</h4><ul><li>propertyparamvalidator
-</li>
-<li>sliceparambinder
-</li></ul>
-<hr><h2 id="serverresponse"><a name="serverresponse" class="plugin-anchor" href="#serverresponse"><i class="fa fa-link" aria-hidden="true"></i></a>serverresponse</h2><p>Defined in <code>server/responses.gotmpl</code></p><hr><h2 id="serveroperation"><a name="serveroperation" class="plugin-anchor" href="#serveroperation"><i class="fa fa-link" aria-hidden="true"></i></a>serverOperation</h2><p>Defined in <code>server/operation.gotmpl</code></p><h4 id="requires"><a name="requires" class="plugin-anchor" href="#requires"><i class="fa fa-link" aria-hidden="true"></i></a>requires</h4><ul><li>schema
-</li>
-<li>docstring
-</li></ul>
-<hr><h2 id="propertyparamvalidator"><a name="propertyparamvalidator" class="plugin-anchor" href="#propertyparamvalidator"><i class="fa fa-link" aria-hidden="true"></i></a>propertyparamvalidator</h2><p>Defined in <code>server/parameter.gotmpl</code></p><h4 id="requires"><a name="requires" class="plugin-anchor" href="#requires"><i class="fa fa-link" aria-hidden="true"></i></a>requires</h4><ul><li>validationPrimitive
-</li>
-<li>sliceparamvalidator
-</li></ul>
-<hr><h2 id="servermain"><a name="servermain" class="plugin-anchor" href="#servermain"><i class="fa fa-link" aria-hidden="true"></i></a>serverMain</h2><p>Defined in <code>server/main.gotmpl</code></p><hr><h2 id="bindprimitiveparam"><a name="bindprimitiveparam" class="plugin-anchor" href="#bindprimitiveparam"><i class="fa fa-link" aria-hidden="true"></i></a>bindprimitiveparam</h2><p>Defined in <code>server/parameter.gotmpl</code></p><hr><h2 id="serverconfigureapi"><a name="serverconfigureapi" class="plugin-anchor" href="#serverconfigureapi"><i class="fa fa-link" aria-hidden="true"></i></a>serverConfigureapi</h2><p>Defined in <code>server/configureapi.gotmpl</code></p><hr><h2 id="serverbuilder"><a name="serverbuilder" class="plugin-anchor" href="#serverbuilder"><i class="fa fa-link" aria-hidden="true"></i></a>serverBuilder</h2><p>Defined in <code>server/builder.gotmpl</code></p><hr><h2 id="serverdoc"><a name="serverdoc" class="plugin-anchor" href="#serverdoc"><i class="fa fa-link" aria-hidden="true"></i></a>serverDoc</h2><p>Defined in <code>server/doc.gotmpl</code></p>
+definitions.</p>
+<h1 id="available-templates"><a name="available-templates" class="plugin-anchor" href="#available-templates"><i class="fa fa-link" aria-hidden="true"></i></a>Available Templates</h1>
+<h1 id="client-templates"><a name="client-templates" class="plugin-anchor" href="#client-templates"><i class="fa fa-link" aria-hidden="true"></i></a>Client Templates</h1>
+<h2 id="clientfacade"><a name="clientfacade" class="plugin-anchor" href="#clientfacade"><i class="fa fa-link" aria-hidden="true"></i></a>clientFacade</h2>
+<p>Defined in <code>client/facade.gotmpl</code></p>
+<hr>
+<h2 id="clientparameter"><a name="clientparameter" class="plugin-anchor" href="#clientparameter"><i class="fa fa-link" aria-hidden="true"></i></a>clientParameter</h2>
+<p>Defined in <code>client/parameter.gotmpl</code></p>
+<hr>
+<h2 id="clientresponse"><a name="clientresponse" class="plugin-anchor" href="#clientresponse"><i class="fa fa-link" aria-hidden="true"></i></a>clientResponse</h2>
+<p>Defined in <code>client/response.gotmpl</code></p>
+<h4 id="requires"><a name="requires" class="plugin-anchor" href="#requires"><i class="fa fa-link" aria-hidden="true"></i></a>requires</h4>
+<ul>
+<li>clientresponse</li>
+<li>schema</li>
+<li>docstring</li>
+</ul>
+<hr>
+<h2 id="clientresponse"><a name="clientresponse" class="plugin-anchor" href="#clientresponse"><i class="fa fa-link" aria-hidden="true"></i></a>clientresponse</h2>
+<p>Defined in <code>client/response.gotmpl</code></p>
+<hr>
+<h2 id="clientclient"><a name="clientclient" class="plugin-anchor" href="#clientclient"><i class="fa fa-link" aria-hidden="true"></i></a>clientClient</h2>
+<p>Defined in <code>client/client.gotmpl</code></p>
+<h1 id="server-templates"><a name="server-templates" class="plugin-anchor" href="#server-templates"><i class="fa fa-link" aria-hidden="true"></i></a>Server Templates</h1>
+<h2 id="serverparameter"><a name="serverparameter" class="plugin-anchor" href="#serverparameter"><i class="fa fa-link" aria-hidden="true"></i></a>serverParameter</h2>
+<p>Defined in <code>server/parameter.gotmpl</code></p>
+<h4 id="requires"><a name="requires" class="plugin-anchor" href="#requires"><i class="fa fa-link" aria-hidden="true"></i></a>requires</h4>
+<ul>
+<li>propertyparamvalidator</li>
+<li>sliceparambinder</li>
+</ul>
+<hr>
+<h2 id="sliceparamvalidator"><a name="sliceparamvalidator" class="plugin-anchor" href="#sliceparamvalidator"><i class="fa fa-link" aria-hidden="true"></i></a>sliceparamvalidator</h2>
+<p>Defined in <code>server/parameter.gotmpl</code></p>
+<hr>
+<h2 id="serverresponses"><a name="serverresponses" class="plugin-anchor" href="#serverresponses"><i class="fa fa-link" aria-hidden="true"></i></a>serverResponses</h2>
+<p>Defined in <code>server/responses.gotmpl</code></p>
+<h4 id="requires"><a name="requires" class="plugin-anchor" href="#requires"><i class="fa fa-link" aria-hidden="true"></i></a>requires</h4>
+<ul>
+<li>serverresponse</li>
+</ul>
+<hr>
+<h2 id="sliceparambinder"><a name="sliceparambinder" class="plugin-anchor" href="#sliceparambinder"><i class="fa fa-link" aria-hidden="true"></i></a>sliceparambinder</h2>
+<p>Defined in <code>server/parameter.gotmpl</code></p>
+<h4 id="requires"><a name="requires" class="plugin-anchor" href="#requires"><i class="fa fa-link" aria-hidden="true"></i></a>requires</h4>
+<ul>
+<li>propertyparamvalidator</li>
+<li>sliceparambinder</li>
+</ul>
+<hr>
+<h2 id="serverresponse"><a name="serverresponse" class="plugin-anchor" href="#serverresponse"><i class="fa fa-link" aria-hidden="true"></i></a>serverresponse</h2>
+<p>Defined in <code>server/responses.gotmpl</code></p>
+<hr>
+<h2 id="serveroperation"><a name="serveroperation" class="plugin-anchor" href="#serveroperation"><i class="fa fa-link" aria-hidden="true"></i></a>serverOperation</h2>
+<p>Defined in <code>server/operation.gotmpl</code></p>
+<h4 id="requires"><a name="requires" class="plugin-anchor" href="#requires"><i class="fa fa-link" aria-hidden="true"></i></a>requires</h4>
+<ul>
+<li>schema</li>
+<li>docstring</li>
+</ul>
+<hr>
+<h2 id="propertyparamvalidator"><a name="propertyparamvalidator" class="plugin-anchor" href="#propertyparamvalidator"><i class="fa fa-link" aria-hidden="true"></i></a>propertyparamvalidator</h2>
+<p>Defined in <code>server/parameter.gotmpl</code></p>
+<h4 id="requires"><a name="requires" class="plugin-anchor" href="#requires"><i class="fa fa-link" aria-hidden="true"></i></a>requires</h4>
+<ul>
+<li>validationPrimitive</li>
+<li>sliceparamvalidator</li>
+</ul>
+<hr>
+<h2 id="servermain"><a name="servermain" class="plugin-anchor" href="#servermain"><i class="fa fa-link" aria-hidden="true"></i></a>serverMain</h2>
+<p>Defined in <code>server/main.gotmpl</code></p>
+<hr>
+<h2 id="bindprimitiveparam"><a name="bindprimitiveparam" class="plugin-anchor" href="#bindprimitiveparam"><i class="fa fa-link" aria-hidden="true"></i></a>bindprimitiveparam</h2>
+<p>Defined in <code>server/parameter.gotmpl</code></p>
+<hr>
+<h2 id="serverconfigureapi"><a name="serverconfigureapi" class="plugin-anchor" href="#serverconfigureapi"><i class="fa fa-link" aria-hidden="true"></i></a>serverConfigureapi</h2>
+<p>Defined in <code>server/configureapi.gotmpl</code></p>
+<hr>
+<h2 id="serverbuilder"><a name="serverbuilder" class="plugin-anchor" href="#serverbuilder"><i class="fa fa-link" aria-hidden="true"></i></a>serverBuilder</h2>
+<p>Defined in <code>server/builder.gotmpl</code></p>
+<hr>
+<h2 id="serverdoc"><a name="serverdoc" class="plugin-anchor" href="#serverdoc"><i class="fa fa-link" aria-hidden="true"></i></a>serverDoc</h2>
+<p>Defined in <code>server/doc.gotmpl</code></p>
+
                                 
                                 </section>
                             
@@ -1066,7 +1139,7 @@ definitions.</p><h1 id="available-templates"><a name="available-templates" class
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Custom templates","level":"1.6.1","depth":2,"next":{"title":"CLI autocompletion","level":"1.7","depth":1,"path":"cli_helpers.md","ref":"cli_helpers.md","articles":[]},"previous":{"title":"Custom generation","level":"1.6","depth":1,"path":"use/template_layout.md","ref":"use/template_layout.md","articles":[{"title":"Custom templates","level":"1.6.1","depth":2,"path":"generate/templates.md","ref":"generate/templates.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors","livereload"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"prism":{},"livereload":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"generate/templates.md","mtime":"2019-12-11T17:17:52.676Z","type":"markdown"},"gitbook":{"version":"3.2.0","time":"2021-01-19T04:09:47.021Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Custom templates","level":"1.6.1","depth":2,"next":{"title":"CLI autocompletion","level":"1.7","depth":1,"path":"cli_helpers.md","ref":"cli_helpers.md","articles":[]},"previous":{"title":"Custom generation","level":"1.6","depth":1,"path":"use/template_layout.md","ref":"use/template_layout.md","articles":[{"title":"Custom templates","level":"1.6.1","depth":2,"path":"generate/templates.md","ref":"generate/templates.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"prism":{},"anchors":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"generate/templates.md","mtime":"2019-12-11T17:17:52.676Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2021-11-18T06:04:50.878Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
@@ -1077,10 +1150,6 @@ definitions.</p><h1 id="available-templates"><a name="available-templates" class
     
         
         <script src="../gitbook/gitbook-plugin-forkmegithub/plugin.js"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-livereload/plugin.js"></script>
         
     
         

@@ -2,12 +2,12 @@
 <!DOCTYPE HTML>
 <html lang="" >
     <head>
-        <title>Schema generation rules · GitBook</title>
         <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Schema generation rules · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 3.2.0">
+        <meta name="generator" content="GitBook 3.2.3">
         
         
         
@@ -446,7 +446,20 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.7.3" >
+        <li class="chapter " data-level="1.4.7.3" data-path="../../generate/cli.html">
+            
+                <a href="../../generate/cli.html">
+            
+                    
+                    CLI (Command Line Tool)
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.7.4" >
             
                 <span>
             
@@ -460,7 +473,7 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.4.7.3.1" data-path="../../generate/server.html">
+        <li class="chapter " data-level="1.4.7.4.1" data-path="../../generate/server.html">
             
                 <a href="../../generate/server.html">
             
@@ -473,7 +486,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.7.3.2" data-path="../server.html">
+        <li class="chapter " data-level="1.4.7.4.2" data-path="../server.html">
             
                 <a href="../server.html">
             
@@ -491,7 +504,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.7.4" >
+        <li class="chapter " data-level="1.4.7.5" >
             
                 <span>
             
@@ -505,7 +518,7 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.4.7.4.1" data-path="../../generate/model.html">
+        <li class="chapter " data-level="1.4.7.5.1" data-path="../../generate/model.html">
             
                 <a href="../../generate/model.html">
             
@@ -518,7 +531,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.7.4.2" data-path="../model.html">
+        <li class="chapter " data-level="1.4.7.5.2" data-path="../model.html">
             
                 <a href="../model.html">
             
@@ -532,7 +545,7 @@
             <ul class="articles">
                 
     
-        <li class="chapter active" data-level="1.4.7.4.2.1" data-path="schemas.html">
+        <li class="chapter active" data-level="1.4.7.5.2.1" data-path="schemas.html">
             
                 <a href="schemas.html">
             
@@ -985,24 +998,41 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="schema-generation-rules"><a name="schema-generation-rules" class="plugin-anchor" href="#schema-generation-rules"><i class="fa fa-link" aria-hidden="true"></i></a>Schema generation rules</h1><p>Lots of the work carried out by go-swagger is to generate models, which can have all kinds of rules like polymorphism and
-validations. Go-swagger models are the go data structures used for serialization and validation.</p><p>Of course none of this is possible without a set of rules and trade-offs.</p><h3 id="about-schemas"><a name="about-schemas" class="plugin-anchor" href="#about-schemas"><i class="fa fa-link" aria-hidden="true"></i></a>About schemas</h3><p>A schema is a data structure specified in a Swagger document. Loosely speaking, a swagger schema corresponds to
+                                <h1 id="schema-generation-rules"><a name="schema-generation-rules" class="plugin-anchor" href="#schema-generation-rules"><i class="fa fa-link" aria-hidden="true"></i></a>Schema generation rules</h1>
+<p>Lots of the work carried out by go-swagger is to generate models, which can have all kinds of rules like polymorphism and
+validations. Go-swagger models are the go data structures used for serialization and validation.</p>
+<p>Of course none of this is possible without a set of rules and trade-offs.</p>
+<h3 id="about-schemas"><a name="about-schemas" class="plugin-anchor" href="#about-schemas"><i class="fa fa-link" aria-hidden="true"></i></a>About schemas</h3>
+<p>A schema is a data structure specified in a Swagger document. Loosely speaking, a swagger schema corresponds to
 a JSONSchema-draft4 schema (see <a href="#swagger-vs-jsonschema">differences</a> below).
-For each schema, <code>go-swagger</code> will generate one or more model types in go.</p><blockquote><p><strong>NOTE</strong>: Swagger makes a distinction between schemas and &quot;simple schemas&quot;.
+For each schema, <code>go-swagger</code> will generate one or more model types in go.</p>
+<blockquote>
+<p><strong>NOTE</strong>: Swagger makes a distinction between schemas and &quot;simple schemas&quot;.
 We use simple schemas to describe parameters and headers for operations.
 Simple schemas are supported by <code>go-swagger</code> (including validation), but are not rendered as standalone models.
-Rather, simple schema structures and validation methods are generated with the operation they are attached to.</p><p>Models are dedicated to the description of Swagger schemas, which are described as a parameter body, a response or a
-spec definition.</p></blockquote><h4 id="interfaces"><a name="interfaces" class="plugin-anchor" href="#interfaces"><i class="fa fa-link" aria-hidden="true"></i></a>Interfaces</h4><p>The generated models implements:</p><ul><li><p>a serialization interface</p><ul><li><p><code>MarshalJSON()</code>, <code>UnmarshalJSON()</code>:</p><ul><li>standard structures use JSON decoder tags (serialization tags are customizable)
+Rather, simple schema structures and validation methods are generated with the operation they are attached to.</p>
+<p>Models are dedicated to the description of Swagger schemas, which are described as a parameter body, a response or a
+spec definition.</p>
+</blockquote>
+<h4 id="interfaces"><a name="interfaces" class="plugin-anchor" href="#interfaces"><i class="fa fa-link" aria-hidden="true"></i></a>Interfaces</h4>
+<p>The generated models implements:</p>
+<ul>
+<li>a serialization interface<ul>
+<li><code>MarshalJSON()</code>, <code>UnmarshalJSON()</code>:<ul>
+<li>standard structures use JSON decoder tags (serialization tags are customizable)</li>
+<li>composed and extensible structures use custom marshalers (<code>allOf</code>, <code>additionalProperties</code>, tuples and polymorphic types)</li>
+</ul>
 </li>
-<li>composed and extensible structures use custom marshalers (<code>allOf</code>, <code>additionalProperties</code>, tuples and polymorphic types)
-</li></ul>
+<li><code>MarshalBinary()</code>, <code>UnmarshalBinary()</code> interfaces (<code>encoding/BinaryMarshaler</code>, <code>encoding/BinaryUnmarshaler</code>),
+which may use the fast <a href="https://github.com/mailru/easyjson" target="_blank"><code>mailru/easyjson</code></a> package</li>
+</ul>
 </li>
-<li><p><code>MarshalBinary()</code>, <code>UnmarshalBinary()</code> interfaces (<code>encoding/BinaryMarshaler</code>, <code>encoding/BinaryUnmarshaler</code>),
-which may use the fast <a href="https://github.com/mailru/easyjson" target="_blank">`mailru/easyjson`</a> package</p></li></ul>
-</li>
-<li><p>a validation interface (<a href="https://github.com/go-openapi/runtime/blob/master/interfaces.go#L101" target="_blank">`go-openapi/runtime/Validatable`</a>), with a <code>Validate(strfmt.Registry) error</code> method</p></li></ul>
+<li>a validation interface (<a href="https://github.com/go-openapi/runtime/blob/master/interfaces.go#L101" target="_blank"><code>go-openapi/runtime/Validatable</code></a>), with a <code>Validate(strfmt.Registry) error</code> method</li>
+</ul>
 <p>Validation methods are wired at generation time, and rely mostly on native types: this makes validation faster than a
-dynamic general purpose JSON schema validator.</p><p>Example of a generated structure:</p><pre class="language-"><code class="lang-golang">// Principal principal
+dynamic general purpose JSON schema validator.</p>
+<p>Example of a generated structure:</p>
+<pre class="language-"><code class="lang-golang">// Principal principal
 // swagger:model principal
 type Principal struct {
 
@@ -1011,279 +1041,378 @@ type Principal struct {
 
     // roles
     Roles []string `json:&quot;roles&quot;`
-}</code></pre>
-<blockquote><p><strong>NOTE</strong>: if you are looking for a <strong>dynamic</strong>, fully JSONSchema compliant, general purpose validator,
-the <a href="https://github.com/go-openapi/validate" target="_blank">`go-openapi/validate`</a> package
+}
+</code></pre>
+<blockquote>
+<p><strong>NOTE</strong>: if you are looking for a <strong>dynamic</strong>, fully JSONSchema compliant, general purpose validator,
+the <a href="https://github.com/go-openapi/validate" target="_blank"><code>go-openapi/validate</code></a> package
 is what you want. It is fully tested against the JSONSchema-Test-Suite (supports JSON-schema-draft4).
-See a working example <a href="https://godoc.org/github.com/go-openapi/validate#ex-AgainstSchema" target="_blank">here</a>.</p></blockquote><h4 id="mapping-patterns"><a name="mapping-patterns" class="plugin-anchor" href="#mapping-patterns"><i class="fa fa-link" aria-hidden="true"></i></a>Mapping patterns</h4><p>The general idea is that you should rarely see <code>interface{}</code> in the generated code:
-you get a complete representation of a swagger document in somewhat idiomatic go.</p><p>There is set of mapping patterns that are applied to transform a spec into go types:</p><ul><li>definition of primitive =&gt; type alias/name
-</li>
-<li>definition of array =&gt; type alias/name
-</li>
-<li>definition of map =&gt; type alias/name
-</li>
-<li>definition of object with properties =&gt; struct
-</li>
-<li>definition of $ref =&gt; type alias/name
-</li>
-<li>object with only additional properties =&gt; map[string]T
-</li>
-<li>object with additional properties and properties =&gt; custom serializer
-</li>
-<li>schema with schema array in items =&gt; tuple (struct with properties, custom serializer)
-</li>
-<li>schema with all of =&gt; struct
-</li>
-<li>all of schema with ref =&gt; embedded value
-</li>
-<li>all of schema with properties =&gt; properties are included in struct
-</li>
+See a working example <a href="https://godoc.org/github.com/go-openapi/validate#ex-AgainstSchema" target="_blank">here</a>.</p>
+</blockquote>
+<h4 id="mapping-patterns"><a name="mapping-patterns" class="plugin-anchor" href="#mapping-patterns"><i class="fa fa-link" aria-hidden="true"></i></a>Mapping patterns</h4>
+<p>The general idea is that you should rarely see <code>interface{}</code> in the generated code:
+you get a complete representation of a swagger document in somewhat idiomatic go.</p>
+<p>There is set of mapping patterns that are applied to transform a spec into go types:</p>
+<ul>
+<li>definition of primitive =&gt; type alias/name</li>
+<li>definition of array =&gt; type alias/name</li>
+<li>definition of map =&gt; type alias/name</li>
+<li>definition of object with properties =&gt; struct</li>
+<li>definition of $ref =&gt; type alias/name</li>
+<li>object with only additional properties =&gt; map[string]T</li>
+<li>object with additional properties and properties =&gt; custom serializer</li>
+<li>schema with schema array in items =&gt; tuple (struct with properties, custom serializer)</li>
+<li>schema with all of =&gt; struct</li>
+<li>all of schema with ref =&gt; embedded value</li>
+<li>all of schema with properties =&gt; properties are included in struct</li>
 <li>adding an all of schema with just <code>x-isnullable</code>: true or <code>x-nullable</code>: true turns
-the schema into a pointer when there are only other extension properties provided
-</li>
+the schema into a pointer when there are only other extension properties provided</li>
 <li>additional items in tuples =&gt;
 JSONSchema and by extension swagger allow for items that have a fixed size array
 with schema&apos;s describing the items at each index. This can be combined with additional items
 to form some kind of tuple with varargs.
-To map this to go it creates a struct that has fixed names and a custom json serializer.
-</li></ul>
-<h4 id="minimal-use-of-gos-reflection"><a name="minimal-use-of-gos-reflection" class="plugin-anchor" href="#minimal-use-of-gos-reflection"><i class="fa fa-link" aria-hidden="true"></i></a>Minimal use of go&apos;s reflection</h4><p>Generated models uses <em>no reflection</em> except for <code>enum</code> and <code>required</code> validations. This makes validation faster.</p><h4 id="doc-strings"><a name="doc-strings" class="plugin-anchor" href="#doc-strings"><i class="fa fa-link" aria-hidden="true"></i></a>Doc strings</h4><p>All documentation items provided by the spec are integrated as godoc-friendly comments in the
-generated source. You may look at how a trivial example is rendered <a href="https://godoc.org/github.com/go-swagger/go-swagger/examples/generated/models" target="_blank">here</a>.</p><p>The code that is generated also gets the same doc comments that are used by the scanner
+To map this to go it creates a struct that has fixed names and a custom json serializer.</li>
+</ul>
+<h4 id="minimal-use-of-gos-reflection"><a name="minimal-use-of-gos-reflection" class="plugin-anchor" href="#minimal-use-of-gos-reflection"><i class="fa fa-link" aria-hidden="true"></i></a>Minimal use of go&apos;s reflection</h4>
+<p>Generated models uses <em>no reflection</em> except for <code>enum</code> and <code>required</code> validations. This makes validation faster.</p>
+<h4 id="doc-strings"><a name="doc-strings" class="plugin-anchor" href="#doc-strings"><i class="fa fa-link" aria-hidden="true"></i></a>Doc strings</h4>
+<p>All documentation items provided by the spec are integrated as godoc-friendly comments in the
+generated source. You may look at how a trivial example is rendered <a href="https://godoc.org/github.com/go-swagger/go-swagger/examples/generated/models" target="_blank">here</a>.</p>
+<p>The code that is generated also gets the same doc comments that are used by the scanner
 to generate a spec from go code (e.g. comments like <code>// swagger:xxx</code>).
 So that after generation you should be able to reverse-generate a spec from the code that was generated by your spec.
-It should be equivalent to the original spec but might miss some default values and examples.</p><h4 id="types-reusability"><a name="types-reusability" class="plugin-anchor" href="#types-reusability"><i class="fa fa-link" aria-hidden="true"></i></a>Types reusability</h4><p>Models can be generated independently from other components of your API.
-Internal model structures may thus be safely regenerated if the contract at your endpoints does not change.</p><h5 id="reusing-previous-generations"><a name="reusing-previous-generations" class="plugin-anchor" href="#reusing-previous-generations"><i class="fa fa-link" aria-hidden="true"></i></a>Reusing previous generations</h5><p>Previously generated models can be reused when constructing a new API server or client (e.g. using <code>swagger generate server --model=[my existing package]</code>).</p><p>The generator makes every effort to keep the go code readable, idiomatic and commented: models may thus be manually customized or extended.
-Such customized types may be later on reused in other specs, using the <code>x-go-type</code> extension.</p><h3 id="swagger-vs-jsonschema"><a name="swagger-vs-jsonschema" class="plugin-anchor" href="#swagger-vs-jsonschema"><i class="fa fa-link" aria-hidden="true"></i></a>Swagger vs JSONSchema</h3><p>A Swagger 2.0 schema corresponds by and large to a JSON-schema-draft4. However, there are some substantial differences (see <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#schema-object" target="_blank">swagger</a>):</p><p>In JSONSchema, but <em>not</em> in Swagger 2.0:</p><ul><li><code>anyOf</code>, <code>oneOf</code> and <code>not</code> constructs are not supported (this is for OpenAPI 3)
-</li>
-<li>the <code>null</code> type is not supported (the <code>nullable</code> keyword is defined in OpenAPI 3)
-</li>
-<li><code>additionalItems</code> are not supported (go-swagger does support it)
-</li>
-<li><code>patternProperties</code> are not supported
-</li>
-<li><code>dependencies</code> are not supported
-</li>
-<li>multiple types, defined as <code>type: [ ... ]</code> are not supported
-</li></ul>
-<p>Conversely, what we have in Swagger 2.0, but <em>not</em> in JSON-schema:</p><ul><li>the <code>discriminator</code> attribute controls polymorphism (<a href="#polymorphic-types">see below</a>)
-</li>
-<li>properties may be given a <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#fixed-fields-13" target="_blank">`readOnly` attribute</a> (same as in JSONSchema-draft7)
-</li>
-<li><code>array</code> types <strong>must</strong> have an <code>items</code> restriction
-</li>
-<li><code>format</code> supports more values for strings and numbers
-</li></ul>
-<p>Other minor differences:</p><ul><li><code>default</code> values <strong>must</strong> validate their schema
-</li>
-<li>types <code>array</code> <strong>must</strong> have an <code>items</code> specification
-</li>
-<li>extensions may be specified as special <code>x-...</code> annotations. Go-swagger defines <a href="#custom-extensions">some custom tags</a> to customize generated code.
-</li>
-<li>other available attributes: <code>example</code>, <code>xml</code> and <code>externalDocs</code>
-</li></ul>
-<blockquote><p><strong>NOTE</strong>: <code>example</code> and <code>externalDocs</code> do not currently influence models generation.</p></blockquote><h3 id="go-swagger-vs-swagger"><a name="go-swagger-vs-swagger" class="plugin-anchor" href="#go-swagger-vs-swagger"><i class="fa fa-link" aria-hidden="true"></i></a>Go-swagger vs Swagger</h3><p>go-swagger models implements <em>almost</em> all Swagger 2.0 schema features.</p><p>We also wanted to support as much JSONSchema features as possible: the model generator may be used independently
-to generate data structures using the Swagger specification as a serialization description language.</p><p>There are some small differences or implementation details to be aware of.</p><table>
+It should be equivalent to the original spec but might miss some default values and examples.</p>
+<h4 id="types-reusability"><a name="types-reusability" class="plugin-anchor" href="#types-reusability"><i class="fa fa-link" aria-hidden="true"></i></a>Types reusability</h4>
+<p>Models can be generated independently from other components of your API.
+Internal model structures may thus be safely regenerated if the contract at your endpoints does not change.</p>
+<h5 id="reusing-previous-generations"><a name="reusing-previous-generations" class="plugin-anchor" href="#reusing-previous-generations"><i class="fa fa-link" aria-hidden="true"></i></a>Reusing previous generations</h5>
+<p>Previously generated models can be reused when constructing a new API server or client (e.g. using <code>swagger generate server --model=[my existing package]</code>).</p>
+<p>The generator makes every effort to keep the go code readable, idiomatic and commented: models may thus be manually customized or extended.
+Such customized types may be later on reused in other specs, using the <code>x-go-type</code> extension.</p>
+<h3 id="swagger-vs-jsonschema"><a name="swagger-vs-jsonschema" class="plugin-anchor" href="#swagger-vs-jsonschema"><i class="fa fa-link" aria-hidden="true"></i></a>Swagger vs JSONSchema</h3>
+<p>A Swagger 2.0 schema corresponds by and large to a JSON-schema-draft4. However, there are some substantial differences (see <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#schema-object" target="_blank">swagger</a>):</p>
+<p>In JSONSchema, but <em>not</em> in Swagger 2.0:</p>
+<ul>
+<li><code>anyOf</code>, <code>oneOf</code> and <code>not</code> constructs are not supported (this is for OpenAPI 3)</li>
+<li>the <code>null</code> type is not supported (the <code>nullable</code> keyword is defined in OpenAPI 3)</li>
+<li><code>additionalItems</code> are not supported (go-swagger does support it)</li>
+<li><code>patternProperties</code> are not supported</li>
+<li><code>dependencies</code> are not supported</li>
+<li>multiple types, defined as <code>type: [ ... ]</code> are not supported</li>
+</ul>
+<p>Conversely, what we have in Swagger 2.0, but <em>not</em> in JSON-schema:</p>
+<ul>
+<li>the <code>discriminator</code> attribute controls polymorphism (<a href="#polymorphic-types">see below</a>)</li>
+<li>properties may be given a <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#fixed-fields-13" target="_blank"><code>readOnly</code> attribute</a> (same as in JSONSchema-draft7)</li>
+<li><code>array</code> types <strong>must</strong> have an <code>items</code> restriction</li>
+<li><code>format</code> supports more values for strings and numbers</li>
+</ul>
+<p>Other minor differences:</p>
+<ul>
+<li><code>default</code> values <strong>must</strong> validate their schema</li>
+<li>types <code>array</code> <strong>must</strong> have an <code>items</code> specification</li>
+<li>extensions may be specified as special <code>x-...</code> annotations. Go-swagger defines <a href="#custom-extensions">some custom tags</a> to customize generated code.</li>
+<li>other available attributes: <code>example</code>, <code>xml</code> and <code>externalDocs</code></li>
+</ul>
+<blockquote>
+<p><strong>NOTE</strong>: <code>example</code> and <code>externalDocs</code> do not currently influence models generation.</p>
+</blockquote>
+<h3 id="go-swagger-vs-swagger"><a name="go-swagger-vs-swagger" class="plugin-anchor" href="#go-swagger-vs-swagger"><i class="fa fa-link" aria-hidden="true"></i></a>Go-swagger vs Swagger</h3>
+<p>go-swagger models implements <em>almost</em> all Swagger 2.0 schema features.</p>
+<p>We also wanted to support as much JSONSchema features as possible: the model generator may be used independently
+to generate data structures using the Swagger specification as a serialization description language.</p>
+<p>There are some small differences or implementation details to be aware of.</p>
+<table>
 <thead>
-<tr><th> Feature </th>
-<th> JSON-schema-draft4 </th>
-<th> Swagger 2.0 </th>
-<th> go-swagger </th>
-<th> Comment </th>
-</tr></thead><tbody>
-<tr><td style="text-align:left"> <code>&quot;format&quot;</code> </td>
-<td style="text-align:left"> Y </td>
-<td style="text-align:left"> Y </td>
-<td style="text-align:left"> Y </td>
-<td style="text-align:left"> Formats are provided by the extensible <a href="https://github.com/go-openapi/strfmt" target="_blank">`go-openapi/strfmt` package</a>. See also <a href="#formatted-types">here</a> </td>
-</tr><tr><td style="text-align:left"> <code>&quot;additionalProperties&quot;: {schema}</code> </td>
-<td style="text-align:left"> Y </td>
-<td style="text-align:left"> Y </td>
-<td style="text-align:left"> Y </td>
-<td style="text-align:left"> Rendered as <code>map[string]T</code> </td>
-</tr><tr><td style="text-align:left"> <code>&quot;additionalProperties&quot;: boolean</code> </td>
-<td style="text-align:left"> Y </td>
-<td style="text-align:left"> Y </td>
-<td style="text-align:left"> partial </td>
-<td style="text-align:left"> Rendered as <code>map[string]interface{}</code> </td>
-</tr><tr><td style="text-align:left"> <code>&quot;additionalItems&quot;: {schema}</code> </td>
-<td style="text-align:left"> Y </td>
-<td style="text-align:left"> <strong>N</strong> </td>
-<td style="text-align:left"> Y </td>
-<td style="text-align:left"> Rendered with <a href="#tuples-and-additional-items">tuple models</a> </td>
-</tr><tr><td style="text-align:left"> <code>&quot;additionalItems&quot;: boolean</code> </td>
-<td style="text-align:left"> Y </td>
-<td style="text-align:left"> <strong>N</strong> </td>
-<td style="text-align:left"> partial </td>
-<td style="text-align:left"> See <a href="#extensible-types">extensible types</a> </td>
-</tr><tr><td style="text-align:left"> empty object: <code>{ &quot;type&quot;: &quot;object&quot;}</code> </td>
-<td style="text-align:left"> Y </td>
-<td style="text-align:left"> Y </td>
-<td style="text-align:left"> Y </td>
-<td style="text-align:left"> Rendered as <code>interface{}</code> (anything) rather than <code>map[string]inferface{}</code> (any JSON object, e.g. not arrays) </td>
-</tr><tr><td style="text-align:left"> <code>&quot;pattern&quot;</code> </td>
-<td style="text-align:left"> Y </td>
-<td style="text-align:left"> Y </td>
-<td style="text-align:left"> partial </td>
-<td style="text-align:left"> Speed for strictness trade-off: support go regexp, which slighty differ from JSONSchema ECMA regexp (e.g does not support backtracking) </td>
-</tr><tr><td style="text-align:left"> large number, arbitrary precision </td>
-<td style="text-align:left"> Y </td>
-<td style="text-align:left"> <strong>N</strong> </td>
-<td style="text-align:left"> N </td>
-<td style="text-align:left">  </td>
-</tr><tr><td style="text-align:left"> <code>&quot;readOnly&quot;</code> </td>
-<td style="text-align:left"> N </td>
-<td style="text-align:left"> Y </td>
-<td style="text-align:left"> N </td>
-<td style="text-align:left"> <code>readOnly</code> is currently not supported by the model validation method </td>
-</tr><tr><td style="text-align:left"> <code>&quot;type&quot;: [ &quot;object&quot;, ... ]</code> </td>
-<td style="text-align:left"> Y </td>
-<td style="text-align:left"> N </td>
-<td style="text-align:left"> N </td>
-<td style="text-align:left"> JSONSchema multiple types are not supported: use Swagger polymorphism instead </td>
-</tr><tr><td style="text-align:left"> implicit type from values in <code>enum</code> </td>
-<td style="text-align:left"> Y </td>
-<td style="text-align:left"> ? </td>
-<td style="text-align:left"> N </td>
-<td style="text-align:left"> As of v0.15, when the type is empty, the object is rendered as <code>interface{}</code> and the <code>enum</code> constraint is ignored </td>
-</tr><tr><td style="text-align:left"> tuple `type: &quot;array&quot; items:[...] </td>
-<td style="text-align:left"> Y </td>
-<td style="text-align:left"> Y </td>
-<td style="text-align:left"> partial </td>
-<td style="text-align:left"> As of v0.15, incomplete tuples and tuples with array validation are not properly validated</td>
-</tr></tbody></table>
-
-<p>JSONSchema defaults to <code>&quot;additionalProperties&quot;: true</code>, <code>go-swagger</code> defaults to ignoring extra properties. Same for <code>additionalItems</code>.</p><p>When<code>&quot;additionalProperties&quot;: false</code> (resp. <code>&quot;additionalItems&quot;: false</code>), uwanted properties (resp. items) do not invalidate data
-but they are not kept in the model.</p><p>This is the default if <code>additionalProperties</code> (resp. <code>additionalItems</code>) is not provided.
+<tr>
+<th>Feature</th>
+<th>JSON-schema-draft4</th>
+<th>Swagger 2.0</th>
+<th>go-swagger</th>
+<th>Comment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>&quot;format&quot;</code></td>
+<td>Y</td>
+<td>Y</td>
+<td>Y</td>
+<td>Formats are provided by the extensible <a href="https://github.com/go-openapi/strfmt" target="_blank"><code>go-openapi/strfmt</code> package</a>. See also <a href="#formatted-types">here</a></td>
+</tr>
+<tr>
+<td><code>&quot;additionalProperties&quot;: {schema}</code></td>
+<td>Y</td>
+<td>Y</td>
+<td>Y</td>
+<td>Rendered as <code>map[string]T</code></td>
+</tr>
+<tr>
+<td><code>&quot;additionalProperties&quot;: boolean</code></td>
+<td>Y</td>
+<td>Y</td>
+<td>partial</td>
+<td>Rendered as <code>map[string]interface{}</code></td>
+</tr>
+<tr>
+<td><code>&quot;additionalItems&quot;: {schema}</code></td>
+<td>Y</td>
+<td><strong>N</strong></td>
+<td>Y</td>
+<td>Rendered with <a href="#tuples-and-additional-items">tuple models</a></td>
+</tr>
+<tr>
+<td><code>&quot;additionalItems&quot;: boolean</code></td>
+<td>Y</td>
+<td><strong>N</strong></td>
+<td>partial</td>
+<td>See <a href="#extensible-types">extensible types</a></td>
+</tr>
+<tr>
+<td>empty object: <code>{ &quot;type&quot;: &quot;object&quot;}</code></td>
+<td>Y</td>
+<td>Y</td>
+<td>Y</td>
+<td>Rendered as <code>interface{}</code> (anything) rather than <code>map[string]inferface{}</code> (any JSON object, e.g. not arrays)</td>
+</tr>
+<tr>
+<td><code>&quot;pattern&quot;</code></td>
+<td>Y</td>
+<td>Y</td>
+<td>partial</td>
+<td>Speed for strictness trade-off: support go regexp, which slighty differ from JSONSchema ECMA regexp (e.g does not support backtracking)</td>
+</tr>
+<tr>
+<td>large number, arbitrary precision</td>
+<td>Y</td>
+<td><strong>N</strong></td>
+<td>N</td>
+<td></td>
+</tr>
+<tr>
+<td><code>&quot;readOnly&quot;</code></td>
+<td>N</td>
+<td>Y</td>
+<td>Y</td>
+<td></td>
+</tr>
+<tr>
+<td><code>&quot;type&quot;: [ &quot;object&quot;, ... ]</code></td>
+<td>Y</td>
+<td>N</td>
+<td>N</td>
+<td>JSONSchema multiple types are not supported: use Swagger polymorphism instead</td>
+</tr>
+<tr>
+<td>implicit type from values in <code>enum</code></td>
+<td>Y</td>
+<td>?</td>
+<td>N</td>
+<td>As of v0.15, when the type is empty, the object is rendered as <code>interface{}</code> and the <code>enum</code> constraint is ignored</td>
+</tr>
+<tr>
+<td>tuple `type: &quot;array&quot; items:[...]</td>
+<td>Y</td>
+<td>Y</td>
+<td>partial</td>
+<td>As of v0.15, incomplete tuples and tuples with array validation are not properly validated</td>
+</tr>
+</tbody>
+</table>
+<p>JSONSchema defaults to <code>&quot;additionalProperties&quot;: true</code>, <code>go-swagger</code> defaults to ignoring extra properties. Same for <code>additionalItems</code>.</p>
+<p>When<code>&quot;additionalProperties&quot;: false</code> (resp. <code>&quot;additionalItems&quot;: false</code>), uwanted properties (resp. items) do not invalidate data
+but they are not kept in the model.</p>
+<p>This is the default if <code>additionalProperties</code> (resp. <code>additionalItems</code>) is not provided.
 It is an optimization as it makes the code simpler (and faster) for most use cases.
-Explicitly specifying <code>true</code> will produce models that retain those additional properties (resp. items).</p><h3 id="known-limitations-with-go-swagger-models"><a name="known-limitations-with-go-swagger-models" class="plugin-anchor" href="#known-limitations-with-go-swagger-models"><i class="fa fa-link" aria-hidden="true"></i></a>Known limitations with go-swagger models</h3><p>Recap as of release <code>&gt;0.25</code>:</p><ul><li><p>re <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#schema-object" target="_blank">Swagger 2.0 specification</a></p><ul><li>no validation support for the <code>readOnly</code> attribute
-</li></ul>
-</li>
-<li><p>re <a href="https://tools.ietf.org/html/draft-fge-json-schema-validation-00" target="_blank">JSON-schema-draft4</a></p><ul><li><code>&quot;additionalProperties&quot;: false</code>, <code>&quot;additionalItems&quot;: false</code> do not invalidate data with extra properties. We trade strictness for speed and
-truncate unwanted properties or items without further validation.
-</li>
-<li>the generation flag <code>--strict-additional-properties</code> invalidates data with extra properties when <code>&quot;additionalProperties&quot;: false</code>
-</li>
-<li>when <code>enum</code> values cannot be marshalled into their schema, a runtime panic occurs - the <code>go-openapi/validate</code> package does not yet detect this situation
-</li>
-<li><code>patternProperties</code> and <code>dependencies</code>are not supported
-</li>
-<li>use of <code>additionalItems</code> requires the <code>--skip-validation</code> flag (<code>go-openapi/validate</code> is strict regarding Swagger specification)
-</li>
-<li>JSONSchema defaults to the <code>&quot;additionalProperties&quot;: true</code>, <code>go-swagger</code> defaults to ignoring extra properties. Same for <code>additionalItems</code>.
-</li>
-<li>array validations (<code>minItems</code>, etc.) are not yet supported for tuples, as of v0.15
-</li>
-<li>objects with no properties and no additional properties schema have no validation at all (e.g. passing an array is not invalid) (rendered as <code>interface{}</code>)
-</li>
+Explicitly specifying <code>true</code> will produce models that retain those additional properties (resp. items).</p>
+<h3 id="known-limitations-with-go-swagger-models"><a name="known-limitations-with-go-swagger-models" class="plugin-anchor" href="#known-limitations-with-go-swagger-models"><i class="fa fa-link" aria-hidden="true"></i></a>Known limitations with go-swagger models</h3>
+<p>Recap as of release <code>&gt;0.26</code>:</p>
+<ul>
+<li><p>re <a href="https://tools.ietf.org/html/draft-fge-json-schema-validation-00" target="_blank">JSON-schema-draft4</a></p>
+<ul>
+<li><code>&quot;additionalProperties&quot;: false</code>, <code>&quot;additionalItems&quot;: false</code> do not invalidate data with extra properties. We trade strictness for speed and
+truncate unwanted properties or items without further validation.</li>
+<li>the generation flag <code>--strict-additional-properties</code> invalidates data with extra properties when <code>&quot;additionalProperties&quot;: false</code></li>
+<li>when <code>enum</code> values cannot be marshalled into their schema, a runtime panic occurs - the <code>go-openapi/validate</code> package does not yet detect this situation</li>
+<li><code>patternProperties</code> and <code>dependencies</code>are not supported</li>
+<li>use of <code>additionalItems</code> requires the <code>--skip-validation</code> flag (<code>go-openapi/validate</code> is strict regarding Swagger specification)</li>
+<li>JSONSchema defaults to the <code>&quot;additionalProperties&quot;: true</code>, <code>go-swagger</code> defaults to ignoring extra properties. Same for <code>additionalItems</code>.</li>
+<li>array validations (<code>minItems</code>, etc.) are not yet supported for tuples, as of v0.15</li>
+<li>objects with no properties and no additional properties schema have no validation at all (e.g. passing an array is not invalid) (rendered as <code>interface{}</code>)</li>
 <li><code>null</code> JSON type: the <code>null</code> type is not supported by Swagger - use of the <code>x-nullable</code> extension makes <code>null</code> values valid
-(notice that combining the use of <code>required</code> and <code>x-nullable</code> is not fully JSONSchema compliant - see <a href="#nullability">below</a>)
-</li></ul>
-</li></ul>
-<h3 id="custom-extensions"><a name="custom-extensions" class="plugin-anchor" href="#custom-extensions"><i class="fa fa-link" aria-hidden="true"></i></a>Custom extensions</h3><p>Model generation may be altered with the following extensions:</p><ul><li><code>x-go-name: &quot;string&quot;</code>: give explicit type name to the generated model
+(notice that combining the use of <code>required</code> and <code>x-nullable</code> is not fully JSONSchema compliant - see <a href="#nullability">below</a>)</li>
+</ul>
 </li>
-<li><code>x-go-custom-tag: &quot;string&quot;</code>: add serialization tags to an object property (see <a href="#customizing-struct-tags">Customizing struct tags</a>)
-</li>
-<li><code>x-nullable: true|false</code> (or equivalently <code>x-is-nullable:true|false</code>): accepts null values (i.e. rendered as a pointer)
-</li>
-<li><code>x-go-type: &quot;string&quot;</code>: explicitly reuse an already available go type
-</li>
-<li><code>x-class: &quot;string&quot;</code>: give explicit polymorphic class name in discriminator
-</li>
-<li><code>x-order: number</code>: indicates explicit generation ordering for schemas (e.g. models, properties, allOf, ...)
-</li>
-<li><code>x-omitempty: true|false</code>: force the omitempty modifier in struct json and xml tags
-</li>
-<li><code>x-go-json-string: true:false</code>: force the string modifier in struct json tags
-</li></ul>
-<h3 id="primitive-types"><a name="primitive-types" class="plugin-anchor" href="#primitive-types"><i class="fa fa-link" aria-hidden="true"></i></a>Primitive types</h3><p>Swagger types are rendered as follows by <code>go-swagger</code>:</p><table>
+</ul>
+<h3 id="custom-extensions"><a name="custom-extensions" class="plugin-anchor" href="#custom-extensions"><i class="fa fa-link" aria-hidden="true"></i></a>Custom extensions</h3>
+<p>Model generation may be altered with the following extensions:</p>
+<ul>
+<li><code>x-go-name: &quot;string&quot;</code>: give explicit type name to the generated model</li>
+<li><code>x-go-custom-tag: &quot;string&quot;</code>: add serialization tags to an object property (see <a href="#customizing-struct-tags">Customizing struct tags</a>)</li>
+<li><code>x-nullable: true|false</code> (or equivalently <code>x-is-nullable:true|false</code>): accepts null values (i.e. rendered as a pointer)</li>
+<li><code>x-go-type: &quot;string&quot;</code>: explicitly reuse an already available go type</li>
+<li><code>x-class: &quot;string&quot;</code>: give explicit polymorphic class name in discriminator</li>
+<li><code>x-order: number</code>: indicates explicit generation ordering for schemas (e.g. models, properties, allOf, ...)</li>
+<li><code>x-omitempty: true|false</code>: force the omitempty modifier in struct json and xml tags</li>
+<li><code>x-go-json-string: true:false</code>: force the string modifier in struct json tags</li>
+</ul>
+<h3 id="primitive-types"><a name="primitive-types" class="plugin-anchor" href="#primitive-types"><i class="fa fa-link" aria-hidden="true"></i></a>Primitive types</h3>
+<p>Swagger types are rendered as follows by <code>go-swagger</code>:</p>
+<table>
 <thead>
-<tr><th style="text-align:left"> Swagger type </th>
-<th style="text-align:left"> go type </th>
-</tr></thead><tbody>
-<tr><td style="text-align:left"> <code>string</code> (no format) </td>
-<td style="text-align:left"> <code>string</code> </td>
-</tr><tr><td style="text-align:left"> <code>boolean</code> </td>
-<td style="text-align:left"> <code>bool</code> </td>
-</tr><tr><td style="text-align:left"> <code>number</code> </td>
-<td style="text-align:left"> <code>float64</code> </td>
-</tr><tr><td style="text-align:left"> <code>number format double</code> </td>
-<td style="text-align:left"> <code>float64</code> </td>
-</tr><tr><td style="text-align:left"> <code>number format float</code> </td>
-<td style="text-align:left"> <code>float32</code> </td>
-</tr><tr><td style="text-align:left"> <code>integer</code> </td>
-<td style="text-align:left"> <code>int64</code> </td>
-</tr><tr><td style="text-align:left"> <code>integer format int64</code> </td>
-<td style="text-align:left"> <code>int64</code> </td>
-</tr><tr><td style="text-align:left"> <code>integer format int32</code> </td>
-<td style="text-align:left"> <code>int32</code> </td>
-</tr><tr><td style="text-align:left"> <code>integer format uint64</code> </td>
-<td style="text-align:left"> <code>uint64</code> </td>
-</tr><tr><td style="text-align:left"> <code>integer format uint32</code> </td>
-<td style="text-align:left"> <code>uint32</code> </td>
-</tr><tr><td style="text-align:left"> <code>file</code> </td>
-<td style="text-align:left"> <code>io.ReadCloser</code>(server) or <code>io.Writer</code> (client) </td>
-</tr><tr><td style="text-align:left"> <code>string format binary</code> </td>
-<td style="text-align:left"> <code>io.ReadCloser</code>or <code>io.Writer</code> </td>
-</tr><tr><td style="text-align:left"> <code>string</code> with other formats </td>
-<td style="text-align:left"> corresponding type exported by <code>go-openapi/strfmt</code></td>
-</tr></tbody></table>
-
+<tr>
+<th>Swagger type</th>
+<th>go type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>string</code> (no format)</td>
+<td><code>string</code></td>
+</tr>
+<tr>
+<td><code>boolean</code></td>
+<td><code>bool</code></td>
+</tr>
+<tr>
+<td><code>number</code></td>
+<td><code>float64</code></td>
+</tr>
+<tr>
+<td><code>number format double</code></td>
+<td><code>float64</code></td>
+</tr>
+<tr>
+<td><code>number format float</code></td>
+<td><code>float32</code></td>
+</tr>
+<tr>
+<td><code>integer</code></td>
+<td><code>int64</code></td>
+</tr>
+<tr>
+<td><code>integer format int64</code></td>
+<td><code>int64</code></td>
+</tr>
+<tr>
+<td><code>integer format int32</code></td>
+<td><code>int32</code></td>
+</tr>
+<tr>
+<td><code>integer format uint64</code></td>
+<td><code>uint64</code></td>
+</tr>
+<tr>
+<td><code>integer format uint32</code></td>
+<td><code>uint32</code></td>
+</tr>
+<tr>
+<td><code>file</code></td>
+<td><code>io.ReadCloser</code>(server) or <code>io.Writer</code> (client)</td>
+</tr>
+<tr>
+<td><code>string format binary</code></td>
+<td><code>io.ReadCloser</code>or <code>io.Writer</code></td>
+</tr>
+<tr>
+<td><code>string</code> with other formats</td>
+<td>corresponding type exported by <code>go-openapi/strfmt</code></td>
+</tr>
+</tbody>
+</table>
 <p>The <code>file</code> type is exposed as a <code>io.ReadCloser</code> (or <code>io.Writer</code>) interface. The actual implementation in a
-runtime server or client is provided by the <a href="https://github.com/go-openapi/runtime/blob/master/file.go#L20" target="_blank">`go-openapi/runtime/File` type</a>.</p><h3 id="formatted-types"><a name="formatted-types" class="plugin-anchor" href="#formatted-types"><i class="fa fa-link" aria-hidden="true"></i></a>Formatted types</h3><p>The <code>go-openapi/strfmt</code> packages provides a number of predefined &quot;formats&quot; for JSON string types.
-The full list of formats supported by this package is <a href="https://github.com/go-openapi/strfmt/blob/master/README.md" target="_blank">here</a></p><h3 id="nullability"><a name="nullability" class="plugin-anchor" href="#nullability"><i class="fa fa-link" aria-hidden="true"></i></a>Nullability</h3><p>Here are the rules that turn something into a pointer.</p><ul><li>structs
-</li>
-<li><code>x-nullable</code>, <code>x-isnullable</code>: explicit override to accept null values (otherwise not accepted by Swagger)
-</li>
-<li>required property
-</li>
+runtime server or client is provided by the <a href="https://github.com/go-openapi/runtime/blob/master/file.go#L20" target="_blank"><code>go-openapi/runtime/File</code> type</a>.</p>
+<h3 id="formatted-types"><a name="formatted-types" class="plugin-anchor" href="#formatted-types"><i class="fa fa-link" aria-hidden="true"></i></a>Formatted types</h3>
+<p>The <code>go-openapi/strfmt</code> packages provides a number of predefined &quot;formats&quot; for JSON string types.
+The full list of formats supported by this package is <a href="https://github.com/go-openapi/strfmt/blob/master/README.md" target="_blank">here</a></p>
+<h3 id="nullability"><a name="nullability" class="plugin-anchor" href="#nullability"><i class="fa fa-link" aria-hidden="true"></i></a>Nullability</h3>
+<p>Here are the rules that turn something into a pointer.</p>
+<ul>
+<li>structs</li>
+<li><code>x-nullable</code>, <code>x-isnullable</code>: explicit override to accept null values (otherwise not accepted by Swagger)</li>
+<li>required property</li>
 <li>extending with <code>allOf</code> a schema with another schema with just <code>x-nullable</code> (or other extensions,
-but no new properties) turns the schema into a pointer
-</li></ul>
-<p>Primitive types (number, bool and string) are turned into pointers whenever:</p><ul><li>we need to validate valid zero values vs unset (i.e. the zero value is explicitly checked against validation)
-</li></ul>
-<p>Examples:</p><pre class="language-"><code class="lang-yaml"><span class="token key atrule">definitions</span><span class="token punctuation">:</span>
+but no new properties) turns the schema into a pointer</li>
+</ul>
+<p>Primitive types (number, bool and string) are turned into pointers whenever:</p>
+<ul>
+<li>we need to validate valid zero values vs unset (i.e. the zero value is explicitly checked against validation)</li>
+</ul>
+<p>Examples:</p>
+<pre class="language-"><code class="lang-yaml"><span class="token key atrule">definitions</span><span class="token punctuation">:</span>
   <span class="token key atrule">myInteger</span><span class="token punctuation">:</span>
     <span class="token key atrule">type</span><span class="token punctuation">:</span> integer
     <span class="token key atrule">minimum</span><span class="token punctuation">:</span> <span class="token number">0</span>
   <span class="token key atrule">myString</span><span class="token punctuation">:</span>
     <span class="token key atrule">type</span><span class="token punctuation">:</span> string
-    <span class="token key atrule">minLength</span><span class="token punctuation">:</span> <span class="token number">0</span></code></pre>
-<p>Yields:</p><pre class="language-"><code class="lang-go"><span class="token keyword">type</span> MyInteger <span class="token operator">*</span><span class="token builtin">int64</span>
+    <span class="token key atrule">minLength</span><span class="token punctuation">:</span> <span class="token number">0</span>
+</code></pre>
+<p>Yields:</p>
+<pre class="language-"><code class="lang-go"><span class="token keyword">type</span> MyInteger <span class="token operator">*</span><span class="token builtin">int64</span>
 <span class="token operator">...</span>
-<span class="token keyword">type</span> MyString <span class="token operator">*</span><span class="token builtin">string</span></code></pre>
-<p>Notice that the following equivalent does not produce a pointer:</p><pre class="language-"><code class="lang-yaml"><span class="token key atrule">definitions</span><span class="token punctuation">:</span>
+<span class="token keyword">type</span> MyString <span class="token operator">*</span><span class="token builtin">string</span>
+</code></pre>
+<p>Notice that the following equivalent does not produce a pointer:</p>
+<pre class="language-"><code class="lang-yaml"><span class="token key atrule">definitions</span><span class="token punctuation">:</span>
   <span class="token key atrule">myInteger</span><span class="token punctuation">:</span>
     <span class="token key atrule">type</span><span class="token punctuation">:</span> integer
-    <span class="token key atrule">format</span><span class="token punctuation">:</span> uint64</code></pre>
-<blockquote><p>NOTE: read-only properties are not rendered as pointers.</p></blockquote><p>API developers may use the conversion utilities provided by the <code>go-openapi/swag</code> and <code>go-openapi/strfmt/conv</code> packages
-to manipulate pointers more easily.</p><blockquote><p><strong>Known limitations</strong>:
-pointers are used to distinguish in golang a zero value from no value set.</p><p>This design comes with some shortcomings:</p><ul><li>it is built around the validation use case.
+    <span class="token key atrule">format</span><span class="token punctuation">:</span> uint64
+</code></pre>
+<blockquote>
+<p>NOTE: read-only properties are not rendered as pointers.</p>
+</blockquote>
+<p>API developers may use the conversion utilities provided by the <code>go-openapi/swag</code> and <code>go-openapi/strfmt/conv</code> packages
+to manipulate pointers more easily.</p>
+<blockquote>
+<p><strong>Known limitations</strong>:
+pointers are used to distinguish in golang a zero value from no value set.</p>
+<p>This design comes with some shortcomings:</p>
+<ul>
+<li>it is built around the validation use case.
 In the general case it is not possible to know if a value has been set
 to a zero value when the type is not a pointer. In cases where this is
-important, use the <code>x-nullable</code> extension
-</li>
+important, use the <code>x-nullable</code> extension</li>
 <li>using <code>null</code> as a proxy for unset, makes uneasy the explicit use of the JSON <code>null</code> type
 Swagger APIs are not supposed to carry <code>null</code> values.
 <code>go-swagger</code> generated APIs can, using the <code>x-nullable</code> extension, and it is then not possible
-to distinguish a field explicitly set to <code>null</code> from an unset field
-</li></ul>
+to distinguish a field explicitly set to <code>null</code> from an unset field</li>
+</ul>
 <p>An alternate design has been experimented but not released. For those interested in pushing forward this project again,
-see <a href="https://github.com/go-swagger/go-swagger/pull/557" target="_blank">this pull request</a></p></blockquote><h4 id="common-use-cases"><a name="common-use-cases" class="plugin-anchor" href="#common-use-cases"><i class="fa fa-link" aria-hidden="true"></i></a>Common use cases</h4><p>You don&apos;t always have to resort to pointers to figure out whether a value is empty.</p><ul><li>The idiomatic way to check for a null/empty string is: <code>minLength: 1</code>
-</li></ul>
-<h3 id="validation"><a name="validation" class="plugin-anchor" href="#validation"><i class="fa fa-link" aria-hidden="true"></i></a>Validation</h3><p>All produced models implement the <a href="https://github.com/go-openapi/runtime/blob/master/interfaces.go#L101" target="_blank">Validatable</a> interface.</p><p>Exceptions:</p><ul><li><code>file</code> types do not support validation (however generated operations may check the <code>maxLength</code> of a file)
-</li>
-<li>empty schemas (<code>any</code> type, rendered as <code>interface{}</code>) do not support validation
-</li></ul>
-<p>Therefore, type aliases constructed on either a swagger <code>file</code> or an empty schema does not implement this interface.</p><p>Validation errors:</p><ul><li>Returned errors are supported by the <code>go-openapi/errors/Error</code> type, which supports errors codes and composite errors.
-</li></ul>
+see <a href="https://github.com/go-swagger/go-swagger/pull/557" target="_blank">this pull request</a></p>
+</blockquote>
+<h4 id="common-use-cases"><a name="common-use-cases" class="plugin-anchor" href="#common-use-cases"><i class="fa fa-link" aria-hidden="true"></i></a>Common use cases</h4>
+<p>You don&apos;t always have to resort to pointers to figure out whether a value is empty.</p>
+<ul>
+<li>The idiomatic way to check for a null/empty string is: <code>minLength: 1</code></li>
+</ul>
+<h3 id="validation"><a name="validation" class="plugin-anchor" href="#validation"><i class="fa fa-link" aria-hidden="true"></i></a>Validation</h3>
+<p>All produced models implement the <a href="https://github.com/go-openapi/runtime/blob/master/interfaces.go#L101" target="_blank">Validatable</a> interface.</p>
+<p>Exceptions:</p>
+<ul>
+<li><code>file</code> types do not support validation (however generated operations may check the <code>maxLength</code> of a file)</li>
+<li>empty schemas (<code>any</code> type, rendered as <code>interface{}</code>) do not support validation</li>
+</ul>
+<p>Therefore, type aliases constructed on either a swagger <code>file</code> or an empty schema does not implement this interface.</p>
+<p>Validation errors:</p>
+<ul>
+<li>Returned errors are supported by the <code>go-openapi/errors/Error</code> type, which supports errors codes and composite errors.</li>
+</ul>
 <p>Validation stops assessing errors down to the property level and does not continue digging all nested strutures as soon
-as an error is found.</p><h3 id="type-aliasing"><a name="type-aliasing" class="plugin-anchor" href="#type-aliasing"><i class="fa fa-link" aria-hidden="true"></i></a>Type aliasing</h3><p>A definition may create an <em>aliased</em> type like this:</p><pre class="language-"><code class="lang-yaml"><span class="token key atrule">definitions</span><span class="token punctuation">:</span>
+as an error is found.</p>
+<h3 id="type-aliasing"><a name="type-aliasing" class="plugin-anchor" href="#type-aliasing"><i class="fa fa-link" aria-hidden="true"></i></a>Type aliasing</h3>
+<p>A definition may create an <em>aliased</em> type like this:</p>
+<pre class="language-"><code class="lang-yaml"><span class="token key atrule">definitions</span><span class="token punctuation">:</span>
   <span class="token key atrule">myDate</span><span class="token punctuation">:</span>
     <span class="token key atrule">type</span><span class="token punctuation">:</span> string
-    <span class="token key atrule">format</span><span class="token punctuation">:</span> date</code></pre>
-<p>Rendered as:</p><pre class="language-"><code class="lang-go"><span class="token keyword">type</span> MyDate strfmt<span class="token punctuation">.</span>Date</code></pre>
+    <span class="token key atrule">format</span><span class="token punctuation">:</span> date
+</code></pre>
+<p>Rendered as:</p>
+<pre class="language-"><code class="lang-go"><span class="token keyword">type</span> MyDate strfmt<span class="token punctuation">.</span>Date
+</code></pre>
 <p>Notice that setting <code>x-nullable: true</code> in such an alias will not render the type itself into a pointer, but rather,
-all containers of his type will use it as a pointer.</p><p>Example:</p><pre class="language-"><code class="lang-yaml"><span class="token key atrule">definitions</span><span class="token punctuation">:</span>
+all containers of his type will use it as a pointer.</p>
+<p>Example:</p>
+<pre class="language-"><code class="lang-yaml"><span class="token key atrule">definitions</span><span class="token punctuation">:</span>
   <span class="token key atrule">myDate</span><span class="token punctuation">:</span>
     <span class="token key atrule">type</span><span class="token punctuation">:</span> string
     <span class="token key atrule">format</span><span class="token punctuation">:</span> date
@@ -1291,54 +1420,81 @@ all containers of his type will use it as a pointer.</p><p>Example:</p><pre clas
   <span class="token key atrule">anArrayOfDates</span><span class="token punctuation">:</span>
     <span class="token key atrule">type</span><span class="token punctuation">:</span> array
     <span class="token key atrule">items</span><span class="token punctuation">:</span>
-      <span class="token key atrule">$ref</span><span class="token punctuation">:</span> <span class="token string">&apos;#/definitions/myDate&apos;</span></code></pre>
-<p>Yields:</p><pre class="language-"><code class="lang-go"><span class="token keyword">type</span> MyDate strfmt<span class="token punctuation">.</span>Date
+      <span class="token key atrule">$ref</span><span class="token punctuation">:</span> <span class="token string">&apos;#/definitions/myDate&apos;</span>
+</code></pre>
+<p>Yields:</p>
+<pre class="language-"><code class="lang-go"><span class="token keyword">type</span> MyDate strfmt<span class="token punctuation">.</span>Date
 <span class="token operator">...</span>
-<span class="token keyword">type</span> AnArrayOfDates <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token operator">*</span>MyDate</code></pre>
-<p>Realiasing</p><p>Given the above definitions, we add:</p><pre class="language-"><code class="lang-yaml">  <span class="token punctuation">...</span>
+<span class="token keyword">type</span> AnArrayOfDates <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token operator">*</span>MyDate
+</code></pre>
+<p>Realiasing</p>
+<p>Given the above definitions, we add:</p>
+<pre class="language-"><code class="lang-yaml">  <span class="token punctuation">...</span>
   <span class="token key atrule">herDate</span><span class="token punctuation">:</span>
     <span class="token key atrule">$ref</span><span class="token punctuation">:</span> <span class="token comment">#/definitions/myDate</span>
   <span class="token key atrule">hisDate</span><span class="token punctuation">:</span>
-    <span class="token key atrule">$ref</span><span class="token punctuation">:</span> <span class="token comment">#/definitions/herDate</span></code></pre>
-<p>Rendered as (requires go1.9+):</p><pre class="language-"><code class="lang-go"><span class="token keyword">type</span> HerDate <span class="token operator">=</span> MyDate</code></pre>
-<pre class="language-"><code class="lang-go"><span class="token keyword">type</span> HisDate <span class="token operator">=</span> HerDate</code></pre>
-<h3 id="extensible-types"><a name="extensible-types" class="plugin-anchor" href="#extensible-types"><i class="fa fa-link" aria-hidden="true"></i></a>Extensible types</h3><h5 id="objects-and-additional-properties"><a name="objects-and-additional-properties" class="plugin-anchor" href="#objects-and-additional-properties"><i class="fa fa-link" aria-hidden="true"></i></a>Objects and additional properties</h5><p>Additional properties in a JSON object are represented in a go struct by <code>map[string]T</code>.</p><p>Examples:</p><pre class="language-"><code class="lang-yaml"><span class="token key atrule">definitions</span><span class="token punctuation">:</span>
+    <span class="token key atrule">$ref</span><span class="token punctuation">:</span> <span class="token comment">#/definitions/herDate</span>
+</code></pre>
+<p>Rendered as (requires go1.9+):</p>
+<pre class="language-"><code class="lang-go"><span class="token keyword">type</span> HerDate <span class="token operator">=</span> MyDate
+</code></pre>
+<pre class="language-"><code class="lang-go"><span class="token keyword">type</span> HisDate <span class="token operator">=</span> HerDate
+</code></pre>
+<h3 id="extensible-types"><a name="extensible-types" class="plugin-anchor" href="#extensible-types"><i class="fa fa-link" aria-hidden="true"></i></a>Extensible types</h3>
+<h5 id="objects-and-additional-properties"><a name="objects-and-additional-properties" class="plugin-anchor" href="#objects-and-additional-properties"><i class="fa fa-link" aria-hidden="true"></i></a>Objects and additional properties</h5>
+<p>Additional properties in a JSON object are represented in a go struct by <code>map[string]T</code>.</p>
+<p>Examples:</p>
+<pre class="language-"><code class="lang-yaml"><span class="token key atrule">definitions</span><span class="token punctuation">:</span>
   <span class="token key atrule">extensibleObject</span><span class="token punctuation">:</span>
     <span class="token key atrule">properties</span><span class="token punctuation">:</span>
       <span class="token key atrule">prop1</span><span class="token punctuation">:</span>
         <span class="token key atrule">type</span><span class="token punctuation">:</span>  integer
     <span class="token key atrule">additionalProperties</span><span class="token punctuation">:</span>
       <span class="token key atrule">type</span><span class="token punctuation">:</span> string
-      <span class="token key atrule">format</span><span class="token punctuation">:</span> date</code></pre>
-<p>Is rendered as:</p><pre class="language-"><code class="lang-golang">type ExtensibleObject struct {
+      <span class="token key atrule">format</span><span class="token punctuation">:</span> date
+</code></pre>
+<p>Is rendered as:</p>
+<pre class="language-"><code class="lang-golang">type ExtensibleObject struct {
     Prop1 int64
     ExtensibleObjectProperties map[string]strfmt.Date
-}</code></pre>
-<p>If there is no restriction on the additional properties:</p><pre class="language-"><code class="lang-yaml"><span class="token key atrule">definitions</span><span class="token punctuation">:</span>
+}
+</code></pre>
+<p>If there is no restriction on the additional properties:</p>
+<pre class="language-"><code class="lang-yaml"><span class="token key atrule">definitions</span><span class="token punctuation">:</span>
   <span class="token key atrule">extensibleObject</span><span class="token punctuation">:</span>
     <span class="token key atrule">type</span><span class="token punctuation">:</span> object
     <span class="token key atrule">properties</span><span class="token punctuation">:</span>
       <span class="token key atrule">prop1</span><span class="token punctuation">:</span>
         <span class="token key atrule">type</span><span class="token punctuation">:</span> integer
-    <span class="token key atrule">additionalProperties</span><span class="token punctuation">:</span> <span class="token boolean important">true</span></code></pre>
-<p>We get:</p><pre class="language-"><code class="lang-golang">type ExtensibleObject struct {
+    <span class="token key atrule">additionalProperties</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+</code></pre>
+<p>We get:</p>
+<pre class="language-"><code class="lang-golang">type ExtensibleObject struct {
     Prop1 int64
     ExtensibleObjectProperties map[string]interface{}
-}</code></pre>
-<h5 id="tuples-and-additional-items"><a name="tuples-and-additional-items" class="plugin-anchor" href="#tuples-and-additional-items"><i class="fa fa-link" aria-hidden="true"></i></a>Tuples and additional items</h5><p>A tuple is rendered as a structure with a property for each element of the tuple.</p><p>Example:</p><pre class="language-"><code class="lang-yaml"><span class="token key atrule">definitions</span><span class="token punctuation">:</span>
+}
+</code></pre>
+<h5 id="tuples-and-additional-items"><a name="tuples-and-additional-items" class="plugin-anchor" href="#tuples-and-additional-items"><i class="fa fa-link" aria-hidden="true"></i></a>Tuples and additional items</h5>
+<p>A tuple is rendered as a structure with a property for each element of the tuple.</p>
+<p>Example:</p>
+<pre class="language-"><code class="lang-yaml"><span class="token key atrule">definitions</span><span class="token punctuation">:</span>
   <span class="token key atrule">tuple</span><span class="token punctuation">:</span>
     <span class="token key atrule">type</span><span class="token punctuation">:</span> array
     <span class="token key atrule">items</span><span class="token punctuation">:</span>
     <span class="token punctuation">-</span> <span class="token key atrule">type</span><span class="token punctuation">:</span> integer
     <span class="token punctuation">-</span> <span class="token key atrule">type</span><span class="token punctuation">:</span> string
     <span class="token punctuation">-</span> <span class="token key atrule">type</span><span class="token punctuation">:</span> string
-      <span class="token key atrule">format</span><span class="token punctuation">:</span> uuid</code></pre>
-<p>Gives:</p><pre class="language-"><code class="lang-golang">type Tuple struct {
+      <span class="token key atrule">format</span><span class="token punctuation">:</span> uuid
+</code></pre>
+<p>Gives:</p>
+<pre class="language-"><code class="lang-golang">type Tuple struct {
     P0 *int64
     P1 *string
     P2 *strfmt.UUID
-}</code></pre>
-<p>If we specify additional items as in:</p><pre class="language-"><code class="lang-yaml"><span class="token key atrule">definitions</span><span class="token punctuation">:</span>
+}
+</code></pre>
+<p>If we specify additional items as in:</p>
+<pre class="language-"><code class="lang-yaml"><span class="token key atrule">definitions</span><span class="token punctuation">:</span>
   <span class="token key atrule">extensibleTuple</span><span class="token punctuation">:</span>
     <span class="token key atrule">type</span><span class="token punctuation">:</span> array
     <span class="token key atrule">items</span><span class="token punctuation">:</span>
@@ -1347,20 +1503,36 @@ all containers of his type will use it as a pointer.</p><p>Example:</p><pre clas
     <span class="token punctuation">-</span> <span class="token key atrule">type</span><span class="token punctuation">:</span> string
       <span class="token key atrule">format</span><span class="token punctuation">:</span> uuid
     <span class="token key atrule">additionalItems</span><span class="token punctuation">:</span>
-    <span class="token punctuation">-</span> <span class="token key atrule">type</span><span class="token punctuation">:</span> number</code></pre>
-<p>Gives:</p><pre class="language-"><code class="lang-golang">type ExtensibleTuple struct {
+    <span class="token punctuation">-</span> <span class="token key atrule">type</span><span class="token punctuation">:</span> number
+</code></pre>
+<p>Gives:</p>
+<pre class="language-"><code class="lang-golang">type ExtensibleTuple struct {
     P0 *int64
     P1 *string
     P2 *strfmt.UUID
     ExtensibleTupleItems []float64
-}</code></pre>
-<blockquote><p><strong>NOTE</strong>: currently the P0, P1, ... names are not customizable.</p></blockquote><h3 id="polymorphic-types"><a name="polymorphic-types" class="plugin-anchor" href="#polymorphic-types"><i class="fa fa-link" aria-hidden="true"></i></a>Polymorphic types</h3><p>Polymorphic types are swagger&apos;s flavor for inheritance (aka <em>hierarchized composition</em>...).
-The use of the <code>discriminator</code> keyword gives a special meaning to <code>allOf</code> compositions.</p><h4 id="base-types"><a name="base-types" class="plugin-anchor" href="#base-types"><i class="fa fa-link" aria-hidden="true"></i></a>Base types</h4><p>Whenever the special attribute <code>discriminator</code> is used, this means this object definition is
-a base type, to be used to extend other types, or subtypes.</p><p>The discriminator property indicates which subtype is used whenever an instance of the base type is found.
-The discriminator&apos;s possible values are the names of the subtypes (no aliasing is supported in Swagger 2.0).</p><blockquote><p><strong>NOTE</strong>: the discriminator is a <code>required</code> property with <code>&quot;type&quot;: &quot;string&quot;</code>.
+}
+</code></pre>
+<blockquote>
+<p><strong>NOTE</strong>: currently the P0, P1, ... names are not customizable.</p>
+</blockquote>
+<h3 id="polymorphic-types"><a name="polymorphic-types" class="plugin-anchor" href="#polymorphic-types"><i class="fa fa-link" aria-hidden="true"></i></a>Polymorphic types</h3>
+<p>Polymorphic types are swagger&apos;s flavor for inheritance (aka <em>hierarchized composition</em>...).
+The use of the <code>discriminator</code> keyword gives a special meaning to <code>allOf</code> compositions.</p>
+<h4 id="base-types"><a name="base-types" class="plugin-anchor" href="#base-types"><i class="fa fa-link" aria-hidden="true"></i></a>Base types</h4>
+<p>Whenever the special attribute <code>discriminator</code> is used, this means this object definition is
+a base type, to be used to extend other types, or subtypes.</p>
+<p>The discriminator property indicates which subtype is used whenever an instance of the base type is found.
+The discriminator&apos;s possible values are the names of the subtypes (no aliasing is supported in Swagger 2.0).</p>
+<blockquote>
+<p><strong>NOTE</strong>: the discriminator is a <code>required</code> property with <code>&quot;type&quot;: &quot;string&quot;</code>.
 No validation attached to this property, save <code>required</code>, will be honored, as
-a discriminator property is implicitly an <code>enum</code> with all the subtype names found in the spec.</p></blockquote><p>The base type must be a JSON-schema object (it has at least one property, the discriminator).
-It may define other properties than the discriminator. Like <code>name</code> in this example.</p><p>Example:</p><pre class="language-"><code class="lang-yaml">  <span class="token key atrule">Pet</span><span class="token punctuation">:</span>
+a discriminator property is implicitly an <code>enum</code> with all the subtype names found in the spec.</p>
+</blockquote>
+<p>The base type must be a JSON-schema object (it has at least one property, the discriminator).
+It may define other properties than the discriminator. Like <code>name</code> in this example.</p>
+<p>Example:</p>
+<pre class="language-"><code class="lang-yaml">  <span class="token key atrule">Pet</span><span class="token punctuation">:</span>
     <span class="token key atrule">type</span><span class="token punctuation">:</span> object
     <span class="token key atrule">discriminator</span><span class="token punctuation">:</span> petType
     <span class="token key atrule">properties</span><span class="token punctuation">:</span>
@@ -1370,8 +1542,10 @@ It may define other properties than the discriminator. Like <code>name</code> in
         <span class="token key atrule">type</span><span class="token punctuation">:</span> string
     <span class="token key atrule">required</span><span class="token punctuation">:</span>
     <span class="token punctuation">-</span> name
-    <span class="token punctuation">-</span> petType</code></pre>
-<p>A base type is rendered as an interface, with getter/setter funcs on all attributes.</p><pre class="language-"><code class="lang-go"><span class="token comment">// Pet pet</span>
+    <span class="token punctuation">-</span> petType
+</code></pre>
+<p>A base type is rendered as an interface, with getter/setter funcs on all attributes.</p>
+<pre class="language-"><code class="lang-go"><span class="token comment">// Pet pet</span>
 <span class="token comment">// swagger:discriminator Pet petType</span>
 <span class="token keyword">type</span> Pet <span class="token keyword">interface</span> <span class="token punctuation">{</span>
     runtime<span class="token punctuation">.</span>Validatable
@@ -1385,10 +1559,17 @@ It may define other properties than the discriminator. Like <code>name</code> in
     <span class="token comment">// Required: true</span>
     <span class="token function">PetType</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">string</span>
     <span class="token function">SetPetType</span><span class="token punctuation">(</span><span class="token builtin">string</span><span class="token punctuation">)</span>
-<span class="token punctuation">}</span></code></pre>
-<blockquote><p><strong>NOTE</strong>: an unexported reference concrete type is also generated, but not currently used by models.</p></blockquote><h4 id="subtypes"><a name="subtypes" class="plugin-anchor" href="#subtypes"><i class="fa fa-link" aria-hidden="true"></i></a>Subtypes</h4><p>A subtype <em>extends</em> a base type. It is defined by composing the base type with an <code>allOf</code> construct.
+<span class="token punctuation">}</span>
+</code></pre>
+<blockquote>
+<p><strong>NOTE</strong>: an unexported reference concrete type is also generated, but not currently used by models.</p>
+</blockquote>
+<h4 id="subtypes"><a name="subtypes" class="plugin-anchor" href="#subtypes"><i class="fa fa-link" aria-hidden="true"></i></a>Subtypes</h4>
+<p>A subtype <em>extends</em> a base type. It is defined by composing the base type with an <code>allOf</code> construct.
 All subtypes implement the interface of their base type. So in this examples, all instances of <code>Dog</code> may pretend
-to be a <code>Pet</code>.</p><p>Example:</p><pre class="language-"><code class="lang-yaml">  <span class="token key atrule">Dog</span><span class="token punctuation">:</span>
+to be a <code>Pet</code>.</p>
+<p>Example:</p>
+<pre class="language-"><code class="lang-yaml">  <span class="token key atrule">Dog</span><span class="token punctuation">:</span>
     <span class="token key atrule">type</span><span class="token punctuation">:</span> object
     <span class="token key atrule">description</span><span class="token punctuation">:</span> A representation of a dog
     <span class="token key atrule">allOf</span><span class="token punctuation">:</span>
@@ -1401,8 +1582,10 @@ to be a <code>Pet</code>.</p><p>Example:</p><pre class="language-"><code class="
           <span class="token key atrule">default</span><span class="token punctuation">:</span> <span class="token number">0</span>
           <span class="token key atrule">minimum</span><span class="token punctuation">:</span> <span class="token number">0</span>
       <span class="token key atrule">required</span><span class="token punctuation">:</span>
-      <span class="token punctuation">-</span> packSize</code></pre>
-<p>Yields:</p><pre class="language-"><code class="lang-go"><span class="token comment">// Dog A representation of a dog</span>
+      <span class="token punctuation">-</span> packSize
+</code></pre>
+<p>Yields:</p>
+<pre class="language-"><code class="lang-go"><span class="token comment">// Dog A representation of a dog</span>
 <span class="token comment">// swagger:model Dog</span>
 <span class="token keyword">type</span> Dog <span class="token keyword">struct</span> <span class="token punctuation">{</span>
     nameField <span class="token operator">*</span><span class="token builtin">string</span>
@@ -1431,10 +1614,17 @@ to be a <code>Pet</code>.</p><p>Example:</p><pre class="language-"><code class="
 <span class="token comment">// SetPetType sets the pet type of this subtype</span>
 <span class="token keyword">func</span> <span class="token punctuation">(</span>m <span class="token operator">*</span>Dog<span class="token punctuation">)</span> <span class="token function">SetPetType</span><span class="token punctuation">(</span>val <span class="token builtin">string</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
 
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span>
+</code></pre>
 <p>Notice the unexported fields which correspond to the description of the base type.
-The properties of the base type are available with getter/setter functions.</p><blockquote><p><strong>NOTE</strong>: if you expand your spec, the <code>allOf</code> semantics are lost.
-Do not expand specs with polymorphic types for code generation.</p></blockquote><p>You may define several such derived types.</p><p>Example:</p><pre class="language-"><code class="lang-yaml">  <span class="token key atrule">cat</span><span class="token punctuation">:</span>
+The properties of the base type are available with getter/setter functions.</p>
+<blockquote>
+<p><strong>NOTE</strong>: if you expand your spec, the <code>allOf</code> semantics are lost.
+Do not expand specs with polymorphic types for code generation.</p>
+</blockquote>
+<p>You may define several such derived types.</p>
+<p>Example:</p>
+<pre class="language-"><code class="lang-yaml">  <span class="token key atrule">cat</span><span class="token punctuation">:</span>
     <span class="token key atrule">type</span><span class="token punctuation">:</span> object
     <span class="token key atrule">description</span><span class="token punctuation">:</span> A representation of a cat
     <span class="token key atrule">allOf</span><span class="token punctuation">:</span>
@@ -1450,7 +1640,8 @@ Do not expand specs with polymorphic types for code generation.</p></blockquote>
           <span class="token punctuation">-</span> adventurous
           <span class="token punctuation">-</span> aggressive
       <span class="token key atrule">required</span><span class="token punctuation">:</span>
-      <span class="token punctuation">-</span> huntingSkill</code></pre>
+      <span class="token punctuation">-</span> huntingSkill
+</code></pre>
 <pre class="language-"><code class="lang-go"><span class="token comment">// Cat A representation of a cat</span>
 <span class="token comment">// swagger:model cat</span>
 <span class="token keyword">type</span> Cat <span class="token keyword">struct</span> <span class="token punctuation">{</span>
@@ -1480,9 +1671,14 @@ Do not expand specs with polymorphic types for code generation.</p></blockquote>
 <span class="token comment">// SetPetType sets the pet type of this subtype</span>
 <span class="token keyword">func</span> <span class="token punctuation">(</span>m <span class="token operator">*</span>Cat<span class="token punctuation">)</span> <span class="token function">SetPetType</span><span class="token punctuation">(</span>val <span class="token builtin">string</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
 
-<span class="token punctuation">}</span></code></pre>
-<p>Notice that the value of the discriminator field is case sensitive, e.g. <code>&quot;Dog&quot;</code> and <code>&quot;cat&quot;</code> above.</p><h4 id="type-composition"><a name="type-composition" class="plugin-anchor" href="#type-composition"><i class="fa fa-link" aria-hidden="true"></i></a>Type composition</h4><p>Base types and subtypes may be used in other constructs. While subtypes are mostly handled like ordinary objects,
-there are special provisions taken to generate new types composing base types.</p><p>Example:</p><pre class="language-"><code class="lang-yaml">  <span class="token key atrule">Kennel</span><span class="token punctuation">:</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>Notice that the value of the discriminator field is case sensitive, e.g. <code>&quot;Dog&quot;</code> and <code>&quot;cat&quot;</code> above.</p>
+<h4 id="type-composition"><a name="type-composition" class="plugin-anchor" href="#type-composition"><i class="fa fa-link" aria-hidden="true"></i></a>Type composition</h4>
+<p>Base types and subtypes may be used in other constructs. While subtypes are mostly handled like ordinary objects,
+there are special provisions taken to generate new types composing base types.</p>
+<p>Example:</p>
+<pre class="language-"><code class="lang-yaml">  <span class="token key atrule">Kennel</span><span class="token punctuation">:</span>
     <span class="token key atrule">type</span><span class="token punctuation">:</span> object
     <span class="token key atrule">required</span><span class="token punctuation">:</span>
       <span class="token punctuation">-</span> pets
@@ -1493,8 +1689,10 @@ there are special provisions taken to generate new types composing base types.</
       <span class="token key atrule">pets</span><span class="token punctuation">:</span>          <span class="token comment"># &lt;-- this may contain Cats and Dogs</span>
         <span class="token key atrule">type</span><span class="token punctuation">:</span> array
         <span class="token key atrule">items</span><span class="token punctuation">:</span>
-          <span class="token key atrule">$ref</span><span class="token punctuation">:</span> <span class="token string">&quot;#/definitions/Pet&quot;</span></code></pre>
-<p>Yields:</p><pre class="language-"><code class="lang-go"><span class="token comment">// Kennel kennel</span>
+          <span class="token key atrule">$ref</span><span class="token punctuation">:</span> <span class="token string">&quot;#/definitions/Pet&quot;</span>
+</code></pre>
+<p>Yields:</p>
+<pre class="language-"><code class="lang-go"><span class="token comment">// Kennel kennel</span>
 <span class="token comment">// swagger:model Kennel</span>
 <span class="token keyword">type</span> Kennel <span class="token keyword">struct</span> <span class="token punctuation">{</span>
 
@@ -1512,60 +1710,80 @@ there are special provisions taken to generate new types composing base types.</
 <span class="token comment">// SetPets sets the pets of this base type</span>
 <span class="token keyword">func</span> <span class="token punctuation">(</span>m <span class="token operator">*</span>Kennel<span class="token punctuation">)</span> <span class="token function">SetPets</span><span class="token punctuation">(</span>val <span class="token punctuation">[</span><span class="token punctuation">]</span>Pet<span class="token punctuation">)</span> <span class="token punctuation">{</span>
     m<span class="token punctuation">.</span>petsField <span class="token operator">=</span> val
-<span class="token punctuation">}</span></code></pre>
-<blockquote><p><strong>NOTE</strong>: this representation with unexported fields for references to base types might be subject to change in
+<span class="token punctuation">}</span>
+</code></pre>
+<blockquote>
+<p><strong>NOTE</strong>: this representation with unexported fields for references to base types might be subject to change in
 the future, as it is not consistent in all cases. If you are intested to participate this design work,
-feel free to comment and express your views <a href="https://github.com/go-swagger/go-swagger/issues/232" target="_blank">here</a>.</p></blockquote><h4 id="factories-for-base-types"><a name="factories-for-base-types" class="plugin-anchor" href="#factories-for-base-types"><i class="fa fa-link" aria-hidden="true"></i></a>Factories for base types</h4><p>Subtypes and composed types have custom [un]marshallers.</p><p>Unmarshalling a base type is not carried through the standard MarshalJSON()/UnmarshalJSON() pair, but with
-factories created for each base type.</p><p>Example:</p><pre class="language-"><code class="lang-go"><span class="token comment">// UnmarshalPet unmarshals polymorphic Pet</span>
+feel free to comment and express your views <a href="https://github.com/go-swagger/go-swagger/issues/232" target="_blank">here</a>.</p>
+</blockquote>
+<h4 id="factories-for-base-types"><a name="factories-for-base-types" class="plugin-anchor" href="#factories-for-base-types"><i class="fa fa-link" aria-hidden="true"></i></a>Factories for base types</h4>
+<p>Subtypes and composed types have custom [un]marshallers.</p>
+<p>Unmarshalling a base type is not carried through the standard MarshalJSON()/UnmarshalJSON() pair, but with
+factories created for each base type.</p>
+<p>Example:</p>
+<pre class="language-"><code class="lang-go"><span class="token comment">// UnmarshalPet unmarshals polymorphic Pet</span>
 <span class="token keyword">func</span> <span class="token function">UnmarshalPet</span><span class="token punctuation">(</span>reader io<span class="token punctuation">.</span>Reader<span class="token punctuation">,</span> consumer runtime<span class="token punctuation">.</span>Consumer<span class="token punctuation">)</span> <span class="token punctuation">(</span>Pet<span class="token punctuation">,</span> <span class="token builtin">error</span><span class="token punctuation">)</span>
 
 <span class="token comment">// UnmarshalPetSlice unmarshals polymorphic slices of Pet</span>
-<span class="token keyword">func</span> <span class="token function">UnmarshalPetSlice</span><span class="token punctuation">(</span>reader io<span class="token punctuation">.</span>Reader<span class="token punctuation">,</span> consumer runtime<span class="token punctuation">.</span>Consumer<span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">]</span>Pet<span class="token punctuation">,</span> <span class="token builtin">error</span><span class="token punctuation">)</span></code></pre>
-<p>Note that the marshalling of a base type into JSON is processed naturally, so there is no need for a special function.</p><blockquote><p><strong>Known limitations</strong>:
-As of v0.15, there are still some known limitations:</p><ul><li>Unmarshalling maps of base types is not supported at the moment (e.g. <code>UnmarshalPetMap()</code> factory)
-</li>
-<li>More complex constructs like <code>[][]Pet</code>, <code>[]map[string]Pet</code> are not supported yet
-</li>
-<li>composing tuples containing base types is not supported yet
-</li></ul>
-</blockquote><h3 id="serialization-interfaces"><a name="serialization-interfaces" class="plugin-anchor" href="#serialization-interfaces"><i class="fa fa-link" aria-hidden="true"></i></a>Serialization interfaces</h3><!--
+<span class="token keyword">func</span> <span class="token function">UnmarshalPetSlice</span><span class="token punctuation">(</span>reader io<span class="token punctuation">.</span>Reader<span class="token punctuation">,</span> consumer runtime<span class="token punctuation">.</span>Consumer<span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">]</span>Pet<span class="token punctuation">,</span> <span class="token builtin">error</span><span class="token punctuation">)</span>
+</code></pre>
+<p>Note that the marshalling of a base type into JSON is processed naturally, so there is no need for a special function.</p>
+<blockquote>
+<p><strong>Known limitations</strong>:
+As of v0.15, there are still some known limitations:</p>
+<ul>
+<li>Unmarshalling maps of base types is not supported at the moment (e.g. <code>UnmarshalPetMap()</code> factory)</li>
+<li>More complex constructs like <code>[][]Pet</code>, <code>[]map[string]Pet</code> are not supported yet</li>
+<li>composing tuples containing base types is not supported yet</li>
+</ul>
+</blockquote>
+<h3 id="serialization-interfaces"><a name="serialization-interfaces" class="plugin-anchor" href="#serialization-interfaces"><i class="fa fa-link" aria-hidden="true"></i></a>Serialization interfaces</h3>
+<!--
 
 JSON
 
 XML
 -->
-
-
-<h5 id="custom-serializers"><a name="custom-serializers" class="plugin-anchor" href="#custom-serializers"><i class="fa fa-link" aria-hidden="true"></i></a>Custom serializers</h5><p>Tags are generally sufficient to provide proper JSON marshalling capabilities.</p><p>Models define some custom [un]marshallers in the following situations:</p><ul><li>tuples: array elements are dispatched in the tuple&apos;s struct
-</li>
-<li>additionalProperties: additional content is dispatched in the <code>map[string]...</code>
-</li>
-<li>subtypes of base types
-</li>
-<li>types composed of base types
-</li>
-<li>aliases on formatted types when the underlying type is not string (e.g. Date, Datetime)
-</li></ul>
+<h5 id="custom-serializers"><a name="custom-serializers" class="plugin-anchor" href="#custom-serializers"><i class="fa fa-link" aria-hidden="true"></i></a>Custom serializers</h5>
+<p>Tags are generally sufficient to provide proper JSON marshalling capabilities.</p>
+<p>Models define some custom [un]marshallers in the following situations:</p>
+<ul>
+<li>tuples: array elements are dispatched in the tuple&apos;s struct</li>
+<li>additionalProperties: additional content is dispatched in the <code>map[string]...</code></li>
+<li>subtypes of base types</li>
+<li>types composed of base types</li>
+<li>aliases on formatted types when the underlying type is not string (e.g. Date, Datetime)</li>
+</ul>
 <!--
 ##### [Un]MarshalBinary interfaces
 
 TODO
 -->
-
-
 <!-- References -->
-
-
-<h5 id="external-types"><a name="external-types" class="plugin-anchor" href="#external-types"><i class="fa fa-link" aria-hidden="true"></i></a>External types</h5><p>External types refer to custom type definitions, short-circuiting the use of generated models.</p><p>This is helpful for use-cases when custom marshaling or validation is needed.</p><p>Models may also be generated once, customized manually, then reused in spec as external types.</p><p>The extension annotation to declare an external type is <code>x-go-type</code>.</p><p>A complete example is provided <a href="../../../examples/external-types/swagger-external.yaml">here</a>
-to illustrate the different capabilities to inject custom types.</p><p>Examples:</p><p>External types are typically used in top-level model definitions, like so:</p><pre class="language-"><code class="lang-yaml"><span class="token key atrule">definitions</span><span class="token punctuation">:</span>
+<h5 id="external-types"><a name="external-types" class="plugin-anchor" href="#external-types"><i class="fa fa-link" aria-hidden="true"></i></a>External types</h5>
+<p>External types refer to custom type definitions, short-circuiting the use of generated models.</p>
+<p>This is helpful for use-cases when custom marshaling or validation is needed.</p>
+<p>Models may also be generated once, customized manually, then reused in spec as external types.</p>
+<p>The extension annotation to declare an external type is <code>x-go-type</code>.</p>
+<p>A complete example is provided <a href="../../../examples/external-types/swagger-external.yaml">here</a>
+to illustrate the different capabilities to inject custom types.</p>
+<p>Examples:</p>
+<p>External types are typically used in top-level model definitions, like so:</p>
+<pre class="language-"><code class="lang-yaml"><span class="token key atrule">definitions</span><span class="token punctuation">:</span>
   <span class="token key atrule">myType</span><span class="token punctuation">:</span>
     <span class="token key atrule">type</span><span class="token punctuation">:</span> object
     <span class="token key atrule">x-go-type</span><span class="token punctuation">:</span>
       <span class="token key atrule">type</span><span class="token punctuation">:</span> MyExternalType                          <span class="token comment"># &lt;- abide by go conventions! The type must be exported</span>
       <span class="token key atrule">import</span><span class="token punctuation">:</span>
-        <span class="token key atrule">package</span><span class="token punctuation">:</span> github.com/example/models/custom     <span class="token comment"># &lt;- use fully qualified package names</span></code></pre>
-<p>Such definitions do not produce any generated model.</p><p>References in the generated code to this type will produce code like this:</p><pre class="language-"><code class="lang-go">custom<span class="token punctuation">.</span>MyExternalType</code></pre>
-<p>If no package is provided, it defaults to the models package indicated for codegen:</p><pre class="language-"><code class="lang-yaml"><span class="token key atrule">definitions</span><span class="token punctuation">:</span>
+        <span class="token key atrule">package</span><span class="token punctuation">:</span> github.com/example/models/custom     <span class="token comment"># &lt;- use fully qualified package names</span>
+</code></pre>
+<p>Such definitions do not produce any generated model.</p>
+<p>References in the generated code to this type will produce code like this:</p>
+<pre class="language-"><code class="lang-go">custom<span class="token punctuation">.</span>MyExternalType
+</code></pre>
+<p>If no package is provided, it defaults to the models package indicated for codegen:</p>
+<pre class="language-"><code class="lang-yaml"><span class="token key atrule">definitions</span><span class="token punctuation">:</span>
   <span class="token key atrule">generatedType</span><span class="token punctuation">:</span>
     <span class="token key atrule">type</span><span class="token punctuation">:</span> array
     <span class="token key atrule">items</span><span class="token punctuation">:</span>
@@ -1574,15 +1792,19 @@ to illustrate the different capabilities to inject custom types.</p><p>Examples:
   <span class="token key atrule">myType</span><span class="token punctuation">:</span>
     <span class="token key atrule">type</span><span class="token punctuation">:</span> object
     <span class="token key atrule">x-go-type</span><span class="token punctuation">:</span>
-      <span class="token key atrule">type</span><span class="token punctuation">:</span> MyExternalType</code></pre>
+      <span class="token key atrule">type</span><span class="token punctuation">:</span> MyExternalType
+</code></pre>
 <pre class="language-"><code class="lang-sh">swagger generate models --model-package custom --target ./codegen
 
 <span class="token function">ls</span> ./codegen/custom   <span class="token comment"># &lt;- myType is NOT GENERATED</span>
-<span class="token function">cat</span> ./codegen/custom/generated_type.go</code></pre>
+<span class="token function">cat</span> ./codegen/custom/generated_type.go
+</code></pre>
 <pre class="language-"><code class="lang-go"><span class="token keyword">package</span> custom
 
-<span class="token keyword">type</span> GeneratedType <span class="token punctuation">[</span><span class="token punctuation">]</span>MyType</code></pre>
-<p>External types may also be injected at lower schema levels:</p><pre class="language-"><code class="lang-yaml"><span class="token key atrule">definitions</span><span class="token punctuation">:</span>
+<span class="token keyword">type</span> GeneratedType <span class="token punctuation">[</span><span class="token punctuation">]</span>MyType
+</code></pre>
+<p>External types may also be injected at lower schema levels:</p>
+<pre class="language-"><code class="lang-yaml"><span class="token key atrule">definitions</span><span class="token punctuation">:</span>
   <span class="token key atrule">MyType</span><span class="token punctuation">:</span>
     <span class="token key atrule">type</span><span class="token punctuation">:</span> array
     <span class="token key atrule">items</span><span class="token punctuation">:</span>
@@ -1590,8 +1812,10 @@ to illustrate the different capabilities to inject custom types.</p><p>Examples:
       <span class="token key atrule">x-go-type</span><span class="token punctuation">:</span>
         <span class="token key atrule">type</span><span class="token punctuation">:</span> MyExternalString
         <span class="token key atrule">import</span><span class="token punctuation">:</span>
-          <span class="token key atrule">package</span><span class="token punctuation">:</span> github.com/example/models/custom</code></pre>
-<p>or:</p><pre class="language-"><code class="lang-yaml">  <span class="token key atrule">MyObject</span><span class="token punctuation">:</span>
+          <span class="token key atrule">package</span><span class="token punctuation">:</span> github.com/example/models/custom
+</code></pre>
+<p>or:</p>
+<pre class="language-"><code class="lang-yaml">  <span class="token key atrule">MyObject</span><span class="token punctuation">:</span>
     <span class="token key atrule">type</span><span class="token punctuation">:</span> object
     <span class="token key atrule">properties</span><span class="token punctuation">:</span>
       <span class="token key atrule">p1</span><span class="token punctuation">:</span>
@@ -1600,8 +1824,10 @@ to illustrate the different capabilities to inject custom types.</p><p>Examples:
           <span class="token key atrule">import</span><span class="token punctuation">:</span>
             <span class="token key atrule">package</span><span class="token punctuation">:</span> encoding/json
           <span class="token key atrule">hints</span><span class="token punctuation">:</span>
-            <span class="token key atrule">kind</span><span class="token punctuation">:</span> interface</code></pre>
-<p>This also works for inlined types defined at the operation level:</p><pre class="language-"><code class="lang-yaml">  <span class="token key atrule">parameters</span><span class="token punctuation">:</span>
+            <span class="token key atrule">kind</span><span class="token punctuation">:</span> interface
+</code></pre>
+<p>This also works for inlined types defined at the operation level:</p>
+<pre class="language-"><code class="lang-yaml">  <span class="token key atrule">parameters</span><span class="token punctuation">:</span>
   <span class="token punctuation">-</span> <span class="token key atrule">in</span><span class="token punctuation">:</span> body
     <span class="token key atrule">name</span><span class="token punctuation">:</span> corpus
     <span class="token key atrule">schema</span><span class="token punctuation">:</span>
@@ -1609,25 +1835,42 @@ to illustrate the different capabilities to inject custom types.</p><p>Examples:
       <span class="token key atrule">x-go-type</span><span class="token punctuation">:</span>
         <span class="token key atrule">type</span><span class="token punctuation">:</span> MyExternalStruct
         <span class="token key atrule">import</span><span class="token punctuation">:</span>
-          <span class="token key atrule">package</span><span class="token punctuation">:</span> github.com/example/models/custom</code></pre>
-<blockquote><p><strong>NOTE</strong>: when defining inline arrays or maps, you should know that the external type is
-not considered nullable by default.</p><p>Therefore, unless you explicitly hint the generator to consider it nullable, you&apos;ll
+          <span class="token key atrule">package</span><span class="token punctuation">:</span> github.com/example/models/custom
+</code></pre>
+<blockquote>
+<p><strong>NOTE</strong>: when defining inline arrays or maps, you should know that the external type is
+not considered nullable by default.</p>
+<p>Therefore, unless you explicitly hint the generator to consider it nullable, you&apos;ll
 get constructs such as <code>[]external.MyType</code> or <code>map[string]external.MyType</code> instead of <code>[]*external.MyType</code>
 and <code>map[string]*external.MyType</code> respectively. You can use the <code>nullable</code> hint or the <code>x-nullable</code> extension
-to control this behavior.</p></blockquote><h6 id="known-limitations"><a name="known-limitations" class="plugin-anchor" href="#known-limitations"><i class="fa fa-link" aria-hidden="true"></i></a>Known limitations</h6><ul><li><p>External types only apply to schema objects. Simple swagger types
+to control this behavior.</p>
+</blockquote>
+<h6 id="known-limitations"><a name="known-limitations" class="plugin-anchor" href="#known-limitations"><i class="fa fa-link" aria-hidden="true"></i></a>Known limitations</h6>
+<ul>
+<li><p>External types only apply to schema objects. Simple swagger types
 used in operations for query or path parameters or for response headers
-cannot be externalized at this moment.</p></li>
-<li><p>Inlined external types cannot be declared inside polymorphic types (discriminated types).</p></li>
-<li><p>Inlined external types cannot be declared as embedded. Only top-level definitions are supported.</p></li></ul>
-<h6 id="external-package-aliasing"><a name="external-package-aliasing" class="plugin-anchor" href="#external-package-aliasing"><i class="fa fa-link" aria-hidden="true"></i></a>External package aliasing</h6><p>The following example replaces all references to <code>myModel</code> by <code>github.com/example/models/MyCustomModel</code>.</p><p>Example:</p><pre class="language-"><code class="lang-yaml"><span class="token key atrule">definitions</span><span class="token punctuation">:</span>
+cannot be externalized at this moment.</p>
+</li>
+<li><p>Inlined external types cannot be declared inside polymorphic types (discriminated types).</p>
+</li>
+<li><p>Inlined external types cannot be declared as embedded. Only top-level definitions are supported.</p>
+</li>
+</ul>
+<h6 id="external-package-aliasing"><a name="external-package-aliasing" class="plugin-anchor" href="#external-package-aliasing"><i class="fa fa-link" aria-hidden="true"></i></a>External package aliasing</h6>
+<p>The following example replaces all references to <code>myModel</code> by <code>github.com/example/models/MyCustomModel</code>.</p>
+<p>Example:</p>
+<pre class="language-"><code class="lang-yaml"><span class="token key atrule">definitions</span><span class="token punctuation">:</span>
   <span class="token key atrule">myModel</span><span class="token punctuation">:</span>
     <span class="token key atrule">type</span><span class="token punctuation">:</span> object
     <span class="token key atrule">x-go-type</span><span class="token punctuation">:</span>
       <span class="token key atrule">type</span><span class="token punctuation">:</span> MyCustomModel
       <span class="token key atrule">import</span><span class="token punctuation">:</span>
-        <span class="token key atrule">package</span><span class="token punctuation">:</span> github.com/example/models</code></pre>
+        <span class="token key atrule">package</span><span class="token punctuation">:</span> github.com/example/models
+</code></pre>
 <p>Note that the external model must implement the <code>github.com/go-openapi/runtime.Validatable</code> interface: it must know how to validate a schema.
-No model is generated for this definition.</p><p>External packages may be imported with an alias, like so:</p><pre class="language-"><code class="lang-yaml">  <span class="token key atrule">parameters</span><span class="token punctuation">:</span>
+No model is generated for this definition.</p>
+<p>External packages may be imported with an alias, like so:</p>
+<pre class="language-"><code class="lang-yaml">  <span class="token key atrule">parameters</span><span class="token punctuation">:</span>
     <span class="token key atrule">in</span><span class="token punctuation">:</span> body
     <span class="token key atrule">schema</span><span class="token punctuation">:</span>
       <span class="token key atrule">type</span><span class="token punctuation">:</span> object
@@ -1635,12 +1878,17 @@ No model is generated for this definition.</p><p>External packages may be import
         <span class="token key atrule">type</span><span class="token punctuation">:</span> MyExternalStruct
         <span class="token key atrule">import</span><span class="token punctuation">:</span>
           <span class="token key atrule">package</span><span class="token punctuation">:</span> github.com/example/models/custom
-          <span class="token key atrule">alias</span><span class="token punctuation">:</span> fred</code></pre>
-<p>Imports will look like so:</p><pre class="language-"><code class="lang-go"><span class="token keyword">import</span> <span class="token punctuation">(</span>
+          <span class="token key atrule">alias</span><span class="token punctuation">:</span> fred
+</code></pre>
+<p>Imports will look like so:</p>
+<pre class="language-"><code class="lang-go"><span class="token keyword">import</span> <span class="token punctuation">(</span>
   fred <span class="token string">&quot;github.com/example/models/custom&quot;</span>
 <span class="token punctuation">)</span>
-<span class="token operator">...</span></code></pre>
-<p>Some deconfliction with other known import is applied automatically. Automatic deconfliction is not perfect, though.</p><p>For example:</p><pre class="language-"><code class="lang-yaml">  <span class="token key atrule">MyObject</span><span class="token punctuation">:</span>
+<span class="token operator">...</span>
+</code></pre>
+<p>Some deconfliction with other known import is applied automatically. Automatic deconfliction is not perfect, though.</p>
+<p>For example:</p>
+<pre class="language-"><code class="lang-yaml">  <span class="token key atrule">MyObject</span><span class="token punctuation">:</span>
     <span class="token key atrule">type</span><span class="token punctuation">:</span> object
     <span class="token key atrule">properties</span><span class="token punctuation">:</span>
       <span class="token key atrule">p1</span><span class="token punctuation">:</span>
@@ -1649,13 +1897,18 @@ No model is generated for this definition.</p><p>External packages may be import
           <span class="token key atrule">import</span><span class="token punctuation">:</span>
             <span class="token key atrule">package</span><span class="token punctuation">:</span> encoding/json
           <span class="token key atrule">hints</span><span class="token punctuation">:</span>
-            <span class="token key atrule">kind</span><span class="token punctuation">:</span> interface</code></pre>
+            <span class="token key atrule">kind</span><span class="token punctuation">:</span> interface
+</code></pre>
 <pre class="language-"><code class="lang-go"><span class="token keyword">import</span> <span class="token punctuation">(</span>
   jsonext <span class="token string">&quot;encoding/json&quot;</span>
-<span class="token punctuation">)</span></code></pre>
-<h6 id="embedding-external-types"><a name="embedding-external-types" class="plugin-anchor" href="#embedding-external-types"><i class="fa fa-link" aria-hidden="true"></i></a>Embedding external types</h6><p>Sometimes, it is impractical to impose the constraint that the external type has a validation method.
+<span class="token punctuation">)</span>
+</code></pre>
+<h6 id="embedding-external-types"><a name="embedding-external-types" class="plugin-anchor" href="#embedding-external-types"><i class="fa fa-link" aria-hidden="true"></i></a>Embedding external types</h6>
+<p>Sometimes, it is impractical to impose the constraint that the external type has a validation method.
 You can then use the &quot;embedded&quot; option to create an embedded type based on the external model, and wraps the Validate
-method.</p><p>Example:</p><pre class="language-"><code class="lang-yaml"><span class="token key atrule">definitions</span><span class="token punctuation">:</span>
+method.</p>
+<p>Example:</p>
+<pre class="language-"><code class="lang-yaml"><span class="token key atrule">definitions</span><span class="token punctuation">:</span>
   <span class="token key atrule">Time</span><span class="token punctuation">:</span>
     <span class="token key atrule">type</span><span class="token punctuation">:</span> string
     <span class="token key atrule">format</span><span class="token punctuation">:</span> date<span class="token punctuation">-</span>time         <span class="token comment"># &lt;- documentary only (external types takes over). This has no impact on generation.</span>
@@ -1663,8 +1916,10 @@ method.</p><p>Example:</p><pre class="language-"><code class="lang-yaml"><span c
       <span class="token key atrule">type</span><span class="token punctuation">:</span> Time
       <span class="token key atrule">import</span><span class="token punctuation">:</span>
         <span class="token key atrule">package</span><span class="token punctuation">:</span> time
-      <span class="token key atrule">embedded</span><span class="token punctuation">:</span> <span class="token boolean important">true</span></code></pre>
-<p>This example generates a wrapper type in the package model with a <code>Validate</code> method like this:</p><pre class="language-"><code class="lang-go"><span class="token keyword">import</span> <span class="token punctuation">(</span>
+      <span class="token key atrule">embedded</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+</code></pre>
+<p>This example generates a wrapper type in the package model with a <code>Validate</code> method like this:</p>
+<pre class="language-"><code class="lang-go"><span class="token keyword">import</span> <span class="token punctuation">(</span>
     timeext <span class="token string">&quot;time&quot;</span>
 
     <span class="token string">&quot;github.com/go-openapi/runtime&quot;</span>
@@ -1685,15 +1940,22 @@ method.</p><p>Example:</p><pre class="language-"><code class="lang-yaml"><span c
         <span class="token keyword">return</span> v<span class="token punctuation">.</span><span class="token function">Validate</span><span class="token punctuation">(</span>formats<span class="token punctuation">)</span>
     <span class="token punctuation">}</span>
     <span class="token keyword">return</span> <span class="token boolean">nil</span>
-<span class="token punctuation">}</span></code></pre>
-<p>The generated <code>Validate</code> method uses any existing <code>Validate</code> method or just returns <code>nil</code> (i.e. data is valid).</p><blockquote><p><strong>NOTE</strong>: at the moment, we do not support the <code>format</code> specification over the embedded type. Format will be documentary only in that case.</p></blockquote><p>Other examples:</p><pre class="language-"><code class="lang-yaml">  <span class="token key atrule">Raw</span><span class="token punctuation">:</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>The generated <code>Validate</code> method uses any existing <code>Validate</code> method or just returns <code>nil</code> (i.e. data is valid).</p>
+<blockquote>
+<p><strong>NOTE</strong>: at the moment, we do not support the <code>format</code> specification over the embedded type. Format will be documentary only in that case.</p>
+</blockquote>
+<p>Other examples:</p>
+<pre class="language-"><code class="lang-yaml">  <span class="token key atrule">Raw</span><span class="token punctuation">:</span>
     <span class="token key atrule">x-go-type</span><span class="token punctuation">:</span>
       <span class="token key atrule">type</span><span class="token punctuation">:</span> RawMessage
       <span class="token key atrule">import</span><span class="token punctuation">:</span>
         <span class="token key atrule">package</span><span class="token punctuation">:</span> encoding/json
       <span class="token key atrule">hints</span><span class="token punctuation">:</span>
         <span class="token key atrule">kind</span><span class="token punctuation">:</span> primitive
-      <span class="token key atrule">embedded</span><span class="token punctuation">:</span> <span class="token boolean important">true</span></code></pre>
+      <span class="token key atrule">embedded</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+</code></pre>
 <pre class="language-"><code class="lang-go"><span class="token keyword">import</span> <span class="token punctuation">(</span>
  <span class="token operator">...</span>
  jsonext <span class="token string">&quot;encoding/json&quot;</span>
@@ -1710,8 +1972,11 @@ method.</p><p>Example:</p><pre class="language-"><code class="lang-yaml"><span c
         <span class="token keyword">return</span> v<span class="token punctuation">.</span><span class="token function">Validate</span><span class="token punctuation">(</span>formats<span class="token punctuation">)</span>
     <span class="token punctuation">}</span>
     <span class="token keyword">return</span> <span class="token boolean">nil</span>
-<span class="token punctuation">}</span></code></pre>
-<p>You can embed types as pointers just the same.</p><p>Example:</p><pre class="language-"><code class="lang-yaml"><span class="token key atrule">definitions</span><span class="token punctuation">:</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>You can embed types as pointers just the same.</p>
+<p>Example:</p>
+<pre class="language-"><code class="lang-yaml"><span class="token key atrule">definitions</span><span class="token punctuation">:</span>
   <span class="token key atrule">Time</span><span class="token punctuation">:</span>
     <span class="token key atrule">type</span><span class="token punctuation">:</span> string
     <span class="token key atrule">x-go-type</span><span class="token punctuation">:</span>
@@ -1720,14 +1985,20 @@ method.</p><p>Example:</p><pre class="language-"><code class="lang-yaml"><span c
         <span class="token key atrule">package</span><span class="token punctuation">:</span> time
       <span class="token key atrule">hints</span><span class="token punctuation">:</span>
         <span class="token key atrule">nullable</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>  <span class="token comment"># &lt;- nullable here refers to the nullability of the embedded external type</span>
-      <span class="token key atrule">embedded</span><span class="token punctuation">:</span> <span class="token boolean important">true</span></code></pre>
+      <span class="token key atrule">embedded</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+</code></pre>
 <pre class="language-"><code class="lang-go"><span class="token keyword">type</span> Time <span class="token keyword">struct</span> <span class="token punctuation">{</span>
     <span class="token operator">*</span>time<span class="token punctuation">.</span>Time
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span>
+</code></pre>
 <p>Using external types is powerful, but normally you still have to describe your type in the specification. That is expected,
-since this is how you document your API.</p><p>If you don&apos;t (that is the type referred to doesn&apos;t correspond to the type in the spec), then the generator may fail to produce correct code,
-because it simply has no way to infer what <em>kind</em> of object is being referred to.</p><p>To solve this kind of problem, you may hint the generator to produce a correct usage of the external types, even though the specification
-doesn&apos;t reflect the correct nature of the object.</p><p>Example:</p><pre class="language-"><code class="lang-yaml"><span class="token key atrule">definitions</span><span class="token punctuation">:</span>
+since this is how you document your API.</p>
+<p>If you don&apos;t (that is the type referred to doesn&apos;t correspond to the type in the spec), then the generator may fail to produce correct code,
+because it simply has no way to infer what <em>kind</em> of object is being referred to.</p>
+<p>To solve this kind of problem, you may hint the generator to produce a correct usage of the external types, even though the specification
+doesn&apos;t reflect the correct nature of the object.</p>
+<p>Example:</p>
+<pre class="language-"><code class="lang-yaml"><span class="token key atrule">definitions</span><span class="token punctuation">:</span>
   <span class="token key atrule">Error</span><span class="token punctuation">:</span>
     <span class="token key atrule">type</span><span class="token punctuation">:</span> object
 
@@ -1738,10 +2009,15 @@ doesn&apos;t reflect the correct nature of the object.</p><p>Example:</p><pre cl
         <span class="token key atrule">package</span><span class="token punctuation">:</span> github.com/go<span class="token punctuation">-</span>swagger/go<span class="token punctuation">-</span>swagger/fixtures/enhancements/2224/external
       <span class="token key atrule">hints</span><span class="token punctuation">:</span>
         <span class="token key atrule">kind</span><span class="token punctuation">:</span> object
-    <span class="token key atrule">x-nullable</span><span class="token punctuation">:</span> <span class="token boolean important">true</span></code></pre>
+    <span class="token key atrule">x-nullable</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+</code></pre>
 <p>In this example, the <code>Hotspot</code> schema is empty in the specification. The generator therefore can only guess that this is some <code>interface{}</code> type.
-Now thanks to the hint <code>kind: object</code>, we instruct the generator to expect an object so as to correctly reference this object.</p><h6 id="validation-of-external-types"><a name="validation-of-external-types" class="plugin-anchor" href="#validation-of-external-types"><i class="fa fa-link" aria-hidden="true"></i></a>Validation of external types</h6><p>By default, the generator assumes that external types can be validated and will generate code that calls the &quot;Validate&quot;
-method of the type.</p><p>This can be disabled  by providing an explicit hint:</p><pre class="language-"><code class="lang-yaml">  <span class="token key atrule">MyObject</span><span class="token punctuation">:</span>
+Now thanks to the hint <code>kind: object</code>, we instruct the generator to expect an object so as to correctly reference this object.</p>
+<h6 id="validation-of-external-types"><a name="validation-of-external-types" class="plugin-anchor" href="#validation-of-external-types"><i class="fa fa-link" aria-hidden="true"></i></a>Validation of external types</h6>
+<p>By default, the generator assumes that external types can be validated and will generate code that calls the &quot;Validate&quot;
+method of the type.</p>
+<p>This can be disabled  by providing an explicit hint:</p>
+<pre class="language-"><code class="lang-yaml">  <span class="token key atrule">MyObject</span><span class="token punctuation">:</span>
     <span class="token key atrule">type</span><span class="token punctuation">:</span> object
     <span class="token key atrule">properties</span><span class="token punctuation">:</span>
       <span class="token key atrule">p1</span><span class="token punctuation">:</span>
@@ -1750,9 +2026,17 @@ method of the type.</p><p>This can be disabled  by providing an explicit hint:</
           <span class="token key atrule">import</span><span class="token punctuation">:</span>
             <span class="token key atrule">package</span><span class="token punctuation">:</span> encoding/json
           <span class="token key atrule">hints</span><span class="token punctuation">:</span>
-            <span class="token key atrule">noValidation</span><span class="token punctuation">:</span> <span class="token boolean important">true</span></code></pre>
-<p>External types with an hint type &quot;interface&quot; or &quot;stream&quot; do not call validations.</p><p>Embedded types use type assertion to dynamically determine if the external type implements the <code>runtime.Validatable</code> interface.</p><h6 id="external-type-hints"><a name="external-type-hints" class="plugin-anchor" href="#external-type-hints"><i class="fa fa-link" aria-hidden="true"></i></a>External type hints</h6><p>The generator does not attempt to introspect external types. They may even not exist at generation time.</p><p>Therefore, the generator has no idea of whether it is safe to generate pointers to the external type.</p><p>By default, external types are considered non nullable. This can be altered with the nullable hint or
-by hinting a type that is considered nullable (such as &quot;object&quot;).</p><p>Supported hints:</p><pre class="language-"><code class="lang-yaml">        <span class="token key atrule">x-go-type</span><span class="token punctuation">:</span>
+            <span class="token key atrule">noValidation</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+</code></pre>
+<p>External types with an hint type &quot;interface&quot; or &quot;stream&quot; do not call validations.</p>
+<p>Embedded types use type assertion to dynamically determine if the external type implements the <code>runtime.Validatable</code> interface.</p>
+<h6 id="external-type-hints"><a name="external-type-hints" class="plugin-anchor" href="#external-type-hints"><i class="fa fa-link" aria-hidden="true"></i></a>External type hints</h6>
+<p>The generator does not attempt to introspect external types. They may even not exist at generation time.</p>
+<p>Therefore, the generator has no idea of whether it is safe to generate pointers to the external type.</p>
+<p>By default, external types are considered non nullable. This can be altered with the nullable hint or
+by hinting a type that is considered nullable (such as &quot;object&quot;).</p>
+<p>Supported hints:</p>
+<pre class="language-"><code class="lang-yaml">        <span class="token key atrule">x-go-type</span><span class="token punctuation">:</span>
           <span class="token key atrule">type</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>external type name (exported symbol<span class="token punctuation">,</span> without package qualifier)<span class="token punctuation">}</span>
           <span class="token key atrule">import</span><span class="token punctuation">:</span>
             <span class="token key atrule">package</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>fully qualified package name <span class="token punctuation">-</span> defaults to the target models defined by the <span class="token punctuation">-</span><span class="token punctuation">-</span>model<span class="token punctuation">-</span>package flag<span class="token punctuation">}</span>
@@ -1760,8 +2044,12 @@ by hinting a type that is considered nullable (such as &quot;object&quot;).</p><
             <span class="token key atrule">kind</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>map<span class="token punctuation">|</span>object<span class="token punctuation">|</span>array<span class="token punctuation">|</span>interface<span class="token punctuation">|</span>primitive<span class="token punctuation">|</span>tuple<span class="token punctuation">|</span>stream<span class="token punctuation">}</span>
             <span class="token key atrule">noValidation</span><span class="token punctuation">:</span> true<span class="token punctuation">|</span>false  <span class="token comment"># &lt;- skips validation: defaults to true for embedded types, defaults to false for non-embedded, always false for kinds interface and stream</span>
             <span class="token key atrule">nullable</span><span class="token punctuation">:</span> true<span class="token punctuation">|</span>false      <span class="token comment"># &lt;- default to true for kinds object,primitive and tuple</span>
-          <span class="token key atrule">embedded</span><span class="token punctuation">:</span> true<span class="token punctuation">|</span>false        <span class="token comment"># &lt;- defaults to false, generates a struct that wraps the external type</span></code></pre>
-<h6 id="caveats-with-imports"><a name="caveats-with-imports" class="plugin-anchor" href="#caveats-with-imports"><i class="fa fa-link" aria-hidden="true"></i></a>Caveats with imports</h6><p>At this moment, external packages and aliases are deconflicted against other known imports and variables.</p><p>Example:</p><pre class="language-"><code class="lang-yaml">  <span class="token key atrule">MyObject</span><span class="token punctuation">:</span>
+          <span class="token key atrule">embedded</span><span class="token punctuation">:</span> true<span class="token punctuation">|</span>false        <span class="token comment"># &lt;- defaults to false, generates a struct that wraps the external type</span>
+</code></pre>
+<h6 id="caveats-with-imports"><a name="caveats-with-imports" class="plugin-anchor" href="#caveats-with-imports"><i class="fa fa-link" aria-hidden="true"></i></a>Caveats with imports</h6>
+<p>At this moment, external packages and aliases are deconflicted against other known imports and variables.</p>
+<p>Example:</p>
+<pre class="language-"><code class="lang-yaml">  <span class="token key atrule">MyObject</span><span class="token punctuation">:</span>
     <span class="token key atrule">type</span><span class="token punctuation">:</span> object
     <span class="token key atrule">properties</span><span class="token punctuation">:</span>
       <span class="token key atrule">p1</span><span class="token punctuation">:</span>
@@ -1770,13 +2058,18 @@ by hinting a type that is considered nullable (such as &quot;object&quot;).</p><
           <span class="token key atrule">import</span><span class="token punctuation">:</span>
             <span class="token key atrule">package</span><span class="token punctuation">:</span> encoding/json
           <span class="token key atrule">hints</span><span class="token punctuation">:</span>
-            <span class="token key atrule">kind</span><span class="token punctuation">:</span> interface</code></pre>
-<p>will generate an import deconflicted against the standard lib import:</p><pre class="language-"><code class="lang-go"><span class="token keyword">import</span><span class="token punctuation">(</span>
+            <span class="token key atrule">kind</span><span class="token punctuation">:</span> interface
+</code></pre>
+<p>will generate an import deconflicted against the standard lib import:</p>
+<pre class="language-"><code class="lang-go"><span class="token keyword">import</span><span class="token punctuation">(</span>
     <span class="token operator">...</span>
     jsonext <span class="token string">&quot;encoding/json&quot;</span>
     <span class="token operator">...</span>
-    <span class="token punctuation">)</span></code></pre>
-<h6 id="external-package-aliasing"><a name="external-package-aliasing" class="plugin-anchor" href="#external-package-aliasing"><i class="fa fa-link" aria-hidden="true"></i></a>External package aliasing</h6><p>External packages may be imported with an alias, like so:</p><pre class="language-"><code class="lang-yaml">  <span class="token key atrule">parameters</span><span class="token punctuation">:</span>
+    <span class="token punctuation">)</span>
+</code></pre>
+<h6 id="external-package-aliasing"><a name="external-package-aliasing" class="plugin-anchor" href="#external-package-aliasing"><i class="fa fa-link" aria-hidden="true"></i></a>External package aliasing</h6>
+<p>External packages may be imported with an alias, like so:</p>
+<pre class="language-"><code class="lang-yaml">  <span class="token key atrule">parameters</span><span class="token punctuation">:</span>
     <span class="token key atrule">in</span><span class="token punctuation">:</span> body
     <span class="token key atrule">schema</span><span class="token punctuation">:</span>
       <span class="token key atrule">type</span><span class="token punctuation">:</span> object
@@ -1784,12 +2077,17 @@ by hinting a type that is considered nullable (such as &quot;object&quot;).</p><
         <span class="token key atrule">type</span><span class="token punctuation">:</span> MyExternalStruct
         <span class="token key atrule">import</span><span class="token punctuation">:</span>
           <span class="token key atrule">package</span><span class="token punctuation">:</span> github.com/example/models/custom
-          <span class="token key atrule">alias</span><span class="token punctuation">:</span> fred</code></pre>
-<p>Imports will look like so:</p><pre class="language-"><code class="lang-go"><span class="token keyword">import</span> <span class="token punctuation">(</span>
+          <span class="token key atrule">alias</span><span class="token punctuation">:</span> fred
+</code></pre>
+<p>Imports will look like so:</p>
+<pre class="language-"><code class="lang-go"><span class="token keyword">import</span> <span class="token punctuation">(</span>
   fred <span class="token string">&quot;github.com/example/models/custom&quot;</span>
 <span class="token punctuation">)</span>
-<span class="token operator">...</span></code></pre>
-<p>Some deconfliction with other known imports is applied automatically. Automatic deconfliction is not perfect, though.</p><p>For example:</p><pre class="language-"><code class="lang-yaml">  <span class="token key atrule">MyObject</span><span class="token punctuation">:</span>
+<span class="token operator">...</span>
+</code></pre>
+<p>Some deconfliction with other known imports is applied automatically. Automatic deconfliction is not perfect, though.</p>
+<p>For example:</p>
+<pre class="language-"><code class="lang-yaml">  <span class="token key atrule">MyObject</span><span class="token punctuation">:</span>
     <span class="token key atrule">type</span><span class="token punctuation">:</span> object
     <span class="token key atrule">properties</span><span class="token punctuation">:</span>
       <span class="token key atrule">p1</span><span class="token punctuation">:</span>
@@ -1798,34 +2096,65 @@ by hinting a type that is considered nullable (such as &quot;object&quot;).</p><
           <span class="token key atrule">import</span><span class="token punctuation">:</span>
             <span class="token key atrule">package</span><span class="token punctuation">:</span> encoding/json
           <span class="token key atrule">hints</span><span class="token punctuation">:</span>
-            <span class="token key atrule">kind</span><span class="token punctuation">:</span> interface</code></pre>
+            <span class="token key atrule">kind</span><span class="token punctuation">:</span> interface
+</code></pre>
 <pre class="language-"><code class="lang-go"><span class="token keyword">import</span> <span class="token punctuation">(</span>
   jsonext <span class="token string">&quot;encoding/json&quot;</span>
-<span class="token punctuation">)</span></code></pre>
-<p>Package aliases may still conflict with packages produces by operation tags or other external imports.</p><p>In such cases, modify the type alias under <code>x-go-type</code> to resolve the conflict manually.</p><h3 id="customizing-struct-tags"><a name="customizing-struct-tags" class="plugin-anchor" href="#customizing-struct-tags"><i class="fa fa-link" aria-hidden="true"></i></a>Customizing struct tags</h3><p>When a model struct is generated, tags for json are generated to keep the original name:</p><pre class="language-"><code class="lang-go"><span class="token keyword">type</span> ObjectWithTag <span class="token keyword">struct</span> <span class="token punctuation">{</span>
+<span class="token punctuation">)</span>
+</code></pre>
+<p>Package aliases may still conflict with packages produces by operation tags or other external imports.</p>
+<p>In such cases, modify the type alias under <code>x-go-type</code> to resolve the conflict manually.</p>
+<h3 id="customizing-struct-tags"><a name="customizing-struct-tags" class="plugin-anchor" href="#customizing-struct-tags"><i class="fa fa-link" aria-hidden="true"></i></a>Customizing struct tags</h3>
+<p>When a model struct is generated, tags for json are generated to keep the original name:</p>
+<pre class="language-"><code class="lang-go"><span class="token keyword">type</span> ObjectWithTag <span class="token keyword">struct</span> <span class="token punctuation">{</span>
     StandardTag <span class="token builtin">string</span> <span class="token string">`json:&quot;standardTag,omitempty&quot;`</span>
-<span class="token punctuation">}</span></code></pre>
-<h4 id="extra-tags"><a name="extra-tags" class="plugin-anchor" href="#extra-tags"><i class="fa fa-link" aria-hidden="true"></i></a>Extra tags</h4><p>Extra tags may be defined with the CLI generation option <code>--sruct-tags</code>.</p><p>Extra tags essentially repeat the name of the field can be added from the command line option.</p><blockquote><p><strong>NOTE</strong>: at this moment, all tag modifiers (omitempty, string) are repeated like for the json tag.</p></blockquote><pre class="language-"><code class="lang-bash">swagger generate model <span class="token punctuation">..</span>. --struct-tags yaml,db</code></pre>
+<span class="token punctuation">}</span>
+</code></pre>
+<h4 id="extra-tags"><a name="extra-tags" class="plugin-anchor" href="#extra-tags"><i class="fa fa-link" aria-hidden="true"></i></a>Extra tags</h4>
+<p>Extra tags may be defined with the CLI generation option <code>--sruct-tags</code>.</p>
+<p>Extra tags essentially repeat the name of the field can be added from the command line option.</p>
+<blockquote>
+<p><strong>NOTE</strong>: at this moment, all tag modifiers (omitempty, string) are repeated like for the json tag.</p>
+</blockquote>
+<pre class="language-"><code class="lang-bash">swagger generate model <span class="token punctuation">..</span>. --struct-tags yaml,db
+</code></pre>
 <pre class="language-"><code class="lang-go"><span class="token keyword">type</span> ObjectWithTag <span class="token keyword">struct</span> <span class="token punctuation">{</span>
     StandardTag <span class="token builtin">string</span> <span class="token string">`json:&quot;standardTag,omitempty&quot; yaml:&quot;standardTag,omitempty&quot; db:&quot;standardTag,omitempty&quot;`</span>
-<span class="token punctuation">}</span></code></pre>
-<h4 id="custom-tags"><a name="custom-tags" class="plugin-anchor" href="#custom-tags"><i class="fa fa-link" aria-hidden="true"></i></a>Custom tags</h4><p>A custom may be added to a field using the <code>x-go-custom-tag</code> extension. Like so:</p><h4 id="omit-empty-values"><a name="omit-empty-values" class="plugin-anchor" href="#omit-empty-values"><i class="fa fa-link" aria-hidden="true"></i></a>Omit empty values</h4><p>By default, a struct field is omitted when it holds the zero value (tag modifier: <code>omitempty</code>).</p><p>Required fields are never omitted.</p><pre class="language-"><code class="lang-go"><span class="token keyword">type</span> ObjectWithTag <span class="token keyword">struct</span> <span class="token punctuation">{</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h4 id="custom-tags"><a name="custom-tags" class="plugin-anchor" href="#custom-tags"><i class="fa fa-link" aria-hidden="true"></i></a>Custom tags</h4>
+<p>A custom may be added to a field using the <code>x-go-custom-tag</code> extension. Like so:</p>
+<h4 id="omit-empty-values"><a name="omit-empty-values" class="plugin-anchor" href="#omit-empty-values"><i class="fa fa-link" aria-hidden="true"></i></a>Omit empty values</h4>
+<p>By default, a struct field is omitted when it holds the zero value (tag modifier: <code>omitempty</code>).</p>
+<p>Required fields are never omitted.</p>
+<pre class="language-"><code class="lang-go"><span class="token keyword">type</span> ObjectWithTag <span class="token keyword">struct</span> <span class="token punctuation">{</span>
     RequiredField <span class="token operator">*</span><span class="token builtin">string</span> <span class="token string">`json:&quot;requiredField&quot;`</span>
-<span class="token punctuation">}</span></code></pre>
-<p>This property can be altered using the <code>x-omitempty</code> extension. Like so:</p><pre class="language-"><code class="lang-yaml"><span class="token key atrule">objectWithTag</span><span class="token punctuation">:</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>This property can be altered using the <code>x-omitempty</code> extension. Like so:</p>
+<pre class="language-"><code class="lang-yaml"><span class="token key atrule">objectWithTag</span><span class="token punctuation">:</span>
   <span class="token key atrule">type</span><span class="token punctuation">:</span> object
   <span class="token key atrule">properties</span><span class="token punctuation">:</span>
     <span class="token key atrule">field</span><span class="token punctuation">:</span>
       <span class="token key atrule">type</span><span class="token punctuation">:</span> string
-      <span class="token key atrule">x-omitempty</span><span class="token punctuation">:</span> <span class="token boolean important">false</span></code></pre>
+      <span class="token key atrule">x-omitempty</span><span class="token punctuation">:</span> <span class="token boolean important">false</span>
+</code></pre>
 <pre class="language-"><code class="lang-go"><span class="token keyword">type</span> ObjectWithTag <span class="token keyword">struct</span> <span class="token punctuation">{</span>
     Field <span class="token builtin">string</span> <span class="token string">`json:&quot;field&quot;`</span>
-<span class="token punctuation">}</span></code></pre>
-<p>The extension does not force a required field to get the &quot;omitempty&quot; modifier.</p><h4 id="numerical-values-as-string"><a name="numerical-values-as-string" class="plugin-anchor" href="#numerical-values-as-string"><i class="fa fa-link" aria-hidden="true"></i></a>Numerical values as string</h4><p>For some specific requirements, the standard json library may consider numbers as strings.
-This is done by adding the modifier <code>json:&quot;...,string&quot;</code> to the tag.</p><p>With go-swagger you can specify this modifier by adding the <code>x-go-json-string: true</code> extension to your type.</p><pre class="language-"><code class="lang-go"><span class="token keyword">type</span> ObjectWithTag <span class="token keyword">struct</span> <span class="token punctuation">{</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>The extension does not force a required field to get the &quot;omitempty&quot; modifier.</p>
+<h4 id="numerical-values-as-string"><a name="numerical-values-as-string" class="plugin-anchor" href="#numerical-values-as-string"><i class="fa fa-link" aria-hidden="true"></i></a>Numerical values as string</h4>
+<p>For some specific requirements, the standard json library may consider numbers as strings.
+This is done by adding the modifier <code>json:&quot;...,string&quot;</code> to the tag.</p>
+<p>With go-swagger you can specify this modifier by adding the <code>x-go-json-string: true</code> extension to your type.</p>
+<pre class="language-"><code class="lang-go"><span class="token keyword">type</span> ObjectWithTag <span class="token keyword">struct</span> <span class="token punctuation">{</span>
     NumericField <span class="token builtin">int</span> <span class="token string">`json:&quot;field,omitempty,string&quot;`</span>
-<span class="token punctuation">}</span></code></pre>
-<h4 id="xml-tags"><a name="xml-tags" class="plugin-anchor" href="#xml-tags"><i class="fa fa-link" aria-hidden="true"></i></a>XML tags</h4><p>The XML name and attribute Swagger properties are used to generate extra tags.</p><pre class="language-"><code class="lang-yaml"><span class="token key atrule">definitions</span><span class="token punctuation">:</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h4 id="xml-tags"><a name="xml-tags" class="plugin-anchor" href="#xml-tags"><i class="fa fa-link" aria-hidden="true"></i></a>XML tags</h4>
+<p>The XML name and attribute Swagger properties are used to generate extra tags.</p>
+<pre class="language-"><code class="lang-yaml"><span class="token key atrule">definitions</span><span class="token punctuation">:</span>
  <span class="token key atrule">objectWithXML</span><span class="token punctuation">:</span>
    <span class="token key atrule">type</span><span class="token punctuation">:</span> object
    <span class="token key atrule">properties</span><span class="token punctuation">:</span>
@@ -1833,20 +2162,40 @@ This is done by adding the modifier <code>json:&quot;...,string&quot;</code> to 
        <span class="token key atrule">type</span><span class="token punctuation">:</span> string
        <span class="token key atrule">xml</span><span class="token punctuation">:</span>
          <span class="token key atrule">name</span><span class="token punctuation">:</span> xmlObject
-         <span class="token key atrule">attribute</span><span class="token punctuation">:</span> <span class="token boolean important">true</span></code></pre>
+         <span class="token key atrule">attribute</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+</code></pre>
 <pre class="language-"><code class="lang-go"><span class="token keyword">type</span> ObjectWithXML <span class="token keyword">struct</span> <span class="token punctuation">{</span>
     Field <span class="token builtin">string</span> <span class="token string">`json:&quot;field,omitempty&quot; xml:&quot;xmlObject,attr,omitempty&quot;`</span>
-<span class="token punctuation">}</span></code></pre>
-<h4 id="the-example-tag"><a name="the-example-tag" class="plugin-anchor" href="#the-example-tag"><i class="fa fa-link" aria-hidden="true"></i></a>The example tag</h4><p>If you add <code>example</code> to the list of generated tags from the CLI (<code>swagger generate ... --struct-tags example</code>),
-a special example tag is created with the example value taken from the specification.</p><pre class="language-"><code class="lang-yaml"><span class="token key atrule">definitions</span><span class="token punctuation">:</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h4 id="the-example-tag"><a name="the-example-tag" class="plugin-anchor" href="#the-example-tag"><i class="fa fa-link" aria-hidden="true"></i></a>The example tag</h4>
+<p>If you add <code>example</code> to the list of generated tags from the CLI (<code>swagger generate ... --struct-tags example</code>),
+a special example tag is created with the example value taken from the specification.</p>
+<pre class="language-"><code class="lang-yaml"><span class="token key atrule">definitions</span><span class="token punctuation">:</span>
   <span class="token key atrule">objectWithExample</span><span class="token punctuation">:</span>
    <span class="token key atrule">properties</span><span class="token punctuation">:</span>
      <span class="token key atrule">field</span><span class="token punctuation">:</span>
        <span class="token key atrule">type</span><span class="token punctuation">:</span> string
-       <span class="token key atrule">example</span><span class="token punctuation">:</span> <span class="token string">&quot;sample&quot;</span></code></pre>
+       <span class="token key atrule">example</span><span class="token punctuation">:</span> <span class="token string">&quot;sample&quot;</span>
+</code></pre>
 <pre class="language-"><code class="lang-go"><span class="token keyword">type</span> ObjectWithExample <span class="token keyword">struct</span> <span class="token punctuation">{</span>
     Field <span class="token builtin">string</span> <span class="token string">`json:&quot;field,omitempty&quot; example:&quot;\&quot;sample\&quot;&quot;`</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span>
+</code></pre>
+<h4 id="the-description-tag"><a name="the-description-tag" class="plugin-anchor" href="#the-description-tag"><i class="fa fa-link" aria-hidden="true"></i></a>The description tag</h4>
+<p>If you add <code>description</code> to the list of generated tags from the CLI (<code>swagger generate ... --struct-tags description</code>),
+a special description tag is created with the description value taken from the specification.</p>
+<pre class="language-"><code class="lang-yaml"><span class="token key atrule">definitions</span><span class="token punctuation">:</span>
+  <span class="token key atrule">objectWithDescription</span><span class="token punctuation">:</span>
+   <span class="token key atrule">properties</span><span class="token punctuation">:</span>
+     <span class="token key atrule">field</span><span class="token punctuation">:</span>
+       <span class="token key atrule">type</span><span class="token punctuation">:</span> string
+       <span class="token key atrule">description</span><span class="token punctuation">:</span> <span class="token string">&quot;some description&quot;</span>
+</code></pre>
+<pre class="language-"><code class="lang-go"><span class="token keyword">type</span> ObjectWithDescription <span class="token keyword">struct</span> <span class="token punctuation">{</span>
+    Field <span class="token builtin">string</span> <span class="token string">`json:&quot;field,omitempty&quot; description:&quot;\&quot;some description\&quot;&quot;`</span>
+<span class="token punctuation">}</span>
+</code></pre>
 
                                 
                                 </section>
@@ -1886,7 +2235,7 @@ a special example tag is created with the example value taken from the specifica
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Schema generation rules","level":"1.4.7.4.2.1","depth":5,"next":{"title":"Generate spec from source","level":"1.4.8","depth":2,"ref":"","articles":[{"title":"Spec Usage","level":"1.4.8.1","depth":3,"path":"generate/spec.md","ref":"generate/spec.md","articles":[]},{"title":"Spec generation rules","level":"1.4.8.2","depth":3,"path":"use/spec.md","ref":"use/spec.md","articles":[{"title":"swagger:meta","level":"1.4.8.2.1","depth":4,"path":"use/spec/meta.md","ref":"use/spec/meta.md","articles":[]},{"title":"swagger:route","level":"1.4.8.2.2","depth":4,"path":"use/spec/route.md","ref":"use/spec/route.md","articles":[]},{"title":"swagger:params","level":"1.4.8.2.3","depth":4,"path":"use/spec/params.md","ref":"use/spec/params.md","articles":[]},{"title":"swagger:operation","level":"1.4.8.2.4","depth":4,"path":"use/spec/operation.md","ref":"use/spec/operation.md","articles":[]},{"title":"swagger:response","level":"1.4.8.2.5","depth":4,"path":"use/spec/response.md","ref":"use/spec/response.md","articles":[]},{"title":"swagger:model","level":"1.4.8.2.6","depth":4,"path":"use/spec/model.md","ref":"use/spec/model.md","articles":[]},{"title":"swagger:allOf","level":"1.4.8.2.7","depth":4,"path":"use/spec/allOf.md","ref":"use/spec/allOf.md","articles":[]},{"title":"swagger:strfmt","level":"1.4.8.2.8","depth":4,"path":"use/spec/strfmt.md","ref":"use/spec/strfmt.md","articles":[]},{"title":"swagger:discriminated","level":"1.4.8.2.9","depth":4,"path":"use/spec/discriminated.md","ref":"use/spec/discriminated.md","articles":[]},{"title":"swagger:ignore","level":"1.4.8.2.10","depth":4,"path":"use/spec/ignore.md","ref":"use/spec/ignore.md","articles":[]}]}]},"previous":{"title":"How to use models","level":"1.4.7.4.2","depth":4,"path":"use/model.md","ref":"use/model.md","articles":[{"title":"Schema generation rules","level":"1.4.7.4.2.1","depth":5,"path":"use/models/schemas.md","ref":"use/models/schemas.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors","livereload"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"prism":{},"livereload":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"use/models/schemas.md","mtime":"2021-01-18T18:02:30.856Z","type":"markdown"},"gitbook":{"version":"3.2.0","time":"2021-01-19T04:09:47.021Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Schema generation rules","level":"1.4.7.5.2.1","depth":5,"next":{"title":"Generate spec from source","level":"1.4.8","depth":2,"ref":"","articles":[{"title":"Spec Usage","level":"1.4.8.1","depth":3,"path":"generate/spec.md","ref":"generate/spec.md","articles":[]},{"title":"Spec generation rules","level":"1.4.8.2","depth":3,"path":"use/spec.md","ref":"use/spec.md","articles":[{"title":"swagger:meta","level":"1.4.8.2.1","depth":4,"path":"use/spec/meta.md","ref":"use/spec/meta.md","articles":[]},{"title":"swagger:route","level":"1.4.8.2.2","depth":4,"path":"use/spec/route.md","ref":"use/spec/route.md","articles":[]},{"title":"swagger:params","level":"1.4.8.2.3","depth":4,"path":"use/spec/params.md","ref":"use/spec/params.md","articles":[]},{"title":"swagger:operation","level":"1.4.8.2.4","depth":4,"path":"use/spec/operation.md","ref":"use/spec/operation.md","articles":[]},{"title":"swagger:response","level":"1.4.8.2.5","depth":4,"path":"use/spec/response.md","ref":"use/spec/response.md","articles":[]},{"title":"swagger:model","level":"1.4.8.2.6","depth":4,"path":"use/spec/model.md","ref":"use/spec/model.md","articles":[]},{"title":"swagger:allOf","level":"1.4.8.2.7","depth":4,"path":"use/spec/allOf.md","ref":"use/spec/allOf.md","articles":[]},{"title":"swagger:strfmt","level":"1.4.8.2.8","depth":4,"path":"use/spec/strfmt.md","ref":"use/spec/strfmt.md","articles":[]},{"title":"swagger:discriminated","level":"1.4.8.2.9","depth":4,"path":"use/spec/discriminated.md","ref":"use/spec/discriminated.md","articles":[]},{"title":"swagger:ignore","level":"1.4.8.2.10","depth":4,"path":"use/spec/ignore.md","ref":"use/spec/ignore.md","articles":[]}]}]},"previous":{"title":"How to use models","level":"1.4.7.5.2","depth":4,"path":"use/model.md","ref":"use/model.md","articles":[{"title":"Schema generation rules","level":"1.4.7.5.2.1","depth":5,"path":"use/models/schemas.md","ref":"use/models/schemas.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"prism":{},"anchors":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"use/models/schemas.md","mtime":"2021-03-31T03:29:05.595Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2021-11-18T06:04:50.878Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
@@ -1897,10 +2246,6 @@ a special example tag is created with the example value taken from the specifica
     
         
         <script src="../../gitbook/gitbook-plugin-forkmegithub/plugin.js"></script>
-        
-    
-        
-        <script src="../../gitbook/gitbook-plugin-livereload/plugin.js"></script>
         
     
         

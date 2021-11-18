@@ -2,12 +2,12 @@
 <!DOCTYPE HTML>
 <html lang="" >
     <head>
-        <title>Installation · GitBook</title>
         <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Installation · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 3.2.0">
+        <meta name="generator" content="GitBook 3.2.3">
         
         
         
@@ -448,7 +448,20 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.7.3" >
+        <li class="chapter " data-level="1.4.7.3" data-path="generate/cli.html">
+            
+                <a href="generate/cli.html">
+            
+                    
+                    CLI (Command Line Tool)
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.7.4" >
             
                 <span>
             
@@ -462,7 +475,7 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.4.7.3.1" data-path="generate/server.html">
+        <li class="chapter " data-level="1.4.7.4.1" data-path="generate/server.html">
             
                 <a href="generate/server.html">
             
@@ -475,7 +488,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.7.3.2" data-path="use/server.html">
+        <li class="chapter " data-level="1.4.7.4.2" data-path="use/server.html">
             
                 <a href="use/server.html">
             
@@ -493,7 +506,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.7.4" >
+        <li class="chapter " data-level="1.4.7.5" >
             
                 <span>
             
@@ -507,7 +520,7 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.4.7.4.1" data-path="generate/model.html">
+        <li class="chapter " data-level="1.4.7.5.1" data-path="generate/model.html">
             
                 <a href="generate/model.html">
             
@@ -520,7 +533,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.7.4.2" data-path="use/model.html">
+        <li class="chapter " data-level="1.4.7.5.2" data-path="use/model.html">
             
                 <a href="use/model.html">
             
@@ -534,7 +547,7 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.4.7.4.2.1" data-path="use/models/schemas.html">
+        <li class="chapter " data-level="1.4.7.5.2.1" data-path="use/models/schemas.html">
             
                 <a href="use/models/schemas.html">
             
@@ -987,39 +1000,65 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="installing"><a name="installing" class="plugin-anchor" href="#installing"><i class="fa fa-link" aria-hidden="true"></i></a>Installing</h1><p><strong>IMPORTANT NOTE</strong>: <code>go-swagger</code> is a tool to mainly generate or analyze source code. In order to make it work after successful
-installation, see <a href="https://goswagger.io/generate/requirements.html" target="_blank">the prerequisites</a> on your development environment.</p><h2 id="installing-from-binary-distributions"><a name="installing-from-binary-distributions" class="plugin-anchor" href="#installing-from-binary-distributions"><i class="fa fa-link" aria-hidden="true"></i></a>Installing from binary distributions</h2><p>go-swagger releases are distributed as binaries that are built from signed tags. It is published <a href="https://github.com/go-swagger/go-swagger/tags" target="_blank">as github release</a>,
-rpm, deb and docker image.</p><h3 id="docker-image-"><a name="docker-image-" class="plugin-anchor" href="#docker-image-"><i class="fa fa-link" aria-hidden="true"></i></a>Docker image <a href="https://quay.io/repository/goswagger/swagger" target="_blank"><img alt="Docker Repository on Quay" src="https://quay.io/repository/goswagger/swagger/status"></a></h3><p>First grab the image:</p><pre class="language-"><code>docker pull quay.io/goswagger/swagger</code></pre>
-<h4 id="for-mac-and-linux-users"><a name="for-mac-and-linux-users" class="plugin-anchor" href="#for-mac-and-linux-users"><i class="fa fa-link" aria-hidden="true"></i></a>For Mac And Linux users:</h4><pre class="language-"><code class="lang-bash"><span class="token builtin class-name">alias</span> <span class="token assign-left variable">swagger</span><span class="token operator">=</span><span class="token string">&quot;docker run --rm -it  --user <span class="token variable"><span class="token variable">$(</span><span class="token function">id</span> -u<span class="token variable">)</span></span>:<span class="token variable"><span class="token variable">$(</span><span class="token function">id</span> -g<span class="token variable">)</span></span> -e GOPATH=<span class="token environment constant">$HOME</span>/go:/go -v <span class="token environment constant">$HOME</span>:<span class="token environment constant">$HOME</span> -w <span class="token variable"><span class="token variable">$(</span><span class="token builtin class-name">pwd</span><span class="token variable">)</span></span> quay.io/goswagger/swagger&quot;</span>
-swagger version</code></pre>
-<h4 id="for-windows-users"><a name="for-windows-users" class="plugin-anchor" href="#for-windows-users"><i class="fa fa-link" aria-hidden="true"></i></a>For windows users:</h4><pre class="language-"><code class="lang-cmd">docker run --rm -it --env GOPATH=/go -v %CD%:/go/src -w /go/src quay.io/goswagger/swagger</code></pre>
-<p>You can put the following in a file called <strong>swagger.bat</strong> and include it in your path environment variable to act as an alias.</p><pre class="language-"><code class="lang-batch"><span class="token operator">@</span><span class="token command"><span class="token keyword">echo</span> off</span>
+                                <h1 id="installing"><a name="installing" class="plugin-anchor" href="#installing"><i class="fa fa-link" aria-hidden="true"></i></a>Installing</h1>
+<p><strong>IMPORTANT NOTE</strong>: <code>go-swagger</code> is a tool to mainly generate or analyze source code. In order to make it work after successful
+installation, see <a href="https://goswagger.io/generate/requirements.html" target="_blank">the prerequisites</a> on your development environment.</p>
+<h2 id="installing-from-binary-distributions"><a name="installing-from-binary-distributions" class="plugin-anchor" href="#installing-from-binary-distributions"><i class="fa fa-link" aria-hidden="true"></i></a>Installing from binary distributions</h2>
+<p>go-swagger releases are distributed as binaries that are built from signed tags. It is published <a href="https://github.com/go-swagger/go-swagger/tags" target="_blank">as github release</a>,
+rpm, deb and docker image.</p>
+<h3 id="docker-image-"><a name="docker-image-" class="plugin-anchor" href="#docker-image-"><i class="fa fa-link" aria-hidden="true"></i></a>Docker image <a href="https://quay.io/repository/goswagger/swagger" target="_blank"><img src="https://quay.io/repository/goswagger/swagger/status" alt="Docker Repository on Quay" title="Docker Repository on Quay"></a></h3>
+<p>First grab the image:</p>
+<pre class="language-"><code>docker pull quay.io/goswagger/swagger
+</code></pre><h4 id="for-mac-and-linux-users"><a name="for-mac-and-linux-users" class="plugin-anchor" href="#for-mac-and-linux-users"><i class="fa fa-link" aria-hidden="true"></i></a>For Mac And Linux users:</h4>
+<pre class="language-"><code class="lang-bash"><span class="token builtin class-name">alias</span> <span class="token assign-left variable">swagger</span><span class="token operator">=</span><span class="token string">&apos;docker run --rm -it  --user <span class="token variable"><span class="token variable">$(</span><span class="token function">id</span> -u<span class="token variable">)</span></span>:<span class="token variable"><span class="token variable">$(</span><span class="token function">id</span> -g<span class="token variable">)</span></span> -e GOPATH=<span class="token variable"><span class="token variable">$(</span>go <span class="token function">env</span> GOPATH<span class="token variable">)</span></span>:/go -v <span class="token environment constant">$HOME</span>:<span class="token environment constant">$HOME</span> -w <span class="token variable"><span class="token variable">$(</span><span class="token builtin class-name">pwd</span><span class="token variable">)</span></span> quay.io/goswagger/swagger&apos;</span>
+swagger version
+</code></pre>
+<h4 id="for-windows-users"><a name="for-windows-users" class="plugin-anchor" href="#for-windows-users"><i class="fa fa-link" aria-hidden="true"></i></a>For windows users:</h4>
+<pre class="language-"><code class="lang-cmd">docker run --rm -it --env GOPATH=/go -v %CD%:/go/src -w /go/src quay.io/goswagger/swagger
+</code></pre>
+<p>You can put the following in a file called <strong>swagger.bat</strong> and include it in your path environment variable to act as an alias.</p>
+<pre class="language-"><code class="lang-batch"><span class="token operator">@</span><span class="token command"><span class="token keyword">echo</span> off</span>
 <span class="token command"><span class="token keyword">echo</span>.</span>
-<span class="token command"><span class="token keyword">docker</span> run <span class="token parameter attr-name">--rm</span> -it <span class="token parameter attr-name">--env</span> GOPATH=<span class="token parameter attr-name">/go</span> <span class="token parameter attr-name">-v</span> <span class="token variable">%CD%</span>:/go<span class="token parameter attr-name">/src</span> <span class="token parameter attr-name">-w</span> /go<span class="token parameter attr-name">/src</span> quay.io/goswagger<span class="token parameter attr-name">/swagger</span> %*</span></code></pre>
-<h3 id="homebrewlinuxbrew"><a name="homebrewlinuxbrew" class="plugin-anchor" href="#homebrewlinuxbrew"><i class="fa fa-link" aria-hidden="true"></i></a>Homebrew/Linuxbrew</h3><pre class="language-"><code>brew tap go-swagger/go-swagger
-brew install go-swagger</code></pre>
-<h3 id="static-binary"><a name="static-binary" class="plugin-anchor" href="#static-binary"><i class="fa fa-link" aria-hidden="true"></i></a>Static binary</h3><p>You can download a binary for your platform from github:
-<a href="https://github.com/go-swagger/go-swagger/releases/latest" target="_blank">https://github.com/go-swagger/go-swagger/releases/latest</a></p><pre class="language-"><code>download_url=$(curl -s https://api.github.com/repos/go-swagger/go-swagger/releases/latest | \
+<span class="token command"><span class="token keyword">docker</span> run <span class="token parameter attr-name">--rm</span> -it <span class="token parameter attr-name">--env</span> GOPATH=<span class="token parameter attr-name">/go</span> <span class="token parameter attr-name">-v</span> <span class="token variable">%CD%</span>:/go<span class="token parameter attr-name">/src</span> <span class="token parameter attr-name">-w</span> /go<span class="token parameter attr-name">/src</span> quay.io/goswagger<span class="token parameter attr-name">/swagger</span> %*</span>
+</code></pre>
+<h3 id="homebrewlinuxbrew"><a name="homebrewlinuxbrew" class="plugin-anchor" href="#homebrewlinuxbrew"><i class="fa fa-link" aria-hidden="true"></i></a>Homebrew/Linuxbrew</h3>
+<pre class="language-"><code>brew tap go-swagger/go-swagger
+brew install go-swagger
+</code></pre><h3 id="static-binary"><a name="static-binary" class="plugin-anchor" href="#static-binary"><i class="fa fa-link" aria-hidden="true"></i></a>Static binary</h3>
+<p>You can download a binary for your platform from github:
+<a href="https://github.com/go-swagger/go-swagger/releases/latest" target="_blank">https://github.com/go-swagger/go-swagger/releases/latest</a></p>
+<pre class="language-"><code>download_url=$(curl -s https://api.github.com/repos/go-swagger/go-swagger/releases/latest | \
   jq -r &apos;.assets[] | select(.name | contains(&quot;&apos;&quot;$(uname | tr &apos;[:upper:]&apos; &apos;[:lower:]&apos;)&quot;&apos;_amd64&quot;)) | .browser_download_url&apos;)
 curl -o /usr/local/bin/swagger -L&apos;#&apos; &quot;$download_url&quot;
-chmod +x /usr/local/bin/swagger</code></pre>
-<h3 id="debian-packages---"><a name="debian-packages---" class="plugin-anchor" href="#debian-packages---"><i class="fa fa-link" aria-hidden="true"></i></a>Debian packages <a href="https://bintray.com/go-swagger/goswagger-debian/swagger/_latestVersion" target="_blank"> <img alt="Download" src="https://api.bintray.com/packages/go-swagger/goswagger-debian/swagger/images/download.svg"> </a></h3><p>This repo will work for any debian, the only file it contains gets copied to <code>/usr/bin</code></p><pre class="language-"><code>sudo apt install gnupg ca-certificates
+chmod +x /usr/local/bin/swagger
+</code></pre><h3 id="debian-packages---"><a name="debian-packages---" class="plugin-anchor" href="#debian-packages---"><i class="fa fa-link" aria-hidden="true"></i></a>Debian packages <a href="https://bintray.com/go-swagger/goswagger-debian/swagger/_latestVersion" target="_blank"> <img src="https://api.bintray.com/packages/go-swagger/goswagger-debian/swagger/images/download.svg" alt="Download"> </a></h3>
+<p>This repo will work for any debian, the only file it contains gets copied to <code>/usr/bin</code></p>
+<pre class="language-"><code>sudo apt install gnupg ca-certificates
 sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 379CE192D401AB61
 echo &quot;deb https://dl.bintray.com/go-swagger/goswagger-debian ubuntu main&quot; | sudo tee /etc/apt/sources.list.d/goswagger.list
 sudo apt update 
-sudo apt install swagger</code></pre>
-<h3 id="rpm-packages---"><a name="rpm-packages---" class="plugin-anchor" href="#rpm-packages---"><i class="fa fa-link" aria-hidden="true"></i></a>RPM packages <a href="https://bintray.com/go-swagger/goswagger-rpm/swagger/_latestVersion" target="_blank"> <img alt="Download" src="https://api.bintray.com/packages/go-swagger/goswagger-rpm/swagger/images/download.svg"> </a></h3><p>This repo should work on any distro that wants rpm packages, the only file it contains gets copied to <code>/usr/bin</code></p><pre class="language-"><code>wget https://bintray.com/go-swagger/goswagger-rpm/rpm -O bintray-go-swagger-goswagger-rpm.repo</code></pre>
-<h3 id="installing-from-source"><a name="installing-from-source" class="plugin-anchor" href="#installing-from-source"><i class="fa fa-link" aria-hidden="true"></i></a>Installing from source</h3><p>Install or update from current source master:</p><pre class="language-"><code>dir=$(mktemp -d) 
+sudo apt install swagger
+</code></pre><h3 id="rpm-packages---"><a name="rpm-packages---" class="plugin-anchor" href="#rpm-packages---"><i class="fa fa-link" aria-hidden="true"></i></a>RPM packages <a href="https://bintray.com/go-swagger/goswagger-rpm/swagger/_latestVersion" target="_blank"> <img src="https://api.bintray.com/packages/go-swagger/goswagger-rpm/swagger/images/download.svg" alt="Download"> </a></h3>
+<p>This repo should work on any distro that wants rpm packages, the only file it contains gets copied to <code>/usr/bin</code></p>
+<pre class="language-"><code>wget https://bintray.com/go-swagger/goswagger-rpm/rpm -O bintray-go-swagger-goswagger-rpm.repo
+</code></pre><h3 id="installing-from-source"><a name="installing-from-source" class="plugin-anchor" href="#installing-from-source"><i class="fa fa-link" aria-hidden="true"></i></a>Installing from source</h3>
+<p>Install or update from current source master:</p>
+<pre class="language-"><code>dir=$(mktemp -d) 
 git clone https://github.com/go-swagger/go-swagger &quot;$dir&quot; 
 cd &quot;$dir&quot;
-go install ./cmd/swagger</code></pre>
-<p>To install a specific version from source an appropriate tag needs to be checked out first (e.g. <code>v0.25.0</code>). Additional <code>-ldflags</code> are just to make <code>swagger version</code> command print the version and commit id instead of <code>dev</code>.</p><pre class="language-"><code>dir=$(mktemp -d)
+go install ./cmd/swagger
+</code></pre><p>To install a specific version from source an appropriate tag needs to be checked out first (e.g. <code>v0.25.0</code>). Additional <code>-ldflags</code> are just to make <code>swagger version</code> command print the version and commit id instead of <code>dev</code>.</p>
+<pre class="language-"><code>dir=$(mktemp -d)
 git clone https://github.com/go-swagger/go-swagger &quot;$dir&quot; 
 cd &quot;$dir&quot;
-go checkout v0.25.0
-go install -ldflags &quot;-X github.com/go-swagger/go-swagger/cmd/swagger/commands.Version=$(git describe --tags) -X github.com/go-swagger/go-swagger/cmd/swagger/commands.Commit=$(git rev-parse HEAD)&quot; ./cmd/swagger</code></pre>
-<p>You are welcome to clone this repo and start contributing:</p><pre class="language-"><code>git clone https://github.com/go-swagger/go-swagger</code></pre>
-<blockquote><p><strong>NOTE</strong>: go-swagger works on *nix as well as Windows OS</p></blockquote>
+git checkout v0.25.0
+go install -ldflags &quot;-X github.com/go-swagger/go-swagger/cmd/swagger/commands.Version=$(git describe --tags) -X github.com/go-swagger/go-swagger/cmd/swagger/commands.Commit=$(git rev-parse HEAD)&quot; ./cmd/swagger
+</code></pre><p>You are welcome to clone this repo and start contributing:</p>
+<pre class="language-"><code>git clone https://github.com/go-swagger/go-swagger
+</code></pre><blockquote>
+<p><strong>NOTE</strong>: go-swagger works on *nix as well as Windows OS </p>
+</blockquote>
+
                                 
                                 </section>
                             
@@ -1062,7 +1101,7 @@ go install -ldflags &quot;-X github.com/go-swagger/go-swagger/cmd/swagger/comman
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Installation","level":"1.1.2","depth":2,"next":{"title":"Features","level":"1.2","depth":1,"path":"features.md","ref":"features.md","articles":[]},"previous":{"title":"Approaches","level":"1.1.1","depth":2,"path":"about.md","ref":"about.md","articles":[]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors","livereload"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"prism":{},"livereload":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"install.md","mtime":"2021-01-18T18:02:30.856Z","type":"markdown"},"gitbook":{"version":"3.2.0","time":"2021-01-19T04:09:47.021Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Installation","level":"1.1.2","depth":2,"next":{"title":"Features","level":"1.2","depth":1,"path":"features.md","ref":"features.md","articles":[]},"previous":{"title":"Approaches","level":"1.1.1","depth":2,"path":"about.md","ref":"about.md","articles":[]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"prism":{},"anchors":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"install.md","mtime":"2021-03-31T03:29:05.595Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2021-11-18T06:04:50.878Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>
@@ -1073,10 +1112,6 @@ go install -ldflags &quot;-X github.com/go-swagger/go-swagger/cmd/swagger/comman
     
         
         <script src="gitbook/gitbook-plugin-forkmegithub/plugin.js"></script>
-        
-    
-        
-        <script src="gitbook/gitbook-plugin-livereload/plugin.js"></script>
         
     
         
