@@ -1031,17 +1031,34 @@ brew install go-swagger
   jq -r &apos;.assets[] | select(.name | contains(&quot;&apos;&quot;$(uname | tr &apos;[:upper:]&apos; &apos;[:lower:]&apos;)&quot;&apos;_amd64&quot;)) | .browser_download_url&apos;)
 curl -o /usr/local/bin/swagger -L&apos;#&apos; &quot;$download_url&quot;
 chmod +x /usr/local/bin/swagger
-</code></pre><h3 id="debian-packages---"><a name="debian-packages---" class="plugin-anchor" href="#debian-packages---"><i class="fa fa-link" aria-hidden="true"></i></a>Debian packages <a href="https://bintray.com/go-swagger/goswagger-debian/swagger/_latestVersion" target="_blank"> <img src="https://api.bintray.com/packages/go-swagger/goswagger-debian/swagger/images/download.svg" alt="Download"> </a></h3>
+</code></pre><h3 id="debian-packages-"><a name="debian-packages-" class="plugin-anchor" href="#debian-packages-"><i class="fa fa-link" aria-hidden="true"></i></a>Debian packages <a href="https://cloudsmith.io/~go-swagger/repos/go-swagger/packages/detail/deb/swagger/latest/a=amd64;d=debian%252Fany-version;t=binary/" target="_blank"><img src="https://api-prd.cloudsmith.io/v1/badges/version/go-swagger/go-swagger/deb/swagger/latest/a=amd64;d=debian%252Fany-version;t=binary/?render=true&amp;show_latest=true" alt="Download"></a></h3>
 <p>This repo will work for any debian, the only file it contains gets copied to <code>/usr/bin</code></p>
-<pre class="language-"><code>sudo apt install gnupg ca-certificates
-sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 379CE192D401AB61
-echo &quot;deb https://dl.bintray.com/go-swagger/goswagger-debian ubuntu main&quot; | sudo tee /etc/apt/sources.list.d/goswagger.list
-sudo apt update 
-sudo apt install swagger
-</code></pre><h3 id="rpm-packages---"><a name="rpm-packages---" class="plugin-anchor" href="#rpm-packages---"><i class="fa fa-link" aria-hidden="true"></i></a>RPM packages <a href="https://bintray.com/go-swagger/goswagger-rpm/swagger/_latestVersion" target="_blank"> <img src="https://api.bintray.com/packages/go-swagger/goswagger-rpm/swagger/images/download.svg" alt="Download"> </a></h3>
+<p>without sudo:</p>
+<pre class="language-"><code class="lang-sh"><span class="token function">apt</span> update
+<span class="token function">apt</span> <span class="token function">install</span> -y apt-transport-https gnupg <span class="token function">curl</span>
+<span class="token function">curl</span> -1sLf <span class="token string">&apos;https://dl.cloudsmith.io/public/go-swagger/go-swagger/gpg.2F8CB673971B5C9E.key&apos;</span> <span class="token operator">|</span> apt-key <span class="token function">add</span> -
+<span class="token function">curl</span> -1sLf <span class="token string">&apos;https://dl.cloudsmith.io/public/go-swagger/go-swagger/config.deb.txt?distro=debian&amp;codename=any-version&apos;</span> <span class="token operator">&gt;</span> /etc/apt/sources.list.d/go-swagger-go-swagger.list
+<span class="token function">apt</span> update 
+<span class="token function">apt</span> <span class="token function">install</span> swagger
+</code></pre>
+<p>with sudo:</p>
+<pre class="language-"><code class="lang-sh"><span class="token function">sudo</span> <span class="token function">apt</span> update
+<span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> -y apt-transport-https gnupg <span class="token function">curl</span>
+<span class="token function">curl</span> -1sLf <span class="token string">&apos;https://dl.cloudsmith.io/public/go-swagger/go-swagger/gpg.2F8CB673971B5C9E.key&apos;</span> <span class="token operator">|</span> <span class="token function">sudo</span> apt-key <span class="token function">add</span> -
+<span class="token function">curl</span> -1sLf <span class="token string">&apos;https://dl.cloudsmith.io/public/go-swagger/go-swagger/config.deb.txt?distro=debian&amp;codename=any-version&apos;</span> <span class="token operator">|</span> <span class="token function">sudo</span> <span class="token function">tee</span> /etc/apt/sources.list.d/go-swagger-go-swagger.list
+<span class="token function">sudo</span> <span class="token function">apt</span> update 
+<span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> swagger
+</code></pre>
+<h3 id="rpm-packages-"><a name="rpm-packages-" class="plugin-anchor" href="#rpm-packages-"><i class="fa fa-link" aria-hidden="true"></i></a>RPM packages <a href="https://cloudsmith.io/~go-swagger/repos/go-swagger/packages/detail/rpm/swagger/latest/a=x86_64;d=fedora%252Fany-version;t=binary/" target="_blank"><img src="https://api-prd.cloudsmith.io/v1/badges/version/go-swagger/go-swagger/rpm/swagger/latest/a=x86_64;d=fedora%252Fany-version;t=binary/?render=true&amp;show_latest=true" alt="Download"></a></h3>
 <p>This repo should work on any distro that wants rpm packages, the only file it contains gets copied to <code>/usr/bin</code></p>
-<pre class="language-"><code>wget https://bintray.com/go-swagger/goswagger-rpm/rpm -O bintray-go-swagger-goswagger-rpm.repo
-</code></pre><h3 id="installing-from-source"><a name="installing-from-source" class="plugin-anchor" href="#installing-from-source"><i class="fa fa-link" aria-hidden="true"></i></a>Installing from source</h3>
+<pre class="language-"><code class="lang-sh">dnf <span class="token function">install</span> -y yum-utils
+<span class="token function">rpm</span> --import <span class="token string">&apos;https://dl.cloudsmith.io/public/go-swagger/go-swagger/gpg.2F8CB673971B5C9E.key&apos;</span>
+<span class="token function">curl</span> -1sLf <span class="token string">&apos;https://dl.cloudsmith.io/public/go-swagger/go-swagger/config.rpm.txt?distro=fedora&amp;codename=any-version&apos;</span> <span class="token operator">&gt;</span> /tmp/go-swagger-go-swagger.repo
+dnf config-manager --add-repo <span class="token string">&apos;/tmp/go-swagger-go-swagger.repo&apos;</span>
+dnf -q makecache -y --disablerepo<span class="token operator">=</span><span class="token string">&apos;*&apos;</span> --enablerepo<span class="token operator">=</span><span class="token string">&apos;go-swagger-go-swagger&apos;</span> --enablerepo<span class="token operator">=</span><span class="token string">&apos;go-swagger-go-swagger-source&apos;</span>
+dnf <span class="token function">install</span> -y swagger
+</code></pre>
+<h3 id="installing-from-source"><a name="installing-from-source" class="plugin-anchor" href="#installing-from-source"><i class="fa fa-link" aria-hidden="true"></i></a>Installing from source</h3>
 <p>Install or update from current source master:</p>
 <pre class="language-"><code>dir=$(mktemp -d) 
 git clone https://github.com/go-swagger/go-swagger &quot;$dir&quot; 
@@ -1101,7 +1118,7 @@ go install -ldflags &quot;-X github.com/go-swagger/go-swagger/cmd/swagger/comman
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Installation","level":"1.1.2","depth":2,"next":{"title":"Features","level":"1.2","depth":1,"path":"features.md","ref":"features.md","articles":[]},"previous":{"title":"Approaches","level":"1.1.1","depth":2,"path":"about.md","ref":"about.md","articles":[]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"prism":{},"anchors":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"install.md","mtime":"2021-03-31T03:29:05.595Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2021-11-18T06:04:50.878Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Installation","level":"1.1.2","depth":2,"next":{"title":"Features","level":"1.2","depth":1,"path":"features.md","ref":"features.md","articles":[]},"previous":{"title":"Approaches","level":"1.1.1","depth":2,"path":"about.md","ref":"about.md","articles":[]},"dir":"ltr"},"config":{"plugins":["forkmegithub","prism","-highlight","anchors"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"forkmegithub":{"color":"green","url":"https://github.com/go-swagger/go-swagger"},"prism":{},"anchors":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"install.md","mtime":"2022-01-23T22:19:46.123Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-01-23T22:21:57.083Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>
