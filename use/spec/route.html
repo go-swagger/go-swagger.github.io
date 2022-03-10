@@ -1040,6 +1040,10 @@ yourself in valid swagger syntax.</p>
 <td>a dictionary of key: []string{scopes}</td>
 </tr>
 <tr>
+<td><strong>Parameters</strong></td>
+<td>a list of parameters that this API accepts</td>
+</tr>
+<tr>
 <td><strong>Responses</strong></td>
 <td>a dictionary of status code to named response</td>
 </tr>
@@ -1071,6 +1075,15 @@ yourself in valid swagger syntax.</p>
     <span class="token comment">//     Security:</span>
     <span class="token comment">//       api_key:</span>
     <span class="token comment">//       oauth: read, write</span>
+    <span class="token comment">//</span>
+    <span class="token comment">//     Parameters:</span>
+    <span class="token comment">//       + name: limit</span>
+    <span class="token comment">//         in: query</span>
+    <span class="token comment">//         description: maximum numnber of results to return</span>
+    <span class="token comment">//         required: false</span>
+    <span class="token comment">//         type: integer</span>
+    <span class="token comment">//         format: int32</span>
+    <span class="token comment">//</span>
     <span class="token comment">//</span>
     <span class="token comment">//     Responses:</span>
     <span class="token comment">//       default: genericError</span>
@@ -1107,6 +1120,12 @@ yourself in valid swagger syntax.</p>
         <span class="token key atrule">oauth</span><span class="token punctuation">:</span>
         <span class="token punctuation">-</span> read
         <span class="token punctuation">-</span> write
+      <span class="token key atrule">parameters</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> description<span class="token punctuation">:</span> maximum number of results to return
+	<span class="token key atrule">format</span><span class="token punctuation">:</span> int32
+	<span class="token key atrule">in</span><span class="token punctuation">:</span> query
+	<span class="token key atrule">name</span><span class="token punctuation">:</span> limit
+	<span class="token key atrule">type</span><span class="token punctuation">:</span> integer
       <span class="token key atrule">responses</span><span class="token punctuation">:</span>
         <span class="token key atrule">default</span><span class="token punctuation">:</span>
           <span class="token key atrule">$ref</span><span class="token punctuation">:</span> <span class="token string">&quot;#/responses/genericError&quot;</span>
